@@ -8,7 +8,6 @@ class SharedPreference(context: Context) {
 
     private val defaultPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-
     fun saveE(value: String){
         val editor: SharedPreferences.Editor = defaultPreferences.edit()
         editor.putString("calculatorEquation", value)

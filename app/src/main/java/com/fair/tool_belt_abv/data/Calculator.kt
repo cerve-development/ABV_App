@@ -115,7 +115,7 @@ class Calculator {
     }
 
     private fun rangeSelection(unit: String): Pair<Double, Double>{
-    return when(unit){
+        return when(unit){
         "B" -> Pair(0.0, 40.0)
         "P" -> Pair(0.0000, 39.9490)
         "SG" -> Pair(1.0000, 1.1790)

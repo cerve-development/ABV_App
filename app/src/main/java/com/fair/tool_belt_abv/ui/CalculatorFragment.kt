@@ -18,6 +18,7 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
 
     private var _binding: FragmentNewCalculatorBinding? = null
     private val viewBinding get() = _binding!!
+    private lateinit var pref : SharedPreference
     private lateinit var calculatorUnit: String
     private lateinit var calculatorEquation: String
 
@@ -57,9 +58,8 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
             context?.let { it ->
                 Calculator().apply {
 
-
                     //retrieving any decisions the user made during previous sessions
-                    val pref = SharedPreference(it)
+                    pref = SharedPreference(it)
                     calculatorUnit = pref.get("calculatorUnit").toString()
                     calculatorEquation = pref.get("calculatorEquation").toString()
 
@@ -80,109 +80,48 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                     chkBxSG.setOnClickListener {
                         pref.saveU("SG")
                         context?.toast("You are now using Specific Gravity")
+                        onCalculate()
                     }
                     chkBxPlato.setOnClickListener {
                         pref.saveU("P")
                         context?.toast("You are now using Plato")
+                        onCalculate()
                     }
                     chkBxBrix.setOnClickListener {
                         pref.saveU("B")
                         context?.toast("You are now using Brix")
+                        onCalculate()
                     }
 
                     //toggling the equation to use  for the app
                     chkBxSimple.setOnClickListener {
                         pref.saveE("S")
                         context?.toast("You are now using a simple equation")
+                        onCalculate()
                     }
                     chkBxAdvanced.setOnClickListener {
                         pref.saveE("A")
                         context?.toast("You are now using an advanced equation")
+                        onCalculate()
                     }
 
 
-                    var num1: String
-                    var num2: String
-                    var uE: String
-                    //txtAbvDisplay.text = "-"
-
                     eTxtOG.addTextChangedListener(object : TextWatcher {
                         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                            /**
-                             * inline function?
-                             */
 
-
-                            num1 = if(eTxtOG.text.toString().startsWith(".")) {"0${eTxtOG.text}"} else {eTxtOG.text.toString()}
-                            num2 = if(eTxtFG.text.toString().startsWith(".")) {"0${eTxtFG.text}"} else {eTxtFG.text.toString()}
-                            uE = calculatorEquation
-
-                            when{
-                                chkBxSG.isChecked -> {
-                                    val calculation = sCalculator(num1,num2,uE)
-                                    txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
-                                    txtAttenuationDisplay.text = getString(R.string.Apparent, calculation.second)
-                                    txtErrorDisplay.text = calculation.third
-                                }
-                                chkBxPlato.isChecked -> {
-                                    val calculation = pCalculator(num1,num2,uE)
-                                    txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
-                                    txtAttenuationDisplay.text = getString(R.string.Apparent, calculation.second)
-                                    txtErrorDisplay.text = calculation.third
-                                }
-                                chkBxBrix.isChecked -> {
-                                    val calculation = bCalculator(num1,num2,uE)
-                                    txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
-                                    txtAttenuationDisplay.text = getString(R.string.Apparent, calculation.second)
-                                    txtErrorDisplay.text = calculation.third
-                                }
-                            }
-
-
+                            onCalculate()
 
                         }
-
                         override fun afterTextChanged(p0: Editable?) {}
-
                         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {} })
 
                     eTxtFG.addTextChangedListener(object : TextWatcher {
-
                         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-                            /**
-                             * inline function?
-                             */
-                            num1 = if(eTxtOG.text.toString().startsWith(".")) {"0${eTxtOG.text}"} else {eTxtOG.text.toString()}
-                            num2 = if(eTxtFG.text.toString().startsWith(".")) {"0${eTxtFG.text}"} else {eTxtFG.text.toString()}
-                            uE = calculatorEquation
-
-                            when{
-                                chkBxSG.isChecked -> {
-                                    val calculation = sCalculator(num1,num2,uE)
-                                    txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
-                                    txtAttenuationDisplay.text = getString(R.string.Apparent, calculation.second)
-                                    txtErrorDisplay.text = calculation.third
-                                }
-                                chkBxPlato.isChecked -> {
-                                    val calculation = pCalculator(num1,num2,uE)
-                                    txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
-                                    txtAttenuationDisplay.text = getString(R.string.Apparent, calculation.second)
-                                    txtErrorDisplay.text = calculation.third
-                                }
-                                chkBxBrix.isChecked -> {
-                                    val calculation = bCalculator(num1,num2,uE)
-                                    txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
-                                    txtAttenuationDisplay.text = getString(R.string.Apparent, calculation.second)
-                                    txtErrorDisplay.text = calculation.third
-                                }
-                            }
-
+                           onCalculate()
 
                         }
-
                         override fun afterTextChanged(p0: Editable?) {}
-
                         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                     })
 
@@ -193,7 +132,49 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
 
     }
 
+    private fun onCalculate(){
 
+        viewBinding.apply {
+
+            Calculator().apply {
+
+                calculatorUnit = pref.get("calculatorUnit").toString()
+                calculatorEquation = pref.get("calculatorEquation").toString()
+
+                val num1: String = if (eTxtOG.text.toString().startsWith(".")) {
+                    "0${eTxtOG.text}" } else { eTxtOG.text.toString() }
+
+                val num2: String = if (eTxtFG.text.toString().startsWith(".")) {
+                    "0${eTxtFG.text}" } else { eTxtFG.text.toString() }
+
+                val uE: String = calculatorEquation
+
+                when {
+                    chkBxSG.isChecked -> {
+                        val calculation = sCalculator(num1, num2, uE)
+                        txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
+                        txtAttenuationDisplay.text = getString(R.string.Apparent, calculation.second)
+                        txtErrorDisplay.text = calculation.third
+                    }
+                    chkBxPlato.isChecked -> {
+                        val calculation = pCalculator(num1, num2, uE)
+                        txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
+                        txtAttenuationDisplay.text =
+                            getString(R.string.Apparent, calculation.second)
+                        txtErrorDisplay.text = calculation.third
+                    }
+                    chkBxBrix.isChecked -> {
+                        val calculation = bCalculator(num1, num2, uE)
+                        txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
+                        txtAttenuationDisplay.text =
+                            getString(R.string.Apparent, calculation.second)
+                        txtErrorDisplay.text = calculation.third
+                    }
+                }
+            }
+
+        }
+    }
     override fun onResume() {
         super.onResume()
         viewBinding.apply {
@@ -215,7 +196,6 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
 
 
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
