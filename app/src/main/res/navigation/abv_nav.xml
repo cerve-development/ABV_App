@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/calculatorFragment">
+
+    <fragment
+        android:id="@+id/calculatorFragment"
+        android:name="com.fair.tool_belt_abv.ui.CalculatorFragment"
+        android:label="CalculatorFragment" >
+        <action
+            android:id="@+id/action_calculatorFragment_to_converterFragment"
+            app:destination="@id/converterFragment" />
+        <action
+            android:id="@+id/action_calculatorFragment_to_privacyFragment"
+            app:destination="@id/privacyFragment" />
+        <action
+            android:id="@+id/action_calculatorFragment_to_PSFragment"
+            app:destination="@id/PSFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/converterFragment"
+        android:name="com.fair.tool_belt_abv.ui.ConverterFragment"
+        android:label="ConverterFragment" >
+        <action
+            android:id="@+id/action_converterFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/privacyFragment"
+        android:name="com.fair.tool_belt_abv.ui.PrivacyFragment"
+        android:label="PrivacyFragment" >
+        <action
+            android:id="@+id/action_privacyFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PSFragment"
+        android:name="com.fair.tool_belt_abv.ui.PSFragment"
+        android:label="PSFragment" />
+</navigation>

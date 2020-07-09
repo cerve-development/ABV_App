@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "741243630978",
+    "firebase_url": "https://tool-belt-abv.firebaseio.com",
+    "project_id": "tool-belt-abv",
+    "storage_bucket": "tool-belt-abv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741243630978:android:bc08ad2c4d18416df8cb9b",
+        "android_client_info": {
+          "package_name": "com.fair.tool_belt_abv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741243630978-gds28rdi2k5skhu69k4rf617v52jn250.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhoJ-Zzn1IJpKHhrpguq1gM8MUmMxH2Jk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741243630978-gds28rdi2k5skhu69k4rf617v52jn250.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

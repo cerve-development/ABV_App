@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ListPreference
+        app:key="calculatorUnit"
+        android:title="Calculator Unit"
+        app:summary="Choose the unit to use for your calculation"
+        android:icon="@drawable/ic_settings"
+        android:entries="@array/calculatorUnitEntries"
+        android:entryValues="@array/calculatorUnitValues"
+        android:defaultValue="SG"
+        android:dialogTitle="Calculator Unit" />
+
+    <ListPreference
+        app:key="calculatorEquation"
+        android:title="Calculator Equation"
+        app:summary="Choose the equation to use for your calculation"
+        android:icon="@drawable/ic_settings"
+        android:entries="@array/calculatorEquationEntries"
+        android:entryValues="@array/calculatorEquationValues"
+        android:defaultValue="S"
+        android:dialogTitle="Calculator Equation" />
+
+</PreferenceScreen>

@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/originalB1.5</item>
+        <item name="colorPrimaryDark">@color/originalB1</item>
+        <item name="colorAccent">#000000</item>
+        <!--<item name="android:windowFullscreen"> true</item>
+        <item name="android:windowNoTitle">true</item> -->
+    </style>
+
+
+    <style name="MainMenu" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColorSecondary">@color/systemW1</item>
+    </style>
+
+
+</resources>
