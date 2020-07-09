@@ -11,12 +11,12 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/originalB1.5">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/settingToolbar"
             android:layout_width="match_parent"
-            android:layout_marginTop="25dp"
             android:layout_height="?android:attr/actionBarSize"
             app:title="@string/calculator"
             android:theme="@style/MainMenu" />

@@ -11,13 +11,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/gradient_sky_blue_original">
+        android:background="@color/originalB1.5">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/converterToolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:layout_marginTop="25dp"
             app:title="@string/converter"
             android:theme="@style/MainMenu" />
 
@@ -37,34 +36,38 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/brixContainer"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/originalB1.5"
             app:layout_constraintVertical_bias=".1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             android:hint="@string/brix"
+            android:padding="20dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/brixEtxt"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:textColor="@color/originalB1.5"
-                android:inputType="number|numberDecimal"
-                android:padding="20dp"
+                android:background="@drawable/solid_gray_original"
+                android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_text"
-                android:background="@android:color/transparent"/>
+                android:inputType="number|numberDecimal"
+                android:textColor="@color/originalB1.5"
+                android:textSize="30sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/platoContainer"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/Plato"
+            android:padding="20dp"
+            android:textColorHint="@color/originalB1.5"
             app:layout_constraintVertical_bias=".05"
             app:layout_constraintTop_toBottomOf="@+id/brixContainer"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -74,22 +77,24 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/platoEtxt"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:textColor="@color/originalB1.5"
-                android:inputType="number|numberDecimal"
-                android:padding="20dp"
+                android:background="@drawable/solid_gray_original"
+                android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_text"
-                android:background="@android:color/transparent"/>
+                android:inputType="number|numberDecimal"
+                android:textColor="@color/originalB1.5"
+                android:textSize="30sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/SG"
+            android:padding="20dp"
+            android:textColorHint="@color/originalB1.5"
             app:layout_constraintVertical_bias=".05"
             app:layout_constraintTop_toBottomOf="@+id/platoContainer"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -99,14 +104,14 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/specificEtxt"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:textColor="@color/originalB1.5"
-                android:inputType="number|numberDecimal"
-                android:padding="20dp"
+                android:background="@drawable/solid_gray_original"
+                android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_text"
-                android:background="@android:color/transparent"/>
+                android:inputType="number|numberDecimal"
+                android:textColor="@color/originalB1.5"
+                android:textSize="30sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

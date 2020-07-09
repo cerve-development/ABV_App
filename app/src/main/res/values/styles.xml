@@ -7,8 +7,6 @@
         <item name="colorPrimaryDark">@color/originalB1</item>
         <item name="android:statusBarColor">@color/originalB1.5</item>
         <item name="colorAccent">#000000</item>
-        <!--<item name="android:windowFullscreen"> true</item>
-        <item name="android:windowNoTitle">true</item> -->
     </style>
 
 
