@@ -10,6 +10,7 @@ import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.data.Converter
 import com.fair.tool_belt_abv.databinding.FragmentNewConverterBinding
 
+
 class ConverterFragment: Fragment(R.layout.fragment_new_converter) {
 
     private var _binding: FragmentNewConverterBinding? = null

@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
 
         )
-         */
+
 
 
         window.apply {
@@ -34,6 +34,6 @@ class MainActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
-
+        */
     }
 }

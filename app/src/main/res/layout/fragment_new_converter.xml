@@ -14,6 +14,7 @@
         android:background="@drawable/gradient_sky_blue_original">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/converterToolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_marginTop="25dp"
@@ -47,6 +48,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/brixEtxt"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
@@ -71,6 +73,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/platoEtxt"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
@@ -95,6 +98,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/specificEtxt"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"

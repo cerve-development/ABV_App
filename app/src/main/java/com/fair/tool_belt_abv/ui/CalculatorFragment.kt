@@ -34,7 +34,7 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                 when (item.itemId) {
                     R.id.action_settings -> {
                         Navigation.findNavController(view)
-                            .navigate(R.id.action_calculatorFragment_to_PSFragment)
+                            .navigate(R.id.action_calculatorFragment_to_containerFragment)
                         true }
                     R.id.action_policy -> {
                         Navigation.findNavController(view)

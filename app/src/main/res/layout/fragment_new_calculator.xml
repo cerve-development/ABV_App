@@ -12,17 +12,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/gradient_sky_blue_original">
+        android:background="@color/originalB1.5">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/calculatorToolbar"
             android:layout_width="match_parent"
-            android:layout_marginTop="25dp"
             android:layout_height="?android:attr/actionBarSize"
             app:title="@string/calculator"
             android:theme="@style/MainMenu" />
 
 
         <TextView
+            android:id="@+id/txtAttenuationDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -30,6 +31,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/txtAbvDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -37,6 +39,7 @@
             android:textSize="60sp" />
 
         <TextView
+            android:id="@+id/txtErrorDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -67,16 +70,18 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toTopOf="parent"
+            android:padding="20dp"
             app:layout_constraintVertical_bias=".1">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eTxtOG"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/solid_gray_original"
+                android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_text"
                 android:inputType="number|numberDecimal"
                 android:textColor="@color/originalB1.5"
-                android:padding="30dp"
                 android:textSize="30sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,16 +97,18 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@+id/ogContainer"
+            android:padding="20dp"
             app:layout_constraintVertical_bias="0">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eTxtFG"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/solid_gray_original"
+                android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_text"
                 android:inputType="number|numberDecimal"
                 android:textColor="@color/originalB1.5"
-                android:padding="30dp"
                 android:textSize="30sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -111,30 +118,36 @@
             android:id="@+id/unitContainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias=".2"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@id/fgContainer"
-            app:layout_constraintVertical_bias=".1"
+            app:layout_constraintVertical_bias="0.0"
             android:orientation="horizontal">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/chkBxSG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/SG"
+                android:theme="@style/MyRadioButton"
                 android:textColor="@android:color/black" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/chkBxPlato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Plato"
+                android:theme="@style/MyRadioButton"
                 android:textColor="@android:color/black" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/chkBxBrix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/brix"
+                android:theme="@style/MyRadioButton"
                 android:textColor="@android:color/black" />
 
         </RadioGroup>
@@ -143,23 +156,27 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias=".2"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@id/unitContainer"
-            app:layout_constraintVertical_bias=".1"
-            android:orientation="horizontal">
+            app:layout_constraintVertical_bias="0.0"
+            android:orientation="horizontal"
+            android:padding="20dp">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/chkBxSimple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/simEquation"
+                android:theme="@style/MyRadioButton"
                 android:textColor="@android:color/black" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/chkBxAdvanced"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/advEquation"
+                android:theme="@style/MyRadioButton"
                 android:textColor="@android:color/black" />
 
         </RadioGroup>

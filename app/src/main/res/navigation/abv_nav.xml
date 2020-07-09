@@ -15,8 +15,8 @@
             android:id="@+id/action_calculatorFragment_to_privacyFragment"
             app:destination="@id/privacyFragment" />
         <action
-            android:id="@+id/action_calculatorFragment_to_PSFragment"
-            app:destination="@id/PSFragment" />
+            android:id="@+id/action_calculatorFragment_to_containerFragment"
+            app:destination="@id/containerFragment" />
     </fragment>
     <fragment
         android:id="@+id/converterFragment"
@@ -35,7 +35,11 @@
             app:destination="@id/calculatorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/PSFragment"
-        android:name="com.fair.tool_belt_abv.ui.PSFragment"
-        android:label="PSFragment" />
+        android:id="@+id/containerFragment"
+        android:name="com.fair.tool_belt_abv.ui.ContainerFragment"
+        android:label="ContainerFragment" >
+        <action
+            android:id="@+id/action_containerFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
 </navigation>

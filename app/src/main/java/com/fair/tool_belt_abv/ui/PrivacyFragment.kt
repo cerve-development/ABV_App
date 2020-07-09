@@ -19,6 +19,8 @@ class PrivacyFragment: Fragment(R.layout.fragment_privacy) {
 
         viewBinding.apply {
 
+
+
             policyToolbar.setNavigationIcon(R.drawable.ic_arrow_back)
             policyToolbar.setNavigationOnClickListener {
                 Navigation.findNavController(view).navigate(R.id.action_privacyFragment_to_calculatorFragment)
