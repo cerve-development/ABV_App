@@ -51,6 +51,7 @@
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_text"
                 android:inputType="number|numberDecimal"
+                android:imeOptions="actionDone"
                 android:textColor="@color/originalB1.5"
                 android:textSize="30sp"/>
 
@@ -64,7 +65,6 @@
             android:padding="20dp"
             android:textColorHint="@color/originalB1.5"
             app:layout_constraintTop_toBottomOf="@+id/brixContainer"
-
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -75,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/solid_gray_original"
                 android:drawablePadding="10dp"
+                android:imeOptions="actionDone"
                 android:drawableStart="@drawable/ic_text"
                 android:inputType="number|numberDecimal"
                 android:textColor="@color/originalB1.5"
@@ -100,6 +101,7 @@
                 android:background="@drawable/solid_gray_original"
                 android:drawableStart="@drawable/ic_text"
                 android:drawablePadding="10dp"
+                android:imeOptions="actionDone"
                 android:inputType="number|numberDecimal"
                 android:textColor="@color/originalB1.5"
                 android:textSize="30sp" />
