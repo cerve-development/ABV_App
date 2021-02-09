@@ -8,7 +8,6 @@ import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.utils.toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 class FirebaseRealtime(private var context: Context, private var inflating: LayoutInflater) {
@@ -16,16 +15,16 @@ class FirebaseRealtime(private var context: Context, private var inflating: Layo
 
     private fun sendFeedback(feedback: String?){
 
-        val database = FirebaseDatabase.getInstance().reference
-
-            database.child("Feedback").child(UUID.randomUUID().toString()).setValue(feedback)
-                .addOnSuccessListener {
-                    context.toast("Thank you for your feedback!")
-                }
-                .addOnFailureListener {
-                    context.toast("uh oh, please connect to the internet and try again")
-                }
-
+//        val database = FirebaseDatabase.getInstance().reference
+//
+//            database.child("Feedback").child(UUID.randomUUID().toString()).setValue(feedback)
+//                .addOnSuccessListener {
+//                    context.toast("Thank you for your feedback!")
+//                }
+//                .addOnFailureListener {
+//                    context.toast("uh oh, please connect to the internet and try again")
+//                }
+//
 
     }
 
