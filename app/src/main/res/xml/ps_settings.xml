@@ -22,4 +22,14 @@
         android:defaultValue="S"
         android:dialogTitle="Calculator Equation" />
 
+    <ListPreference
+        app:key="calculatorAppTheme"
+        android:title="App Theme"
+        app:summary="Change the theme of your app"
+        android:icon="@drawable/ic_settings"
+        android:entries="@array/appThemeEntries"
+        android:entryValues="@array/appThemeValues"
+        android:defaultValue="SD"
+        android:dialogTitle="App Theme" />
+
 </PreferenceScreen>

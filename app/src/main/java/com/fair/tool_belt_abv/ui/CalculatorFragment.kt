@@ -11,16 +11,19 @@ import com.fair.tool_belt_abv.data.Calculator
 import com.fair.tool_belt_abv.data.database.FirebaseRealtime
 import com.fair.tool_belt_abv.data.database.SharedPreference
 import com.fair.tool_belt_abv.databinding.FragmentNewCalculatorBinding
+import com.fair.tool_belt_abv.utils.Utility.toast
+import dagger.hilt.android.AndroidEntryPoint
 
-import com.fair.tool_belt_abv.utils.toast
 
+@AndroidEntryPoint
 class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
 
     private var _binding: FragmentNewCalculatorBinding? = null
     private val viewBinding get() = _binding!!
-    private lateinit var pref : SharedPreference
-    private lateinit var calculatorUnit: String
-    private lateinit var calculatorEquation: String
+
+    private var pref : SharedPreference? = null
+    private var calculatorUnit: String? = null
+    private var calculatorEquation: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,81 +32,88 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
 
         viewBinding.apply {
 
+            calculatorToolbar.apply {
+                inflateMenu(R.menu.menu_parent)
+                setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.action_settings -> {
+                            Navigation.findNavController(view)
+                                .navigate(R.id.action_calculatorFragment_to_containerFragment)
+                            true }
+                        R.id.action_policy -> {
+                            Navigation.findNavController(view)
+                                .navigate(R.id.action_calculatorFragment_to_privacyFragment)
+                            true }
 
-            calculatorToolbar.inflateMenu(R.menu.menu_parent)
-            calculatorToolbar.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.action_settings -> {
-                        Navigation.findNavController(view)
-                            .navigate(R.id.action_calculatorFragment_to_containerFragment)
-                        true }
-                    R.id.action_policy -> {
-                        Navigation.findNavController(view)
-                            .navigate(R.id.action_calculatorFragment_to_privacyFragment)
-                        true }
+                        R.id.action_converter -> {
+                            Navigation.findNavController(view)
+                                .navigate(R.id.action_calculatorFragment_to_converterFragment)
+                            true }
 
-                    R.id.action_converter -> {
-                        Navigation.findNavController(view)
-                            .navigate(R.id.action_calculatorFragment_to_converterFragment)
-                        true }
+                        R.id.action_feedback -> {
+                            context?.let {  FirebaseRealtime(it, layoutInflater).feedbackDialog()}
+                            true }
 
-                    R.id.action_feedback -> {
-                        context?.let {  FirebaseRealtime(it, layoutInflater).feedbackDialog()}
-                        true }
-
-                    else -> super.onOptionsItemSelected(item)
+                        else -> super.onOptionsItemSelected(item)
+                    }
                 }
             }
 
             context?.let { it ->
+
                 Calculator().apply {
 
-                    //retrieving any decisions the user made during previous sessions
                     pref = SharedPreference(it)
-                    calculatorUnit = pref.get("calculatorUnit").toString()
-                    calculatorEquation = pref.get("calculatorEquation").toString()
 
-                    when(calculatorUnit) {
-                        "SG" -> chkBxSG.isChecked = true
-                        "P" -> chkBxPlato.isChecked = true
-                        "B" -> chkBxBrix.isChecked = true
-                        else -> chkBxSG.isChecked = true
+                    pref?.apply {
+
+                        calculatorUnit = get("calculatorUnit").toString()
+                        calculatorEquation = get("calculatorEquation").toString()
+
+                        when(calculatorUnit) {
+                            "SG" -> chkBxSG.isChecked = true
+                            "P" -> chkBxPlato.isChecked = true
+                            "B" -> chkBxBrix.isChecked = true
+                            else -> chkBxSG.isChecked = true
+                        }
+
+                        when(calculatorEquation) {
+                            "S" -> chkBxSimple.isChecked = true
+                            "A" -> chkBxAdvanced.isChecked = true
+                            else -> chkBxSimple.isChecked = true
+                        }
+
+                        //toggling the unit to use for the app
+                        chkBxSG.setOnClickListener {
+                            saveU("SG")
+                            context?.toast("You are now using Specific Gravity")
+                            onCalculate()
+                        }
+                        chkBxPlato.setOnClickListener {
+                            saveU("P")
+                            context?.toast("You are now using Plato")
+                            onCalculate()
+                        }
+                        chkBxBrix.setOnClickListener {
+                            saveU("B")
+                            context?.toast("You are now using Brix")
+                            onCalculate()
+                        }
+
+                        //toggling the equation to use  for the app
+                        chkBxSimple.setOnClickListener {
+                            saveE("S")
+                            context?.toast("You are now using a simple equation")
+                            onCalculate()
+                        }
+                        chkBxAdvanced.setOnClickListener {
+                            saveE("A")
+                            context?.toast("You are now using an advanced equation")
+                            onCalculate()
+                        }
+
                     }
 
-                    when(calculatorEquation) {
-                        "S" -> chkBxSimple.isChecked = true
-                        "A" -> chkBxAdvanced.isChecked = true
-                        else -> chkBxSimple.isChecked = true
-                    }
-
-                    //toggling the unit to use for the app
-                    chkBxSG.setOnClickListener {
-                        pref.saveU("SG")
-                        context?.toast("You are now using Specific Gravity")
-                        onCalculate()
-                    }
-                    chkBxPlato.setOnClickListener {
-                        pref.saveU("P")
-                        context?.toast("You are now using Plato")
-                        onCalculate()
-                    }
-                    chkBxBrix.setOnClickListener {
-                        pref.saveU("B")
-                        context?.toast("You are now using Brix")
-                        onCalculate()
-                    }
-
-                    //toggling the equation to use  for the app
-                    chkBxSimple.setOnClickListener {
-                        pref.saveE("S")
-                        context?.toast("You are now using a simple equation")
-                        onCalculate()
-                    }
-                    chkBxAdvanced.setOnClickListener {
-                        pref.saveE("A")
-                        context?.toast("You are now using an advanced equation")
-                        onCalculate()
-                    }
 
 
                     eTxtOG.addTextChangedListener(object : TextWatcher {
@@ -114,7 +124,6 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                         }
                         override fun afterTextChanged(p0: Editable?) {}
                         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {} })
-
                     eTxtFG.addTextChangedListener(object : TextWatcher {
                         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -132,14 +141,18 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
 
     }
 
-    private fun onCalculate(){
+    private fun onCalculate() {
 
         viewBinding.apply {
 
             Calculator().apply {
 
-                calculatorUnit = pref.get("calculatorUnit").toString()
-                calculatorEquation = pref.get("calculatorEquation").toString()
+                pref?.apply {
+
+                    calculatorUnit = get("calculatorUnit").toString()
+                    calculatorEquation = get("calculatorEquation").toString()
+                }
+
 
                 val num1: String = if (eTxtOG.text.toString().startsWith(".")) {
                     "0${eTxtOG.text}" } else { eTxtOG.text.toString() }
@@ -147,7 +160,7 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                 val num2: String = if (eTxtFG.text.toString().startsWith(".")) {
                     "0${eTxtFG.text}" } else { eTxtFG.text.toString() }
 
-                val uE: String = calculatorEquation
+                val uE = calculatorEquation
 
                 when {
                     chkBxSG.isChecked -> {

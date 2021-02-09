@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.databinding.FragmentNewContainerBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ContainerFragment: Fragment(R.layout.fragment_new_container) {
 
     private var _binding : FragmentNewContainerBinding? = null

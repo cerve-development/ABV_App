@@ -39,6 +39,20 @@
         <item>A</item>
     </string-array>
 
+    <string-array name="appThemeEntries">
+        <item>Dark Mode</item>
+        <item>Light Mode</item>
+        <item>System Default</item>
+    </string-array>
+
+    <string-array name="appThemeValues">
+        <item>DM</item>
+        <item>LM</item>
+        <item>SD</item>
+    </string-array>
+
+
+
 
 
 </resources>

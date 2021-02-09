@@ -9,8 +9,9 @@ import androidx.navigation.Navigation
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.data.Converter
 import com.fair.tool_belt_abv.databinding.FragmentNewConverterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ConverterFragment: Fragment(R.layout.fragment_new_converter) {
 
     private var _binding: FragmentNewConverterBinding? = null

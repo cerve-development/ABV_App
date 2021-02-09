@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="originalB1">#0084FF</color>
     <color name="originalB1.5">#00C6FF</color>
     <color name="originalG1">#F8F8F8</color>
     <color name="systemW1">#FFFFFF</color>
+
 </resources>

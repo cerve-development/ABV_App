@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.databinding.FragmentPrivacyBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PrivacyFragment: Fragment(R.layout.fragment_privacy) {
 
     private var _binding: FragmentPrivacyBinding? = null
@@ -18,8 +20,6 @@ class PrivacyFragment: Fragment(R.layout.fragment_privacy) {
         _binding = FragmentPrivacyBinding.bind(view)
 
         viewBinding.apply {
-
-
 
             policyToolbar.setNavigationIcon(R.drawable.ic_arrow_back)
             policyToolbar.setNavigationOnClickListener {
