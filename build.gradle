@@ -25,11 +25,11 @@ buildscript {
         googleServiceVersion = '4.3.5'
 
         coroutinesVersion = '1.4.2'
-        daggerHiltVersion = '2.31.2-alpha'
+        daggerHiltVersion = '2.32-alpha'
         hiltViewModelVersion = '1.0.0-alpha03'
 
         assistedInjectVersion = '0.6.0'
-        daggerHiltKaptVersion = '2.31.2-alpha'
+        daggerHiltKaptVersion = '2.32-alpha'
         hiltVersion = '2.30.1-alpha'
 
     }
