@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/originalB1.5">
+    android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
@@ -19,15 +18,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/originalB1.5">
+            android:layout_height="match_parent">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/calculatorToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
                 app:title="@string/calculator"
-                android:theme="@style/MainMenu"
+                style="@style/AppTheme.Toolbar"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -37,7 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/systemW1"
                 android:textSize="12sp"
                 app:layout_constraintTop_toBottomOf="@+id/calculatorToolbar"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +43,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/systemW1"
                 android:textSize="60sp"
                 app:layout_constraintTop_toBottomOf="@+id/txtAttenuationDisplay"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +54,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/Approx"
-                android:textColor="@color/systemW1"
                 android:textSize="13sp"
                 app:layout_constraintTop_toBottomOf="@id/txtAbvDisplay"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,175 +71,129 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.40" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="5dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guidelineMark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/systemW1">
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/guidelineTop"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintStart_toStartOf="@id/guidelineMark"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ogContainer"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/AppTheme.Text.Edit.Container"
                 android:hint="@string/O_G"
-                android:textColorHint="@color/originalB1.5"
-                app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-                app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-                app:layout_constraintTop_toTopOf="@id/guidelineTop"
-                android:padding="20dp">
+                app:layout_constraintBottom_toTopOf="@+id/fgContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/eTxtOG"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/solid_gray_original"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_text"
-                    android:inputType="number|numberDecimal"
-                    android:textColor="@color/originalB1.5"
-                    android:textSize="30sp"/>
+                    style="@style/AppTheme.Text.Edit" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fgContainer"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/AppTheme.Text.Edit.Container"
                 android:hint="@string/F_G"
-                android:textColorHint="@color/originalB1.5"
-                app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-                app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@+id/ogContainer"
-                android:padding="20dp"
-                app:layout_constraintVertical_bias="0">
+                app:layout_constraintBottom_toTopOf="@+id/unitContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ogContainer">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/eTxtFG"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/solid_gray_original"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_text"
-                    android:inputType="number|numberDecimal"
-                    android:textColor="@color/originalB1.5"
-                    android:textSize="30sp"/>
+                    style="@style/AppTheme.Text.Edit" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <RadioGroup
                 android:id="@+id/unitContainer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-                app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@id/fgContainer"
-                app:layout_constraintVertical_bias="0.0"
                 android:orientation="horizontal"
-                android:paddingTop="20dp"
-                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingStart="20dp"
-                android:paddingEnd="20dp">
+                app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fgContainer">
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/chkBxSG"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/SG"
-                    android:theme="@style/MyRadioButton"
-                    android:textColor="@android:color/black" />
+                    style="AppTheme.RadioButton"
+                    android:text="@string/SG" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/chkBxPlato"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Plato"
-                    android:theme="@style/MyRadioButton"
-                    android:textColor="@android:color/black" />
+                    style="AppTheme.RadioButton"
+                    android:text="@string/Plato" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/chkBxBrix"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/brix"
-                    android:theme="@style/MyRadioButton"
-                    android:textColor="@android:color/black" />
+                    style="AppTheme.RadioButton"
+                    android:text="@string/brix" />
 
             </RadioGroup>
 
             <RadioGroup
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-                app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-                app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@id/unitContainer"
-                app:layout_constraintVertical_bias="0.0"
+                android:id="@+id/radioGroup2"
                 android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingStart="20dp"
-                android:paddingEnd="20dp">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/unitContainer">
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/chkBxSimple"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/simEquation"
-                    android:theme="@style/MyRadioButton"
-                    android:textColor="@android:color/black" />
+                    style="AppTheme.RadioButton"
+                    android:text="@string/simEquation" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/chkBxAdvanced"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/advEquation"
-                    android:theme="@style/MyRadioButton"
-                    android:textColor="@android:color/black" />
+                    style="AppTheme.RadioButton"
+                    android:text="@string/advEquation" />
 
             </RadioGroup>
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guidelineLeft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="20dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guidelineRight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="20dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guidelineTop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="10dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guidelineBottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_end="10dp" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="10dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

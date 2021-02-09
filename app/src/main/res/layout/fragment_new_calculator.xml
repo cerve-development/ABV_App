@@ -11,22 +11,18 @@
         app:layout_constraintBottom_toTopOf="@id/guidelineBottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/originalB1.5">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/calculatorToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
             app:title="@string/calculator"
-            android:theme="@style/MainMenu" />
+            style="@style/AppTheme.Toolbar"/>
 
         <TextView
             android:id="@+id/txtAttenuationDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/systemW1"
             android:textSize="12sp" />
 
         <TextView
@@ -34,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/systemW1"
             android:textSize="60sp" />
 
         <TextView
@@ -43,7 +38,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/Approx"
-            android:textColor="@color/systemW1"
             android:textSize="13sp" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -51,148 +45,110 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/guidelineBottom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/systemW1">
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@id/guidelineBottom">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ogContainer"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/AppTheme.Text.Edit.Container"
             android:hint="@string/O_G"
-            android:textColorHint="@color/originalB1.5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintBottom_toTopOf="@+id/fgContainer"
+            app:layout_constraintEnd_toEndOf="@+id/fgContainer"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/fgContainer"
             app:layout_constraintTop_toTopOf="parent"
-            android:padding="20dp"
-            app:layout_constraintVertical_bias=".1">
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/eTxtOG"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/solid_gray_original"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/ic_text"
-                android:inputType="number|numberDecimal"
-                android:textColor="@color/originalB1.5"
-                android:textSize="30sp"/>
+                style="@style/AppTheme.Text.Edit" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fgContainer"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/AppTheme.Text.Edit.Container"
             android:hint="@string/F_G"
-            android:textColorHint="@color/originalB1.5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/ogContainer"
-            android:padding="20dp"
-            app:layout_constraintVertical_bias="0">
+            app:layout_constraintBottom_toTopOf="@+id/unitContainer"
+            app:layout_constraintEnd_toEndOf="@+id/unitContainer"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/unitContainer"
+            app:layout_constraintTop_toBottomOf="@+id/ogContainer">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/eTxtFG"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/solid_gray_original"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/ic_text"
-                android:inputType="number|numberDecimal"
-                android:textColor="@color/originalB1.5"
-                android:textSize="30sp"/>
+                style="@style/AppTheme.Text.Edit" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
             android:id="@+id/unitContainer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@id/fgContainer"
-            app:layout_constraintVertical_bias="0.0"
-            android:orientation="horizontal">
+            style="@style/AppTheme.RadioButton.Group"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/fgContainer"
+            app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/chkBxSG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/SG"
-                android:theme="@style/MyRadioButton"
-                android:textColor="@android:color/black" />
+                style="@style/AppTheme.RadioButton"
+                android:text="@string/SG" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/chkBxPlato"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Plato"
-                android:theme="@style/MyRadioButton"
-                android:textColor="@android:color/black" />
+                style="@style/AppTheme.RadioButton"
+                android:text="@string/Plato" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/chkBxBrix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/brix"
-                android:theme="@style/MyRadioButton"
-                android:textColor="@android:color/black" />
+                style="@style/AppTheme.RadioButton"
+                android:text="@string/brix" />
 
         </RadioGroup>
 
         <RadioGroup
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/radioGroup"
+            style="@style/AppTheme.RadioButton.Group"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@id/unitContainer"
-            app:layout_constraintVertical_bias="0.0"
-            android:orientation="horizontal"
-            android:padding="20dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/unitContainer"
+            app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/chkBxSimple"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/simEquation"
-                android:theme="@style/MyRadioButton"
-                android:textColor="@android:color/black" />
+                style="@style/AppTheme.RadioButton"
+                android:text="@string/simEquation" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/chkBxAdvanced"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/advEquation"
-                android:theme="@style/MyRadioButton"
-                android:textColor="@android:color/black" />
+                style="@style/AppTheme.RadioButton"
+                android:text="@string/advEquation" />
 
         </RadioGroup>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="20dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineBottom"

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="originalB1">#0084FF</color>
-    <color name="originalB1.5">#00C6FF</color>
-    <color name="originalG1">#F8F8F8</color>
-    <color name="systemW1">#FFFFFF</color>
+    <color name="colorPrimary">#1D2026</color>
+    <color name="accentColor">#403273</color>
+
+    <color name="colorSecondary">#2B2B2B</color>
+<!--    <color name="colorAlternate">#F8F8F8</color>-->
+
+    <color name="systemWhite">#FFFFFF</color>
+    <color name="systemBlack">#000000</color>
+
+    <color name="textColorPrimary">@color/systemWhite</color>
 
 </resources>

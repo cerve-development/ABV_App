@@ -3,22 +3,62 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/originalB1.5</item>
-        <item name="colorPrimaryDark">@color/originalB1</item>
-        <item name="android:statusBarColor">@color/originalB1.5</item>
-        <item name="colorAccent">#000000</item>
+        <item name="colorPrimary">@color/accentColor</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@color/accentColor</item>
+        <item name="colorAccent">@color/colorSecondary</item>
     </style>
 
 
-    <style name="MainMenu" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:textColorSecondary">@color/systemW1</item>
+    <style name="AppTheme.Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?android:attr/actionBarSize</item>
+        <item name="android:textColorSecondary">@color/textColorPrimary</item>
+    </style>
+
+    <style name="AppTheme.RadioButton.Group">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">20dp</item>
+
+    </style>
+
+    <style name="AppTheme.RadioButton" parent="Theme.MaterialComponents">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/accentColor</item>
+    </style>
+
+    <style name="AppTheme.title" parent="ThemeOverlay.MaterialComponents">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/accentColor</item>
+    </style>
+
+    <style name="AppTheme.Text.Edit.Container" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/accentColor</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textColorHint">@color/accentColor</item>
+    </style>
+
+    <style name="AppTheme.Text.Edit" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/accentColor</item>
+        <item name="android:inputType">number|numberDecimal</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="background">@drawable/solid_gray_original</item>
     </style>
 
 
-    <style name="MyRadioButton" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">@color/originalG1</item>
-        <item name="colorControlActivated">@color/originalB1.5</item>
-    </style>
 
 
 </resources>
