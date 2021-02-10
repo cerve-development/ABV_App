@@ -1,140 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/guidelineBottom"
-        app:layout_constraintStart_toStartOf="parent"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/calculatorToolbar"
+        style="@style/AppTheme.Toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/calculator" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/calculatorToolbar"
-            app:title="@string/calculator"
-            style="@style/AppTheme.Toolbar"/>
-
-        <TextView
-            android:id="@+id/txtAttenuationDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/txtAbvDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="60sp" />
-
-        <TextView
-            android:id="@+id/txtErrorDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/Approx"
-            android:textSize="13sp" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtAbvDisplay"
+        style="@style/AppTheme.Text.View"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toTopOf="@id/ogContainer"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@id/guidelineBottom">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ogContainer"
-            style="@style/AppTheme.Text.Edit.Container"
-            android:hint="@string/O_G"
-            app:layout_constraintBottom_toTopOf="@+id/fgContainer"
-            app:layout_constraintEnd_toEndOf="@+id/fgContainer"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/fgContainer"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintVertical_chainStyle="packed">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/eTxtOG"
-                style="@style/AppTheme.Text.Edit" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fgContainer"
-            style="@style/AppTheme.Text.Edit.Container"
-            android:hint="@string/F_G"
-            app:layout_constraintBottom_toTopOf="@+id/unitContainer"
-            app:layout_constraintEnd_toEndOf="@+id/unitContainer"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/unitContainer"
-            app:layout_constraintTop_toBottomOf="@+id/ogContainer">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/eTxtFG"
-                style="@style/AppTheme.Text.Edit" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <RadioGroup
-            android:id="@+id/unitContainer"
-            style="@style/AppTheme.RadioButton.Group"
-            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-            app:layout_constraintEnd_toEndOf="@+id/radioGroup"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/radioGroup"
-            app:layout_constraintTop_toBottomOf="@+id/fgContainer"
-            app:layout_constraintVertical_bias="0.0">
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/chkBxSG"
-                style="@style/AppTheme.RadioButton"
-                android:text="@string/SG" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/chkBxPlato"
-                style="@style/AppTheme.RadioButton"
-                android:text="@string/Plato" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/chkBxBrix"
-                style="@style/AppTheme.RadioButton"
-                android:text="@string/brix" />
-
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            style="@style/AppTheme.RadioButton.Group"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/unitContainer"
-            app:layout_constraintVertical_bias="0.0">
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/chkBxSimple"
-                style="@style/AppTheme.RadioButton"
-                android:text="@string/simEquation" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/chkBxAdvanced"
-                style="@style/AppTheme.RadioButton"
-                android:text="@string/advEquation" />
-
-        </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@id/calculatorToolbar"
+        app:layout_constraintVertical_chainStyle="packed" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ogContainer"
+        style="@style/AppTheme.Text.Edit.Container"
+        android:hint="@string/O_G"
+        app:layout_constraintBottom_toTopOf="@+id/fgContainer"
+        app:layout_constraintEnd_toEndOf="@+id/fgContainer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/fgContainer"
+        app:layout_constraintTop_toBottomOf="@+id/txtAbvDisplay"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/eTxtOG"
+            style="@style/AppTheme.Text.Edit" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fgContainer"
+        style="@style/AppTheme.Text.Edit.Container"
+        android:hint="@string/F_G"
+        app:layout_constraintBottom_toTopOf="@+id/unitContainer"
+        app:layout_constraintEnd_toEndOf="@+id/unitContainer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/unitContainer"
+        app:layout_constraintTop_toBottomOf="@+id/ogContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/eTxtFG"
+            style="@style/AppTheme.Text.Edit" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/unitContainer"
+        style="@style/AppTheme.RadioButton.Group"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/fgContainer"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/chkBxSG"
+            style="@style/AppTheme.RadioButton"
+            android:text="@string/SG"
+            android:theme="@style/MyRadioButton" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/chkBxPlato"
+            style="@style/AppTheme.RadioButton"
+            android:text="@string/Plato"
+            android:theme="@style/MyRadioButton" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/chkBxBrix"
+            style="@style/AppTheme.RadioButton"
+            android:text="@string/brix"
+            android:theme="@style/MyRadioButton" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        style="@style/AppTheme.RadioButton.Group"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/unitContainer"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/chkBxSimple"
+            style="@style/AppTheme.RadioButton"
+            android:text="@string/simEquation"
+            android:theme="@style/MyRadioButton" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/chkBxAdvanced"
+            style="@style/AppTheme.RadioButton"
+            android:text="@string/advEquation"
+            android:theme="@style/MyRadioButton" />
+
+    </RadioGroup>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
@@ -150,11 +126,5 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="600dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,8 @@
-package com.fair.tool_belt_abv.data
+package com.fair.tool_belt_abv.utils
 
 import kotlin.math.pow
 
-class Equation {
+object Equation {
 
     val advancedE = {og: Double, fg: Double -> 76.08 * (og-fg)/(1.775 - og) * (fg/0.794)}
     val simpleE = {og: Double, fg: Double -> (og - fg) * 131.25 }
@@ -19,4 +19,5 @@ class Equation {
         repeat(places) { multi *= 10 }
         return kotlin.math.round(this * multi) / multi
     }
+
 }

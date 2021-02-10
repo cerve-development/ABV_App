@@ -1,10 +1,10 @@
-package com.fair.tool_belt_abv.data
+package com.fair.tool_belt_abv.utils
 
-class Converter {
+object Converter {
 
     fun convert(value: String, focused: String): Pair<String, String> {
 
-        Equation().apply {
+        Equation.apply {
 
             return if (value.isNotEmpty()){
                 val valueTrue = value.toDouble()

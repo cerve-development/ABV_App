@@ -1,4 +1,4 @@
-package com.fair.tool_belt_abv.data.database
+package com.fair.tool_belt_abv.data
 
 import android.content.Context
 import android.content.SharedPreferences
