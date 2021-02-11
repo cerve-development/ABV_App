@@ -8,8 +8,5 @@
 <!--    <color name="colorAlternate">#F8F8F8</color>-->
 
     <color name="systemWhite">#FFFFFF</color>
-    <color name="systemBlack">#000000</color>
-
-    <color name="textColorPrimary">@color/systemWhite</color>
 
 </resources>

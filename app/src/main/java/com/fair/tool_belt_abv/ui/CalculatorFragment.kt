@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.fair.tool_belt_abv.R
-import com.fair.tool_belt_abv.data.database.FirebaseRealtime
+import com.fair.tool_belt_abv.data.CalculatorViewModel
 import com.fair.tool_belt_abv.data.SharedPreference
 import com.fair.tool_belt_abv.databinding.FragmentNewCalculatorBinding
 import com.fair.tool_belt_abv.utils.Calculator
@@ -24,6 +25,8 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
     private var pref : SharedPreference? = null
     private var calculatorUnit: String? = null
     private var calculatorEquation: String? = null
+
+    private val calculatorViewModel: CalculatorViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -88,7 +91,7 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                             true }
 
                         R.id.action_feedback -> {
-                            context?.let {  FirebaseRealtime(it, layoutInflater).feedbackDialog()}
+                            calculatorViewModel.beginSendFeedBack(context)
                             true
                         }
 
@@ -165,22 +168,22 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                 when {
                     chkBxSG.isChecked -> {
                         val calculation = calculatorEquation.sCalculator(num1, num2)
-                        abvDisplay?.text = getString(R.string.Abv, calculation.first)
-                        attenuationDisplay?.text = getString(R.string.Attenuation, calculation.second)
-                        warningDisplay?.text = getString(R.string.Warning, calculation.third)
+                        abvDisplay.text = getString(R.string.Abv, calculation.first)
+                        attenuationDisplay.text = getString(R.string.Attenuation, calculation.second)
+                        warningDisplay.text = getString(R.string.Warning, calculation.third)
                     }
                     chkBxPlato.isChecked -> {
                         val calculation = calculatorEquation.pCalculator(num1, num2)
-                        abvDisplay?.text = getString(R.string.Abv, calculation.first)
-                        attenuationDisplay?.text = getString(R.string.Attenuation, calculation.second)
-                        warningDisplay?.text = getString(R.string.Warning, calculation.third)
+                        abvDisplay.text = getString(R.string.Abv, calculation.first)
+                        attenuationDisplay.text = getString(R.string.Attenuation, calculation.second)
+                        warningDisplay.text = getString(R.string.Warning, calculation.third)
 
                     }
                     chkBxBrix.isChecked -> {
                         val calculation = calculatorEquation.bCalculator(num1, num2)
-                        abvDisplay?.text = getString(R.string.Abv, calculation.first)
-                        attenuationDisplay?.text = getString(R.string.Attenuation, calculation.second)
-                        warningDisplay?.text = getString(R.string.Warning, calculation.third)
+                        abvDisplay.text = getString(R.string.Abv, calculation.first)
+                        attenuationDisplay.text = getString(R.string.Attenuation, calculation.second)
+                        warningDisplay.text = getString(R.string.Warning, calculation.third)
 
                     }
                 }

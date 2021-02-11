@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple ABV</string>
-    <string name="Approx">(ABV aproximado)</string>
-    <string name="Apparent">(Atenuación aparente: %1$s%%)</string>
     <string name="Attenuation">Atenuación: %1$s%%</string>
     <string name="Warning">Advertencia: %1$s</string>
     <string name="default_Attenuation">Atenuación: 0%</string>
@@ -18,6 +16,9 @@
     <string name="calculator">Calculadora ABV simple</string>
     <string name="action_settings">Ajustes</string>
     <string name="feedback">Realimentación</string>
+    <string name="send_">Enviar</string>
+    <string name="cancel_">Cancelar</string>
+    <string name="feedback_Submit">¿Enviar una solicitud de función?</string>
 
     <string-array name="calculatorUnitEntries">
         <item>Gravedad específica</item>

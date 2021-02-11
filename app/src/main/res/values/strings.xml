@@ -1,14 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Simple ABV</string>
-    <string name="Approx">(Approximate ABV)</string>
-    <string name="Apparent">(Apparent Attenuation: %1$s%%)</string>
     <string name="Abv" translatable="false">A.B.V : %1$s%%</string>
     <string name="Attenuation">Attenuation : %1$s%%</string>
     <string name="Warning">Warning : %1$s</string>
     <string name="default_Abv" translatable="false">A.B.V : 0%</string>
     <string name="default_Attenuation">Attenuation : 0%</string>
     <string name="default_Warning">Warning : none</string>
-
+    <string name="send_">Send</string>
+    <string name="cancel_">Cancel</string>
+    <string name="feedback_Submit">Send a feature request?</string>
     <string name="O_G">Original Gravity</string>
     <string name="F_G">Final Gravity</string>
     <string name="SG">Specific Gravity</string>

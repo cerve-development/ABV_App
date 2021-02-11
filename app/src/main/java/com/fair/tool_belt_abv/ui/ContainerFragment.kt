@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.preference.PreferenceManager
-import com.fair.tool_belt_abv.utils.Utility.go
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.data.LifecycleSubscriptionsContainer
 import com.fair.tool_belt_abv.data.SharedPreference
-import com.fair.tool_belt_abv.data.SubscriptionsContainer
 import com.fair.tool_belt_abv.databinding.FragmentNewContainerBinding
+import com.fair.tool_belt_abv.utils.Utility.go
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

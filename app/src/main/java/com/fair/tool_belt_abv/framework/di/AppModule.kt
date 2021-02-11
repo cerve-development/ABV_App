@@ -20,4 +20,11 @@ object AppModule {
         return _context as SimpleABVApplication
     }
 
+    @Singleton
+    @Provides
+    fun provideContext(@ApplicationContext context: Context) : Context {
+        return context as SimpleABVApplication
+    }
+
+
 }

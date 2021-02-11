@@ -17,6 +17,12 @@
         <item name="colorControlNormal">@color/systemWhite</item>
     </style>
 
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/colorSecondary</item>
+        <item name="colorSurface">@color/colorSecondary</item>
+<!--        <item name="colorOnSurface">@color/color</item>-->
+    </style>
+
     <style name="AppTheme.RadioButton.Group">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -32,11 +38,6 @@
     <style name="MyRadioButton" parent="Theme.AppCompat.DayNight">
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/accentColor</item>
-    </style>
-
-    <style name="AppTheme.title" parent="ThemeOverlay.MaterialComponents">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="AppTheme.Text.Edit.Container" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
