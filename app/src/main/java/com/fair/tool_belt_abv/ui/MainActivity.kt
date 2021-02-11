@@ -14,28 +14,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        when (SharedPreference(this).get("calculatorAppTheme").toString()) {
-//
-//            "DM" -> {
-//                setDefaultNightMode(MODE_NIGHT_YES)
-//                delegate.applyDayNight()
-//            }
-//            "LM" -> {
-//                setDefaultNightMode(MODE_NIGHT_NO)
-//                delegate.applyDayNight()
-//            }
-//            "SD" -> {
-//                setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-//                delegate.applyDayNight()
-//            }
-//
-//            else -> {
-//                setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-//                delegate.applyDayNight()
-//            }
-//
-//        }
+        when (SharedPreference(this).get("calculatorAppTheme").toString()) {
 
+            "DM" -> {
+                setDefaultNightMode(MODE_NIGHT_YES)
+                delegate.applyDayNight()
+            }
+            "LM" -> {
+                setDefaultNightMode(MODE_NIGHT_NO)
+                delegate.applyDayNight()
+            }
+            "SD" -> {
+                setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+                delegate.applyDayNight()
+            }
+
+            else -> {
+                setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+                delegate.applyDayNight()
+            }
+
+        }
 
     }
 }

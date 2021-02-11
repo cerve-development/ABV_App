@@ -12,7 +12,7 @@ object Calculator {
                 return when {
 
                     os.isNullOrEmpty() or fs.isNullOrEmpty() or this@sCalculator.isNullOrEmpty() -> {
-                        Triple("0","0", "(Approximate ABV)")
+                        Triple("0","0", "none")
                     }
 
                     else -> {
@@ -44,7 +44,7 @@ object Calculator {
 
             return when {
                 op.isNullOrEmpty() or fp.isNullOrEmpty() or this@pCalculator.isNullOrEmpty() -> {
-                    Triple("0","0", "(Approximate ABV)")
+                    Triple("0","0", "none")
                 }
 
                 else -> {
@@ -77,7 +77,7 @@ object Calculator {
 
             return when {
                 ob.isNullOrEmpty() or fb.isNullOrEmpty() or this@bCalculator.isNullOrEmpty() -> {
-                    Triple("0","0", "(Approximate ABV)")
+                    Triple("0","0", "none")
                 }
 
                 else -> {
@@ -108,12 +108,12 @@ object Calculator {
         val myUnit = rangeSelection(unitType)
 
         return when {
-            original.toDouble() < final.toDouble() -> Pair(false, "(Your original can't be lower than your final)")
-            original.toDouble() > myUnit.second -> Pair(false, "(Your original shouldn't be higher than ${myUnit.second})")
-            original.toDouble() < myUnit.first -> Pair(false, "(Your original shouldn't be lower than ${myUnit.first})")
-            final.toDouble() > myUnit.second -> Pair(false, "(Your final shouldn't be higher than ${myUnit.second})")
-            final.toDouble() < myUnit.first -> Pair(false, "(Your final shouldn't be lower than ${myUnit.first})")
-            else -> Pair(true, "(Approximate ABV)")
+            original.toDouble() < final.toDouble() -> Pair(false, "your original can't be lower than your final")
+            original.toDouble() > myUnit.second -> Pair(false, "your original shouldn't be higher than ${myUnit.second}")
+            original.toDouble() < myUnit.first -> Pair(false, "your original shouldn't be lower than ${myUnit.first}")
+            final.toDouble() > myUnit.second -> Pair(false, "your final shouldn't be higher than ${myUnit.second}")
+            final.toDouble() < myUnit.first -> Pair(false, "your final shouldn't be lower than ${myUnit.first}")
+            else -> Pair(true, "none")
 
         }
 

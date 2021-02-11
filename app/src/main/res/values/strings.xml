@@ -2,7 +2,13 @@
     <string name="app_name">Simple ABV</string>
     <string name="Approx">(Approximate ABV)</string>
     <string name="Apparent">(Apparent Attenuation: %1$s%%)</string>
-    <string name="Abv">%1$s%%</string>
+    <string name="Abv">A.B.V : %1$s%%</string>
+    <string name="Attenuation">Attenuation : %1$s%%</string>
+    <string name="Warning">Warning : %1$s</string>
+    <string name="default_Abv">A.B.V : 0%</string>
+    <string name="default_Attenuation">Attenuation : 0%</string>
+    <string name="default_Warning">Warning : none</string>
+
     <string name="O_G">Original Gravity</string>
     <string name="F_G">Final Gravity</string>
     <string name="SG">Specific Gravity</string>

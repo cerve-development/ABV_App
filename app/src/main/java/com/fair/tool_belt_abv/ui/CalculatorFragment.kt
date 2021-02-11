@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.data.database.FirebaseRealtime
 import com.fair.tool_belt_abv.data.SharedPreference
@@ -52,6 +51,7 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                     "A" -> chkBxAdvanced.isChecked = true
                     else -> chkBxSimple.isChecked = true
                 }
+
             }
 
             setUpToolbar()
@@ -77,7 +77,6 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                 setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.action_settings -> {
-                            //not navigating
                             go(R.id.action_calculatorFragment_to_containerFragment)
                             true }
                         R.id.action_policy -> {
@@ -100,12 +99,12 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
 
         }
     }
+
     private fun setUpUnitToggling() {
         viewBinding.apply {
 
             pref?.apply {
 
-                //toggling the unit to use for the app
                 chkBxSG.setOnClickListener {
                     saveU("SG")
                     context?.toast("You are now using Specific Gravity")
@@ -125,13 +124,13 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
             }
         }
     }
+
     private fun setUpEquationToggling() {
 
         viewBinding.apply {
 
             pref?.apply {
 
-                //toggling the equation to use  for the app
                 chkBxSimple.setOnClickListener {
                     saveE("S")
                     context?.toast("You are now using a simple equation")
@@ -147,6 +146,7 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
 
         }
     }
+
     private fun onCalculate() {
 
         viewBinding.apply {
@@ -165,17 +165,22 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                 when {
                     chkBxSG.isChecked -> {
                         val calculation = calculatorEquation.sCalculator(num1, num2)
-                        txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
-
+                        abvDisplay?.text = getString(R.string.Abv, calculation.first)
+                        attenuationDisplay?.text = getString(R.string.Attenuation, calculation.second)
+                        warningDisplay?.text = getString(R.string.Warning, calculation.third)
                     }
                     chkBxPlato.isChecked -> {
                         val calculation = calculatorEquation.pCalculator(num1, num2)
-                        txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
+                        abvDisplay?.text = getString(R.string.Abv, calculation.first)
+                        attenuationDisplay?.text = getString(R.string.Attenuation, calculation.second)
+                        warningDisplay?.text = getString(R.string.Warning, calculation.third)
 
                     }
                     chkBxBrix.isChecked -> {
                         val calculation = calculatorEquation.bCalculator(num1, num2)
-                        txtAbvDisplay.text = getString(R.string.Abv, calculation.first)
+                        abvDisplay?.text = getString(R.string.Abv, calculation.first)
+                        attenuationDisplay?.text = getString(R.string.Attenuation, calculation.second)
+                        warningDisplay?.text = getString(R.string.Warning, calculation.third)
 
                     }
                 }

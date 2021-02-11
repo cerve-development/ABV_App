@@ -10,11 +10,11 @@
         android:layout_height="0dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintEnd_toStartOf="@id/guidelineMark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="10dp">
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        android:layout_margin="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,37 +28,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <TextView
-                android:id="@+id/txtAttenuationDisplay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/attenuationDisplay"
+                style="@style/AppTheme.Text.View"
                 android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@+id/calculatorToolbar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:gravity="center"
+                android:text="@string/default_Attenuation"
+                android:padding="10dp"
+                app:layout_constraintBottom_toTopOf="@id/abvDisplay"
+                app:layout_constraintEnd_toEndOf="@+id/abvDisplay"
+                app:layout_constraintStart_toStartOf="@+id/abvDisplay"
+                app:layout_constraintTop_toBottomOf="@id/calculatorToolbar"
+                app:layout_constraintVertical_chainStyle="spread"/>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txtAbvDisplay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/abvDisplay"
+                style="@style/AppTheme.Text.View"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="@string/default_Abv"
                 android:gravity="center"
-                android:textSize="60sp"
-                app:layout_constraintTop_toBottomOf="@+id/txtAttenuationDisplay"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:padding="10dp"
+                app:layout_constraintBottom_toTopOf="@id/warningDisplay"
+                app:layout_constraintEnd_toEndOf="@+id/warningDisplay"
+                app:layout_constraintStart_toStartOf="@+id/warningDisplay"
+                app:layout_constraintTop_toBottomOf="@id/attenuationDisplay"/>
 
-            <TextView
-                android:id="@+id/txtErrorDisplay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/warningDisplay"
+                style="@style/AppTheme.Text.View"
+                android:textSize="12sp"
+                android:text="@string/default_Warning"
+                android:textColor="@android:color/holo_red_dark"
                 android:gravity="center"
-                android:text="@string/Approx"
-                android:textSize="13sp"
-                app:layout_constraintTop_toBottomOf="@id/txtAbvDisplay"
-                app:layout_constraintStart_toStartOf="parent"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/abvDisplay" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -119,6 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -148,6 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
