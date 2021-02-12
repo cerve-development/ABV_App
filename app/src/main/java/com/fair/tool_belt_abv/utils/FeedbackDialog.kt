@@ -31,7 +31,7 @@ object FeedbackDialog {
 
             dialog = MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_App_MaterialAlertDialog)
                 .setView(dialogViewBinding.root)
-                .setTitle(getString(R.string.feedback_Submit))
+                .setTitle(getString(R.string.feedback_submit))
                 .setPositiveButton(getString(R.string.send_)) { _, _ ->
 
                     if(!userInput.isNullOrEmpty()){

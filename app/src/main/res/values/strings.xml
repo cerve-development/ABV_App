@@ -22,6 +22,10 @@
     <string name="calculator">Simple ABV Calculator</string>
     <string name="action_settings">Settings</string>
     <string name="feedback">Feedback</string>
+    <string name="feedback_submit">Request a feature</string>
+    <string name="send_">Send</string>
+    <string name="cancel_">Feedback</string>
+
 
     <string-array name="calculatorUnitEntries">
         <item>Specific Gravity</item>
