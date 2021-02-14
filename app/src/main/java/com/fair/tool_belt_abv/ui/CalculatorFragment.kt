@@ -168,22 +168,22 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                 when {
                     chkBxSG.isChecked -> {
                         val calculation = calculatorEquation.sCalculator(num1, num2)
-                        abvDisplay.text = getString(R.string.Abv, calculation.first)
-                        attenuationDisplay.text = getString(R.string.Attenuation, calculation.second)
-                        warningDisplay.text = getString(R.string.Warning, calculation.third)
+                        abvDisplay.text = getString(R.string.abv, calculation.first)
+                        attenuationDisplay.text = getString(R.string.attenuation, calculation.second)
+                        warningDisplay.text = getString(R.string.warning, calculation.third)
                     }
                     chkBxPlato.isChecked -> {
                         val calculation = calculatorEquation.pCalculator(num1, num2)
-                        abvDisplay.text = getString(R.string.Abv, calculation.first)
-                        attenuationDisplay.text = getString(R.string.Attenuation, calculation.second)
-                        warningDisplay.text = getString(R.string.Warning, calculation.third)
+                        abvDisplay.text = getString(R.string.abv, calculation.first)
+                        attenuationDisplay.text = getString(R.string.attenuation, calculation.second)
+                        warningDisplay.text = getString(R.string.warning, calculation.third)
 
                     }
                     chkBxBrix.isChecked -> {
                         val calculation = calculatorEquation.bCalculator(num1, num2)
-                        abvDisplay.text = getString(R.string.Abv, calculation.first)
-                        attenuationDisplay.text = getString(R.string.Attenuation, calculation.second)
-                        warningDisplay.text = getString(R.string.Warning, calculation.third)
+                        abvDisplay.text = getString(R.string.abv, calculation.first)
+                        attenuationDisplay.text = getString(R.string.attenuation, calculation.second)
+                        warningDisplay.text = getString(R.string.warning, calculation.third)
 
                     }
                 }

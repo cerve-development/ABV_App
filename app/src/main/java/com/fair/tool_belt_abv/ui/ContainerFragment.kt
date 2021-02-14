@@ -33,10 +33,6 @@ class ContainerFragment: Fragment(R.layout.fragment_new_container) {
             setThemeMode()
         }
 
-
-
-
-
     }
 
     private fun setThemeMode() {

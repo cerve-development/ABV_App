@@ -70,7 +70,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ogContainer"
         style="@style/AppTheme.Text.Edit.Container"
-        android:hint="@string/O_G"
+        android:hint="@string/o_g"
         app:layout_constraintBottom_toTopOf="@+id/fgContainer"
         app:layout_constraintEnd_toEndOf="@+id/fgContainer"
         app:layout_constraintHorizontal_bias="0.5"
@@ -88,7 +88,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fgContainer"
         style="@style/AppTheme.Text.Edit.Container"
-        android:hint="@string/F_G"
+        android:hint="@string/f_g"
         app:layout_constraintBottom_toTopOf="@+id/unitContainer"
         app:layout_constraintEnd_toEndOf="@+id/unitContainer"
         app:layout_constraintHorizontal_bias="0.5"
@@ -114,13 +114,13 @@
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/chkBxSG"
             style="@style/AppTheme.RadioButton"
-            android:text="@string/SG"
+            android:text="@string/sg"
             android:theme="@style/MyRadioButton" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/chkBxPlato"
             style="@style/AppTheme.RadioButton"
-            android:text="@string/Plato"
+            android:text="@string/plato"
             android:theme="@style/MyRadioButton" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
