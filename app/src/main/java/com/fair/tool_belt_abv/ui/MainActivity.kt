@@ -14,6 +14,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //set preferences on first log in
+        SharedPreference(this).apply {
+
+            if (get("calculatorUnit").isNullOrEmpty()) {
+                saveU("SG")
+            }
+
+            if (get("calculatorEquation").isNullOrEmpty()) {
+                saveE("S")
+            }
+
+        }
+
         when (SharedPreference(this).get("calculatorAppTheme").toString()) {
 
             "DM" -> {

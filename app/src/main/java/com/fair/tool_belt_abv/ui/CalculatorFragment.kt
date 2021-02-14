@@ -195,6 +195,7 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
     override fun onResume() {
         super.onResume()
         viewBinding.apply {
+            context?.let { calculatorUnit = SharedPreference(it).get("calculatorUnit").toString() }
 
             when(calculatorUnit) {
                 "SG" -> chkBxSG.isChecked = true
@@ -208,7 +209,7 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                 "A" -> chkBxAdvanced.isChecked = true
                 else -> chkBxSimple.isChecked = true
             }
-            context?.let { calculatorUnit = SharedPreference(it).get("calculatorUnit").toString() }
+
         }
 
 
