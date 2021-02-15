@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.fair.tool_belt_abv.R
-import com.fair.tool_belt_abv.data.CalculatorViewModel
 import com.fair.tool_belt_abv.data.SharedPreference
 import com.fair.tool_belt_abv.databinding.FragmentNewCalculatorBinding
 import com.fair.tool_belt_abv.utils.Calculator
@@ -26,7 +24,7 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
     private var calculatorUnit: String? = null
     private var calculatorEquation: String? = null
 
-    private val calculatorViewModel: CalculatorViewModel by activityViewModels()
+//    private val calculatorViewModel: CalculatorViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -90,10 +88,10 @@ class CalculatorFragment: Fragment(R.layout.fragment_new_calculator) {
                             go(R.id.action_calculatorFragment_to_converterFragment)
                             true }
 
-                        R.id.action_feedback -> {
-                            calculatorViewModel.beginSendFeedBack(context)
-                            true
-                        }
+//                        R.id.action_feedback -> {
+//                            calculatorViewModel.beginSendFeedBack(context)
+//                            true
+//                        }
 
                         else -> super.onOptionsItemSelected(item)
                     }
