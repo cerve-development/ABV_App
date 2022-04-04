@@ -13,7 +13,7 @@ android {
         applicationId "com.fair.tool_belt_abv"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 10
+        versionCode 11
         versionName "1.8.51"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
