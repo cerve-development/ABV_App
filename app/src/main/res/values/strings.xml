@@ -4,8 +4,6 @@
     <string name="action_settings">Settings</string>
     <string name="advEquation">Advanced</string>
     <string name="app_name">Simple ABV</string>
-    <string name="apparent">Apparent Attenuation: %1$s%%</string>
-    <string name="approx">Approximate ABV</string>
     <string name="attenuation">Attenuation: %1$s%%</string>
 
     <string name="brix" translatable="false">Brix</string>
@@ -19,7 +17,7 @@
     <string name="default_Warning">Warning : none</string>
 
     <string name="f_g">Final Gravity</string>
-    <string name="feedback">Feedback</string>
+
     <string name="feedback_submit">Request a feature</string>
 
     <string name="o_g">Original Gravity</string>

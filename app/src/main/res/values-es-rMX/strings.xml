@@ -3,8 +3,7 @@
     <string name="action_settings">Ajustes</string>
     <string name="advEquation">Avanzado</string>
     <string name="app_name">Simple ABV</string>
-    <string name="apparent">(Atenuación aparente: %1$s%%)</string>
-    <string name="approx">Aproximado ABV</string>
+
     <string name="attenuation">Atenuación: %1$s%%</string>
 
     <string name="cancel_">Cancelar</string>
@@ -25,5 +24,5 @@
     <string name="simEquation">Sencillo</string>
 
     <string name="warning">Advertencia: %1$s</string>
-    <string name="feedback">Realimentación</string>
+
 </resources>
