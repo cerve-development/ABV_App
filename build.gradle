@@ -16,8 +16,8 @@ buildscript {
         coroutinesVersion = '1.4.2'
         crashlyticsVersion = '2.5.2'
 
-        daggerHiltKaptVersion = '2.32-alpha'
-        daggerHiltVersion = '2.32-alpha'
+        daggerHiltKaptVersion = '2.41'
+        daggerHiltVersion = '2.41'
 
         espressoVersion = '3.3.0'
 
