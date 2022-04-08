@@ -17,12 +17,6 @@
         <item name="colorControlNormal">@color/systemWhite</item>
     </style>
 
-    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="colorPrimary">@color/colorSecondary</item>
-        <item name="colorSurface">@color/colorSecondary</item>
-<!--        <item name="colorOnSurface">@color/color</item>-->
-    </style>
-
     <style name="AppTheme.RadioButton.Group">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>

@@ -6,20 +6,19 @@
 
     <string name="attenuation">Atenuación: %1$s%%</string>
 
-    <string name="cancel_">Cancelar</string>
+
     <string name="converter">Convertidor</string>
 
     <string name="default_Attenuation">Atenuación: 0%</string>
     <string name="default_Warning">Advertencia: ninguno</string>
 
     <string name="f_g">Gravedad final</string>
-    <string name="feedback_submit">Solicita una función</string>
+
 
     <string name="o_g">Gravedad original</string>
 
     <string name="policy">Política de privacidad</string>
 
-    <string name="send_">Enviar</string>
     <string name="sg">Gravedad específica</string>
     <string name="simEquation">Sencillo</string>
 
