@@ -18,12 +18,15 @@ import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
+import com.fair.tool_belt_abv.ui.component.DashboardCard
 import com.fair.tool_belt_abv.ui.component.DefaultTextField
 import com.fair.tool_belt_abv.ui.component.RadioGroupEquation
 import com.fair.tool_belt_abv.ui.component.RadioGroupUnit
 
 @Composable
 fun CalculatorScreen(
+    abvValue: String,
+    attenuationValue: String,
     abvUnit: AbvUnit,
     abvEquation: AbvEquation,
     modifier: Modifier = Modifier,
@@ -37,8 +40,14 @@ fun CalculatorScreen(
         verticalArrangement = Arrangement.spacedBy(sizes.small),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        DashboardCard(
+            abvValue = abvValue,
+            attenuationValue = attenuationValue,
+            isError = true
+        )
         Column(
-            modifier = Modifier.weight(1f),
+//            modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(sizes.small),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -79,6 +88,8 @@ fun CalculatorScreen(
 @Composable
 fun CalculatorScreenPreview() {
     CalculatorScreen(
+        abvValue = "0",
+        attenuationValue = "0",
         abvUnit = AbvUnit.SIMPLE_GRAVITY,
         abvEquation = AbvEquation.SIMPLE
     )
