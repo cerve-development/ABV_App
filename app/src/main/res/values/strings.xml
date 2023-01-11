@@ -6,6 +6,7 @@
     <string name="app_name">Simple ABV</string>
     <string name="attenuation">Attenuation: %1$s%%</string>
 
+    <string name="DEFAULT.value" translatable="false">0.0</string>
     <string name="brix" translatable="false">Brix</string>
 
     <string name="calculator" translatable="false">Calculator</string>
@@ -17,9 +18,10 @@
     <string name="default_Warning">Warning : none</string>
 
     <string name="f_g">Final Gravity</string>
-
-
     <string name="o_g">Original Gravity</string>
+
+    <string name="LABEL.ABV.unit">Unit</string>
+    <string name="LABEL.ABV.equation">Equation</string>
 
     <string name="plato" translatable="false">Plato</string>
     <string name="policy">Privacy Policy</string>
@@ -29,6 +31,21 @@
     <string name="simEquation">Simple</string>
 
     <string name="warning">Warning : %1$s</string>
+    <string name="UNIT.TEXT.gravity">Gravity</string>
+    <string name="UNIT.SUBTEXT.gravity"></string>
+
+    <string name="UNIT.TEXT.plato">Plato</string>
+    <string name="UNIT.SUBTEXT.plato"></string>
+
+    <string name="UNIT.TEXT.brix">Brix</string>
+    <string name="UNIT.SUBTEXT.brix"></string>
+
+    <string name="EQUATION.TEXT.simple">Simple</string>
+    <string name="EQUATION.SUBTEXT.simple">29814hakjknfanknknakf</string>
+
+    <string name="EQUATION.TEXT.advance">Advanced</string>
+    <string name="EQUATION.SUBTEXT.advance">29814hakjknfanknknakf</string>
+
 
     <string-array name="calculatorUnitEntries">
         <item>Specific Gravity</item>
@@ -63,9 +80,5 @@
         <item>LM</item>
         <item>SD</item>
     </string-array>
-
-
-
-
 
 </resources>

@@ -66,7 +66,7 @@ val md_theme_dark_surfaceTint = Color(0xFFA9C7FF)
 val md_theme_dark_outlineVariant = Color(0xFF44474E)
 val md_theme_dark_scrim = Color(0xFF000000)
 
-private val LegacyLightColors = lightColorScheme(
+internal val LegacyLightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
     primaryContainer = md_theme_light_primaryContainer,
@@ -99,7 +99,7 @@ private val LegacyLightColors = lightColorScheme(
 )
 
 
-private val LegacyDarkColors = darkColorScheme(
+internal val LegacyDarkColors = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
     primaryContainer = md_theme_dark_primaryContainer,
