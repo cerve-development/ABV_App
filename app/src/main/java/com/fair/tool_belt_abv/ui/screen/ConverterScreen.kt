@@ -2,6 +2,7 @@ package com.fair.tool_belt_abv.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -21,7 +22,7 @@ fun ConverterScreen(
     onValueChange: (AbvUnit, String) -> Unit = { _, _ -> }
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier.padding(sizes.medium),
         verticalArrangement = Arrangement.spacedBy(sizes.small)
     ) {
 

@@ -62,7 +62,12 @@ class StorageManager @Inject constructor(
 
             val inDarkMode = preferences[PreferencesKeys.APP_IS_IN_DARK_MODE]
 
-            SettingPreferences(unit, equation, appTheme = theme, inDarkMode = inDarkMode)
+            SettingPreferences(
+                abvUnit = unit,
+                abvEquation = equation,
+                appTheme = theme,
+                inDarkMode = inDarkMode
+            )
         }
 
     suspend fun saveEquation(value: AbvEquation) {

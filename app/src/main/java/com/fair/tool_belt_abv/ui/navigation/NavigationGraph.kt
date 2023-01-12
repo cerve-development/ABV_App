@@ -1,7 +1,6 @@
 package com.fair.tool_belt_abv.ui.navigation
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -11,11 +10,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.CalculatorViewModel
 import com.fair.tool_belt_abv.ConverterViewModel
 import com.fair.tool_belt_abv.SettingViewModel
-import com.fair.tool_belt_abv.model.SettingPreferences
+import com.fair.tool_belt_abv.model.AppPreferences
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
 import com.fair.tool_belt_abv.ui.screen.SettingScreen
@@ -23,14 +21,14 @@ import com.fair.tool_belt_abv.ui.screen.SettingScreen
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun NavigationGraph(
-    preferences: SettingPreferences,
+    preferences: AppPreferences,
     navController: NavHostController,
     startDestination: String,
     modifier: Modifier = Modifier,
 ) {
 
     NavHost(
-        modifier = modifier.padding(horizontal = sizes.small),
+        modifier = modifier,
         startDestination = startDestination,
         navController = navController
     ) {
@@ -70,13 +68,12 @@ fun NavigationGraph(
         }
 
         composable(TopLevelDestinationGraph.SETTINGS) {
-
             val settingVM = hiltViewModel<SettingViewModel>()
 
             SettingScreen(
                 unit = preferences.abvUnit,
                 equation = preferences.abvEquation,
-                theme = preferences.appTheme,
+                theme = preferences.colorSchemePalette,
                 isDarkMode = preferences.inDarkMode ?: isSystemInDarkTheme(),
                 onUnitChange = settingVM::updateUnit,
                 onEquationChange = settingVM::updateEquation,

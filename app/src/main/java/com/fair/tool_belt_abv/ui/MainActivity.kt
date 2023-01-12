@@ -5,8 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cerve.co.material3extension.designsystem.ExtendedTheme
@@ -18,27 +19,29 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val activityViewModel: MainViewModel by viewModels()
+    private var isLoading: Boolean = true
 
     @OptIn(ExperimentalLifecycleComposeApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen().apply { setKeepOnScreenCondition { isLoading } }
         super.onCreate(savedInstanceState)
 
         setContent {
             val state by activityViewModel.preferences.collectAsStateWithLifecycle()
 
-            val (light, dark) = remember(state) {
-                state.appTheme.selectedTheme()
+            LaunchedEffect(state.isLoading) {
+                isLoading = state.isLoading
             }
 
             ExtendedTheme(
-                darkColorScheme = dark,
-                lightColorScheme = light,
                 dynamicColor = false,
+                darkColorScheme = state.colorSchemeDark,
+                lightColorScheme = state.colorSchemeLight,
                 darkTheme = state.inDarkMode ?: isSystemInDarkTheme()
             ) { modifier ->
                 AppScreen(
                     modifier = modifier,
-                    settingPreferences = state
+                    appPreferences = state
                 )
             }
         }

@@ -4,6 +4,5 @@ data class SettingPreferences(
     val abvUnit: AbvUnit = AbvUnit.SG,
     val abvEquation: AbvEquation = AbvEquation.S,
     val appTheme: AppTheme = AppTheme.LEGACY,
-    val inDarkMode: Boolean? = null,
-    val isLoading: Boolean = true
+    val inDarkMode: Boolean? = null
 )

@@ -2,7 +2,7 @@ package com.fair.tool_belt_abv.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,7 +35,7 @@ fun CalculatorScreen(
 ) {
 
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.padding(sizes.medium),
         verticalArrangement = Arrangement.spacedBy(sizes.small),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -45,7 +45,7 @@ fun CalculatorScreen(
             attenuationValue = attenuationValue,
             errorMessage = errorMessage
         )
-        //todo text entry card
+
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(sizes.small),

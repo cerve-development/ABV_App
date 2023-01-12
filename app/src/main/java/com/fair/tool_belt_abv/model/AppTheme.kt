@@ -23,4 +23,5 @@ enum class AppTheme(
             HOPS -> Pair(HopsLightColors, HopsDarkColors)
         }
     }
+
 }

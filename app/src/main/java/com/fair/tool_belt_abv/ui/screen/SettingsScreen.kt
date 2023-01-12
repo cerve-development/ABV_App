@@ -2,7 +2,6 @@ package com.fair.tool_belt_abv.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -64,9 +63,8 @@ fun SettingScreen(
     var openPrivacyPolicyDialog by remember { mutableStateOf(false) }
 
     LazyColumn(
-        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(sizes.small),
-        contentPadding = PaddingValues(vertical = sizes.small)
+        contentPadding = PaddingValues(sizes.medium)
     ) {
 
         item {
