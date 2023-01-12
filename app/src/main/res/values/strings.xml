@@ -21,7 +21,9 @@
     <string name="o_g">Original Gravity</string>
 
     <string name="LABEL.ABV.unit">Unit</string>
+    <string name="SUBLABEL.ABV.unit">Choose the unit to use for your calculation</string>
     <string name="LABEL.ABV.equation">Equation</string>
+    <string name="SUBLABEL.ABV.equation">Choose the equation to use for your calculation</string>
 
     <string name="plato" translatable="false">Plato</string>
     <string name="policy">Privacy Policy</string>
@@ -46,6 +48,23 @@
     <string name="EQUATION.TEXT.advance">Advanced</string>
     <string name="EQUATION.SUBTEXT.advance">…</string>
 
+    <string name="LABEL.THEME.darkmode">Dark mode</string>
+    <string name="SUBLABEL.THEME.darkmode">Are your eyes protected in Dark mode?</string>
+
+    <string name="LABEL.THEME.theme">App theme</string>
+    <string name="SUBLABEL.THEME.theme">Choose a different Theme.</string>
+
+
+    <string name="LABEL.SYSTEM.version">App version</string>
+
+    <string name="LABEL.SYSTEM.policy">Privacy Policy</string>
+    <string name="SUBLABEL.SYSTEM.policy">View Simple ABV\'s Application Privacy Policy.</string>
+
+    <string name="LABEL.SUPPORT.feature">Feature request</string>
+    <string name="SUBLABEL.SUPPORT.feature">Request a new feature for Simple ABV</string>
+
+    <string name="LABEL.SUPPORT.bug">Bug report</string>
+    <string name="SUBLABEL.SUPPORT.bug">Report a bug in Simple ABV</string>
 
     <string-array name="calculatorUnitEntries">
         <item>Specific Gravity</item>

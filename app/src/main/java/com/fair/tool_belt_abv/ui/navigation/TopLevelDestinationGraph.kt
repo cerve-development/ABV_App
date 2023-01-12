@@ -27,6 +27,10 @@ enum class TopLevelDestinationGraph(
         unselectedIcon = Icons.Outlined.ChangeCircle,
         labelId = R.string.converter,
         route = "route_converter"
-    )
+    );
+
+    companion object {
+        const val SETTINGS = "route_settings"
+    }
 
 }

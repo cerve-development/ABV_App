@@ -43,7 +43,11 @@ fun AppScreen(
 //                        Text(text = "SimpleAbv")
                     },
                     actions = {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(
+                            onClick = {
+                                navController.navigate(TopLevelDestinationGraph.SETTINGS)
+                            }
+                        ) {
                             Icon(
                                 imageVector = Icons.Outlined.Settings,
                                 contentDescription = null
@@ -69,7 +73,7 @@ fun AppScreen(
         NavigationGraph(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
-            startDestination = TopLevelDestinationGraph.CONVERTER.route
+            startDestination = TopLevelDestinationGraph.SETTINGS
         )
     }
 

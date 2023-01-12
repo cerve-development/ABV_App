@@ -15,6 +15,7 @@ import com.fair.tool_belt_abv.CalculatorViewModel
 import com.fair.tool_belt_abv.ConverterViewModel
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
+import com.fair.tool_belt_abv.ui.screen.SettingScreen
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -25,7 +26,7 @@ fun NavigationGraph(
 ) {
 
     NavHost(
-        modifier = modifier.padding(sizes.small),
+        modifier = modifier.padding(horizontal = sizes.small),
         startDestination = startDestination,
         navController = navController
     ) {
@@ -62,6 +63,12 @@ fun NavigationGraph(
                 brixText = convertorState.brix,
                 onValueChange = converterVm::updateValue
             )
+        }
+
+        composable(TopLevelDestinationGraph.SETTINGS) {
+
+            SettingScreen(isDarkMode = false)
+
         }
 
     }
