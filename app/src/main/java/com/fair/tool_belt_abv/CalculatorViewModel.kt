@@ -26,7 +26,6 @@ class CalculatorViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val userInput = MutableStateFlow(UserInput())
-//    private val result = MutableStateFlow(CalculatorResult())
     val state = combine(preferences.calculatorPreferences, userInput) { pref, input ->
         val result = calculate(
             original = input.originalText,

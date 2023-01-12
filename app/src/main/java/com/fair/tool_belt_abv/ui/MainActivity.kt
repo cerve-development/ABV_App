@@ -17,50 +17,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    val activityVM: MainViewModel by viewModels()
+    private val activityViewModel: MainViewModel by viewModels()
 
     @OptIn(ExperimentalLifecycleComposeApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-////        setContentView(R.layout.activity_main)
-//
-//        //set preferences on first log in
-//        SharedPreference(this).apply {
-//
-//            if (get("calculatorUnit").isNullOrEmpty()) {
-//                saveU("SG")
-//            }
-//
-//            if (get("calculatorEquation").isNullOrEmpty()) {
-//                saveE("S")
-//            }
-//
-//        }
-//
-//        when (SharedPreference(this).get("calculatorAppTheme").toString()) {
-//
-//            "DM" -> {
-//                setDefaultNightMode(MODE_NIGHT_YES)
-//                delegate.applyDayNight()
-//            }
-//            "LM" -> {
-//                setDefaultNightMode(MODE_NIGHT_NO)
-//                delegate.applyDayNight()
-//            }
-//            "SD" -> {
-//                setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-//                delegate.applyDayNight()
-//            }
-//
-//            else -> {
-//                setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-//                delegate.applyDayNight()
-//            }
-//
-//        }
 
         setContent {
-            val state by activityVM.preferences.collectAsStateWithLifecycle()
+            val state by activityViewModel.preferences.collectAsStateWithLifecycle()
 
             val (light, dark) = remember(state) {
                 state.appTheme.selectedTheme()

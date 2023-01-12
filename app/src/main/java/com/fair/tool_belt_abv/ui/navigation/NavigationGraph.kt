@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.CalculatorViewModel
 import com.fair.tool_belt_abv.ConverterViewModel
+import com.fair.tool_belt_abv.SettingViewModel
 import com.fair.tool_belt_abv.model.SettingPreferences
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
@@ -70,11 +71,17 @@ fun NavigationGraph(
 
         composable(TopLevelDestinationGraph.SETTINGS) {
 
+            val settingVM = hiltViewModel<SettingViewModel>()
+
             SettingScreen(
                 unit = preferences.abvUnit,
                 equation = preferences.abvEquation,
                 theme = preferences.appTheme,
-                isDarkMode = preferences.inDarkMode ?: isSystemInDarkTheme()
+                isDarkMode = preferences.inDarkMode ?: isSystemInDarkTheme(),
+                onUnitChange = settingVM::updateUnit,
+                onEquationChange = settingVM::updateEquation,
+                onAppThemeChange = settingVM::updateAppTheme,
+                onDarkModeChange = settingVM::updateDarkModeValue
             )
 
         }

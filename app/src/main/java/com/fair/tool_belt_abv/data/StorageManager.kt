@@ -77,4 +77,16 @@ class StorageManager @Inject constructor(
         }
     }
 
+    suspend fun saveAppTheme(value: AppTheme) {
+        dataStore.edit { settings ->
+            settings[PreferencesKeys.APP_THEME_KEY] = value.name
+        }
+    }
+
+    suspend fun saveDarkModeState(value: Boolean) {
+        dataStore.edit { settings ->
+            settings[PreferencesKeys.APP_IS_IN_DARK_MODE] = value
+        }
+    }
+
 }
