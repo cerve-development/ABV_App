@@ -7,7 +7,13 @@ enum class AbvUnit(
     @StringRes val textId: Int,
     @StringRes val subtextId: Int? = null
 ) {
-    SIMPLE_GRAVITY(textId = R.string.UNIT_TEXT_gravity),
-    PLATO(textId = R.string.UNIT_TEXT_plato),
-    BRIX(textId = R.string.UNIT_TEXT_brix)
+    SG(
+        textId = R.string.UNIT_TEXT_gravity,
+    ),
+    P(
+        textId = R.string.UNIT_TEXT_plato
+    ),
+    BRIX(
+        textId = R.string.UNIT_TEXT_brix
+    )
 }

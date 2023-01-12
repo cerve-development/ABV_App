@@ -4,12 +4,12 @@
     <string name="advEquation">Avanzado</string>
     <string name="app_name">Simple ABV</string>
 
-    <string name="attenuation">Atenuación: %1$s%%</string>
+<!--    <string name="attenuation">Atenuación: %1$s%%</string>-->
 
 
     <string name="converter">Convertidor</string>
 
-    <string name="default_Attenuation">Atenuación: 0%</string>
+<!--    <string name="default_Attenuation">Atenuación: 0%</string>-->
     <string name="default_Warning">Advertencia: ninguno</string>
 
     <string name="f_g">Gravedad final</string>

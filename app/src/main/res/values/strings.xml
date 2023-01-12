@@ -13,8 +13,8 @@
 
     <string name="converter">Converter</string>
 
-    <string name="default_Abv" translatable="false">%1$s %</string>
-    <string name="default_Attenuation">Attenuation: %1$s %</string>
+    <string name="default_Abv" translatable="false">%1$s %%</string>
+    <string name="default_Attenuation" translatable="false">Attenuation: %1$s %%</string>
     <string name="default_Warning">Warning : none</string>
 
     <string name="f_g">Final Gravity</string>

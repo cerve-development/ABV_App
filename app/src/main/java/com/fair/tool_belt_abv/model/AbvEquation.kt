@@ -7,11 +7,11 @@ enum class AbvEquation(
     @StringRes val textId: Int,
     @StringRes val subtextId: Int? = null
 ) {
-    SIMPLE(
+    S(
         textId = R.string.EQUATION_TEXT_simple,
         subtextId = R.string.EQUATION_SUBTEXT_simple
     ),
-    ADVANCE(
+    A(
         textId = R.string.EQUATION_TEXT_advance,
         subtextId = R.string.EQUATION_SUBTEXT_simple
     )

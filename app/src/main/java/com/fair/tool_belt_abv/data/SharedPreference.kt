@@ -3,8 +3,9 @@ package com.fair.tool_belt_abv.data
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import javax.inject.Inject
 
-class SharedPreference(context: Context) {
+class SharedPreference @Inject constructor(context: Context) {
 
     private val defaultPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
@@ -20,4 +21,5 @@ class SharedPreference(context: Context) {
     }
 
     val get = { KEY_NAME: String -> defaultPreferences.getString(KEY_NAME, "")}
+
 }
