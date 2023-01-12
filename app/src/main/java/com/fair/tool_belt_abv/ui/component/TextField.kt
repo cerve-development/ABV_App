@@ -30,7 +30,7 @@ fun DefaultTextField(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     imeAction: ImeAction = ImeAction.Next,
-    label: @Composable (() -> Unit)? = null,
+    label: String? = null,
     onMoreInfoClick: () -> Unit = { }
 ) {
 
@@ -63,7 +63,7 @@ fun DefaultTextField(
                 )
             }
         },
-        label = label,
+        label = { label?.let { Text(text = label) } },
         placeholder = {
             Text(text = stringResource(id = R.string.DEFAULT_value))
         },

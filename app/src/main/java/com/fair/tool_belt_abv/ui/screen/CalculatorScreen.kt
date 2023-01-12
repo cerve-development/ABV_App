@@ -3,7 +3,6 @@ package com.fair.tool_belt_abv.ui.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,7 +56,7 @@ fun CalculatorScreen(
                 onValueChange = { change ->
                     onOriginalTextChange(change)
                 },
-                label = { Text(text = stringResource(id = R.string.o_g)) },
+                label = stringResource(id = R.string.o_g),
             )
 
             DefaultTextField(
@@ -66,7 +65,7 @@ fun CalculatorScreen(
                     onFinalTextChange(change)
                 },
                 imeAction = ImeAction.Done,
-                label = { Text(text = stringResource(id = R.string.f_g)) },
+                label = stringResource(id = R.string.f_g),
             )
         }
 

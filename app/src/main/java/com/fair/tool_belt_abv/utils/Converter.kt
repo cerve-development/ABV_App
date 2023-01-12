@@ -9,21 +9,30 @@ object Converter {
             return if (value.isNotEmpty()){
                 val valueTrue = value.toDouble()
                 return when (focused) {
-                    "brix" -> {
+                    "B" -> {
+                        /**
+                         * PAIR(SG, PLATO)
+                         */
                         Pair(
                             zeroed(bToS(valueTrue).toString()),
                             zeroed(sToP(bToS(valueTrue)).toString())
                         )
                     }
 
-                    "plato" -> {
+                    "P" -> {
+                        /**
+                         * PAIR(BRIX, SG)
+                         */
                         Pair(
                             zeroed(sToB(pToS(valueTrue)).toString()),
                             zeroed(pToS(valueTrue).toString())
                         )
                     }
 
-                    "specific" -> {
+                    "SG" -> {
+                        /**
+                         * PAIR(PLATO, BRIX)
+                         */
                         Pair(
                             zeroed(sToP(valueTrue).toString()),
                             zeroed(sToB(valueTrue).toString())
@@ -31,8 +40,7 @@ object Converter {
                     }
                     else -> Pair("", "")
                 } }
-            else{
-                Pair("", "") }
+            else { Pair("", "") }
         }
     }
 

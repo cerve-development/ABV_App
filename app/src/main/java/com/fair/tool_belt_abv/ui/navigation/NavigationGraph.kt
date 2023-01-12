@@ -12,7 +12,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.CalculatorViewModel
+import com.fair.tool_belt_abv.ConverterViewModel
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
+import com.fair.tool_belt_abv.ui.screen.ConverterScreen
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -51,7 +53,15 @@ fun NavigationGraph(
         }
 
         composable(TopLevelDestinationGraph.CONVERTER.route) {
+            val converterVm = hiltViewModel<ConverterViewModel>()
+            val convertorState by converterVm.result.collectAsStateWithLifecycle()
 
+            ConverterScreen(
+                gravityText = convertorState.sg,
+                platoText = convertorState.plato,
+                brixText = convertorState.brix,
+                onValueChange = converterVm::updateValue
+            )
         }
 
     }

@@ -58,14 +58,18 @@ fun AppScreen(
 
             SimpleAbvNavigationBar(
                 currentDestination = currentDestination?.destination,
-                destinations = TopLevelDestinationGraph.values().asList()
+                destinations = TopLevelDestinationGraph.values().asList(),
+                onNavigateToDestination = { destination ->
+                    navController.navigate(destination.route)
+                }
             )
+
         }
     ) { innerPadding ->
         NavigationGraph(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
-            startDestination = TopLevelDestinationGraph.CALCULATOR.route
+            startDestination = TopLevelDestinationGraph.CONVERTER.route
         )
     }
 
