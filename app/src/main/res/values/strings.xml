@@ -66,6 +66,10 @@
     <string name="LABEL.SUPPORT.bug">Bug report</string>
     <string name="SUBLABEL.SUPPORT.bug">Report a bug in Simple ABV</string>
 
+    <string name="SUBTITLE_email">
+        Send Email with:
+    </string>
+
     <string-array name="calculatorUnitEntries">
         <item>Specific Gravity</item>
         <item>Plato</item>

@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.Functions
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.NewReleases
 import androidx.compose.material.icons.filled.Palette
-import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material.icons.filled.SquareFoot
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -60,9 +59,9 @@ fun SettingScreen(
     var openAbvUnitDialog by remember { mutableStateOf(false) }
     var openAbvEquationDialog by remember { mutableStateOf(false) }
     var openAppThemeDialog by remember { mutableStateOf(false) }
-    var openPrivacyPolicyDialog by remember { mutableStateOf(false) }
 
     LazyColumn(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(sizes.small),
         contentPadding = PaddingValues(sizes.medium)
     ) {
@@ -160,7 +159,7 @@ fun SettingScreen(
         item {
             ListItem(
                 modifier = Modifier.listItem {
-
+                    onFeatureRequestClick()
                 },
                 leadingContent = {
                     Icon(imageVector = Icons.Default.NewReleases, contentDescription = null)
@@ -176,7 +175,7 @@ fun SettingScreen(
         item {
             ListItem(
                 modifier = Modifier.listItem {
-
+                    onBugReportClick()
                 },
                 leadingContent = {
                     Icon(imageVector = Icons.Default.BugReport, contentDescription = null)
@@ -192,9 +191,7 @@ fun SettingScreen(
 
         item {
             ListItem(
-                modifier = Modifier.listItem {
-
-                },
+                modifier = Modifier.listItem { },
                 leadingContent = {
                     Icon(imageVector = Icons.Default.Info, contentDescription = null)
                 },
@@ -203,22 +200,6 @@ fun SettingScreen(
                 },
                 supportingText = {
                     Text(text = BuildConfig.VERSION_NAME)
-                },
-            )
-        }
-        item {
-            ListItem(
-                modifier = Modifier.listItem {
-                     openPrivacyPolicyDialog = true
-                },
-                leadingContent = {
-                    Icon(imageVector = Icons.Default.Shield, contentDescription = null)
-                },
-                headlineText = {
-                    Text(text = stringResource(id = R.string.LABEL_SYSTEM_policy))
-                },
-                supportingText = {
-                    Text(text = stringResource(id = R.string.SUBLABEL_SYSTEM_policy))
                 },
             )
         }

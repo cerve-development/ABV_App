@@ -4,6 +4,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -17,6 +18,9 @@ import com.fair.tool_belt_abv.model.AppPreferences
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
 import com.fair.tool_belt_abv.ui.screen.SettingScreen
+import com.fair.tool_belt_abv.utils.EMAIL_SUBJECT_BUG
+import com.fair.tool_belt_abv.utils.EMAIL_SUBJECT_FEATURE
+import com.fair.tool_belt_abv.utils.sendEmail
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -69,6 +73,7 @@ fun NavigationGraph(
 
         composable(TopLevelDestinationGraph.SETTINGS) {
             val settingVM = hiltViewModel<SettingViewModel>()
+            val context = LocalContext.current
 
             SettingScreen(
                 unit = preferences.abvUnit,
@@ -78,7 +83,13 @@ fun NavigationGraph(
                 onUnitChange = settingVM::updateUnit,
                 onEquationChange = settingVM::updateEquation,
                 onAppThemeChange = settingVM::updateAppTheme,
-                onDarkModeChange = settingVM::updateDarkModeValue
+                onDarkModeChange = settingVM::updateDarkModeValue,
+                onFeatureRequestClick = {
+                    context.sendEmail(subject = EMAIL_SUBJECT_FEATURE)
+                },
+                onBugReportClick = {
+                    context.sendEmail(subject = EMAIL_SUBJECT_BUG)
+                }
             )
 
         }

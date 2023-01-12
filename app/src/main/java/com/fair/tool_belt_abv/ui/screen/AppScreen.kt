@@ -9,14 +9,18 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.fair.tool_belt_abv.model.AppPreferences
 import com.fair.tool_belt_abv.ui.component.SimpleAbvNavigationBar
+import com.fair.tool_belt_abv.ui.component.ThemedDivider
 import com.fair.tool_belt_abv.ui.navigation.NavigationGraph
 import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
+import com.fair.tool_belt_abv.utils.EMAIL_SUBJECT_SUPPORT
+import com.fair.tool_belt_abv.utils.sendEmail
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,6 +31,7 @@ fun AppScreen(
 ) {
 
     val currentDestination by navController.currentBackStackEntryAsState()
+    val context = LocalContext.current
 
     Scaffold(
         modifier = modifier,
@@ -34,16 +39,16 @@ fun AppScreen(
             Column {
                 TopAppBar(
                     navigationIcon = {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(
+                            onClick = { context.sendEmail(subject = EMAIL_SUBJECT_SUPPORT) }
+                        ) {
                             Icon(
                                 imageVector = Icons.Outlined.HelpOutline,
                                 contentDescription = null
                             )
                         }
                     },
-                    title = {
-//                        Text(text = "SimpleAbv")
-                    },
+                    title = { },
                     actions = {
                         IconButton(
                             onClick = {
@@ -57,7 +62,7 @@ fun AppScreen(
                         }
                     }
                 )
-//                ThemedDivider()
+                ThemedDivider()
             }
         },
         bottomBar = {
