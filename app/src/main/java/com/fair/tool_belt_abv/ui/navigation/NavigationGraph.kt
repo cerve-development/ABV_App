@@ -1,5 +1,6 @@
 package com.fair.tool_belt_abv.ui.navigation
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,6 +14,7 @@ import androidx.navigation.compose.composable
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.CalculatorViewModel
 import com.fair.tool_belt_abv.ConverterViewModel
+import com.fair.tool_belt_abv.model.SettingPreferences
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
 import com.fair.tool_belt_abv.ui.screen.SettingScreen
@@ -20,6 +22,7 @@ import com.fair.tool_belt_abv.ui.screen.SettingScreen
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun NavigationGraph(
+    preferences: SettingPreferences,
     navController: NavHostController,
     startDestination: String,
     modifier: Modifier = Modifier,
@@ -67,7 +70,12 @@ fun NavigationGraph(
 
         composable(TopLevelDestinationGraph.SETTINGS) {
 
-            SettingScreen(isDarkMode = false)
+            SettingScreen(
+                unit = preferences.abvUnit,
+                equation = preferences.abvEquation,
+                theme = preferences.appTheme,
+                isDarkMode = preferences.inDarkMode ?: isSystemInDarkTheme()
+            )
 
         }
 

@@ -3,15 +3,23 @@ package com.fair.tool_belt_abv.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cerve.co.material3extension.designsystem.ExtendedTheme
+import com.fair.tool_belt_abv.MainViewModel
 import com.fair.tool_belt_abv.ui.screen.AppScreen
-import com.fair.tool_belt_abv.ui.theme.color.LegacyDarkColors
-import com.fair.tool_belt_abv.ui.theme.color.LegacyLightColors
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    val activityVM: MainViewModel by viewModels()
+
+    @OptIn(ExperimentalLifecycleComposeApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 ////        setContentView(R.layout.activity_main)
@@ -52,13 +60,22 @@ class MainActivity : ComponentActivity() {
 //        }
 
         setContent {
+            val state by activityVM.preferences.collectAsStateWithLifecycle()
+
+            val (light, dark) = remember(state) {
+                state.appTheme.selectedTheme()
+            }
 
             ExtendedTheme(
-                darkColorScheme = LegacyDarkColors,
-                lightColorScheme = LegacyLightColors,
-                dynamicColor = false
+                darkColorScheme = dark,
+                lightColorScheme = light,
+                dynamicColor = false,
+                darkTheme = state.inDarkMode ?: isSystemInDarkTheme()
             ) { modifier ->
-                AppScreen(modifier = modifier)
+                AppScreen(
+                    modifier = modifier,
+                    settingPreferences = state
+                )
             }
         }
 

@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.cerve.co.material3extension.designsystem.ExtendedTheme.alphas
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.model.AbvEquation
@@ -208,7 +209,7 @@ fun ThemedAppThemeDialog(
                             border = if (selected == appTheme) {
                                 themedBorder(
                                     width = sizes.xSmall,
-                                    color = appTheme.color
+                                    color = appTheme.color.copy(alpha = alphas.medium_30)
                                 )
                             } else { null }
                         ) {

@@ -45,13 +45,15 @@ import com.fair.tool_belt_abv.ui.component.listItem
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingScreen(
-//    abvUnit: AbvUnit,
+    unit: AbvUnit,
+    equation: AbvEquation,
+    theme: AppTheme,
     isDarkMode: Boolean,
     modifier: Modifier = Modifier,
     onUnitChange: (AbvUnit) -> Unit = { },
     onEquationChange: (AbvEquation) -> Unit = { },
     onDarkModeChange: (Boolean) -> Unit = { },
-    onAppThemeChange: () -> Unit = { },
+    onAppThemeChange: (AppTheme) -> Unit = { },
     onFeatureRequestClick: () -> Unit = { },
     onBugReportClick: () -> Unit = { },
 ) {
@@ -226,24 +228,26 @@ fun SettingScreen(
     }
 
     ThemedAbvUnitDialog(
-        AbvUnit.SG,
+        unit = unit,
         isOpen = openAbvUnitDialog
     ) {
+        onUnitChange(it)
         openAbvUnitDialog = false
     }
 
     ThemedAbvEquationDialog(
-        equation = AbvEquation.S,
+        equation = equation,
         isOpen = openAbvEquationDialog
     ) {
+        onEquationChange(it)
         openAbvEquationDialog = false
     }
 
     ThemedAppThemeDialog(
-        theme = AppTheme.STOUT,
+        theme = theme,
         isOpen = openAppThemeDialog
     ) {
-
+        onAppThemeChange(it)
         openAppThemeDialog = false
     }
 }
@@ -252,6 +256,9 @@ fun SettingScreen(
 @Composable
 fun SettingScreenPreview() {
     SettingScreen(
-        isDarkMode = true
+        isDarkMode = true,
+        unit = AbvUnit.SG,
+        equation = AbvEquation.S,
+        theme = AppTheme.HOPS
     )
 }

@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.fair.tool_belt_abv.model.SettingPreferences
 import com.fair.tool_belt_abv.ui.component.SimpleAbvNavigationBar
 import com.fair.tool_belt_abv.ui.navigation.NavigationGraph
 import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
@@ -20,6 +21,7 @@ import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppScreen(
+    settingPreferences: SettingPreferences,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
@@ -73,7 +75,8 @@ fun AppScreen(
         NavigationGraph(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
-            startDestination = TopLevelDestinationGraph.SETTINGS
+            startDestination = TopLevelDestinationGraph.SETTINGS,
+            preferences = settingPreferences
         )
     }
 
@@ -82,5 +85,5 @@ fun AppScreen(
 @Preview
 @Composable
 fun AppScreenPreview() {
-    AppScreen()
+    AppScreen(settingPreferences = SettingPreferences())
 }
