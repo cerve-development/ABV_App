@@ -41,10 +41,10 @@
     <string name="UNIT.SUBTEXT.brix"></string>
 
     <string name="EQUATION.TEXT.simple">Simple</string>
-    <string name="EQUATION.SUBTEXT.simple">29814hakjknfanknknakf</string>
+    <string name="EQUATION.SUBTEXT.simple">(og - fg) * 131.25</string>
 
     <string name="EQUATION.TEXT.advance">Advanced</string>
-    <string name="EQUATION.SUBTEXT.advance">29814hakjknfanknknakf</string>
+    <string name="EQUATION.SUBTEXT.advance">…</string>
 
 
     <string-array name="calculatorUnitEntries">

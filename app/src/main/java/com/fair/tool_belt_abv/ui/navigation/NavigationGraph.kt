@@ -34,13 +34,17 @@ fun NavigationGraph(
 
             calculatorState?.let { state ->
                 CalculatorScreen(
+                    originalText = state.original,
+                    finalText = state.final,
                     abvUnit = state.unit,
                     abvEquation = state.equation,
                     abvValue = state.abv,
                     attenuationValue = state.attenuation,
                     errorMessage = state.errorMessage,
                     onUnitSelect = calculatorVm::updateUnit,
-                    onEquationSelect = calculatorVm::updateEquation
+                    onEquationSelect = calculatorVm::updateEquation,
+                    onOriginalTextChange = calculatorVm::updateOriginalValue,
+                    onFinalTextChange = calculatorVm::updateFinalValue
                 )
             }
 

@@ -13,6 +13,6 @@ enum class AbvEquation(
     ),
     A(
         textId = R.string.EQUATION_TEXT_advance,
-        subtextId = R.string.EQUATION_SUBTEXT_simple
+        subtextId = R.string.EQUATION_SUBTEXT_advance
     )
 }

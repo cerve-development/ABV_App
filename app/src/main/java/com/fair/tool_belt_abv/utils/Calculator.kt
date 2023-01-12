@@ -5,14 +5,14 @@ import java.text.DecimalFormat
 
 object Calculator {
 
-    fun String?.sCalculator(os:String?, fs:String?): Triple<String, String, String> {
+    fun String?.sCalculator(os:String?, fs:String?): Triple<String, String, String?> {
 
             Equation.apply{
 
                 return when {
 
                     os.isNullOrEmpty() or fs.isNullOrEmpty() or this@sCalculator.isNullOrEmpty() -> {
-                        Triple("0","0", "none")
+                        Triple("0","0", null)
                     }
 
                     else -> {
@@ -38,13 +38,13 @@ object Calculator {
 
     }
 
-    fun String?.pCalculator(op:String?, fp:String?): Triple<String, String, String> {
+    fun String?.pCalculator(op:String?, fp:String?): Triple<String, String, String?> {
 
         Equation.apply{
 
             return when {
                 op.isNullOrEmpty() or fp.isNullOrEmpty() or this@pCalculator.isNullOrEmpty() -> {
-                    Triple("0","0", "none")
+                    Triple("0","0", null)
                 }
 
                 else -> {
@@ -71,13 +71,13 @@ object Calculator {
 
     }
 
-    fun String?.bCalculator(ob:String?, fb:String?): Triple<String, String, String> {
+    fun String?.bCalculator(ob:String?, fb:String?): Triple<String, String, String?> {
 
         Equation.apply{
 
             return when {
                 ob.isNullOrEmpty() or fb.isNullOrEmpty() or this@bCalculator.isNullOrEmpty() -> {
-                    Triple("0","0", "none")
+                    Triple("0","0", null)
                 }
 
                 else -> {
@@ -103,7 +103,7 @@ object Calculator {
 
     }
 
-    private fun groupWarning(original: String, final: String, unitType: String): Pair<Boolean,String> {
+    private fun groupWarning(original: String, final: String, unitType: String): Pair<Boolean,String?> {
 
         val myUnit = rangeSelection(unitType)
 
@@ -113,7 +113,7 @@ object Calculator {
             original.toDouble() < myUnit.first -> Pair(false, "your original shouldn't be lower than ${myUnit.first}")
             final.toDouble() > myUnit.second -> Pair(false, "your final shouldn't be higher than ${myUnit.second}")
             final.toDouble() < myUnit.first -> Pair(false, "your final shouldn't be lower than ${myUnit.first}")
-            else -> Pair(true, "none")
+            else -> Pair(true, null)
 
         }
 

@@ -5,10 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -25,18 +21,19 @@ import com.fair.tool_belt_abv.ui.component.RadioGroupUnit
 
 @Composable
 fun CalculatorScreen(
+    originalText: String,
+    finalText: String,
     abvValue: String,
     attenuationValue: String,
     errorMessage: String?,
     abvUnit: AbvUnit,
     abvEquation: AbvEquation,
     modifier: Modifier = Modifier,
+    onOriginalTextChange: (String) -> Unit = { },
+    onFinalTextChange: (String) -> Unit = { },
     onUnitSelect: (AbvUnit) -> Unit = { },
     onEquationSelect: (AbvEquation) -> Unit = { }
 ) {
-
-    var originalText by remember { mutableStateOf("") }
-    var finalText by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -58,7 +55,7 @@ fun CalculatorScreen(
             DefaultTextField(
                 value = originalText,
                 onValueChange = { change ->
-                    originalText = change
+                    onOriginalTextChange(change)
                 },
                 label = { Text(text = stringResource(id = R.string.o_g)) },
             )
@@ -66,7 +63,7 @@ fun CalculatorScreen(
             DefaultTextField(
                 value = finalText,
                 onValueChange = { change ->
-                    finalText = change
+                    onFinalTextChange(change)
                 },
                 imeAction = ImeAction.Done,
                 label = { Text(text = stringResource(id = R.string.f_g)) },
@@ -95,6 +92,8 @@ fun CalculatorScreen(
 @Composable
 fun CalculatorScreenPreview() {
     CalculatorScreen(
+        originalText = "",
+        finalText = "",
         abvValue = "0",
         attenuationValue = "0",
         errorMessage = null,

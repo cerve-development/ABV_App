@@ -13,7 +13,7 @@ enum class AbvUnit(
     P(
         textId = R.string.UNIT_TEXT_plato
     ),
-    BRIX(
+    B(
         textId = R.string.UNIT_TEXT_brix
     )
 }

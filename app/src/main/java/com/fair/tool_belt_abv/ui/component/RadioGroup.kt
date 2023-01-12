@@ -105,6 +105,6 @@ fun RadioGroupPreview() {
     RadioGroupUnit(
         modifier = Modifier.fillMaxWidth(),
         label = "Unit",
-        selected = AbvUnit.BRIX,
+        selected = AbvUnit.B,
     )
 }

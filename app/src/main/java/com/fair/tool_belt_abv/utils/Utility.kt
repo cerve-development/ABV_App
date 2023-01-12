@@ -39,4 +39,12 @@ object Utility {
         }
     }
 
+    /**
+     * Our application crashes when a user enters in ".<Number>" to avoid this crash,
+     * we ensure that their entry has a "0" prefix if it has a leading decimal.
+     */
+    fun String.isLeadingDecimal(): String {
+        return if (this.startsWith('.')) "0$this" else this
+    }
+
 }
