@@ -80,9 +80,9 @@ fun RadioCard(
 fun DashboardCard(
     attenuationValue: String,
     abvValue: String,
-    isError: Boolean,
     modifier: Modifier = Modifier,
-    errorText: String? = null,
+    errorMessage: String? = null,
+    isError: Boolean = !errorMessage.isNullOrEmpty()
 ) {
 
     val (contentColor, color) = if (isError) {
@@ -106,6 +106,7 @@ fun DashboardCard(
         )
 
         ThemedDivider()
+
         Row(
             modifier = Modifier.padding(sizes.small),
             verticalAlignment = Alignment.Bottom,
@@ -132,7 +133,7 @@ fun DashboardCard(
 
         ThemedDivider()
 
-        errorText?.let { text ->
+        errorMessage?.let { text ->
             Text(
                 modifier = Modifier.padding(sizes.small),
                 text = text,
@@ -154,8 +155,7 @@ fun DashboardCardPreview() {
     DashboardCard(
         attenuationValue = "0",
         abvValue = "0",
-        isError = false,
-        errorText = "Final Gravity can't be greater than original Gravity"
+        errorMessage = "Final Gravity can't be greater than original Gravity"
     )
     
 }

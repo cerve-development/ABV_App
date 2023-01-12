@@ -27,6 +27,7 @@ import com.fair.tool_belt_abv.ui.component.RadioGroupUnit
 fun CalculatorScreen(
     abvValue: String,
     attenuationValue: String,
+    errorMessage: String?,
     abvUnit: AbvUnit,
     abvEquation: AbvEquation,
     modifier: Modifier = Modifier,
@@ -44,10 +45,10 @@ fun CalculatorScreen(
         DashboardCard(
             abvValue = abvValue,
             attenuationValue = attenuationValue,
-            isError = true
+            errorMessage = errorMessage
         )
         Column(
-//            modifier = Modifier.weight(1f),
+            modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(sizes.small),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -90,7 +91,8 @@ fun CalculatorScreenPreview() {
     CalculatorScreen(
         abvValue = "0",
         attenuationValue = "0",
-        abvUnit = AbvUnit.SIMPLE_GRAVITY,
-        abvEquation = AbvEquation.SIMPLE
+        errorMessage = null,
+        abvUnit = AbvUnit.SG,
+        abvEquation = AbvEquation.S
     )
 }

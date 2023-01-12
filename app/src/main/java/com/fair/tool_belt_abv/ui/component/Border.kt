@@ -9,6 +9,6 @@ import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 
 @Composable
 fun themedBorder(
-    width: Dp = sizes.xSmall,
+    width: Dp = sizes.xSmall / 2,
     color: Color = colors.onSurface
 ) = BorderStroke(width = width, color = color)
