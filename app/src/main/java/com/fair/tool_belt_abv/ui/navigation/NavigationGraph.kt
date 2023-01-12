@@ -38,7 +38,9 @@ fun NavigationGraph(
                     abvEquation = state.equation,
                     abvValue = state.abv,
                     attenuationValue = state.attenuation,
-                    errorMessage = state.errorMessage
+                    errorMessage = state.errorMessage,
+                    onUnitSelect = calculatorVm::updateUnit,
+                    onEquationSelect = calculatorVm::updateEquation
                 )
             }
 

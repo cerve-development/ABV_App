@@ -31,6 +31,8 @@ fun CalculatorScreen(
     abvUnit: AbvUnit,
     abvEquation: AbvEquation,
     modifier: Modifier = Modifier,
+    onUnitSelect: (AbvUnit) -> Unit = { },
+    onEquationSelect: (AbvEquation) -> Unit = { }
 ) {
 
     var originalText by remember { mutableStateOf("") }
@@ -47,6 +49,7 @@ fun CalculatorScreen(
             attenuationValue = attenuationValue,
             errorMessage = errorMessage
         )
+        //todo text entry card
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(sizes.small),
@@ -73,13 +76,16 @@ fun CalculatorScreen(
         RadioGroupUnit(
             selected = abvUnit,
             label = stringResource(id = R.string.LABEL_ABV_unit)
-        )
+        ) { unit ->
+            onUnitSelect(unit)
+        }
 
         RadioGroupEquation(
             selected = abvEquation,
             label = stringResource(id = R.string.LABEL_ABV_equation)
-        )
-
+        ) { equation ->
+            onEquationSelect(equation)
+        }
 
     }
 

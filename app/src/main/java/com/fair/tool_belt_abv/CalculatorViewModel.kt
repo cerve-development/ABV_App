@@ -11,11 +11,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CalculatorViewModel @Inject constructor(
-    preferences: StorageManager
+    private val preferences: StorageManager
 ) : ViewModel() {
 
     private val result = MutableStateFlow(CalculatorResult())
@@ -32,6 +33,18 @@ class CalculatorViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = null
     )
+
+    fun updateEquation(equation: AbvEquation) {
+        viewModelScope.launch {
+            preferences.saveEquation(equation)
+        }
+    }
+
+    fun updateUnit(unit: AbvUnit) {
+        viewModelScope.launch {
+            preferences.saveUnit(unit)
+        }
+    }
 
 }
 

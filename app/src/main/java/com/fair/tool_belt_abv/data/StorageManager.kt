@@ -2,6 +2,7 @@ package com.fair.tool_belt_abv.data
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
@@ -13,7 +14,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class StorageManager @Inject constructor(
-    dataStore: DataStore<Preferences>
+    private val dataStore: DataStore<Preferences>
 ) {
 
     val calculatorPreferences: Flow<CalculatorPreferences> = dataStore.data
@@ -36,5 +37,16 @@ class StorageManager @Inject constructor(
             CalculatorPreferences(unit, equation)
         }
 
+    suspend fun saveEquation(value: AbvEquation) {
+        dataStore.edit { settings ->
+            settings[PreferencesKeys.ABV_EQUATION_KEY] = value.name
+        }
+    }
+
+    suspend fun saveUnit(value: AbvUnit) {
+        dataStore.edit { settings ->
+            settings[PreferencesKeys.ABV_UNIT_KEY] = value.name
+        }
+    }
 
 }
