@@ -2,7 +2,7 @@ package com.fair.tool_belt_abv
 
 import androidx.lifecycle.ViewModel
 import com.fair.tool_belt_abv.model.AbvUnit
-import com.fair.tool_belt_abv.utils.Converter
+import com.fair.tool_belt_abv.util.Converter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

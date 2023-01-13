@@ -18,9 +18,9 @@ import com.fair.tool_belt_abv.model.AppPreferences
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
 import com.fair.tool_belt_abv.ui.screen.SettingScreen
-import com.fair.tool_belt_abv.utils.EMAIL_SUBJECT_BUG
-import com.fair.tool_belt_abv.utils.EMAIL_SUBJECT_FEATURE
-import com.fair.tool_belt_abv.utils.sendEmail
+import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_BUG
+import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_FEATURE
+import com.fair.tool_belt_abv.util.sendEmail
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable

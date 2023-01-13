@@ -7,10 +7,10 @@ import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.model.CalculatorResult
 import com.fair.tool_belt_abv.model.UserInput
-import com.fair.tool_belt_abv.utils.Calculator.bCalculator
-import com.fair.tool_belt_abv.utils.Calculator.pCalculator
-import com.fair.tool_belt_abv.utils.Calculator.sCalculator
-import com.fair.tool_belt_abv.utils.Utility.isLeadingDecimal
+import com.fair.tool_belt_abv.util.Calculator.bCalculator
+import com.fair.tool_belt_abv.util.Calculator.pCalculator
+import com.fair.tool_belt_abv.util.Calculator.sCalculator
+import com.fair.tool_belt_abv.util.isLeadingDecimal
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

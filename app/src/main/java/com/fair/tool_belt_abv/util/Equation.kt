@@ -1,4 +1,4 @@
-package com.fair.tool_belt_abv.utils
+package com.fair.tool_belt_abv.util
 
 import kotlin.math.pow
 
