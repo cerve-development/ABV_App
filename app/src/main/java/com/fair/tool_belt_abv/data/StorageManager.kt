@@ -4,20 +4,35 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
+import com.fair.tool_belt_abv.data.PreferencesKeys.APP_LAST_RATING_PROMPT_TIME
 import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.model.AppTheme
 import com.fair.tool_belt_abv.model.CalculatorPreferences
 import com.fair.tool_belt_abv.model.SettingPreferences
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import java.io.IOException
+import java.time.Instant.now
 import javax.inject.Inject
 
 class StorageManager @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) {
+
+    init {
+        CoroutineScope(Dispatchers.Default).launch {
+            dataStore.edit { preferences ->
+                if(preferences[APP_LAST_RATING_PROMPT_TIME].isNullOrEmpty()) {
+                    preferences[APP_LAST_RATING_PROMPT_TIME] = now().toEpochMilli().toString()
+                }
+            }
+        }
+    }
 
     val calculatorPreferences: Flow<CalculatorPreferences> = dataStore.data
         .catch { exception ->
