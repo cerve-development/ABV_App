@@ -1,5 +1,6 @@
 package com.fair.tool_belt_abv.ui.component
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -97,7 +98,8 @@ fun DashboardCard(
     }
 
     OutlinedCard(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth()
+            .animateContentSize(),
         shape = ExtendedTheme.shapes.extraSmall,
         border = themedBorder(color = color),
         colors = CardDefaults.outlinedCardColors(containerColor = contentColor)
@@ -116,15 +118,19 @@ fun DashboardCard(
             modifier = Modifier.padding(sizes.small),
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.spacedBy(sizes.small)
-        ){
-            Text(
+        ) {
+            TextAnimation(
                 modifier = Modifier.weight(1f),
-                text = stringResource(id = R.string.default_Abv, abvValue),
-                color = color,
-                style = ExtendedTheme.typography.headlineLarge,
-                overflow = TextOverflow.Ellipsis,
-                textAlign = TextAlign.End
-            )
+                value = abvValue
+            ) { value ->
+                Text(
+                    text = stringResource(id = R.string.default_Abv, value),
+                    color = color,
+                    style = ExtendedTheme.typography.headlineLarge,
+                    overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.End
+                )
+            }
 
             Text(
                 modifier = Modifier,
@@ -136,9 +142,9 @@ fun DashboardCard(
             )
         }
 
-        ThemedDivider()
-
         errorMessage?.let { text ->
+            ThemedDivider()
+
             Text(
                 modifier = Modifier.padding(sizes.small),
                 text = text,
@@ -148,7 +154,6 @@ fun DashboardCard(
                 overflow = TextOverflow.Ellipsis
             )
         }
-
     }
 
 }
