@@ -6,7 +6,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -22,7 +21,6 @@ import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_BUG
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_FEATURE
 import com.fair.tool_belt_abv.util.sendEmail
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun NavigationGraph(
     preferences: AppPreferences,

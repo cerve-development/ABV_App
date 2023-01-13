@@ -8,7 +8,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cerve.co.material3extension.designsystem.ExtendedTheme
 import com.fair.tool_belt_abv.MainViewModel
@@ -21,7 +20,6 @@ class MainActivity : ComponentActivity() {
     private val activityViewModel: MainViewModel by viewModels()
     private var isLoading: Boolean = true
 
-    @OptIn(ExperimentalLifecycleComposeApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().apply { setKeepOnScreenCondition { isLoading } }
         super.onCreate(savedInstanceState)

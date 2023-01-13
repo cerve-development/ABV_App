@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -32,22 +33,25 @@ fun RadioCard(
     onClick: () -> Unit = { }
 ) {
 
-    val (contentColor, color) = if (selected) {
-        Pair(colors.primary.copy(alpha = alphas.small_10), colors.primary)
+    val (contentColor, color, stroke) = if (selected) {
+        Triple(colors.primary.copy(alpha = alphas.large_60), Color.Transparent, sizes.default)
     } else {
-        Pair(colors.surface, colors.onSurface)
+        Triple(colors.surface, colors.onSurface, sizes.xSmall / 2)
     }
 
     OutlinedCard(
         onClick = { onClick() },
         modifier = modifier,
         shape = ExtendedTheme.shapes.extraSmall,
-        border = themedBorder(color = color),
+        enabled = !selected,
+        border = themedBorder(
+            width = stroke,
+            color = color
+        ),
         colors = CardDefaults.outlinedCardColors(containerColor = contentColor)
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
@@ -60,6 +64,7 @@ fun RadioCard(
             )
             RadioButton(
                 selected = selected,
+                enabled = !selected,
                 onClick = { onClick() }
             )
         }
@@ -158,4 +163,19 @@ fun DashboardCardPreview() {
         errorMessage = "Final Gravity can't be greater than original Gravity"
     )
     
+}
+
+@Preview
+@Composable
+fun RadioCardPreview() {
+    Row {
+        RadioCard(
+            modifier = Modifier.weight(1f),
+            text = "Plato", selected = true
+        )
+        RadioCard(
+            modifier = Modifier.weight(1f),
+            text = "Brix", selected = false
+        )
+    }
 }
