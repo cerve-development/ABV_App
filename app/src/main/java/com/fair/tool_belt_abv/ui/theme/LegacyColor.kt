@@ -1,4 +1,4 @@
-package com.example.compose
+package com.fair.tool_belt_abv.ui.theme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
@@ -29,7 +29,6 @@ val legacy_theme_light_outline = Color(0xFF74777F)
 val legacy_theme_light_inverseOnSurface = Color(0xFFD6F6FF)
 val legacy_theme_light_inverseSurface = Color(0xFF00363F)
 val legacy_theme_light_inversePrimary = Color(0xFFA9C7FF)
-val legacy_theme_light_shadow = Color(0xFF000000)
 val legacy_theme_light_surfaceTint = Color(0xFF005DB7)
 val legacy_theme_light_outlineVariant = Color(0xFFC4C6CF)
 val legacy_theme_light_scrim = Color(0xFF000000)
@@ -60,7 +59,6 @@ val legacy_theme_dark_outline = Color(0xFF8E9099)
 val legacy_theme_dark_inverseOnSurface = Color(0xFF001F25)
 val legacy_theme_dark_inverseSurface = Color(0xFFA6EEFF)
 val legacy_theme_dark_inversePrimary = Color(0xFF005DB7)
-val legacy_theme_dark_shadow = Color(0xFF000000)
 val legacy_theme_dark_surfaceTint = Color(0xFFA9C7FF)
 val legacy_theme_dark_outlineVariant = Color(0xFF44474E)
 val legacy_theme_dark_scrim = Color(0xFF000000)

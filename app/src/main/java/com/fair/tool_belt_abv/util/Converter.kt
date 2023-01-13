@@ -53,11 +53,4 @@ object Converter {
 
     }
 
-    fun leadingZero(text: String): String {
-        return when {
-            text.startsWith(".") -> { "0$text" }
-            text.isEmpty() -> { "0.0" }
-            else -> { text }
-        }
-    }
 }

@@ -19,13 +19,13 @@ enum class TopLevelDestinationGraph(
     CALCULATOR(
         selectedIcon = Icons.Filled.Calculate,
         unselectedIcon = Icons.Outlined.Calculate,
-        labelId = R.string.calculator,
+        labelId = R.string.NAV_DESTINATION_calculator,
         route = "route_calculator"
     ),
     CONVERTER(
         selectedIcon = Icons.Filled.ChangeCircle,
         unselectedIcon = Icons.Outlined.ChangeCircle,
-        labelId = R.string.converter,
+        labelId = R.string.NAV_DESTINATION_converter,
         route = "route_converter"
     );
 

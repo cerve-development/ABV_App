@@ -1,8 +1,8 @@
 package com.fair.tool_belt_abv.model
 
 import androidx.compose.material3.ColorScheme
-import com.example.compose.DarkLegacyColors
-import com.example.compose.LightLegacyColors
+import com.fair.tool_belt_abv.ui.theme.DarkLegacyColors
+import com.fair.tool_belt_abv.ui.theme.LightLegacyColors
 
 data class AppPreferences(
     val abvUnit: AbvUnit = AbvUnit.SG,

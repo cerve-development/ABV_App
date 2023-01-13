@@ -39,7 +39,5 @@ fun TextAnimation(
                 SizeTransform(clip = false)
             )
         }
-    ) {
-        content(it)
-    }
+    ) { content(it) }
 }

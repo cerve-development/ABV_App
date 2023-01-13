@@ -106,7 +106,7 @@ fun DashboardCard(
     ) {
         Text(
             modifier = Modifier.padding(sizes.small),
-            text = stringResource(id = R.string.default_Attenuation, attenuationValue),
+            text = stringResource(id = R.string.DEFAULT_RESULT_attenuation, attenuationValue),
             color = color,
             style = ExtendedTheme.typography.labelSmall,
             overflow = TextOverflow.Ellipsis
@@ -124,7 +124,7 @@ fun DashboardCard(
                 value = abvValue
             ) { value ->
                 Text(
-                    text = stringResource(id = R.string.default_Abv, value),
+                    text = stringResource(id = R.string.DEFAULT_RESULT_abv, value),
                     color = color,
                     style = ExtendedTheme.typography.headlineLarge,
                     overflow = TextOverflow.Ellipsis,

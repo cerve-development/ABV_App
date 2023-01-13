@@ -1,4 +1,4 @@
-package com.example.compose
+package com.fair.tool_belt_abv.ui.theme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
@@ -29,7 +29,6 @@ val stout_theme_light_outline = Color(0xFF85736D)
 val stout_theme_light_inverseOnSurface = Color(0xFFFFEDE6)
 val stout_theme_light_inverseSurface = Color(0xFF552000)
 val stout_theme_light_inversePrimary = Color(0xFFFFB59A)
-val stout_theme_light_shadow = Color(0xFF000000)
 val stout_theme_light_surfaceTint = Color(0xFF9A4523)
 val stout_theme_light_outlineVariant = Color(0xFFD8C2BB)
 val stout_theme_light_scrim = Color(0xFF000000)
@@ -60,7 +59,6 @@ val stout_theme_dark_outline = Color(0xFFA08D86)
 val stout_theme_dark_inverseOnSurface = Color(0xFF341100)
 val stout_theme_dark_inverseSurface = Color(0xFFFFDBCB)
 val stout_theme_dark_inversePrimary = Color(0xFF9A4523)
-val stout_theme_dark_shadow = Color(0xFF000000)
 val stout_theme_dark_surfaceTint = Color(0xFFFFB59A)
 val stout_theme_dark_outlineVariant = Color(0xFF53433E)
 val stout_theme_dark_scrim = Color(0xFF000000)

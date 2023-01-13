@@ -56,7 +56,7 @@ fun CalculatorScreen(
                 onValueChange = { change ->
                     onOriginalTextChange(change)
                 },
-                label = stringResource(id = R.string.o_g),
+                label = stringResource(id = R.string.LABEL_ABV_original),
             )
 
             DefaultTextField(
@@ -65,7 +65,7 @@ fun CalculatorScreen(
                     onFinalTextChange(change)
                 },
                 imeAction = ImeAction.Done,
-                label = stringResource(id = R.string.f_g),
+                label = stringResource(id = R.string.LABEL_ABV_final),
             )
         }
 

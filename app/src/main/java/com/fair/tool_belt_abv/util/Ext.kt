@@ -3,7 +3,6 @@ package com.fair.tool_belt_abv.util
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import com.fair.tool_belt_abv.R
 
 
 /**
@@ -14,7 +13,7 @@ fun String.isLeadingDecimal(): String {
     return if (this.startsWith('.')) "0$this" else this
 }
 
-const val RECEIVER_EMAIL = "cerve.v55@gmail.com"
+const val RECEIVER_EMAIL = "infocerveapps@gmail.com"
 const val EMAIL_SUBJECT_FEATURE = "Feature request"
 const val EMAIL_SUBJECT_BUG = "Bug report"
 const val EMAIL_SUBJECT_SUPPORT = "Support"
@@ -36,13 +35,13 @@ fun Context.sendEmail(
             """.trimIndent()
         )
         type = "message/rfc822"
-    }.linkChooser(this, this.getString(R.string.SUBTITLE_email))
+    }.linkChooser(this)
 }
 
-fun Intent?.linkChooser(context: Context, title: String) {
+fun Intent?.linkChooser(context: Context) {
     if (this != null) {
         try {
-            context.startActivity(Intent.createChooser(this, title))
+            context.startActivity(Intent.createChooser(this, ""))
         } catch (_: Exception) { }
     }
 }

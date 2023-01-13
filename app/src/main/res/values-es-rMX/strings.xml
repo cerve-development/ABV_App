@@ -1,27 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_settings">Ajustes</string>
-    <string name="advEquation">Avanzado</string>
-    <string name="app_name">Simple ABV</string>
 
-<!--    <string name="attenuation">Atenuación: %1$s%%</string>-->
+    <string name="DEFAULT.APP.name">Simple ABV</string>
+    <string name="DEFAULT.RESULT.abv">%1$s %%</string>
+    <string name="DEFAULT.RESULT.attenuation">Atenuación: %1$s %%</string>
 
+    <string name="EQUATION.TEXT.advance">Avance</string>
+    <string name="EQUATION.TEXT.simple">Sencillo</string>
 
-    <string name="converter">Convertidor</string>
+    <string name="LABEL.ABV.equation">Ecuación</string>
+    <string name="LABEL.ABV.final">Gravedad final</string>
+    <string name="LABEL.ABV.original">Gravedad original</string>
+    <string name="LABEL.ABV.unit">Unidad</string>
+    <string name="LABEL.SUPPORT.bug">Informe de error</string>
+    <string name="LABEL.SUPPORT.feature">Solicitud de función</string>
+    <string name="LABEL.SYSTEM.version">Version de aplicacion</string>
+    <string name="LABEL.THEME.darkmode">modo oscuro</string>
+    <string name="LABEL.THEME.theme">tema de la aplicación</string>
 
-<!--    <string name="default_Attenuation">Atenuación: 0%</string>-->
-    <string name="default_Warning">Advertencia: ninguno</string>
+    <string name="NAV.DESTINATION.calculator">Calculadora</string>
+    <string name="NAV.DESTINATION.converter">Convertidor</string>
 
-    <string name="f_g">Gravedad final</string>
+    <string name="SUBLABEL.ABV.equation">Elija la ecuación a utilizar para su cálculo</string>
+    <string name="SUBLABEL.ABV.unit">Elija la unidad a utilizar para su cálculo</string>
+    <string name="SUBLABEL.SUPPORT.bug">Informar de un error en Simple ABV</string>
+    <string name="SUBLABEL.SUPPORT.feature">Solicitar una nueva función para Simple ABV</string>
+    <string name="SUBLABEL.THEME.darkmode">¿Tus ojos están protegidos en el modo oscuro?</string>
+    <string name="SUBLABEL.THEME.theme">Elija un tema diferente.</string>
 
-
-    <string name="o_g">Gravedad original</string>
-
-    <string name="policy">Política de privacidad</string>
-
-    <string name="sg">Gravedad específica</string>
-    <string name="simEquation">Sencillo</string>
-
-    <string name="warning">Advertencia: %1$s</string>
+    <string name="UNIT.TEXT.brix">Brix</string>
+    <string name="UNIT.TEXT.gravity">Gravedad específica</string>
+    <string name="UNIT.TEXT.plato">Platón</string>
 
 </resources>
