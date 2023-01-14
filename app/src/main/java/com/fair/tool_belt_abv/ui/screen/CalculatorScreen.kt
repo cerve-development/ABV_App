@@ -87,8 +87,6 @@ fun CalculatorScreen(
 @Preview
 @Preview(device = Devices.PIXEL_XL)
 @Preview(device = Devices.PIXEL_3A)
-@Preview(heightDp = 1440, widthDp = 720)
-@Preview(heightDp = 720, widthDp = 1440)
 @Composable
 fun CalculatorScreenPreview() {
     CalculatorScreen(
