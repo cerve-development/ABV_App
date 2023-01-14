@@ -8,11 +8,9 @@ import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 
 @Composable
 fun ThemedDivider(modifier: Modifier = Modifier) {
-
     Divider(
         modifier = modifier,
         thickness = sizes.xSmall / 2,
         color = colors.onSurface
     )
-
 }

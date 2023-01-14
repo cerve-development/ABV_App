@@ -6,7 +6,7 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.shapes
 
-fun Modifier.listItem(onClick: () -> Unit) : Modifier = composed {
+fun Modifier.listItem(onClick: () -> Unit): Modifier = composed {
     this.clip(shape = shapes.extraSmall)
         .clickable { onClick() }
 }

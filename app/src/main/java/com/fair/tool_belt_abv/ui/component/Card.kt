@@ -33,7 +33,6 @@ fun RadioCard(
     subText: String? = null,
     onClick: () -> Unit = { }
 ) {
-
     val (contentColor, color, stroke) = if (selected) {
         Triple(colors.primary.copy(alpha = alphas.large_60), Color.Transparent, sizes.default)
     } else {
@@ -78,7 +77,6 @@ fun RadioCard(
                 overflow = TextOverflow.Ellipsis
             )
         }
-
     }
 }
 
@@ -90,7 +88,6 @@ fun DashboardCard(
     errorMessage: String? = null,
     isError: Boolean = !errorMessage.isNullOrEmpty()
 ) {
-
     val (contentColor, color) = if (isError) {
         Pair(colors.errorContainer, colors.error)
     } else {
@@ -155,19 +152,16 @@ fun DashboardCard(
             )
         }
     }
-
 }
 
 @Preview
 @Composable
 fun DashboardCardPreview() {
-
     DashboardCard(
         attenuationValue = "0",
         abvValue = "0",
         errorMessage = "Final Gravity can't be greater than original Gravity"
     )
-    
 }
 
 @Preview
@@ -176,11 +170,13 @@ fun RadioCardPreview() {
     Row {
         RadioCard(
             modifier = Modifier.weight(1f),
-            text = "Plato", selected = true
+            text = "Plato",
+            selected = true
         )
         RadioCard(
             modifier = Modifier.weight(1f),
-            text = "Brix", selected = false
+            text = "Brix",
+            selected = false
         )
     }
 }

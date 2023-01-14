@@ -32,5 +32,4 @@ enum class TopLevelDestinationGraph(
     companion object {
         const val SETTINGS = "route_settings"
     }
-
 }

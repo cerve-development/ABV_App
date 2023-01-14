@@ -2,7 +2,8 @@ package com.fair.tool_belt_abv.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -28,7 +29,6 @@ fun AppScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
-
     val currentDestination by navController.currentBackStackEntryAsState()
     val context = LocalContext.current
 
@@ -42,7 +42,6 @@ fun AppScreen(
             )
         },
         bottomBar = {
-
             SimpleAbvNavigationBar(
                 currentDestination = currentDestination?.destination,
                 destinations = TopLevelDestinationGraph.values().asList(),
@@ -50,7 +49,6 @@ fun AppScreen(
                     navController.navigate(destination.route)
                 }
             )
-
         }
     ) { innerPadding ->
         NavigationGraph(
@@ -60,7 +58,6 @@ fun AppScreen(
             preferences = appPreferences
         )
     }
-
 }
 
 @Preview

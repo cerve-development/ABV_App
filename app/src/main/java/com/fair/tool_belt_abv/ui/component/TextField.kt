@@ -33,7 +33,6 @@ fun DefaultTextField(
     label: String? = null,
     onMoreInfoClick: () -> Unit = { }
 ) {
-
     val localFocusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -56,7 +55,7 @@ fun DefaultTextField(
             )
         },
         trailingIcon = {
-            IconButton(onClick = { onMoreInfoClick() }){
+            IconButton(onClick = { onMoreInfoClick() }) {
                 Icon(
                     imageVector = Icons.Outlined.Info,
                     contentDescription = null
@@ -75,7 +74,6 @@ fun DefaultTextField(
         keyboardActions = keyboardActions
 
     )
-
 }
 
 @Preview

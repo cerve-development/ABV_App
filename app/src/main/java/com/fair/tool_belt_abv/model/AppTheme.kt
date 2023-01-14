@@ -16,12 +16,11 @@ enum class AppTheme(
     STOUT(color = LightStoutColors.primary),
     HOPS(color = HopsLightColors.primary);
 
-    fun selectedTheme() : Pair<ColorScheme, ColorScheme> {
-        return when(this) {
+    fun selectedTheme(): Pair<ColorScheme, ColorScheme> {
+        return when (this) {
             LEGACY -> Pair(LightLegacyColors, DarkLegacyColors)
             STOUT -> Pair(LightStoutColors, DarkStoutColors)
             HOPS -> Pair(HopsLightColors, HopsDarkColors)
         }
     }
-
 }

@@ -10,9 +10,7 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class ConverterViewModel @Inject constructor(
-
-) : ViewModel() {
+class ConverterViewModel @Inject constructor() : ViewModel() {
 
     private val _result = MutableStateFlow(ConverterResult())
     val result = _result.asStateFlow()
@@ -35,8 +33,6 @@ class ConverterViewModel @Inject constructor(
             }
         }
     }
-
-
 }
 
 data class ConverterResult(

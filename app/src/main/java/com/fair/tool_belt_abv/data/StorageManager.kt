@@ -27,7 +27,7 @@ class StorageManager @Inject constructor(
     init {
         CoroutineScope(Dispatchers.Default).launch {
             dataStore.edit { preferences ->
-                if(preferences[APP_LAST_RATING_PROMPT_TIME].isNullOrEmpty()) {
+                if (preferences[APP_LAST_RATING_PROMPT_TIME].isNullOrEmpty()) {
                     preferences[APP_LAST_RATING_PROMPT_TIME] = now().toEpochMilli().toString()
                 }
             }
@@ -108,5 +108,4 @@ class StorageManager @Inject constructor(
             settings[PreferencesKeys.APP_IS_IN_DARK_MODE] = value
         }
     }
-
 }

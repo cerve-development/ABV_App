@@ -20,13 +20,10 @@ fun SimpleAbvNavigationBar(
     modifier: Modifier = Modifier,
     onNavigateToDestination: (TopLevelDestinationGraph) -> Unit = { }
 ) {
-
     Column(modifier = modifier) {
-
         ThemedDivider()
 
         NavigationBar(containerColor = Color.Transparent) {
-
             destinations.forEach { destination ->
 
                 val selected = currentDestination.isTopLevelDestinationInHierarchy(destination.name)
@@ -45,10 +42,7 @@ fun SimpleAbvNavigationBar(
                     label = { Text(text = label) },
                     onClick = { onNavigateToDestination(destination) }
                 )
-
             }
         }
-
     }
-
 }

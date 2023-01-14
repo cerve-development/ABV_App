@@ -33,13 +33,11 @@ fun CalculatorScreen(
     onUnitSelect: (AbvUnit) -> Unit = { },
     onEquationSelect: (AbvEquation) -> Unit = { }
 ) {
-
     Column(
         modifier = modifier.padding(sizes.medium),
         verticalArrangement = Arrangement.spacedBy(sizes.small),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         DashboardCard(
             abvValue = abvValue,
             attenuationValue = attenuationValue,
@@ -56,7 +54,7 @@ fun CalculatorScreen(
                 onValueChange = { change ->
                     onOriginalTextChange(change)
                 },
-                label = stringResource(id = R.string.LABEL_ABV_original),
+                label = stringResource(id = R.string.LABEL_ABV_original)
             )
 
             DefaultTextField(
@@ -65,7 +63,7 @@ fun CalculatorScreen(
                     onFinalTextChange(change)
                 },
                 imeAction = ImeAction.Done,
-                label = stringResource(id = R.string.LABEL_ABV_final),
+                label = stringResource(id = R.string.LABEL_ABV_final)
             )
         }
 
@@ -82,9 +80,7 @@ fun CalculatorScreen(
         ) { equation ->
             onEquationSelect(equation)
         }
-
     }
-
 }
 
 @Preview

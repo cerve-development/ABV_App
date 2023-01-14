@@ -63,7 +63,6 @@ val hops_theme_dark_surfaceTint = Color(0xFF8CD88C)
 val hops_theme_dark_outlineVariant = Color(0xFF424940)
 val hops_theme_dark_scrim = Color(0xFF000000)
 
-
 val HopsLightColors = lightColorScheme(
     primary = hops_theme_light_primary,
     onPrimary = hops_theme_light_onPrimary,
@@ -93,9 +92,8 @@ val HopsLightColors = lightColorScheme(
     inversePrimary = hops_theme_light_inversePrimary,
     surfaceTint = hops_theme_light_surfaceTint,
     outlineVariant = hops_theme_light_outlineVariant,
-    scrim = hops_theme_light_scrim,
+    scrim = hops_theme_light_scrim
 )
-
 
 val HopsDarkColors = darkColorScheme(
     primary = hops_theme_dark_primary,
@@ -126,5 +124,5 @@ val HopsDarkColors = darkColorScheme(
     inversePrimary = hops_theme_dark_inversePrimary,
     surfaceTint = hops_theme_dark_surfaceTint,
     outlineVariant = hops_theme_dark_outlineVariant,
-    scrim = hops_theme_dark_scrim,
+    scrim = hops_theme_dark_scrim
 )

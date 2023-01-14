@@ -25,7 +25,6 @@ fun ConverterScreen(
         modifier = modifier.padding(sizes.medium),
         verticalArrangement = Arrangement.spacedBy(sizes.small)
     ) {
-
         DefaultTextField(
             value = gravityText,
             onValueChange = { change ->
@@ -51,7 +50,6 @@ fun ConverterScreen(
             imeAction = ImeAction.Done,
             label = stringResource(id = R.string.UNIT_TEXT_brix)
         )
-        
     }
 }
 

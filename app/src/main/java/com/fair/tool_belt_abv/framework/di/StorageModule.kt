@@ -40,5 +40,4 @@ object StorageModule {
             produceFile = { context.preferencesDataStoreFile(SIMPLE_ABV_PREFERENCES) }
         )
     }
-
 }

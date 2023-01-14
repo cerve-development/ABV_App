@@ -90,3 +90,7 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.0'
 
 }
+
+kotlinter {
+    disabledRules = ["package-name", "twitter-compose:unstable-collections"]
+}

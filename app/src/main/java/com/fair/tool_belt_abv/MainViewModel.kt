@@ -28,11 +28,9 @@ class MainViewModel @Inject constructor(
                 colorSchemeDark = dark,
                 isLoading = false
             )
-
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = AppPreferences()
         )
-
 }

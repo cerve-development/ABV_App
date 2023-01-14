@@ -73,11 +73,10 @@ class CalculatorViewModel @Inject constructor(
         unit: AbvUnit,
         equation: AbvEquation
     ): CalculatorResult {
-
         val num1 = original.isLeadingDecimal()
         val num2 = final.isLeadingDecimal()
 
-        val (abv, attenuation, error) = when(unit) {
+        val (abv, attenuation, error) = when (unit) {
             AbvUnit.SG -> {
                 equation.name.sCalculator(num1, num2)
             }
@@ -91,7 +90,6 @@ class CalculatorViewModel @Inject constructor(
 
         return CalculatorResult(abv = abv, attenuation = attenuation, errorMessage = error)
     }
-
 }
 
 data class CalculatorState(

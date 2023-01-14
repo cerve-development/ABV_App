@@ -27,16 +27,16 @@ fun NavigationGraph(
     navController: NavHostController,
     startDestination: String,
     modifier: Modifier = Modifier,
+    calculatorVm: CalculatorViewModel = hiltViewModel(),
+    converterVm: ConverterViewModel = hiltViewModel(),
+    settingVM: SettingViewModel = hiltViewModel()
 ) {
-
     NavHost(
         modifier = modifier,
         startDestination = startDestination,
         navController = navController
     ) {
-
         composable(TopLevelDestinationGraph.CALCULATOR.route) {
-            val calculatorVm = hiltViewModel<CalculatorViewModel>()
             val calculatorState by calculatorVm.state.collectAsStateWithLifecycle()
 
             calculatorState?.let { state ->
@@ -54,11 +54,9 @@ fun NavigationGraph(
                     onFinalTextChange = calculatorVm::updateFinalValue
                 )
             }
-
         }
 
         composable(TopLevelDestinationGraph.CONVERTER.route) {
-            val converterVm = hiltViewModel<ConverterViewModel>()
             val convertorState by converterVm.result.collectAsStateWithLifecycle()
 
             ConverterScreen(
@@ -70,7 +68,6 @@ fun NavigationGraph(
         }
 
         composable(TopLevelDestinationGraph.SETTINGS) {
-            val settingVM = hiltViewModel<SettingViewModel>()
             val context = LocalContext.current
 
             SettingScreen(
@@ -89,9 +86,6 @@ fun NavigationGraph(
                     context.sendEmail(subject = EMAIL_SUBJECT_BUG)
                 }
             )
-
         }
-
     }
-
 }

@@ -24,7 +24,6 @@ fun RadioGroupUnit(
     group: List<AbvUnit> = AbvUnit.values().asList(),
     onSelected: (AbvUnit) -> Unit = { }
 ) {
-
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(sizes.small)
@@ -41,7 +40,6 @@ fun RadioGroupUnit(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(sizes.xSmall)
         ) {
-
             group.forEach { unit ->
 
                 RadioCard(
@@ -49,12 +47,9 @@ fun RadioGroupUnit(
                     selected = selected == unit,
                     modifier = Modifier.weight(1f)
                 ) { onSelected(unit) }
-
             }
-
         }
     }
-
 }
 
 @Composable
@@ -65,7 +60,6 @@ fun RadioGroupEquation(
     group: List<AbvEquation> = AbvEquation.values().asList(),
     onSelected: (AbvEquation) -> Unit = { }
 ) {
-
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(sizes.small)
@@ -82,7 +76,6 @@ fun RadioGroupEquation(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(sizes.xSmall)
         ) {
-
             group.forEach { unit ->
 
                 RadioCard(
@@ -91,12 +84,9 @@ fun RadioGroupEquation(
                     selected = selected == unit,
                     modifier = Modifier.weight(1f)
                 ) { onSelected(unit) }
-
             }
-
         }
     }
-
 }
 
 @Preview
@@ -105,6 +95,6 @@ fun RadioGroupPreview() {
     RadioGroupUnit(
         modifier = Modifier.fillMaxWidth(),
         label = "Unit",
-        selected = AbvUnit.B,
+        selected = AbvUnit.B
     )
 }

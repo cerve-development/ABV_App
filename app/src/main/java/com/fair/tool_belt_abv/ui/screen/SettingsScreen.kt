@@ -53,9 +53,8 @@ fun SettingScreen(
     onDarkModeChange: (Boolean) -> Unit = { },
     onAppThemeChange: (AppTheme) -> Unit = { },
     onFeatureRequestClick: () -> Unit = { },
-    onBugReportClick: () -> Unit = { },
+    onBugReportClick: () -> Unit = { }
 ) {
-
     var openAbvUnitDialog by remember { mutableStateOf(false) }
     var openAbvEquationDialog by remember { mutableStateOf(false) }
     var openAppThemeDialog by remember { mutableStateOf(false) }
@@ -65,11 +64,10 @@ fun SettingScreen(
         verticalArrangement = Arrangement.spacedBy(sizes.small),
         contentPadding = PaddingValues(sizes.medium)
     ) {
-
         item {
             ListItem(
                 modifier = Modifier.listItem {
-                     openAbvUnitDialog = true
+                    openAbvUnitDialog = true
                 },
                 leadingContent = {
                     Icon(imageVector = Icons.Default.SquareFoot, contentDescription = null)
@@ -79,13 +77,13 @@ fun SettingScreen(
                 },
                 supportingText = {
                     Text(text = stringResource(id = R.string.SUBLABEL_ABV_unit))
-                },
+                }
             )
         }
         item {
             ListItem(
                 modifier = Modifier.listItem {
-                     openAbvEquationDialog = true
+                    openAbvEquationDialog = true
                 },
                 leadingContent = {
                     Icon(imageVector = Icons.Default.Functions, contentDescription = null)
@@ -95,7 +93,7 @@ fun SettingScreen(
                 },
                 supportingText = {
                     Text(text = stringResource(id = R.string.SUBLABEL_ABV_equation))
-                },
+                }
             )
         }
 
@@ -114,22 +112,22 @@ fun SettingScreen(
                     Text(text = stringResource(id = R.string.SUBLABEL_THEME_darkmode))
                 },
                 trailingContent = {
-                     Switch(
-                          checked = isDarkMode,
-                          thumbContent = if (isDarkMode) {
-                              {
-                                  Icon(
-                                      imageVector = Icons.Filled.Check,
-                                      contentDescription = null,
-                                      modifier = Modifier.size(SwitchDefaults.IconSize),
-                                  )
-                              }
-                          } else { null },
-                          onCheckedChange = { change ->
-                              onDarkModeChange(change)
-                          }
-                     )
-                },
+                    Switch(
+                        checked = isDarkMode,
+                        thumbContent = if (isDarkMode) {
+                            {
+                                Icon(
+                                    imageVector = Icons.Filled.Check,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(SwitchDefaults.IconSize)
+                                )
+                            }
+                        } else { null },
+                        onCheckedChange = { change ->
+                            onDarkModeChange(change)
+                        }
+                    )
+                }
             )
         }
         item {
@@ -152,7 +150,7 @@ fun SettingScreen(
                         contentDescription = null,
                         tint = colors.primary
                     )
-                },
+                }
             )
         }
 
@@ -169,7 +167,7 @@ fun SettingScreen(
                 },
                 supportingText = {
                     Text(text = stringResource(id = R.string.SUBLABEL_SUPPORT_feature))
-                },
+                }
             )
         }
         item {
@@ -185,7 +183,7 @@ fun SettingScreen(
                 },
                 supportingText = {
                     Text(text = stringResource(id = R.string.SUBLABEL_SUPPORT_bug))
-                },
+                }
             )
         }
 
@@ -200,10 +198,9 @@ fun SettingScreen(
                 },
                 supportingText = {
                     Text(text = BuildConfig.VERSION_NAME)
-                },
+                }
             )
         }
-
     }
 
     ThemedAbvUnitDialog(

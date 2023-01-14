@@ -38,5 +38,4 @@ class SettingViewModel @Inject constructor(
             storageManager.saveDarkModeState(value)
         }
     }
-
 }

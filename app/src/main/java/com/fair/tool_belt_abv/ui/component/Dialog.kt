@@ -38,7 +38,6 @@ fun ThemedAbvUnitDialog(
     isOpen: Boolean,
     onDismiss: (AbvUnit) -> Unit
 ) {
-
     var selected by remember(unit) {
         mutableStateOf(unit)
     }
@@ -49,32 +48,32 @@ fun ThemedAbvUnitDialog(
             title = {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(id = R.string.LABEL_ABV_unit))
+                    text = stringResource(id = R.string.LABEL_ABV_unit)
+                )
             },
             text = {
-                   Column {
-                       ThemedDivider()
+                Column {
+                    ThemedDivider()
 
-                       AbvUnit.values().forEach { unit ->
-                           Row(
-                               modifier = Modifier
-                                   .fillMaxWidth()
-                                   .clickable { selected = unit },
-                               verticalAlignment = Alignment.CenterVertically,
-                               horizontalArrangement = Arrangement.spacedBy(sizes.small)
-                           ) {
-                               RadioButton(
-                                   selected = unit == selected,
-                                   onClick = { selected = unit}
-                               )
+                    AbvUnit.values().forEach { unit ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { selected = unit },
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(sizes.small)
+                        ) {
+                            RadioButton(
+                                selected = unit == selected,
+                                onClick = { selected = unit }
+                            )
 
-                               Text(text = stringResource(id = unit.textId))
+                            Text(text = stringResource(id = unit.textId))
+                        }
+                    }
 
-                           }
-                       }
-                       
-                       ThemedDivider()
-                   }
+                    ThemedDivider()
+                }
             },
             confirmButton = {
                 TextButton(onClick = { onDismiss(selected) }) {
@@ -112,7 +111,6 @@ fun ThemedAbvUnitDialog(
 //            }
 //        }
     }
-
 }
 
 @Composable
@@ -121,7 +119,6 @@ fun ThemedAbvEquationDialog(
     isOpen: Boolean,
     onDismiss: (AbvEquation) -> Unit
 ) {
-
     var selected by remember(equation) {
         mutableStateOf(equation)
     }
@@ -132,7 +129,8 @@ fun ThemedAbvEquationDialog(
             title = {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(id = R.string.LABEL_ABV_unit))
+                    text = stringResource(id = R.string.LABEL_ABV_unit)
+                )
             },
             text = {
                 Column {
@@ -148,11 +146,10 @@ fun ThemedAbvEquationDialog(
                         ) {
                             RadioButton(
                                 selected = equation == selected,
-                                onClick = { selected = equation}
+                                onClick = { selected = equation }
                             )
 
                             Text(text = stringResource(id = equation.textId))
-
                         }
                     }
 
@@ -170,9 +167,7 @@ fun ThemedAbvEquationDialog(
                 }
             }
         )
-
     }
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -182,7 +177,6 @@ fun ThemedAppThemeDialog(
     isOpen: Boolean,
     onDismiss: (AppTheme) -> Unit
 ) {
-
     var selected by remember(theme) {
         mutableStateOf(theme)
     }
@@ -193,7 +187,8 @@ fun ThemedAppThemeDialog(
             title = {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(id = R.string.LABEL_ABV_unit))
+                    text = stringResource(id = R.string.LABEL_ABV_unit)
+                )
             },
             text = {
                 Row(
@@ -233,9 +228,7 @@ fun ThemedAppThemeDialog(
                 }
             }
         )
-
     }
-
 }
 
 @Preview
@@ -245,5 +238,4 @@ fun ThemedAppThemeDialogPreview() {
         theme = AppTheme.LEGACY,
         isOpen = true
     ) { }
-
 }

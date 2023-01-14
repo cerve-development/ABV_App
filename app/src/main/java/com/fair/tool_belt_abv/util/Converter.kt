@@ -3,10 +3,8 @@ package com.fair.tool_belt_abv.util
 object Converter {
 
     fun convert(value: String, focused: String): Pair<String, String> {
-
         Equation.apply {
-
-            return if (value.isNotEmpty()){
+            return if (value.isNotEmpty()) {
                 val valueTrue = value.toDouble()
                 return when (focused) {
                     "B" -> {
@@ -39,18 +37,14 @@ object Converter {
                         )
                     }
                     else -> Pair("", "")
-                } }
-            else { Pair("", "") }
+                }
+            } else { Pair("", "") }
         }
     }
 
-    private fun zeroed(text: String): String{
-
-        return if ( text.toDouble() <= 0){
+    private fun zeroed(text: String): String {
+        return if (text.toDouble() <= 0) {
             "0.0000"
-        }else{text}
-
-
+        } else { text }
     }
-
 }

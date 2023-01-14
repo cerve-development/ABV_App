@@ -92,9 +92,8 @@ val LightStoutColors = lightColorScheme(
     inversePrimary = stout_theme_light_inversePrimary,
     surfaceTint = stout_theme_light_surfaceTint,
     outlineVariant = stout_theme_light_outlineVariant,
-    scrim = stout_theme_light_scrim,
+    scrim = stout_theme_light_scrim
 )
-
 
 val DarkStoutColors = darkColorScheme(
     primary = stout_theme_dark_primary,
@@ -125,5 +124,5 @@ val DarkStoutColors = darkColorScheme(
     inversePrimary = stout_theme_dark_inversePrimary,
     surfaceTint = stout_theme_dark_surfaceTint,
     outlineVariant = stout_theme_dark_outlineVariant,
-    scrim = stout_theme_dark_scrim,
+    scrim = stout_theme_dark_scrim
 )
