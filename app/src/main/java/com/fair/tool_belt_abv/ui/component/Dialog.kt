@@ -31,12 +31,14 @@ import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.model.AppTheme
+import java.util.*
 
 @Composable
 fun ThemedAbvUnitDialog(
     unit: AbvUnit,
     isOpen: Boolean,
-    onDismiss: (AbvUnit) -> Unit
+    onOkClick: (AbvUnit) -> Unit,
+    onDismiss: () -> Unit
 ) {
     var selected by remember(unit) {
         mutableStateOf(unit)
@@ -44,7 +46,7 @@ fun ThemedAbvUnitDialog(
 
     if (isOpen) {
         AlertDialog(
-            onDismissRequest = { onDismiss(selected) },
+            onDismissRequest = { onDismiss() },
             title = {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
@@ -53,8 +55,6 @@ fun ThemedAbvUnitDialog(
             },
             text = {
                 Column {
-                    ThemedDivider()
-
                     AbvUnit.values().forEach { unit ->
                         Row(
                             modifier = Modifier
@@ -71,45 +71,24 @@ fun ThemedAbvUnitDialog(
                             Text(text = stringResource(id = unit.textId))
                         }
                     }
-
-                    ThemedDivider()
                 }
             },
             confirmButton = {
-                TextButton(onClick = { onDismiss(selected) }) {
-                    Text(text = "Ok")
+                TextButton(
+                    onClick = {
+                        onOkClick(selected)
+                        onDismiss()
+                    }
+                ) {
+                    Text(text = stringResource(id = R.string.DEFAULT_BUTTON_TEXT_ok))
                 }
             },
             dismissButton = {
-                TextButton(onClick = { onDismiss(selected) }) {
-                    Text(text = "Cancel")
+                TextButton(onClick = { onDismiss() }) {
+                    Text(text = stringResource(id = R.string.DEFAULT_BUTTON_TEXT_cancel))
                 }
             }
         )
-//        Dialog(onDismissRequest = { onDismiss() }) {
-//            Surface(
-//                modifier = Modifier
-//                    .wrapContentWidth()
-//                    .wrapContentHeight(),
-//                shape = MaterialTheme.shapes.large
-//            ) {
-//
-//                Column() {
-//                    Text(text = stringResource(id = R.string.LABEL_ABV_unit))
-//                    ThemedDivider()
-//
-//
-//                    TextButton(
-//                        onClick = {
-//                        },
-//                        modifier = Modifier.align(Alignment.End)
-//                    ) {
-//                        Text("Confirm")
-//                    }
-//                }
-//
-//            }
-//        }
     }
 }
 
@@ -117,7 +96,8 @@ fun ThemedAbvUnitDialog(
 fun ThemedAbvEquationDialog(
     equation: AbvEquation,
     isOpen: Boolean,
-    onDismiss: (AbvEquation) -> Unit
+    onOkClick: (AbvEquation) -> Unit,
+    onDismiss: () -> Unit
 ) {
     var selected by remember(equation) {
         mutableStateOf(equation)
@@ -125,17 +105,15 @@ fun ThemedAbvEquationDialog(
 
     if (isOpen) {
         AlertDialog(
-            onDismissRequest = { onDismiss(selected) },
+            onDismissRequest = { onDismiss() },
             title = {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(id = R.string.LABEL_ABV_unit)
+                    text = stringResource(id = R.string.LABEL_ABV_equation)
                 )
             },
             text = {
                 Column {
-                    ThemedDivider()
-
                     AbvEquation.values().forEach { equation ->
                         Row(
                             modifier = Modifier
@@ -152,18 +130,21 @@ fun ThemedAbvEquationDialog(
                             Text(text = stringResource(id = equation.textId))
                         }
                     }
-
-                    ThemedDivider()
                 }
             },
             confirmButton = {
-                TextButton(onClick = { onDismiss(selected) }) {
-                    Text(text = "Ok")
+                TextButton(
+                    onClick = {
+                        onOkClick(selected)
+                        onDismiss()
+                    }
+                ) {
+                    Text(text = stringResource(id = R.string.DEFAULT_BUTTON_TEXT_ok))
                 }
             },
             dismissButton = {
-                TextButton(onClick = { onDismiss(selected) }) {
-                    Text(text = "Cancel")
+                TextButton(onClick = { onDismiss() }) {
+                    Text(text = stringResource(id = R.string.DEFAULT_BUTTON_TEXT_cancel))
                 }
             }
         )
@@ -175,7 +156,8 @@ fun ThemedAbvEquationDialog(
 fun ThemedAppThemeDialog(
     theme: AppTheme,
     isOpen: Boolean,
-    onDismiss: (AppTheme) -> Unit
+    onOkClick: (AppTheme) -> Unit,
+    onDismiss: () -> Unit
 ) {
     var selected by remember(theme) {
         mutableStateOf(theme)
@@ -183,11 +165,11 @@ fun ThemedAppThemeDialog(
 
     if (isOpen) {
         AlertDialog(
-            onDismissRequest = { onDismiss(selected) },
+            onDismissRequest = { onDismiss() },
             title = {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(id = R.string.LABEL_ABV_unit)
+                    text = stringResource(id = R.string.LABEL_THEME_theme)
                 )
             },
             text = {
@@ -197,34 +179,48 @@ fun ThemedAppThemeDialog(
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     AppTheme.values().forEach { appTheme ->
-                        Surface(
-                            onClick = { selected = appTheme },
-                            modifier = Modifier.size(sizes.xLarge),
-                            shape = CircleShape,
-                            border = if (selected == appTheme) {
-                                themedBorder(
-                                    width = sizes.xSmall,
-                                    color = appTheme.color.copy(alpha = alphas.medium_30)
-                                )
-                            } else { null }
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(sizes.small)
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.Circle,
-                                contentDescription = null,
-                                tint = appTheme.color
-                            )
+                            Surface(
+                                onClick = { selected = appTheme },
+                                modifier = Modifier.size(sizes.xLarge),
+                                shape = CircleShape,
+                                border = if (selected == appTheme) {
+                                    themedBorder(
+                                        width = sizes.xSmall,
+                                        color = appTheme.color.copy(alpha = alphas.medium_30)
+                                    )
+                                } else {
+                                    null
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Circle,
+                                    contentDescription = null,
+                                    tint = appTheme.color
+                                )
+                            }
+
+                            Text(text = appTheme.name)
                         }
                     }
                 }
             },
             confirmButton = {
-                TextButton(onClick = { onDismiss(selected) }) {
-                    Text(text = "Ok")
+                TextButton(
+                    onClick = {
+                        onOkClick(selected)
+                        onDismiss()
+                    }
+                ) {
+                    Text(text = stringResource(id = R.string.DEFAULT_BUTTON_TEXT_ok))
                 }
             },
             dismissButton = {
-                TextButton(onClick = { onDismiss(selected) }) {
-                    Text(text = "Cancel")
+                TextButton(onClick = { onDismiss() }) {
+                    Text(text = stringResource(id = R.string.DEFAULT_BUTTON_TEXT_cancel))
                 }
             }
         )
@@ -236,6 +232,10 @@ fun ThemedAppThemeDialog(
 fun ThemedAppThemeDialogPreview() {
     ThemedAppThemeDialog(
         theme = AppTheme.LEGACY,
-        isOpen = true
-    ) { }
+        isOpen = true,
+        onOkClick = {
+        },
+        onDismiss = {
+        }
+    )
 }

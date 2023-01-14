@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
@@ -84,6 +85,10 @@ fun CalculatorScreen(
 }
 
 @Preview
+@Preview(device = Devices.PIXEL_XL)
+@Preview(device = Devices.PIXEL_3A)
+@Preview(heightDp = 1440, widthDp = 720)
+@Preview(heightDp = 720, widthDp = 1440)
 @Composable
 fun CalculatorScreenPreview() {
     CalculatorScreen(

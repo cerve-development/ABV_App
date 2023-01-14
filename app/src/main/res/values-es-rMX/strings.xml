@@ -1,6 +1,8 @@
 <resources>
 
     <string name="DEFAULT.APP.name">Simple ABV</string>
+    <string name="DEFAULT.BUTTON.TEXT.cancel">Cancelar</string>
+    <string name="DEFAULT.BUTTON.TEXT.ok">OK</string>
     <string name="DEFAULT.RESULT.abv">%1$s %%</string>
     <string name="DEFAULT.RESULT.attenuation">Atenuación: %1$s %%</string>
 
@@ -16,6 +18,7 @@
     <string name="LABEL.SYSTEM.version">Version de aplicacion</string>
     <string name="LABEL.THEME.darkmode">modo oscuro</string>
     <string name="LABEL.THEME.theme">tema de la aplicación</string>
+
 
     <string name="NAV.DESTINATION.calculator">Calculadora</string>
     <string name="NAV.DESTINATION.converter">Convertidor</string>

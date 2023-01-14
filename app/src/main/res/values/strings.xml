@@ -1,6 +1,8 @@
 <resources>
 
     <string name="DEFAULT.APP.name">Simple ABV</string>
+    <string name="DEFAULT.BUTTON.TEXT.cancel">Cancel</string>
+    <string name="DEFAULT.BUTTON.TEXT.ok">OK</string>
     <string name="DEFAULT.RESULT.abv">%1$s %%</string>
     <string name="DEFAULT.RESULT.attenuation">Attenuation: %1$s %%</string>
     <string name="DEFAULT.value" translatable="false">0.0</string>

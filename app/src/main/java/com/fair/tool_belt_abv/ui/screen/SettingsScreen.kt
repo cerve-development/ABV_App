@@ -205,27 +205,24 @@ fun SettingScreen(
 
     ThemedAbvUnitDialog(
         unit = unit,
-        isOpen = openAbvUnitDialog
-    ) {
-        onUnitChange(it)
-        openAbvUnitDialog = false
-    }
+        isOpen = openAbvUnitDialog,
+        onOkClick = { onUnitChange(it) },
+        onDismiss = { openAbvUnitDialog = false }
+    )
 
     ThemedAbvEquationDialog(
         equation = equation,
-        isOpen = openAbvEquationDialog
-    ) {
-        onEquationChange(it)
-        openAbvEquationDialog = false
-    }
+        isOpen = openAbvEquationDialog,
+        onOkClick = { onEquationChange(it) },
+        onDismiss = { openAbvEquationDialog = false }
+    )
 
     ThemedAppThemeDialog(
         theme = theme,
-        isOpen = openAppThemeDialog
-    ) {
-        onAppThemeChange(it)
-        openAppThemeDialog = false
-    }
+        isOpen = openAppThemeDialog,
+        onOkClick = { onAppThemeChange(it) },
+        onDismiss = { openAppThemeDialog = false }
+    )
 }
 
 @Preview

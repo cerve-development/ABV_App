@@ -9,9 +9,8 @@ import com.fair.tool_belt_abv.ui.theme.HopsLightColors
 import com.fair.tool_belt_abv.ui.theme.LightLegacyColors
 import com.fair.tool_belt_abv.ui.theme.LightStoutColors
 
-enum class AppTheme(
-    val color: Color
-) {
+enum class AppTheme(val color: Color) {
+
     LEGACY(color = LightLegacyColors.primary),
     STOUT(color = LightStoutColors.primary),
     HOPS(color = HopsLightColors.primary);
