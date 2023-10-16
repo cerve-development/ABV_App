@@ -1,7 +1,8 @@
-package com.fair.tool_belt_abv
+package com.fair.tool_belt_abv.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.fair.tool_belt_abv.model.AbvUnit
+import com.fair.tool_belt_abv.model.ConverterResult
 import com.fair.tool_belt_abv.util.Converter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -34,9 +35,3 @@ class ConverterViewModel @Inject constructor() : ViewModel() {
         }
     }
 }
-
-data class ConverterResult(
-    val brix: String = "",
-    val plato: String = "",
-    val sg: String = ""
-)

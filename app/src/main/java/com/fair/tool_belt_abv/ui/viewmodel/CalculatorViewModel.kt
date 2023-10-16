@@ -1,4 +1,4 @@
-package com.fair.tool_belt_abv
+package com.fair.tool_belt_abv.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,6 +6,7 @@ import com.fair.tool_belt_abv.data.StorageManager
 import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.model.CalculatorResult
+import com.fair.tool_belt_abv.model.CalculatorState
 import com.fair.tool_belt_abv.model.UserInput
 import com.fair.tool_belt_abv.util.Calculator.bCalculator
 import com.fair.tool_belt_abv.util.Calculator.pCalculator
@@ -91,13 +92,3 @@ class CalculatorViewModel @Inject constructor(
         return CalculatorResult(abv = abv, attenuation = attenuation, errorMessage = error)
     }
 }
-
-data class CalculatorState(
-    val original: String,
-    val final: String,
-    val abv: String,
-    val attenuation: String,
-    val errorMessage: String?,
-    val unit: AbvUnit,
-    val equation: AbvEquation
-)

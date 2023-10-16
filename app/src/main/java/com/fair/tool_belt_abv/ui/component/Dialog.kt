@@ -190,7 +190,7 @@ fun ThemedAppThemeDialog(
                                 border = if (selected == appTheme) {
                                     themedBorder(
                                         width = sizes.xSmall,
-                                        color = appTheme.color.copy(alpha = alphas.medium_30)
+                                        color = appTheme.color.copy(alpha = alphas.m_50)
                                     )
                                 } else {
                                     null

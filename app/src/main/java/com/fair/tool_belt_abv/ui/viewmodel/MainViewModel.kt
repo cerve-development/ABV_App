@@ -1,4 +1,4 @@
-package com.fair.tool_belt_abv
+package com.fair.tool_belt_abv.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

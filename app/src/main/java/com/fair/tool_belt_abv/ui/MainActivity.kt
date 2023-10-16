@@ -9,8 +9,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.cerve.co.material3extension.designsystem.ExtendedTheme
-import com.fair.tool_belt_abv.MainViewModel
+import com.cerve.co.material3extension.designsystem.ThemeWrapper
+import com.fair.tool_belt_abv.ui.viewmodel.MainViewModel
 import com.fair.tool_belt_abv.ui.screen.AppScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,18 +30,13 @@ class MainActivity : ComponentActivity() {
             LaunchedEffect(state.isLoading) {
                 isLoading = state.isLoading
             }
-
-            ExtendedTheme(
-                dynamicColor = false,
+            
+            ThemeWrapper(
                 darkColorScheme = state.colorSchemeDark,
                 lightColorScheme = state.colorSchemeLight,
                 darkTheme = state.inDarkMode ?: isSystemInDarkTheme()
-            ) { modifier ->
-                AppScreen(
-                    modifier = modifier,
-                    appPreferences = state
-                )
-            }
+            ) { AppScreen(appPreferences = state) }
+
         }
     }
 }

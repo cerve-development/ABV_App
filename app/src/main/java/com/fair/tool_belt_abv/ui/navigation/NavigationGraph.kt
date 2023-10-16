@@ -10,9 +10,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.fair.tool_belt_abv.CalculatorViewModel
-import com.fair.tool_belt_abv.ConverterViewModel
-import com.fair.tool_belt_abv.SettingViewModel
+import com.fair.tool_belt_abv.ui.viewmodel.CalculatorViewModel
+import com.fair.tool_belt_abv.ui.viewmodel.ConverterViewModel
+import com.fair.tool_belt_abv.ui.viewmodel.SettingViewModel
 import com.fair.tool_belt_abv.model.AppPreferences
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen

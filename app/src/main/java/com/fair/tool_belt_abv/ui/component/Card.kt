@@ -34,7 +34,7 @@ fun RadioCard(
     onClick: () -> Unit = { }
 ) {
     val (contentColor, color, stroke) = if (selected) {
-        Triple(colors.primary.copy(alpha = alphas.large_60), Color.Transparent, sizes.default)
+        Triple(colors.primary.copy(alpha = alphas.l_75), Color.Transparent, sizes.default)
     } else {
         Triple(colors.surface, colors.onSurface, sizes.xSmall / 2)
     }
