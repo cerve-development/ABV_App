@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedCard
@@ -13,13 +14,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.cerve.co.material3extension.designsystem.ExtendedTheme
-import com.cerve.co.material3extension.designsystem.ExtendedTheme.alphas
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
@@ -33,22 +32,15 @@ fun RadioCard(
     subText: String? = null,
     onClick: () -> Unit = { }
 ) {
-    val (contentColor, color, stroke) = if (selected) {
-        Triple(colors.primary.copy(alpha = alphas.l_75), Color.Transparent, sizes.default)
-    } else {
-        Triple(colors.surface, colors.onSurface, sizes.xSmall / 2)
-    }
 
-    OutlinedCard(
+    Card(
         onClick = { onClick() },
         modifier = modifier,
-        shape = ExtendedTheme.shapes.extraSmall,
+        shape = ExtendedTheme.shapes.small,
         enabled = !selected,
-        border = themedBorder(
-            width = stroke,
-            color = color
-        ),
-        colors = CardDefaults.outlinedCardColors(containerColor = contentColor)
+        colors = CardDefaults.cardColors(
+            containerColor = colors.tertiaryContainer
+        )
     ) {
         Row(
             horizontalArrangement = Arrangement.Center,
@@ -59,7 +51,7 @@ fun RadioCard(
                     .padding(sizes.small)
                     .weight(1f),
                 text = text,
-                style = ExtendedTheme.typography.bodySmall,
+                style = ExtendedTheme.typography.labelLarge,
                 overflow = TextOverflow.Ellipsis
             )
             RadioButton(
@@ -95,7 +87,8 @@ fun DashboardCard(
     }
 
     OutlinedCard(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .animateContentSize(),
         shape = ExtendedTheme.shapes.extraSmall,
         border = themedBorder(color = color),

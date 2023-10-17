@@ -38,7 +38,7 @@ fun RadioGroupUnit(
                 .fillMaxWidth()
                 .selectableGroup(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(sizes.xSmall)
+            horizontalArrangement = Arrangement.spacedBy(sizes.small)
         ) {
             group.forEach { unit ->
 
@@ -74,7 +74,7 @@ fun RadioGroupEquation(
                 .fillMaxWidth()
                 .selectableGroup(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(sizes.xSmall)
+            horizontalArrangement = Arrangement.spacedBy(sizes.small)
         ) {
             group.forEach { unit ->
 

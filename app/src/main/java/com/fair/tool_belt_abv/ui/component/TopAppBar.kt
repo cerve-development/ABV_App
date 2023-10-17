@@ -25,9 +25,7 @@ fun SimpleAbvTopAppBar(
 ) {
     Column(modifier = modifier) {
         TopAppBar(
-            colors = topAppBarColors(
-                containerColor = colors.surface,
-            ),
+            colors = topAppBarColors(containerColor = colors.primaryContainer),
             navigationIcon = {
                 IconButton(onClick = { onNavigationButtonClick() }) {
                     Icon(

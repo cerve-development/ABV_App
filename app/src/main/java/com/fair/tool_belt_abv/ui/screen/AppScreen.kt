@@ -38,7 +38,7 @@ fun AppScreen(
         },
         bottomBar = {
             SimpleAbvNavigationBar(
-                currentDestination = currentDestination?.destination,
+                currentDestination = currentDestination?.destination?.route,
                 onNavigateToDestination = { destination ->
                     navController.navigate(destination.route)
                 }

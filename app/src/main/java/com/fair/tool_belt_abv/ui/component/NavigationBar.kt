@@ -9,26 +9,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavDestination
-import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
-import com.fair.tool_belt_abv.ui.navigation.isTopLevelDestinationInHierarchy
 
 @Composable
 fun SimpleAbvNavigationBar(
-    currentDestination: NavDestination?,
+    currentDestination: String?,
     modifier: Modifier = Modifier,
     onNavigateToDestination: (TopLevelDestinationGraph) -> Unit = { }
 ) {
     Column(modifier = modifier) {
         ThemedDivider()
 
-        NavigationBar(containerColor = colors.surface) {
+        NavigationBar {
             TopLevelDestinationGraph.entries.forEach { destination ->
 
-                val selected
+                val selected = currentDestination == destination.route
+                val icon = if (selected) {
+                    destination.selectedIcon
+                } else destination.unselectedIcon
 
-                val icon = if (selected) destination.selectedIcon else destination.unselectedIcon
                 val label = stringResource(id = destination.labelId)
 
                 NavigationBarItem(
@@ -51,5 +50,5 @@ fun SimpleAbvNavigationBar(
 @Preview
 @Composable
 fun SimpleAbvNavigationBarPreview() {
-    SimpleAbvNavigationBar()
+    SimpleAbvNavigationBar(TopLevelDestinationGraph.CALCULATOR.route)
 }

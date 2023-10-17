@@ -4,11 +4,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.TextFields
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +20,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.fair.tool_belt_abv.R
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun DefaultTextField(
     value: String,
@@ -31,7 +28,6 @@ fun DefaultTextField(
     modifier: Modifier = Modifier,
     imeAction: ImeAction = ImeAction.Next,
     label: String? = null,
-    onMoreInfoClick: () -> Unit = { }
 ) {
     val localFocusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -53,14 +49,6 @@ fun DefaultTextField(
                 imageVector = Icons.Outlined.TextFields,
                 contentDescription = null
             )
-        },
-        trailingIcon = {
-            IconButton(onClick = { onMoreInfoClick() }) {
-                Icon(
-                    imageVector = Icons.Outlined.Info,
-                    contentDescription = null
-                )
-            }
         },
         label = { label?.let { Text(text = label) } },
         placeholder = {
