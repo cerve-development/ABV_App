@@ -2,17 +2,16 @@ package com.fair.tool_belt_abv.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.HelpOutline
-import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.filled.Help
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults.smallTopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 
@@ -26,14 +25,13 @@ fun SimpleAbvTopAppBar(
 ) {
     Column(modifier = modifier) {
         TopAppBar(
-            colors = smallTopAppBarColors(
-                containerColor = Color.Transparent,
-                actionIconContentColor = colors.onSurface
+            colors = topAppBarColors(
+                containerColor = colors.surface,
             ),
             navigationIcon = {
                 IconButton(onClick = { onNavigationButtonClick() }) {
                     Icon(
-                        imageVector = Icons.Outlined.HelpOutline,
+                        imageVector = Icons.Default.Help,
                         contentDescription = null
                     )
                 }
@@ -42,7 +40,7 @@ fun SimpleAbvTopAppBar(
             actions = {
                 IconButton(onClick = { onActionButtonClick() }) {
                     Icon(
-                        imageVector = Icons.Outlined.Settings,
+                        imageVector = Icons.Default.Settings,
                         contentDescription = null
                     )
                 }
