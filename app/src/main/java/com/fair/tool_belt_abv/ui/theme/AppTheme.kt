@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 
 @Composable
 fun AppTheme(
@@ -20,14 +22,21 @@ fun AppTheme(
 ) {
 
     val context = LocalContext.current
-    val colors = if (useDarkTheme) { darkColorScheme } else { lightColorScheme }
+    val colors = if (!useDarkTheme) { lightColorScheme } else { darkColorScheme }
+    val view = LocalView.current
 
     DisposableEffect(colors) {
         (context as ComponentActivity).apply {
             enableEdgeToEdge().also {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     window.isNavigationBarContrastEnforced = false
+                    window.isStatusBarContrastEnforced = false
                 }
+                val windowInsetsController =
+                    WindowCompat.getInsetsController(window, view)
+
+                windowInsetsController.isAppearanceLightStatusBars = !useDarkTheme
+                windowInsetsController.isAppearanceLightNavigationBars = !useDarkTheme
             }
         }
         onDispose {  }
