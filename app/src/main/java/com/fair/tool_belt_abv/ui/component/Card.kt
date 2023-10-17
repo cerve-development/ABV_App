@@ -3,12 +3,11 @@ package com.fair.tool_belt_abv.ui.component
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -80,29 +79,25 @@ fun DashboardCard(
     errorMessage: String? = null,
     isError: Boolean = !errorMessage.isNullOrEmpty()
 ) {
-    val (contentColor, color) = if (isError) {
-        Pair(colors.errorContainer, colors.error)
-    } else {
-        Pair(colors.surface, colors.onSurface)
-    }
+    val color = if (isError) {
+        colors.errorContainer
+    } else { colors.surfaceVariant }
 
-    OutlinedCard(
+    Card(
         modifier = modifier
-            .fillMaxWidth()
+            .aspectRatio(3f)
             .animateContentSize(),
         shape = ExtendedTheme.shapes.extraSmall,
-        border = themedBorder(color = color),
-        colors = CardDefaults.outlinedCardColors(containerColor = contentColor)
+        colors = CardDefaults.cardColors(containerColor = color)
     ) {
         Text(
             modifier = Modifier.padding(sizes.small),
             text = stringResource(id = R.string.DEFAULT_RESULT_attenuation, attenuationValue),
-            color = color,
             style = ExtendedTheme.typography.labelSmall,
             overflow = TextOverflow.Ellipsis
         )
 
-        ThemedDivider()
+//        ThemedDivider()
 
         Row(
             modifier = Modifier.padding(sizes.small),
@@ -115,7 +110,6 @@ fun DashboardCard(
             ) { value ->
                 Text(
                     text = stringResource(id = R.string.DEFAULT_RESULT_abv, value),
-                    color = color,
                     style = ExtendedTheme.typography.headlineLarge,
                     overflow = TextOverflow.Ellipsis,
                     textAlign = TextAlign.End
@@ -125,7 +119,6 @@ fun DashboardCard(
             Text(
                 modifier = Modifier,
                 text = "Abv",
-                color = color,
                 style = ExtendedTheme.typography.labelSmall,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis

@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.fair.tool_belt_abv.model.AppPreferences
+import com.fair.tool_belt_abv.model.AppState
 import com.fair.tool_belt_abv.ui.component.SimpleAbvNavigationBar
 import com.fair.tool_belt_abv.ui.component.SimpleAbvTopAppBar
 import com.fair.tool_belt_abv.ui.navigation.NavigationGraph
@@ -21,7 +21,7 @@ import com.fair.tool_belt_abv.util.sendEmail
 
 @Composable
 fun AppScreen(
-    appPreferences: AppPreferences,
+    appPreferences: AppState,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
@@ -57,5 +57,5 @@ fun AppScreen(
 @Preview
 @Composable
 fun AppScreenPreview() {
-    AppScreen(appPreferences = AppPreferences())
+    AppScreen(appPreferences = AppState())
 }

@@ -1,5 +1,6 @@
 package com.fair.tool_belt_abv.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -10,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.model.AbvEquation
@@ -35,7 +37,7 @@ fun CalculatorScreen(
     onEquationSelect: (AbvEquation) -> Unit = { }
 ) {
     Column(
-        modifier = modifier.padding(sizes.medium),
+        modifier = modifier.background(color = colors.surface).padding(sizes.medium),
         verticalArrangement = Arrangement.spacedBy(sizes.small),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

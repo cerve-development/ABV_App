@@ -10,7 +10,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.fair.tool_belt_abv.model.AppPreferences
+import com.fair.tool_belt_abv.model.AppState
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
 import com.fair.tool_belt_abv.ui.screen.SettingScreen
@@ -23,7 +23,7 @@ import com.fair.tool_belt_abv.util.sendEmail
 
 @Composable
 fun NavigationGraph(
-    preferences: AppPreferences,
+    preferences: AppState,
     navController: NavHostController,
     startDestination: String,
     modifier: Modifier = Modifier,
