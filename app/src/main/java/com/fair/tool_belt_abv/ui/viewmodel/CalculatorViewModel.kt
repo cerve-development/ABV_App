@@ -3,15 +3,11 @@ package com.fair.tool_belt_abv.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fair.tool_belt_abv.data.StorageManager
+import com.fair.tool_belt_abv.domain.CalculateResultUseCase
 import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
-import com.fair.tool_belt_abv.model.CalculatorResult
 import com.fair.tool_belt_abv.model.CalculatorState
 import com.fair.tool_belt_abv.model.UserInput
-import com.fair.tool_belt_abv.util.Calculator.bCalculator
-import com.fair.tool_belt_abv.util.Calculator.pCalculator
-import com.fair.tool_belt_abv.util.Calculator.sCalculator
-import com.fair.tool_belt_abv.util.isLeadingDecimal
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -23,12 +19,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CalculatorViewModel @Inject constructor(
-    private val preferences: StorageManager
+    private val preferences: StorageManager,
+    private val calculateResultUseCase: CalculateResultUseCase
 ) : ViewModel() {
 
     private val userInput = MutableStateFlow(UserInput())
     val state = combine(preferences.calculatorPreferences, userInput) { pref, input ->
-        val result = calculate(
+        val result = calculateResultUseCase(
             original = input.originalText,
             final = input.finalText,
             unit = pref.abvUnit,
@@ -68,27 +65,4 @@ class CalculatorViewModel @Inject constructor(
         userInput.update { it.copy(finalText = value) }
     }
 
-    private fun calculate(
-        original: String,
-        final: String,
-        unit: AbvUnit,
-        equation: AbvEquation
-    ): CalculatorResult {
-        val num1 = original.isLeadingDecimal()
-        val num2 = final.isLeadingDecimal()
-
-        val (abv, attenuation, error) = when (unit) {
-            AbvUnit.SG -> {
-                equation.name.sCalculator(num1, num2)
-            }
-            AbvUnit.P -> {
-                equation.name.pCalculator(num1, num2)
-            }
-            AbvUnit.B -> {
-                equation.name.bCalculator(num1, num2)
-            }
-        }
-
-        return CalculatorResult(abv = abv, attenuation = attenuation, errorMessage = error)
-    }
 }
