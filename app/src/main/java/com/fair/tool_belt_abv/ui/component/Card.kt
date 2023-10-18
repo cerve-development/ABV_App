@@ -87,20 +87,17 @@ fun DashboardCard(
         modifier = modifier
             .aspectRatio(3f)
             .animateContentSize(),
-        shape = ExtendedTheme.shapes.extraSmall,
+        shape = ExtendedTheme.shapes.small,
         colors = CardDefaults.cardColors(containerColor = color)
     ) {
         Text(
-            modifier = Modifier.padding(sizes.small),
             text = stringResource(id = R.string.DEFAULT_RESULT_attenuation, attenuationValue),
-            style = ExtendedTheme.typography.labelSmall,
+            style = ExtendedTheme.typography.labelLarge,
             overflow = TextOverflow.Ellipsis
         )
 
-//        ThemedDivider()
-
         Row(
-            modifier = Modifier.padding(sizes.small),
+            modifier = Modifier.weight(1f),
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.spacedBy(sizes.small)
         ) {
@@ -117,10 +114,7 @@ fun DashboardCard(
             }
 
             Text(
-                modifier = Modifier,
                 text = "Abv",
-                style = ExtendedTheme.typography.labelSmall,
-                maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
         }
@@ -129,11 +123,7 @@ fun DashboardCard(
             ThemedDivider()
 
             Text(
-                modifier = Modifier.padding(sizes.small),
                 text = text,
-                color = color,
-                style = ExtendedTheme.typography.labelSmall,
-                maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
         }
