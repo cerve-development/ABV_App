@@ -2,8 +2,8 @@ package com.fair.tool_belt_abv.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Help
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.HelpOutline
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,11 +25,13 @@ fun SimpleAbvTopAppBar(
 ) {
     Column(modifier = modifier) {
         TopAppBar(
-            colors = topAppBarColors(containerColor = colors.primaryContainer),
+            colors = topAppBarColors(
+                containerColor = colors.primaryContainer,
+            ),
             navigationIcon = {
                 IconButton(onClick = { onNavigationButtonClick() }) {
                     Icon(
-                        imageVector = Icons.Default.Help,
+                        imageVector = Icons.Outlined.HelpOutline,
                         contentDescription = null
                     )
                 }
@@ -38,7 +40,7 @@ fun SimpleAbvTopAppBar(
             actions = {
                 IconButton(onClick = { onActionButtonClick() }) {
                     Icon(
-                        imageVector = Icons.Default.Settings,
+                        imageVector = Icons.Outlined.Settings,
                         contentDescription = null
                     )
                 }

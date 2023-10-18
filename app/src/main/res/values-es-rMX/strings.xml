@@ -1,10 +1,9 @@
 <resources>
 
-    <string name="DEFAULT.APP.name">Simple ABV</string>
     <string name="DEFAULT.BUTTON.TEXT.cancel">Cancelar</string>
     <string name="DEFAULT.BUTTON.TEXT.ok">OK</string>
-    <string name="DEFAULT.RESULT.abv">%1$s %%</string>
-    <string name="DEFAULT.RESULT.attenuation">Atenuación: %1$s %%</string>
+    <string name="DEFAULT_ABV_LABEL">Alcohol por volumen</string>
+    <string name="DEFAULT.RESULT.attenuation">Atenuación: %1$s%%</string>
 
     <string name="EQUATION.TEXT.advance">Avance</string>
     <string name="EQUATION.TEXT.simple">Sencillo</string>

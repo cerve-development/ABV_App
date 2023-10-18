@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
@@ -31,7 +30,6 @@ import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.model.AppTheme
-import java.util.*
 
 @Composable
 fun ThemedAbvUnitDialog(
@@ -151,7 +149,6 @@ fun ThemedAbvEquationDialog(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ThemedAppThemeDialog(
     theme: AppTheme,
@@ -189,7 +186,7 @@ fun ThemedAppThemeDialog(
                                 shape = CircleShape,
                                 border = if (selected == appTheme) {
                                     themedBorder(
-                                        width = sizes.xSmall,
+                                        thickness = sizes.xSmall,
                                         color = appTheme.color.copy(alpha = alphas.m_50)
                                     )
                                 } else {
