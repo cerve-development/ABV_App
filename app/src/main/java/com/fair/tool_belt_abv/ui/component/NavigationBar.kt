@@ -31,7 +31,9 @@ fun SimpleAbvNavigationBar(
                 val selected = currentDestination == destination.route
                 val icon = if (selected) {
                     destination.selectedIcon
-                } else destination.unselectedIcon
+                } else {
+                    destination.unselectedIcon
+                }
 
                 val label = stringResource(id = destination.labelId)
 
@@ -50,7 +52,6 @@ fun SimpleAbvNavigationBar(
         }
     }
 }
-
 
 @Preview
 @Composable

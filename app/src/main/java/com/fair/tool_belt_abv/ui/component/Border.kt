@@ -9,5 +9,5 @@ import androidx.compose.ui.unit.Dp
 @Composable
 fun themedBorder(
     color: Color = DividerDefaults.color,
-    thickness: Dp = DividerDefaults.Thickness,
+    thickness: Dp = DividerDefaults.Thickness
 ) = BorderStroke(width = thickness, color = color)

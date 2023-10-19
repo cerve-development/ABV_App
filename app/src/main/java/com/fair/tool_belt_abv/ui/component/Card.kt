@@ -34,7 +34,6 @@ fun RadioCard(
     subText: String? = null,
     onClick: () -> Unit = { }
 ) {
-
     Card(
         onClick = { onClick() },
         modifier = modifier,
@@ -53,7 +52,7 @@ fun RadioCard(
                     .padding(sizes.small)
                     .weight(1f),
                 text = text,
-                style = ExtendedTheme.typography.labelLarge,
+                style = typography.labelLarge,
                 overflow = TextOverflow.Ellipsis
             )
             RadioButton(
@@ -101,7 +100,7 @@ fun DashboardCard(
                 id = R.string.DEFAULT_RESULT_attenuation,
                 attenuationValue
             ),
-            style = typography.labelMedium,
+            style = typography.labelMedium
         )
 
         ThemedDivider(color = color)
@@ -121,7 +120,6 @@ fun DashboardCard(
             )
         }
     }
-
 }
 
 @Composable

@@ -27,7 +27,7 @@ fun DefaultTextField(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     imeAction: ImeAction = ImeAction.Next,
-    label: String? = null,
+    label: String? = null
 ) {
     val localFocusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current

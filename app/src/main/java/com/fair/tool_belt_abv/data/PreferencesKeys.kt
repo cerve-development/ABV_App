@@ -13,5 +13,4 @@ object PreferencesKeys {
 
     val APP_LAST_RATING_TIME = longPreferencesKey("appLastRatingTime")
     val APP_INSTANCE_COUNT = intPreferencesKey("appInstanceCount")
-
 }

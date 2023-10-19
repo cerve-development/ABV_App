@@ -20,7 +20,6 @@ fun AppTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable (Modifier) -> Unit = { }
 ) {
-
     val context = LocalContext.current
     val colors = if (!useDarkTheme) { lightColorScheme } else { darkColorScheme }
     val view = LocalView.current
@@ -39,7 +38,7 @@ fun AppTheme(
                 windowInsetsController.isAppearanceLightNavigationBars = !useDarkTheme
             }
         }
-        onDispose {  }
+        onDispose { }
     }
 
     MaterialTheme(colorScheme = colors) {

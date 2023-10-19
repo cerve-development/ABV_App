@@ -10,8 +10,8 @@ class ConvertResultUseCase @Inject constructor() {
         unit: AbvUnit,
         value: String,
         previousResult: ConverterResult
-    ) : ConverterResult {
-        return             when (unit) {
+    ): ConverterResult {
+        return when (unit) {
             AbvUnit.SG -> {
                 val (plato, brix) = Converter.convert(focused = unit.name, value = value)
                 previousResult.copy(sg = value, plato = plato, brix = brix)
@@ -26,5 +26,4 @@ class ConvertResultUseCase @Inject constructor() {
             }
         }
     }
-
 }

@@ -20,12 +20,12 @@ import javax.inject.Inject
 @HiltViewModel
 class CalculatorViewModel @Inject constructor(
     private val preferences: StorageManager,
-    private val calculateResultUseCase: CalculateResultUseCase
+    calculateResult: CalculateResultUseCase
 ) : ViewModel() {
 
     private val userInput = MutableStateFlow(UserInput())
     val state = combine(preferences.calculatorPreferences, userInput) { pref, input ->
-        val result = calculateResultUseCase(
+        val result = calculateResult(
             original = input.originalText,
             final = input.finalText,
             unit = pref.abvUnit,
@@ -64,5 +64,4 @@ class CalculatorViewModel @Inject constructor(
     fun updateFinalValue(value: String) {
         userInput.update { it.copy(finalText = value) }
     }
-
 }

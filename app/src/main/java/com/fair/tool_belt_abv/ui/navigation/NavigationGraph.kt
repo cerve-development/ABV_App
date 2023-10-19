@@ -39,7 +39,7 @@ fun NavigationGraph(
         composable(TopLevelDestinationGraph.CALCULATOR.route) {
             val calculatorState by calculatorVm.state.collectAsStateWithLifecycle()
 
-            //TODO HANDLE NULL STATE
+            // TODO HANDLE NULL STATE
             calculatorState?.let { state ->
                 CalculatorScreen(
                     originalText = state.original,

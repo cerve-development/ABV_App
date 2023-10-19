@@ -24,12 +24,10 @@ fun ThemedChip(
     ),
     content: @Composable (Modifier) -> Unit = { }
 ) {
-
     Surface(
         modifier = modifier,
         shape = shape,
         border = border,
-        color = color,
+        color = color
     ) { content(Modifier.padding(paddingValues)) }
-
 }

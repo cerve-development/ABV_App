@@ -40,7 +40,6 @@ class MainActivity : ComponentActivity() {
 
                 delay(5.seconds)
                 if (state.requestReview()) {
-
                     val manager = ReviewManagerFactory.create(this@MainActivity)
                     val request = manager.requestReviewFlow()
                     request.addOnCompleteListener { task ->
@@ -68,7 +67,6 @@ class MainActivity : ComponentActivity() {
                 lightColorScheme = state.colorSchemeLight,
                 useDarkTheme = state.inDarkMode ?: isSystemInDarkTheme()
             ) { AppScreen(appPreferences = state) }
-
         }
     }
 }

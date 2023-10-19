@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import com.fair.tool_belt_abv.BuildConfig
 
 /**
@@ -20,12 +18,6 @@ const val RECEIVER_EMAIL = "infocerveapps@gmail.com"
 const val EMAIL_SUBJECT_FEATURE = "Feature request"
 const val EMAIL_SUBJECT_BUG = "Bug report"
 const val EMAIL_SUBJECT_SUPPORT = "Support"
-
-@Composable
-fun sendEmail(
-    receiver: String = RECEIVER_EMAIL,
-    subject: String
-) = LocalContext.current.sendEmail(receiver, subject)
 
 fun Context.sendEmail(
     receiver: String = RECEIVER_EMAIL,
