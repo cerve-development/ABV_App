@@ -47,6 +47,7 @@ truth = { module = "com.google.truth:truth", version.ref = "truth" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle_version" }
 android-library = { id = "com.android.library", version.ref = "gradle_version" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin_version" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin_version" }
 kotliner = { id = "org.jmailen.kotlinter", version.ref = "kotliner_version" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google_services_version" }

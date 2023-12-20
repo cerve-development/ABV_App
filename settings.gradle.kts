@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name="Tool_belt_ABV"
 include(":app")
+include(":shared")
