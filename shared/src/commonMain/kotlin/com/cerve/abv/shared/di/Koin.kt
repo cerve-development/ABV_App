@@ -1,7 +1,7 @@
 package com.cerve.abv.shared.di
 
 import com.cerve.abv.shared.StorageManager
-import com.cerve.abv.shared.domain.CalculateResultUseCase
+import com.cerve.abv.shared.domain.CalculatorUseCase
 import com.cerve.abv.shared.platform.dataStorePreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,5 +29,5 @@ val commonModule = module {
         migrations = emptyList()
     ) }
     singleOf(::StorageManager)
-    singleOf(::CalculateResultUseCase)
+    singleOf(::CalculatorUseCase)
 }

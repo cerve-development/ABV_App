@@ -3,7 +3,7 @@ package com.fair.tool_belt_abv.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cerve.abv.shared.StorageManager
-import com.cerve.abv.shared.domain.CalculateResultUseCase
+import com.cerve.abv.shared.domain.CalculatorUseCase
 import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.model.CalculatorState
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 class CalculatorViewModel(
     private val preferences: StorageManager,
-    calculateResult: CalculateResultUseCase
+    calculateResult: CalculatorUseCase
 ) : ViewModel() {
 
     private val userInput = MutableStateFlow(UserInput())
@@ -37,7 +37,7 @@ class CalculatorViewModel(
             attenuation = result.attenuation,
             unit = AbvUnit.valueOf(pref.abvUnit.name),
             equation = AbvEquation.valueOf(pref.abvEquation.name),
-            errorMessage = result.errorMessage
+            errorMessage = null//result.warning
         )
     }.stateIn(
         scope = viewModelScope,
