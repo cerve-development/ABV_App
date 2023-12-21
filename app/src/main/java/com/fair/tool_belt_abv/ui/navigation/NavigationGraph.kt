@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -20,6 +19,7 @@ import com.fair.tool_belt_abv.ui.viewmodel.SettingViewModel
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_BUG
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_FEATURE
 import com.fair.tool_belt_abv.util.sendEmail
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun NavigationGraph(
@@ -27,9 +27,9 @@ fun NavigationGraph(
     navController: NavHostController,
     startDestination: String,
     modifier: Modifier = Modifier,
-    calculatorVm: CalculatorViewModel = hiltViewModel(),
-    converterVm: ConverterViewModel = hiltViewModel(),
-    settingVM: SettingViewModel = hiltViewModel()
+    calculatorVm: CalculatorViewModel = koinViewModel(),
+    converterVm: ConverterViewModel = koinViewModel(),
+    settingVM: SettingViewModel = koinViewModel()
 ) {
     NavHost(
         modifier = modifier,

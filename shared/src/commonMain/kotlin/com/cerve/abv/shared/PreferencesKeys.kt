@@ -1,4 +1,4 @@
-package com.fair.tool_belt_abv.data
+package com.cerve.abv.shared
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey

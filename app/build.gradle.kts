@@ -3,7 +3,7 @@ plugins {
     id ("kotlin-kapt")
     id ("kotlin-android")
     id ("org.jmailen.kotlinter")
-    id ("com.google.dagger.hilt.android")
+//    id ("com.google.dagger.hilt.android")
     id ("com.google.gms.google-services")
     id ("com.google.firebase.crashlytics")
 }
@@ -51,6 +51,7 @@ android {
 
 dependencies {
 
+    implementation(project(":shared"))
     //activity
     implementation(libs.appcompat)
     implementation(libs.core.ktx)
@@ -63,14 +64,19 @@ dependencies {
 
     //navigation
     implementation(libs.navigation.compose)
-    implementation(libs.hilt.navigation.compose)
+//    implementation(libs.hilt.navigation.compose)
 
-    //di(dagger-hilt)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    //di
+    implementation(libs.koin.android)
+    implementation("io.insert-koin:koin-androidx-compose:3.5.0")
+//    implementation(libs.koin.android.viewmodel)
+
+    // (dagger-hilt)
+//    implementation(libs.hilt.android)
+//    kapt(libs.hilt.compiler)
 
     //settings
-    implementation(libs.datastore.preferences)
+//    implementation(libs.datastore.preferences)
 
     //in-app-review
     implementation(libs.review.ktx)

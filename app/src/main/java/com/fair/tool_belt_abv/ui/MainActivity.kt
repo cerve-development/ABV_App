@@ -3,7 +3,6 @@ package com.fair.tool_belt_abv.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -16,21 +15,20 @@ import com.fair.tool_belt_abv.ui.viewmodel.MainViewModel
 import com.google.android.play.core.review.ReviewException
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.android.play.core.review.model.ReviewErrorCode
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.time.Duration.Companion.seconds
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val vm: MainViewModel by viewModels()
+    private val vm : MainViewModel by viewModel()
     private var isLoading: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().apply { setKeepOnScreenCondition { isLoading } }
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        vm.updateInstanceCount()
+//        vm.updateInstanceCount()
 
         setContent {
             val state by vm.appState.collectAsStateWithLifecycle()

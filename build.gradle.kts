@@ -13,6 +13,5 @@ plugins {
     alias(libs.plugins.kotlin) apply false
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotliner) apply false
-    alias(libs.plugins.hilt) apply false
     alias(libs.plugins.google.services) apply false
 }

@@ -1,38 +1,39 @@
-package com.fair.tool_belt_abv.data
+package com.cerve.abv.shared
 
 import androidx.datastore.core.DataStore
+import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import com.fair.tool_belt_abv.data.PreferencesKeys.APP_INSTANCE_COUNT
-import com.fair.tool_belt_abv.data.PreferencesKeys.APP_LAST_RATING_TIME
-import com.fair.tool_belt_abv.model.AbvEquation
-import com.fair.tool_belt_abv.model.AbvUnit
-import com.fair.tool_belt_abv.model.AppTheme
-import com.fair.tool_belt_abv.model.CalculatorPreferences
-import com.fair.tool_belt_abv.model.SettingPreferences
+import com.cerve.abv.shared.PreferencesKeys.APP_INSTANCE_COUNT
+import com.cerve.abv.shared.PreferencesKeys.APP_LAST_RATING_TIME
+import com.cerve.abv.shared.model.AbvEquation
+import com.cerve.abv.shared.model.AbvUnit
+import com.cerve.abv.shared.model.AppTheme
+import com.cerve.abv.shared.model.preferences.CalculatorPreferences
+import com.cerve.abv.shared.model.preferences.SettingPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import java.io.IOException
-import javax.inject.Inject
+import kotlinx.datetime.Clock
+import org.koin.core.component.KoinComponent
 import kotlin.math.absoluteValue
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
-class StorageManager @Inject constructor(
+class StorageManager(
     private val dataStore: DataStore<Preferences>
-) {
+) : KoinComponent {
 
     init {
         CoroutineScope(Dispatchers.Default).launch {
             dataStore.edit { preferences ->
                 if (preferences[APP_LAST_RATING_TIME] == null) {
-                    preferences[APP_LAST_RATING_TIME] = System.currentTimeMillis()
+                    preferences[APP_LAST_RATING_TIME] = Clock.System.now().toEpochMilliseconds()
                 }
             }
         }
@@ -97,7 +98,7 @@ class StorageManager @Inject constructor(
         }.map { preferences ->
 
             val timeToRate = preferences[APP_LAST_RATING_TIME]
-                ?.minus(System.currentTimeMillis())?.absoluteValue
+                ?.minus(Clock.System.now().toEpochMilliseconds())?.absoluteValue
                 ?.toDuration(DurationUnit.MILLISECONDS)
                 ?.let { sinceLastRating -> sinceLastRating > 1.minutes } ?: false
 

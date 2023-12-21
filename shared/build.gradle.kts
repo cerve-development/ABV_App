@@ -26,9 +26,15 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
+            implementation(libs.koin.core)
+            implementation(libs.datastore.preferences)
+            implementation(libs.kotlinx.datetime)
         }
         commonTest.dependencies {
 //            implementation(libs.kotlin.test)
+        }
+        androidMain.dependencies {
+            api(libs.androidx.startup)
         }
     }
 }
@@ -37,6 +43,6 @@ android {
     namespace = "com.cerve.abv.shared"
     compileSdk = 34
     defaultConfig {
-        minSdk = 26
+        minSdk = 21
     }
 }

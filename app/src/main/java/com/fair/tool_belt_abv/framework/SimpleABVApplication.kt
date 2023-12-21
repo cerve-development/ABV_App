@@ -1,7 +1,19 @@
 package com.fair.tool_belt_abv.framework
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.cerve.abv.shared.di.initKoin
+import com.fair.tool_belt_abv.framework.di.androidModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 
-@HiltAndroidApp
-class SimpleABVApplication : Application()
+class SimpleABVApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+
+        initKoin {
+            androidLogger()
+            androidContext(this@SimpleABVApplication)
+            modules(androidModule)
+        }
+    }
+}

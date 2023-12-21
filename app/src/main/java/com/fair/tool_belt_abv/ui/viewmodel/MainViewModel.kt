@@ -2,17 +2,17 @@ package com.fair.tool_belt_abv.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fair.tool_belt_abv.data.StorageManager
+import com.cerve.abv.shared.StorageManager
+import com.fair.tool_belt_abv.model.AbvEquation
+import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.model.AppState
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.fair.tool_belt_abv.model.AppTheme
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
+class MainViewModel(
     private val storageManager: StorageManager
 ) : ViewModel() {
 
@@ -20,19 +20,21 @@ class MainViewModel @Inject constructor(
         storageManager.settingPreferences,
         storageManager.shouldShowRating
     ) { settings, showRating ->
-        val (light, dark) = settings.appTheme.selectedTheme()
+
+        val (light, dark) = AppTheme.valueOf(settings.appTheme.name).selectedTheme()
 
         AppState(
-            abvUnit = settings.abvUnit,
-            abvEquation = settings.abvEquation,
+            abvUnit = AbvUnit.valueOf(settings.abvUnit.name),
+            abvEquation = AbvEquation.valueOf(settings.abvEquation.name),
             inDarkMode = settings.inDarkMode,
-            colorSchemePalette = settings.appTheme,
+            colorSchemePalette = AppTheme.valueOf(settings.appTheme.name),
             colorSchemeLight = light,
             colorSchemeDark = dark,
             isLoading = false,
             showReview = showRating
         )
-    }.stateIn(
+    }
+    .stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = AppState()
