@@ -1,5 +1,6 @@
 package com.cerve.abv.shared.util
 
+import com.github.murzagalin.evaluator.Evaluator
 import kotlin.math.pow
 
 sealed interface Equation {
@@ -11,7 +12,6 @@ sealed interface Equation {
 
         fun alternative(roundTo: Int = roundingPlaces): Double {
             return (76.08 * (og - fg) / (1.775 - og) * (fg / 0.794)).round(roundTo)
-
         }
 
         fun default(roundTo: Int = roundingPlaces): Double {
@@ -23,7 +23,7 @@ sealed interface Equation {
         }
 
         fun custom(equation: String, roundTo: Int = roundingPlaces): Double {
-            return 0.0
+            return Evaluator().evaluateDouble(equation).round(roundTo)
         }
 
     }

@@ -29,6 +29,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.datastore.preferences)
             implementation(libs.kotlinx.datetime)
+            implementation("io.github.murzagalin:multiplatform-expressions-evaluator:1.0.0")
         }
         commonTest.dependencies {
 //            implementation(libs.kotlin.test)
