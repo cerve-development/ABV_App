@@ -1,12 +1,7 @@
 package com.cerve.abv.shared.domain
 
-import com.cerve.abv.shared.helpers.isLeadingDecimal
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
-import com.cerve.abv.shared.model.CalculatorResult
-import com.cerve.abv.shared.util.Calculator.bCalculator
-import com.cerve.abv.shared.util.Calculator.pCalculator
-import com.cerve.abv.shared.util.Calculator.sCalculator
 import com.cerve.abv.shared.util.Equation
 import org.koin.core.component.KoinComponent
 
@@ -24,12 +19,12 @@ class CalculatorUseCase : KoinComponent {
             fg = final.toCalculatorDouble()
         )
 
-        val attenuation = Equation(result.og, result.fg).attenuation().toString()
+        val attenuation = Equation.Calculator(result.og, result.fg).attenuation().toString()
 
         val abv = when(equation) {
-            AbvEquation.S -> Equation(result.og, result.fg).default()
-            AbvEquation.A -> Equation(result.og, result.fg).alternative()
-            AbvEquation.C -> Equation(result.og, result.fg).custom("")
+            AbvEquation.S -> Equation.Calculator(result.og, result.fg).default()
+            AbvEquation.A -> Equation.Calculator(result.og, result.fg).alternative()
+            AbvEquation.C -> Equation.Calculator(result.og, result.fg).custom("")
         }.toString()
 
         return CalculatorResult(attenuation = attenuation, abv = abv)
@@ -44,9 +39,19 @@ class CalculatorUseCase : KoinComponent {
         fg: Double
     ) : OriginalAndFinal {
         return when(this) {
-            AbvUnit.SG -> OriginalAndFinal(og, fg)
-            AbvUnit.P -> OriginalAndFinal(og = Equation.pToS(og), fg = Equation.pToS(fg))
-            AbvUnit.B -> OriginalAndFinal(og = Equation.bToS(og), fg = Equation.bToS(fg))
+            AbvUnit.SG -> OriginalAndFinal(og = og, fg = fg)
+            AbvUnit.P -> {
+                OriginalAndFinal(
+                    og = Equation.Converter(og).pToS,
+                    fg = Equation.Converter(fg).pToS
+                )
+            }
+            AbvUnit.B -> {
+                OriginalAndFinal(
+                    og = Equation.Converter(og).bToS,
+                    fg = Equation.Converter(fg).bToS
+                )
+            }
         }
     }
 

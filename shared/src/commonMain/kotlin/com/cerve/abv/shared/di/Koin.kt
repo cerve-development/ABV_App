@@ -2,6 +2,7 @@ package com.cerve.abv.shared.di
 
 import com.cerve.abv.shared.StorageManager
 import com.cerve.abv.shared.domain.CalculatorUseCase
+import com.cerve.abv.shared.domain.ConverterUseCase
 import com.cerve.abv.shared.platform.dataStorePreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,4 +31,5 @@ val commonModule = module {
     ) }
     singleOf(::StorageManager)
     singleOf(::CalculatorUseCase)
+    singleOf(::ConverterUseCase)
 }

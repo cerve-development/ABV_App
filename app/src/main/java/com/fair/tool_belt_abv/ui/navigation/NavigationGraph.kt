@@ -37,10 +37,10 @@ fun NavigationGraph(
         navController = navController
     ) {
         composable(TopLevelDestinationGraph.CALCULATOR.route) {
-            val calculatorState by calculatorVm.state.collectAsStateWithLifecycle()
+            val state by calculatorVm.state.collectAsStateWithLifecycle()
 
             // TODO HANDLE NULL STATE
-            calculatorState?.let { state ->
+            state?.let { state ->
                 CalculatorScreen(
                     originalText = state.original,
                     finalText = state.final,
@@ -58,12 +58,12 @@ fun NavigationGraph(
         }
 
         composable(TopLevelDestinationGraph.CONVERTER.route) {
-            val convertorState by converterVm.result.collectAsStateWithLifecycle()
+            val state by converterVm.result.collectAsStateWithLifecycle()
 
             ConverterScreen(
-                gravityText = convertorState.sg,
-                platoText = convertorState.plato,
-                brixText = convertorState.brix,
+                gravityText = state.gravity,
+                platoText = state.plato,
+                brixText = state.brix,
                 onValueChange = converterVm::updateValue
             )
         }

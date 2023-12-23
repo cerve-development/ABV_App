@@ -1,10 +1,5 @@
 package com.fair.tool_belt_abv.domain
 
-import com.fair.tool_belt_abv.model.AbvUnit
-import com.fair.tool_belt_abv.model.ConverterResult
-import com.fair.tool_belt_abv.util.Converter
-import javax.inject.Inject
-
 //class ConvertResultUseCase @Inject constructor() {
 //    operator fun invoke(
 //        unit: AbvUnit,
