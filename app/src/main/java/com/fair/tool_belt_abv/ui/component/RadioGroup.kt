@@ -57,7 +57,7 @@ fun RadioGroupEquation(
     label: String,
     selected: AbvEquation,
     modifier: Modifier = Modifier,
-    group: List<AbvEquation> = AbvEquation.values().asList(),
+    group: List<AbvEquation> = AbvEquation.entries,
     onSelected: (AbvEquation) -> Unit = { }
 ) {
     Column(

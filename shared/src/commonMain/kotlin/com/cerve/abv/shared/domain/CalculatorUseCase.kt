@@ -24,7 +24,7 @@ class CalculatorUseCase : KoinComponent {
         val abv = when(equation) {
             AbvEquation.S -> Equation.Calculator(result.og, result.fg).default()
             AbvEquation.A -> Equation.Calculator(result.og, result.fg).alternative()
-            AbvEquation.C -> Equation.Calculator(result.og, result.fg).custom("1+1")
+            AbvEquation.C -> Equation.Calculator(result.og, result.fg).custom("1+3*2/3")
         }.toString()
 
         return CalculatorResult(attenuation = attenuation, abv = abv)
