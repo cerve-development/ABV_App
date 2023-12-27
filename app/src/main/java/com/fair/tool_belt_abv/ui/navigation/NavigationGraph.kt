@@ -1,6 +1,7 @@
 package com.fair.tool_belt_abv.ui.navigation
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_FEATURE
 import com.fair.tool_belt_abv.util.sendEmail
 import org.koin.androidx.compose.koinViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationGraph(
     preferences: AppState,
@@ -40,21 +42,28 @@ fun NavigationGraph(
             val state by calculatorVm.state.collectAsStateWithLifecycle()
 
             // TODO HANDLE NULL STATE
-            state?.let { state ->
-                CalculatorScreen(
-                    originalText = state.original,
-                    finalText = state.final,
-                    abvUnit = state.unit,
-                    abvEquation = state.equation,
-                    abvValue = state.abv,
-                    attenuationValue = state.attenuation,
-                    errorMessage = state.errorMessage,
-                    onUnitSelect = calculatorVm::updateUnit,
-                    onEquationSelect = calculatorVm::updateEquation,
-                    onOriginalTextChange = calculatorVm::updateOriginalValue,
-                    onFinalTextChange = calculatorVm::updateFinalValue
-                )
-            }
+
+
+//            BottomSheetScaffold(sheetContent = {
+//                EquationCreationScreen(Modifier.fillMaxHeight(0.5f))
+//            }) {
+                state?.let { state ->
+                    CalculatorScreen(
+//                        modifier = Modifier.padding(it),
+                        originalText = state.original,
+                        finalText = state.final,
+                        abvUnit = state.unit,
+                        abvEquation = state.equation,
+                        abvValue = state.abv,
+                        attenuationValue = state.attenuation,
+                        errorMessage = state.errorMessage,
+                        onUnitSelect = calculatorVm::updateUnit,
+                        onEquationSelect = calculatorVm::updateEquation,
+                        onOriginalTextChange = calculatorVm::updateOriginalValue,
+                        onFinalTextChange = calculatorVm::updateFinalValue
+                    )
+                }
+//            }
         }
 
         composable(TopLevelDestinationGraph.CONVERTER.route) {
@@ -68,7 +77,7 @@ fun NavigationGraph(
             )
         }
 
-        composable(TopLevelDestinationGraph.SETTINGS) {
+        composable(TopLevelDestinationGraph.SETTINGS.route) {
             val context = LocalContext.current
 
             SettingScreen(

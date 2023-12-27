@@ -12,12 +12,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.fair.tool_belt_abv.model.AppState
 import com.fair.tool_belt_abv.ui.component.SimpleAbvNavigationBar
-import com.fair.tool_belt_abv.ui.component.SimpleAbvTopAppBar
 import com.fair.tool_belt_abv.ui.navigation.NavigationGraph
 import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
-import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph.Companion.SETTINGS
-import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_SUPPORT
-import com.fair.tool_belt_abv.util.sendEmail
 
 @Composable
 fun AppScreen(
@@ -31,10 +27,9 @@ fun AppScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            SimpleAbvTopAppBar(
-                onNavigationButtonClick = { context.sendEmail(subject = EMAIL_SUBJECT_SUPPORT) },
-                onActionButtonClick = { navController.navigate(SETTINGS) }
-            )
+//            SimpleAbvTopAppBar(
+//                onNavigationButtonClick = { context.sendEmail(subject = EMAIL_SUBJECT_SUPPORT) }
+//            )
         },
         bottomBar = {
             SimpleAbvNavigationBar(

@@ -4,8 +4,10 @@ import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material.icons.filled.ChangeCircle
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Calculate
 import androidx.compose.material.icons.outlined.ChangeCircle
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.fair.tool_belt_abv.R
 
@@ -27,9 +29,12 @@ enum class TopLevelDestinationGraph(
         unselectedIcon = Icons.Outlined.ChangeCircle,
         labelId = R.string.NAV_DESTINATION_converter,
         route = "route_converter"
+    ),
+    SETTINGS(
+        selectedIcon = Icons.Filled.Settings,
+        unselectedIcon = Icons.Outlined.Settings,
+        labelId = R.string.NAV_DESTINATION_settings,
+        route = "route_settings"
     );
 
-    companion object {
-        const val SETTINGS = "route_settings"
-    }
 }

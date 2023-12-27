@@ -25,6 +25,7 @@
 
     <string name="NAV.DESTINATION.calculator">Calculator</string>
     <string name="NAV.DESTINATION.converter">Converter</string>
+    <string name="NAV.DESTINATION.settings">Settings</string>
 
     <string name="SUBLABEL.ABV.equation">Choose the equation to use for your calculation</string>
     <string name="SUBLABEL.ABV.unit">Choose the unit to use for your calculation</string>
