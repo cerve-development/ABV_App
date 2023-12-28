@@ -26,6 +26,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
+import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.model.AppState
 import com.fair.tool_belt_abv.ui.component.TabIndicator
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
@@ -116,11 +117,11 @@ fun NavigationGraph(
                                 CalculatorScreen(
                                     originalText = state.original,
                                     finalText = state.final,
-                                    abvUnit = state.unit,
+                                    abvUnit = AbvUnit.SG,//state.unit,
 //                                    abvEquation = state.equation,
                                     abvValue = state.abv,
                                     attenuationValue = state.attenuation,
-                                    errorMessage = state.errorMessage,
+                                    errorMessage = null,//state.warning,
                                     onUnitSelect = calculatorVm::updateUnit,
                                     onEquationSelect = calculatorVm::updateEquation,
                                     onOriginalTextChange = calculatorVm::updateOriginalValue,
@@ -129,7 +130,10 @@ fun NavigationGraph(
 
                         }
                         CalculatorDestinationGraph.Equation.ordinal -> {
-                            EquationListScreen(state.equationList)
+                            EquationListScreen(
+                                state.equations,
+                                modifier = Modifier.padding(sizes.medium)
+                            )
                         }
                     }  }
                 }

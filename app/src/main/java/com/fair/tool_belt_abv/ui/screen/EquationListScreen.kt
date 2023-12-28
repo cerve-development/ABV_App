@@ -11,7 +11,7 @@ import com.cerve.abv.shared.model.AbvTestEquation
 
 @Composable
 fun EquationListScreen(
-    equations: List<AbvTestEquation.Entity>,
+    equations: List<AbvTestEquation>,
     modifier: Modifier = Modifier
 ) {
 
