@@ -36,7 +36,8 @@ class CalculatorViewModel(
             abv = result.abv,
             attenuation = result.attenuation,
             unit = AbvUnit.valueOf(pref.abvUnit.name),
-            equation = AbvEquation.valueOf(pref.abvEquation.name),
+            equationList = emptyList(),
+//            equation = AbvEquation.valueOf(pref.abvEquation.name),
             errorMessage = null//result.warning
         )
     }.stateIn(

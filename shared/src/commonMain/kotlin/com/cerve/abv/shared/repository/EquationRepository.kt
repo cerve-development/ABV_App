@@ -1,5 +1,7 @@
 package com.cerve.abv.shared.repository
 
-interface EquationRepository {
+import com.cerve.abv.shared.model.AbvTestEquation
 
+interface EquationRepository {
+    fun equationList() : List<AbvTestEquation.Entity>
 }

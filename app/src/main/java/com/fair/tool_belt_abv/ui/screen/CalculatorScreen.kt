@@ -3,28 +3,15 @@ package com.fair.tool_belt_abv.ui.screen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
@@ -42,7 +29,7 @@ fun CalculatorScreen(
     attenuationValue: String,
     errorMessage: String?,
     abvUnit: AbvUnit,
-    abvEquation: AbvEquation,
+//    abvEquation: AbvEquation,
     modifier: Modifier = Modifier,
     onOriginalTextChange: (String) -> Unit = { },
     onFinalTextChange: (String) -> Unit = { },
@@ -85,88 +72,88 @@ fun CalculatorScreen(
             )
         }
 
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-
-            var expandedUnit by remember { mutableStateOf(false) }
-
-            ExposedDropdownMenuBox(
-                modifier = Modifier.weight(1f),
-                expanded = expandedUnit,
-                onExpandedChange = { expandedUnit = it },
-            ) {
-                TextField(
-                    // The `menuAnchor` modifier must be passed to the text field for correctness.
-                    modifier = Modifier.menuAnchor(),
-                    readOnly = true,
-                    value = stringResource(id = abvUnit.textId),
-                    onValueChange = {},
-                    shape = RoundedCornerShape(20),
-                    label = { Text(stringResource(id = R.string.LABEL_ABV_unit)) },
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedUnit) },
-                    colors = ExposedDropdownMenuDefaults.textFieldColors(
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent
-                    ),
-                )
-                ExposedDropdownMenu(
-                    expanded = expandedUnit,
-                    onDismissRequest = { expandedUnit = false },
-                ) {
-                    AbvUnit.entries.forEach { selectionOption ->
-                        DropdownMenuItem(
-                            text = { Text(stringResource(id = selectionOption.textId)) },
-                            onClick = {
-                                onUnitSelect(selectionOption)
-                                expandedUnit = false
-                            },
-                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
-                        )
-                    }
-                }
-            }
-
-            var expandedEquation by remember { mutableStateOf(false) }
-
-            ExposedDropdownMenuBox(
-                modifier = Modifier.weight(1f),
-                expanded = expandedEquation,
-                onExpandedChange = { expandedEquation = it },
-            ) {
-                TextField(
-                    // The `menuAnchor` modifier must be passed to the text field for correctness.
-                    modifier = Modifier.menuAnchor(),
-                    readOnly = true,
-                    value = stringResource(abvEquation.textId),
-                    onValueChange = {},
-                    shape = RoundedCornerShape(20),
-                    label = { Text(stringResource(id = R.string.LABEL_ABV_equation)) },
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedEquation) },
-                    colors = ExposedDropdownMenuDefaults.textFieldColors(
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent
-                    ),
-                )
-                ExposedDropdownMenu(
-                    expanded = expandedEquation,
-                    onDismissRequest = { expandedEquation = false },
-                ) {
-                    AbvEquation.entries.forEach { selectionOption ->
-                        DropdownMenuItem(
-                            text = { Text(stringResource(selectionOption.textId)) },
-                            onClick = {
-                                onEquationSelect(selectionOption)
-                                expandedEquation = false
-                            },
-                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
-                        )
-                    }
-                }
-            }
-
-        }
+//        Row(
+//            verticalAlignment = Alignment.CenterVertically,
+//            horizontalArrangement = Arrangement.spacedBy(12.dp)
+//        ) {
+//
+//            var expandedUnit by remember { mutableStateOf(false) }
+//
+//            ExposedDropdownMenuBox(
+//                modifier = Modifier.weight(1f),
+//                expanded = expandedUnit,
+//                onExpandedChange = { expandedUnit = it },
+//            ) {
+//                TextField(
+//                    // The `menuAnchor` modifier must be passed to the text field for correctness.
+//                    modifier = Modifier.menuAnchor(),
+//                    readOnly = true,
+//                    value = stringResource(id = abvUnit.textId),
+//                    onValueChange = {},
+//                    shape = RoundedCornerShape(20),
+//                    label = { Text(stringResource(id = R.string.LABEL_ABV_unit)) },
+//                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedUnit) },
+//                    colors = ExposedDropdownMenuDefaults.textFieldColors(
+//                        focusedIndicatorColor = Color.Transparent,
+//                        unfocusedIndicatorColor = Color.Transparent
+//                    ),
+//                )
+//                ExposedDropdownMenu(
+//                    expanded = expandedUnit,
+//                    onDismissRequest = { expandedUnit = false },
+//                ) {
+//                    AbvUnit.entries.forEach { selectionOption ->
+//                        DropdownMenuItem(
+//                            text = { Text(stringResource(id = selectionOption.textId)) },
+//                            onClick = {
+//                                onUnitSelect(selectionOption)
+//                                expandedUnit = false
+//                            },
+//                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
+//                        )
+//                    }
+//                }
+//            }
+//
+//            var expandedEquation by remember { mutableStateOf(false) }
+//
+//            ExposedDropdownMenuBox(
+//                modifier = Modifier.weight(1f),
+//                expanded = expandedEquation,
+//                onExpandedChange = { expandedEquation = it },
+//            ) {
+//                TextField(
+//                    // The `menuAnchor` modifier must be passed to the text field for correctness.
+//                    modifier = Modifier.menuAnchor(),
+//                    readOnly = true,
+//                    value = stringResource(abvEquation.textId),
+//                    onValueChange = {},
+//                    shape = RoundedCornerShape(20),
+//                    label = { Text(stringResource(id = R.string.LABEL_ABV_equation)) },
+//                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedEquation) },
+//                    colors = ExposedDropdownMenuDefaults.textFieldColors(
+//                        focusedIndicatorColor = Color.Transparent,
+//                        unfocusedIndicatorColor = Color.Transparent
+//                    ),
+//                )
+//                ExposedDropdownMenu(
+//                    expanded = expandedEquation,
+//                    onDismissRequest = { expandedEquation = false },
+//                ) {
+//                    AbvEquation.entries.forEach { selectionOption ->
+//                        DropdownMenuItem(
+//                            text = { Text(stringResource(selectionOption.textId)) },
+//                            onClick = {
+//                                onEquationSelect(selectionOption)
+//                                expandedEquation = false
+//                            },
+//                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
+//                        )
+//                    }
+//                }
+//            }
+//
+//        }
     }
 }
 
@@ -182,6 +169,6 @@ fun CalculatorScreenPreview() {
         attenuationValue = "0",
         errorMessage = null,
         abvUnit = AbvUnit.SG,
-        abvEquation = AbvEquation.S
+//        abvEquation = AbvEquation.S
     )
 }
