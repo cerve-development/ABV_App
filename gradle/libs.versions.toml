@@ -25,6 +25,8 @@ koin_vm_version = "2.2.3"
 androidx_startup_version = "1.1.1"
 kotlinx_datetime_version = "0.5.0"
 
+sqldelight_version = "2.0.1"
+
 [libraries]
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -53,6 +55,14 @@ koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin_version" 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin_version" }
 koin-android-viewmodel = { module = "io.insert-koin:koin-androidx-viewmodel", version.ref = "koin_vm_version" }
 
+sqldelight-primatives = { group = "app.cash.sqldelight", name = "primitive-adapters", version.ref = "sqldelight_version" }
+sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight_version" }
+sqldelight-runtime = { group = "app.cash.sqldelight", name = "runtime", version.ref = "sqldelight_version" }
+sqldelight-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight_version" }
+sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight_version" }
+sqldelight-sqlite = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight_version" }
+sqldelight-dialect = { group = "app.cash.sqldelight", name = "sqlite-3-38-dialect", version.ref = "sqldelight_version" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle_version" }
 android-library = { id = "com.android.library", version.ref = "gradle_version" }
@@ -61,3 +71,4 @@ kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin_version" }
 kotliner = { id = "org.jmailen.kotlinter", version.ref = "kotliner_version" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google_services_version" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt_version" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight_version" }

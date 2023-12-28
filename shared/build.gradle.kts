@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -12,17 +13,6 @@ kotlin {
         }
     }
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "shared"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
@@ -30,11 +20,15 @@ kotlin {
             implementation(libs.datastore.preferences)
             implementation(libs.kotlinx.datetime)
             implementation("io.github.murzagalin:multiplatform-expressions-evaluator:1.0.0")
-        }
-        commonTest.dependencies {
-//            implementation(libs.kotlin.test)
+
+            with(libs.sqldelight) {
+                implementation(coroutines)
+                implementation(runtime)
+            }
+
         }
         androidMain.dependencies {
+            implementation(libs.sqldelight.android)
             api(libs.androidx.startup)
         }
     }
@@ -45,5 +39,13 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 21
+    }
+}
+
+sqldelight {
+    databases {
+        create("SharedDatabase") {
+            packageName.set("com.cerve.co.abv.shared.cache")
+        }
     }
 }

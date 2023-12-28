@@ -14,4 +14,5 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotliner) apply false
     alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.sqldelight) apply false
 }

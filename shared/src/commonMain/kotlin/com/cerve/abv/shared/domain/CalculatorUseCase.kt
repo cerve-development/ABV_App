@@ -2,10 +2,13 @@ package com.cerve.abv.shared.domain
 
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
+import com.cerve.abv.shared.repository.EquationRepository
 import com.cerve.abv.shared.util.Equation
 import org.koin.core.component.KoinComponent
 
-class CalculatorUseCase : KoinComponent {
+class CalculatorUseCase(
+    private val equationRepository: EquationRepository
+) : KoinComponent {
 
     operator fun invoke(
         original: String,

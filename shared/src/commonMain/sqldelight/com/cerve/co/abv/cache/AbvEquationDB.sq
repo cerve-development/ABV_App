@@ -1,0 +1,18 @@
+CREATE TABLE AbvEquationEntity(
+   name TEXT NOT NULL,
+   equation TEXT NOT NULL,
+   updatedAt INTEGER NOT NULL
+);
+
+upsertAbvEquationEntity:
+INSERT OR REPLACE INTO
+AbvEquationEntity
+VALUES (?,?,?);
+
+selectAbvEquationEntity:
+SELECT * FROM AbvEquationEntity;
+
+seleAbvEquationByNameEntity:
+SELECT AbvEquationEntity.equation
+FROM AbvEquationEntity
+WHERE name = :name;

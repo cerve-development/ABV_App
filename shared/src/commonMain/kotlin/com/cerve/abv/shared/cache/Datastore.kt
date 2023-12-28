@@ -1,4 +1,4 @@
-package com.cerve.abv.shared.platform
+package com.cerve.abv.shared.cache
 
 import androidx.datastore.core.DataMigration
 import androidx.datastore.core.DataStore
