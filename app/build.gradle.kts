@@ -87,6 +87,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 
     //design system
     implementation(libs.cerve.ui.library)

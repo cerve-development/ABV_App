@@ -109,9 +109,9 @@ class StorageManager(
             timeToRate && instanceCount
         }
 
-    suspend fun saveEquation(value: AbvEquation) {
+    suspend fun saveEquation(value: String) {
         dataStore.edit { settings ->
-            settings[PreferencesKeys.ABV_EQUATION_KEY] = value.name
+            settings[PreferencesKeys.ABV_EQUATION_KEY] = value
         }
     }
 

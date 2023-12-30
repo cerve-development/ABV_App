@@ -15,12 +15,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
-import com.fair.tool_belt_abv.model.AbvEquation
 import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.ui.component.DashboardCard
 import com.fair.tool_belt_abv.ui.component.DefaultTextField
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CalculatorScreen(
     originalText: String,
@@ -34,7 +32,7 @@ fun CalculatorScreen(
     onOriginalTextChange: (String) -> Unit = { },
     onFinalTextChange: (String) -> Unit = { },
     onUnitSelect: (AbvUnit) -> Unit = { },
-    onEquationSelect: (AbvEquation) -> Unit = { }
+    onEquationSelect: (String) -> Unit = { }
 ) {
     Column(
         modifier = modifier

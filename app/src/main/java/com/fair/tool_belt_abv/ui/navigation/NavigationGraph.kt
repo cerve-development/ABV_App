@@ -7,9 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
@@ -31,10 +31,12 @@ import com.fair.tool_belt_abv.model.AppState
 import com.fair.tool_belt_abv.ui.component.TabIndicator
 import com.fair.tool_belt_abv.ui.screen.CalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
+import com.fair.tool_belt_abv.ui.screen.EquationCreationScreen
 import com.fair.tool_belt_abv.ui.screen.EquationListScreen
 import com.fair.tool_belt_abv.ui.screen.SettingScreen
 import com.fair.tool_belt_abv.ui.viewmodel.CalculatorViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.ConverterViewModel
+import com.fair.tool_belt_abv.ui.viewmodel.EquationCreationViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.SettingViewModel
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_BUG
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_FEATURE
@@ -61,12 +63,15 @@ fun NavigationGraph(
         composable(TopLevelDestinationGraph.CALCULATOR.route) {
             val state by calculatorVm.state.collectAsStateWithLifecycle()
 
-            val pagerState = rememberPagerState { CalculatorDestinationGraph.entries.size }
+            val pagerState = rememberPagerState(
+                CalculatorDestinationGraph.Equation.ordinal
+            ) { CalculatorDestinationGraph.entries.size }
+
             val position by remember { derivedStateOf { pagerState.currentPage } }
 
             val scope = rememberCoroutineScope()
 
-            BottomSheetScaffold(
+            Scaffold(
                 topBar = {
                     Column {
                         ScrollableTabRow(
@@ -101,7 +106,6 @@ fun NavigationGraph(
                         Divider()
                     }
                 },
-                sheetContent = {  }
             ) { padding ->
                 state?.let { state ->
                 HorizontalPager(
@@ -113,7 +117,6 @@ fun NavigationGraph(
                     when(position) {
                         CalculatorDestinationGraph.Result.ordinal -> {
 
-
                                 CalculatorScreen(
                                     originalText = state.original,
                                     finalText = state.final,
@@ -123,7 +126,7 @@ fun NavigationGraph(
                                     attenuationValue = state.attenuation,
                                     errorMessage = null,//state.warning,
                                     onUnitSelect = calculatorVm::updateUnit,
-                                    onEquationSelect = calculatorVm::updateEquation,
+                                    onEquationSelect = calculatorVm::updateCalculatorEquation,
                                     onOriginalTextChange = calculatorVm::updateOriginalValue,
                                     onFinalTextChange = calculatorVm::updateFinalValue
                                 )
@@ -132,7 +135,10 @@ fun NavigationGraph(
                         CalculatorDestinationGraph.Equation.ordinal -> {
                             EquationListScreen(
                                 state.equations,
-                                modifier = Modifier.padding(sizes.medium)
+                                modifier = Modifier.padding(sizes.medium),
+                                onCreateEquation = {
+                                    navController.navigate(LowerLevelDestinationGraph.EQUATION.route)
+                                }
                             )
                         }
                     }  }
@@ -173,5 +179,16 @@ fun NavigationGraph(
                 }
             )
         }
+
+        composable(LowerLevelDestinationGraph.EQUATION.route) {
+            val vm : EquationCreationViewModel = koinViewModel()
+            val state by vm.uiState.collectAsStateWithLifecycle()
+
+            EquationCreationScreen(
+                state = state,
+                onEquationUpdate = vm::updateEquation
+            ) { navController.popBackStack() }
+        }
+
     }
 }

@@ -6,6 +6,8 @@ import com.cerve.abv.shared.cache.createDatabase
 import com.cerve.abv.shared.cache.dataStorePreferences
 import com.cerve.abv.shared.domain.CalculatorUseCase
 import com.cerve.abv.shared.domain.ConverterUseCase
+import com.cerve.abv.shared.domain.SetCalculatorEquationUseCase
+import com.cerve.abv.shared.domain.NewEquationUseCase
 import com.cerve.abv.shared.repository.EquationRepository
 import com.cerve.abv.shared.repository.EquationRepositoryImpl
 import com.cerve.co.abv.shared.cache.SharedDatabase
@@ -46,6 +48,8 @@ val repositoryModule = module {
 }
 
 val domainModule = module {
+    singleOf(::SetCalculatorEquationUseCase)
     singleOf(::CalculatorUseCase)
     singleOf(::ConverterUseCase)
+    singleOf(::NewEquationUseCase)
 }
