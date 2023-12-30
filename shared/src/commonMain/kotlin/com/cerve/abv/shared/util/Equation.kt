@@ -1,5 +1,6 @@
 package com.cerve.abv.shared.util
 
+import com.cerve.abv.shared.model.AbvTestEquation
 import com.github.murzagalin.evaluator.Evaluator
 import kotlin.math.pow
 
@@ -23,7 +24,13 @@ sealed interface Equation {
         }
 
         fun custom(equation: String, roundTo: Int = roundingPlaces): Double {
-            return Evaluator().evaluateDouble(equation).round(roundTo)
+            return Evaluator().evaluateDouble(
+                expression = equation,
+                values = mapOf(
+                    "${AbvTestEquation.StaticValues.OG}" to og,
+                    "${AbvTestEquation.StaticValues.FG}" to fg
+                )
+            ).round(roundTo)
         }
 
     }

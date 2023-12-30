@@ -14,7 +14,7 @@ class EquationCreationViewModel(
     equationUseCase: NewEquationUseCase,
 ) : ViewModel() {
 
-    private val _userInput = MutableStateFlow<String>("")
+    private val _userInput = MutableStateFlow(EMPTY_STRING)
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState = _userInput.flatMapMerge { equation ->
         equationUseCase.invoke(equation)
@@ -24,7 +24,10 @@ class EquationCreationViewModel(
         initialValue = NewEquationUseCase.State()
     )
 
-
     fun updateEquation(equation: String) = _userInput.update { equation }
+
+    companion object {
+        const val EMPTY_STRING = ""
+    }
 
 }

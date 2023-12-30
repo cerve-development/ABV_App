@@ -38,6 +38,11 @@
     <string name="SUBLABEL.THEME.darkmode">Are your eyes protected in Dark mode?</string>
     <string name="SUBLABEL.THEME.theme">Choose a different Theme.</string>
 
+    <string name="LABEL_ABV_RESULT">Result[%s]</string>
+    <string name="LABEL_ABV_RESULT_ERROR">Invalid Equation</string>
+    <string name="LABEL_ABV_EQUATION_NAME">Equation name</string>
+
+    <string name="LABEL_KEY_PAD_clear">Clear</string>
     <string name="UNIT.TEXT.brix">Brix</string>
     <string name="UNIT.TEXT.gravity">Gravity</string>
     <string name="UNIT.TEXT.plato">Plato</string>

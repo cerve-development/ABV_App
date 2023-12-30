@@ -23,12 +23,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.cerve.abv.shared.model.AbvTestEquation
-import com.cerve.co.material3extension.designsystem.ExtendedTheme
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
+import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.ui.KeyPadValue
 
 @Composable
@@ -58,7 +59,7 @@ fun CustomKeyboard(
             }
 
             TextButton(onClick = { onClear() }) {
-                Text(text = "Clear")
+                Text(text = stringResource(id = R.string.LABEL_KEY_PAD_clear))
             }
 
             IconButton(onClick = { onRemoveLast() }) {
@@ -75,7 +76,7 @@ fun CustomKeyboard(
 fun CustomKeyPad(
     modifier: Modifier = Modifier,
     maxItemsInEachRow: Int = 5,
-    keyBoardPadding: Dp = ExtendedTheme.sizes.medium,
+    keyBoardPadding: Dp = sizes.medium,
     onKeyClick: (String) -> Unit = { }
 ) {
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
@@ -98,8 +99,8 @@ fun CustomKeyPad(
             KeyPadValue.entries.forEach { key ->
                 SurfaceButton(
                     modifier = Modifier.size(size),
-                    text = key.value
-                ) { onKeyClick(key.value) }
+                    text = key.label
+                ) { onKeyClick(key.text) }
             }
         }
 

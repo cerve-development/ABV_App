@@ -44,7 +44,7 @@ import com.fair.tool_belt_abv.util.sendEmail
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NavigationGraph(
     preferences: AppState,
