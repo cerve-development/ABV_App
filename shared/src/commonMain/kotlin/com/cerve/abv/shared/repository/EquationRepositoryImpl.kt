@@ -22,6 +22,17 @@ class EquationRepositoryImpl(
 
     }
 
+    override suspend fun updateEquationList(
+        data: AbvTestEquation
+    ) {
+        abvEquationDBQueries.upsertAbvEquationEntity(
+            name = data.name,
+            equation = data.equation,
+            updatedAt = data.updatedAt
+        )
+    }
+
+
     companion object {
         fun mapToEntity(
             name: String,

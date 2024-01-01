@@ -57,7 +57,7 @@ class StorageManager(
             )
 
             CalculatorPreferences(unit, equation)
-        }
+        }.catch { emit(CalculatorPreferences(AbvUnit.SG, AbvEquation.S)) }
 
     val settingPreferences: Flow<SettingPreferences> = dataStore.data
         .catch { exception ->
@@ -88,7 +88,7 @@ class StorageManager(
                 appTheme = theme,
                 inDarkMode = inDarkMode
             )
-        }
+        }.catch { emit(SettingPreferences()) }
 
     val shouldShowRating: Flow<Boolean> = dataStore.data
         .catch { exception ->

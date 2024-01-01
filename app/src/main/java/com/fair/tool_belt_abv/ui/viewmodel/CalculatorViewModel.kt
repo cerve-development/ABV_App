@@ -34,7 +34,7 @@ class CalculatorViewModel(
 
     fun updateCalculatorEquation(name: String) {
         viewModelScope.launch {
-            setEquation.invoke(name)
+//            setEquation.invoke(name)
         }
     }
 

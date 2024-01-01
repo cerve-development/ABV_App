@@ -1,5 +1,6 @@
 package com.fair.tool_belt_abv.ui.screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,20 +15,16 @@ import com.cerve.abv.shared.model.AbvTestEquation
 fun EquationListScreen(
     equations: List<AbvTestEquation>,
     modifier: Modifier = Modifier,
-    onCreateEquation: () -> Unit = { },
-    onEditEquation: () -> Unit = { },
+    onEditEquation: (name: String) -> Unit = { },
     onSelectEquation: () -> Unit = { }
 ) {
 
     Column {
-        Button(onClick = { onCreateEquation() }) {
-
-        }
         LazyColumn(
             modifier = modifier.fillMaxSize(),
         ) {
             items(equations) { equation ->
-                Column {
+                Column(Modifier.clickable { onEditEquation(equation.name) }) {
                     Text(text = equation.name)
                     Text(text = equation.equation)
                 }

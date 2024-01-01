@@ -37,6 +37,7 @@ fun CustomKeyboard(
     modifier: Modifier = Modifier,
     onClear: () -> Unit = { },
     onRemoveLast: () -> Unit = { },
+    onEqualKeyClick: (() -> Unit)? = null,
     onKeyClick: (String) -> Unit = { }
 ) {
 
@@ -67,7 +68,10 @@ fun CustomKeyboard(
             }
         }
         Divider()
-        CustomKeyPad(onKeyClick = onKeyClick)
+        CustomKeyPad(
+            onEqualKeyClick = onEqualKeyClick,
+            onKeyClick = onKeyClick
+        )
     }
 }
 
@@ -77,6 +81,7 @@ fun CustomKeyPad(
     modifier: Modifier = Modifier,
     maxItemsInEachRow: Int = 5,
     keyBoardPadding: Dp = sizes.medium,
+    onEqualKeyClick: (() -> Unit)? = null,
     onKeyClick: (String) -> Unit = { }
 ) {
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
@@ -100,7 +105,12 @@ fun CustomKeyPad(
                 SurfaceButton(
                     modifier = Modifier.size(size),
                     text = key.label
-                ) { onKeyClick(key.text) }
+                ) {
+                    when(key) {
+                        KeyPadValue.Equal -> onEqualKeyClick?.invoke() ?: onKeyClick(key.text)
+                        else -> onKeyClick(key.text)
+                    }
+                }
             }
         }
 

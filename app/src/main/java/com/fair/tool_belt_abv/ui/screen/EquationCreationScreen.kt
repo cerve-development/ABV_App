@@ -1,12 +1,24 @@
 package com.fair.tool_belt_abv.ui.screen
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.interaction.InteractionSource
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.ArrowUpward
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -17,7 +29,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,7 +40,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
@@ -38,35 +60,67 @@ import com.cerve.co.material3extension.designsystem.rounded
 import com.fair.tool_belt_abv.ui.component.CustomKeyboard
 import com.fair.tool_belt_abv.ui.viewmodel.EquationCreationViewModel.Companion.EMPTY_STRING
 import com.fair.tool_belt_abv.R
+import com.fair.tool_belt_abv.ui.viewmodel.EquationCreationViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EquationCreationScreen(
-    state: NewEquationUseCase.State,
+    state: EquationCreationViewModel.UiState,
     modifier: Modifier = Modifier,
     errorMessage: String = stringResource(id = R.string.LABEL_ABV_RESULT_ERROR),
+    onNameUpdate: (String) -> Unit = { },
     onEquationUpdate: (String) -> Unit = { },
+    onEquationSave: (EquationCreationViewModel.UiState) -> Unit = { },
     onBackClick: () -> Unit = { }
 ) {
 
     Scaffold(
         modifier = modifier,
         topBar = {
+            var editable by remember { mutableStateOf(false) }
+            val angle: Float by animateFloatAsState(
+                targetValue = if(editable) 360f else 0f,
+                animationSpec = spring(
+                    stiffness = Spring.StiffnessLow,
+                    dampingRatio = Spring.DampingRatioMediumBouncy
+                ), label = ""
+            )
+
             TopAppBar(
                 navigationIcon = {
-                    IconButton(onClick = { onBackClick() }) {
+                    IconButton(onClick = {
+                        if(editable) {
+                            editable = false
+                        } else { onBackClick() }
+                    }) {
                         Icon(
-                            imageVector = rounded.ArrowBack,
+                            modifier = Modifier.rotate(angle),
+                            imageVector = if (editable) {
+                                rounded.ArrowUpward
+                            } else { rounded.ArrowBack },
                             contentDescription = null
                         )
                     }
                 },
                 title = {
-                    var equationTitle by remember { mutableStateOf("") }
+                    val focusRequester = FocusRequester()
+
+                    LaunchedEffect(editable) {
+                        if(editable) {
+                            focusRequester.requestFocus()
+                        }
+                    }
 
                     TextField(
-                        value = equationTitle,
-                        onValueChange = { equationTitle = it },
+                        modifier = Modifier
+                            .focusRequester(focusRequester)
+                            .clickable(
+                                interactionSource = MutableInteractionSource(),
+                                indication = null
+                            ) { editable = true },
+                        enabled = editable,
+                        value = state.name,
+                        onValueChange = { value -> onNameUpdate(value) },
                         colors = TextFieldDefaults.colors(
                             disabledTextColor = Color.Transparent,
                             focusedContainerColor = Color.Transparent,
@@ -76,7 +130,7 @@ fun EquationCreationScreen(
                             unfocusedIndicatorColor = Color.Transparent,
                             disabledIndicatorColor = Color.Transparent,
                         ),
-                        label = { Text(stringResource(id = R.string.LABEL_ABV_EQUATION_NAME)) },
+                        placeholder = { Text(stringResource(id = R.string.LABEL_ABV_EQUATION_NAME)) },
                         singleLine = true
                     )
                 }
@@ -95,7 +149,8 @@ fun EquationCreationScreen(
                         else -> state.equation.dropLast(1)
                     }
                     onEquationUpdate(equation)
-                }
+                },
+                onEqualKeyClick = { onEquationSave(state) }
             ) { keyValue -> onEquationUpdate(state.equation + keyValue) }
         }
     ) { innerPadding ->
@@ -104,7 +159,7 @@ fun EquationCreationScreen(
                 .padding(innerPadding)
                 .padding(ExtendedTheme.sizes.medium)
         ) {
-            val result = remember(state.sample) { state.sample ?: errorMessage }
+            val result = remember(state.solution) { state.solution ?: errorMessage }
 
             Text(
                 text = stringResource(id = R.string.LABEL_ABV_RESULT, result),
@@ -124,10 +179,35 @@ fun EquationCreationScreen(
 
 }
 
+@OptIn(ExperimentalLayoutApi::class)
+fun Modifier.clearFocusOnKeyboardDismiss(): Modifier = composed {
+    var isFocused by remember { mutableStateOf(false) }
+    var keyboardAppearedSinceLastFocused by remember { mutableStateOf(false) }
+    if (isFocused) {
+        val imeIsVisible = WindowInsets.isImeVisible
+        val focusManager = LocalFocusManager.current
+        LaunchedEffect(imeIsVisible) {
+            if (imeIsVisible) {
+                keyboardAppearedSinceLastFocused = true
+            } else if (keyboardAppearedSinceLastFocused) {
+                focusManager.clearFocus()
+            }
+        }
+    }
+    onFocusEvent {
+        if (isFocused != it.isFocused) {
+            isFocused = it.isFocused
+            if (isFocused) {
+                keyboardAppearedSinceLastFocused = false
+            }
+        }
+    }
+}
+
 @Preview
 @Preview(device = Devices.PIXEL_XL)
 @Preview(device = Devices.PIXEL_3A)
 @Composable
 fun EquationCreationScreenPreview() {
-    EquationCreationScreen(state = NewEquationUseCase.State())
+    EquationCreationScreen(state = EquationCreationViewModel.UiState())
 }

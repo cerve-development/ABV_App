@@ -64,7 +64,7 @@ fun AppScreen(
         NavigationGraph(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
-            startDestination = LowerLevelDestinationGraph.EQUATION.route,//TopLevelDestinationGraph.CALCULATOR.route,
+            startDestination = TopLevelDestinationGraph.CALCULATOR.route,
             preferences = appPreferences
         )
     }
