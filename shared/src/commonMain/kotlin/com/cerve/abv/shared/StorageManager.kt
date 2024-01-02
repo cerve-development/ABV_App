@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import com.cerve.abv.shared.PreferencesKeys.APP_INSTANCE_COUNT
 import com.cerve.abv.shared.PreferencesKeys.APP_LAST_RATING_TIME
-import com.cerve.abv.shared.model.AbvEquation
+import com.cerve.abv.shared.model.AbvTestEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.abv.shared.model.AppTheme
 import com.cerve.abv.shared.model.preferences.CalculatorPreferences
@@ -54,7 +54,7 @@ class StorageManager(
                 )
             } catch (e: Exception) { AbvUnit.SG }
 
-            val equation = preferences[PreferencesKeys.ABV_EQUATION_KEY] ?: AbvEquation.S.name
+            val equation = preferences[PreferencesKeys.ABV_EQUATION_KEY] ?: AbvTestEquation.Simple.name
 
             CalculatorPreferences(unit, equation)
         }
@@ -72,9 +72,6 @@ class StorageManager(
                 preferences[PreferencesKeys.ABV_UNIT_KEY] ?: AbvUnit.SG.name
             )
 
-            val equation = AbvEquation.valueOf(
-                preferences[PreferencesKeys.ABV_EQUATION_KEY] ?: AbvEquation.S.name
-            )
 
             val theme = AppTheme.valueOf(
                 preferences[PreferencesKeys.APP_THEME_KEY] ?: AppTheme.LEGACY.name
@@ -84,7 +81,6 @@ class StorageManager(
 
             SettingPreferences(
                 abvUnit = unit,
-                abvEquation = equation,
                 appTheme = theme,
                 inDarkMode = inDarkMode
             )
@@ -115,9 +111,9 @@ class StorageManager(
         }
     }
 
-    suspend fun saveUnit(value: AbvUnit) {
+    suspend fun saveUnit(value: String) {
         dataStore.edit { settings ->
-            settings[PreferencesKeys.ABV_UNIT_KEY] = value.name
+            settings[PreferencesKeys.ABV_UNIT_KEY] = value
         }
     }
 

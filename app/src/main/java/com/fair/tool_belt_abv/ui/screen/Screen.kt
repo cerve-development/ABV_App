@@ -1,24 +1,17 @@
 package com.fair.tool_belt_abv.ui.screen
 
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.WhileSubscribed
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import java.util.UUID.randomUUID
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 
 sealed class Screen<T>(open val value: T?) {
     data class Loading<T>(
@@ -81,33 +74,7 @@ sealed class Screen<T>(open val value: T?) {
             else -> { content(value) }
         }
     }
-//    @OptIn(ExperimentalMaterial3Api::class)
-//    @Composable
-//    fun BottomSheetWrapper(
-//        onDismiss: () -> Unit,
-//        content: @Composable BoxScope.(EventType.BottomSheet) -> Unit
-//    ) {
-//        if (this@Screen is Event && this@Screen.type is EventType.BottomSheet) {
-//            val sheet = this@Screen.type
-//            val sheetState = remember {
-//                SheetState(
-//                    skipPartiallyExpanded = true,
-//                    initialValue = SheetValue.Expanded
-//                )
-//            }
-//
-//            BottomSheet(
-//                isVisible = true,
-//                onDismissRequest = onDismiss,
-//                state = sheetState,
-////                icon = sheet.icon,
-//                title = stringResource(sheet.title),
-//                subtitle = sheet.subtitle?.let { stringResource(sheet.subtitle) }
-//            ) { modifier ->
-//                Box(modifier = modifier) { content(sheet) }
-//            }
-//        }
-//    }
+
     @Composable
     fun LaunchedWrapper(
         content: suspend (EventType) -> Unit
@@ -116,31 +83,6 @@ sealed class Screen<T>(open val value: T?) {
             LaunchedEffect(this) {
                 content(this@Screen.type)
             }
-        }
-    }
-
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    fun ErrorWrapper(
-        onDismiss: () -> Unit,
-        content: @Composable ColumnScope.() -> Unit
-    ) {
-        if (this is Error) {
-//            MaxContent(
-//                topBar = {
-//                    TopAppBar(
-//                        title = { },
-//                        actions = {
-//                            DefaultIconButton(
-//                                imageVector = Icons.Default.Close
-//                            ) { onDismiss() }
-//                        }
-//                    )
-//                },
-//                title = stringResource(kmmres.strings.error_label),
-//                subtitle = message,
-//                body = content
-//            )
         }
     }
 
@@ -167,38 +109,5 @@ sealed class Screen<T>(open val value: T?) {
             update { result(it.value) }
         }
 
-        @Deprecated("")
-        fun <R, T: Screen<R>> Flow<T>.asShareIn(
-            scope: CoroutineScope,
-            started: SharingStarted = SharingStarted.WhileSubscribed(
-                stopTimeout = 0.seconds,
-                replayExpiration = 0.seconds
-            ),
-        ): SharedFlow<Screen<R>> {
-            return shareIn(
-                scope = scope,
-                started = started,
-                replay = 0
-            )
-        }
-        @Deprecated("")
-        fun <T> Flow<T>.screenStateIn(
-            scope: CoroutineScope,
-            started: SharingStarted = SharingStarted.WhileSubscribed(
-                stopTimeout = 5.seconds,
-                replayExpiration = 0.seconds
-            ),
-            initialValue: Screen<T> = Loading()
-        ): StateFlow<Screen<T>> {
-            return map { value ->
-                Loaded(value)
-            }.onStart {
-                Loading<T>()
-            }.stateIn(
-                scope = scope,
-                started = started,
-                initialValue = initialValue
-            )
-        }
     }
 }

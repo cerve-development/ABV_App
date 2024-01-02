@@ -27,11 +27,11 @@ import java.util.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EquationListScreen(
-    selectedEquation: AbvTestEquation,
-    equationList: List<AbvTestEquation>,
+    selectedAbvEquation: AbvTestEquation,
+    abvEquationList: List<AbvTestEquation>,
     modifier: Modifier = Modifier,
-    onEditEquation: (name: String) -> Unit = { },
-    onSelectEquation: (String) -> Unit = { }
+    onEquationUpdate: (name: String) -> Unit = { },
+    onEquationSelect: (AbvTestEquation) -> Unit = { }
 ) {
 
     Column {
@@ -39,10 +39,10 @@ fun EquationListScreen(
             modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(sizes.small)
         ) {
-            items(equationList) { equation ->
+            items(abvEquationList) { equation ->
                 OutlinedCard(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick =  { onEditEquation(equation.name) }
+                    onClick =  { onEquationUpdate(equation.name) }
                 ) {
                     Column(
                         modifier = Modifier
@@ -63,8 +63,8 @@ fun EquationListScreen(
                                 style = MaterialTheme.typography.labelLarge
                             )
                             RadioButton(
-                                selected = selectedEquation == equation,
-                                onClick = { onSelectEquation(equation.name) }
+                                selected = selectedAbvEquation == equation,
+                                onClick = { onEquationSelect(equation) }
                             )
                         }
                         Surface(

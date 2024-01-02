@@ -2,8 +2,8 @@ package com.fair.tool_belt_abv.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.cerve.abv.shared.domain.ConverterUseCase
+import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.abv.shared.model.ConverterResult
-import com.fair.tool_belt_abv.model.AbvUnit
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

@@ -4,12 +4,6 @@ import kotlinx.datetime.Clock
 import java.text.SimpleDateFormat
 import java.util.*
 
-enum class AbvEquation {
-    S,
-    A,
-    C
-}
-
 sealed class AbvTestEquation(
     val name: String,
     val equation: String,

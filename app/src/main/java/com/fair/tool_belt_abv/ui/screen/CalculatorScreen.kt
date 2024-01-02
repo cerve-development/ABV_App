@@ -11,12 +11,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
-import com.fair.tool_belt_abv.model.AbvUnit
 import com.fair.tool_belt_abv.ui.component.DashboardCard
 import com.fair.tool_belt_abv.ui.component.DefaultTextField
+import com.fair.tool_belt_abv.ui.component.RadioGroupUnit
 
 @Composable
 fun CalculatorScreen(
@@ -24,14 +26,12 @@ fun CalculatorScreen(
     finalText: String,
     abvValue: String,
     attenuationValue: String,
-    errorMessage: String?,
     abvUnit: AbvUnit,
-//    abvEquation: AbvEquation,
+    abvEquation: AbvTestEquation,
     modifier: Modifier = Modifier,
     onOriginalTextChange: (String) -> Unit = { },
     onFinalTextChange: (String) -> Unit = { },
     onUnitSelect: (AbvUnit) -> Unit = { },
-    onEquationSelect: (String) -> Unit = { }
 ) {
     Column(
         modifier = modifier
@@ -43,7 +43,6 @@ fun CalculatorScreen(
         DashboardCard(
             abvValue = abvValue,
             attenuationValue = attenuationValue,
-            errorMessage = errorMessage
         )
 
         Column(
@@ -69,6 +68,11 @@ fun CalculatorScreen(
             )
         }
 
+        RadioGroupUnit(
+            label = stringResource(id = R.string.LABEL_ABV_unit),
+            selected = abvUnit
+        ) { unit -> onUnitSelect(unit) }
+
     }
 }
 
@@ -82,8 +86,7 @@ fun CalculatorScreenPreview() {
         finalText = "",
         abvValue = "0",
         attenuationValue = "0",
-        errorMessage = null,
         abvUnit = AbvUnit.SG,
-//        abvEquation = AbvEquation.S
+        abvEquation = AbvTestEquation.Simple
     )
 }
