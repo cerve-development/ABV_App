@@ -2,8 +2,8 @@ package com.fair.tool_belt_abv.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cerve.abv.shared.domain.AbvResultUseCase
 import com.cerve.abv.shared.domain.GetAbvDataUseCase
+import com.cerve.abv.shared.domain.GetAbvResultUseCase
 import com.cerve.abv.shared.domain.SetSelectedAbvEquationUseCase
 import com.cerve.abv.shared.domain.SetSelectedAbvUnitUseCase
 import com.cerve.abv.shared.model.AbvTestEquation
@@ -17,15 +17,15 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class AbvCalculatorViewModel(
-    calculateResultState: AbvResultUseCase,
-    dataUseCase: GetAbvDataUseCase,
-    private val selectEquationUseCase: SetSelectedAbvEquationUseCase,
+    getResult: GetAbvResultUseCase,
+    getData: GetAbvDataUseCase,
+    private val selectEquation: SetSelectedAbvEquationUseCase,
     private val selectUnit: SetSelectedAbvUnitUseCase
 ) : ViewModel() {
 
     private val _userInput = MutableStateFlow(UserInput())
-    val uiState = combine(_userInput, dataUseCase.invoke()) { input, data ->
-        val result = calculateResultState.invoke(
+    val uiState = combine(_userInput, getData.invoke()) { input, data ->
+        val result = getResult.invoke(
             og = input.originalText,
             fg = input.finalText,
             unit = data.unit,
@@ -46,12 +46,11 @@ class AbvCalculatorViewModel(
         Screen.Loaded(state)
     }.asScreenStateIn(viewModelScope)
 
-    fun updateEquation(equation: AbvTestEquation) = viewModelScope.launch {
-        selectEquationUseCase.invoke(equation.name)
-    }
-
     fun updateUnit(unit: AbvUnit) = viewModelScope.launch {
         selectUnit.invoke(unit.name)
+    }
+    fun updateEquation(equation: AbvTestEquation) = viewModelScope.launch {
+        selectEquation.invoke(equation.name)
     }
     fun updateOriginalValue(value: String) = _userInput.update { it.copy(originalText = value) }
     fun updateFinalValue(value: String) = _userInput.update { it.copy(finalText = value) }

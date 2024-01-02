@@ -5,7 +5,7 @@ import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.abv.shared.util.Equation
 import org.koin.core.component.KoinComponent
 
-class AbvResultUseCase : KoinComponent {
+class GetAbvResultUseCase : KoinComponent {
 
     operator fun invoke(
         og: String,

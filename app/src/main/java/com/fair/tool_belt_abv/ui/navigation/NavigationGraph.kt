@@ -19,6 +19,7 @@ import com.fair.tool_belt_abv.ui.viewmodel.AbvCalculatorViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.ConverterViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.EquationCreationViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.SettingViewModel
+import org.koin.androidx.compose.getViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -35,7 +36,7 @@ fun NavigationGraph(
         navController = navController
     ) {
         composable(TopLevelDestinationGraph.CALCULATOR.route) {
-            val vm : AbvCalculatorViewModel = koinViewModel()
+            val vm : AbvCalculatorViewModel = getViewModel()
             val uiState by vm.uiState.collectAsStateWithLifecycle()
 
             uiState.ScreenWrapper { value ->

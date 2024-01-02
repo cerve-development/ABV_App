@@ -4,7 +4,7 @@ import com.cerve.abv.shared.StorageManager
 import com.cerve.abv.shared.cache.DriverFactory
 import com.cerve.abv.shared.cache.createDatabase
 import com.cerve.abv.shared.cache.dataStorePreferences
-import com.cerve.abv.shared.domain.AbvResultUseCase
+import com.cerve.abv.shared.domain.GetAbvResultUseCase
 import com.cerve.abv.shared.domain.ConverterUseCase
 import com.cerve.abv.shared.domain.GetAbvDataUseCase
 import com.cerve.abv.shared.domain.NewEquationUseCase
@@ -54,7 +54,7 @@ val domainModule = module {
     singleOf(::SetSelectedAbvEquationUseCase)
     singleOf(::SetCalculatorEquationUseCase)
     singleOf(::SetSelectedAbvUnitUseCase)
-    singleOf(::AbvResultUseCase)
+    singleOf(::GetAbvResultUseCase)
     singleOf(::ConverterUseCase)
     singleOf(::NewEquationUseCase)
     singleOf(::GetAbvDataUseCase)

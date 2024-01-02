@@ -126,7 +126,8 @@ fun AbvCalculatorScreen(
                         onEquationUpdate = onEquationCreationNavigate
                     )
                 }
-            }  }
+            }
+        }
 
     }
 }

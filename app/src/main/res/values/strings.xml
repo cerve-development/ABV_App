@@ -4,8 +4,9 @@
     <string name="DEFAULT.BUTTON.TEXT.cancel">Cancel</string>
     <string name="DEFAULT.BUTTON.TEXT.ok">OK</string>
     <string name="DEFAULT.RESULT.abv" translatable="false">%1$s%%</string>
-    <string name="DEFAULT_ABV_LABEL">ABV</string>
+    <string name="DEFAULT_ABV_LABEL">abv</string>
     <string name="DEFAULT.RESULT.attenuation">Attenuation: %1$s%%</string>
+    <string name="DEFAULT_RESULT_Attenuation_Abbreviation">attenuation</string>
     <string name="DEFAULT.value" translatable="false">0.0</string>
 
     <string name="EQUATION.SUBTEXT.advance" translatable="false">…</string>
