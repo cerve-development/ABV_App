@@ -1,6 +1,8 @@
 package com.cerve.abv.shared.model
 
 import kotlinx.datetime.Clock
+import java.text.SimpleDateFormat
+import java.util.*
 
 enum class AbvEquation {
     S,
@@ -11,21 +13,21 @@ enum class AbvEquation {
 sealed class AbvTestEquation(
     val name: String,
     val equation: String,
-    val updatedAt: Long,
+    val updatedAt: Long?,
     val type: EquationType
 ) {
 
     data object Simple : AbvTestEquation(
         name = "simple",
         equation = "(${StaticValues.OG} - ${StaticValues.FG}) * 131.25",
-        updatedAt = Clock.System.now().toEpochMilliseconds(),
+        updatedAt = null,
         type = EquationType.Default
     )
 
     data object Advance : AbvTestEquation(
         name = "advance",
         equation = "76.08 * (${StaticValues.OG} - ${StaticValues.FG}) / (1.775 - ${StaticValues.OG}) * (${StaticValues.FG} / 0.794)",
-        updatedAt = Clock.System.now().toEpochMilliseconds(),
+        updatedAt = null,
         type = EquationType.Default
     )
 
@@ -41,5 +43,15 @@ sealed class AbvTestEquation(
     }
     enum class StaticValues {
         OG, FG
+    }
+
+    fun timeStamp(timeMillis: Long? = updatedAt) : String? {
+        return timeMillis?.let { millis ->
+            val formatter = SimpleDateFormat(
+                "MMM d, yyyy",
+                Locale.ENGLISH
+            )
+            formatter.format(millis)
+        }
     }
 }

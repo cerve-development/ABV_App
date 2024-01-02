@@ -6,5 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface EquationRepository {
     fun equationList() : Flow<List<AbvTestEquation>>
 
-    suspend fun updateEquationList(data: AbvTestEquation) : Unit
+    suspend fun updateEquationList(data: AbvTestEquation.Entity) : Unit
+    suspend fun deleteEquation()
 }

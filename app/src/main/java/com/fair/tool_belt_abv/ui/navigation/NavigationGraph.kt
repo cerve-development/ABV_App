@@ -2,6 +2,7 @@ package com.fair.tool_belt_abv.ui.navigation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,14 +13,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -52,7 +51,6 @@ import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_BUG
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_FEATURE
 import com.fair.tool_belt_abv.util.sendEmail
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.getViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -124,6 +122,7 @@ fun NavigationGraph(
                         }
                     )
                 },
+                contentWindowInsets = WindowInsets(0)
             ) { padding ->
                 state?.let { state ->
                     HorizontalPager(
@@ -135,25 +134,27 @@ fun NavigationGraph(
                         when(position) {
                             CalculatorDestinationGraph.Result.ordinal -> {
 
-                                    CalculatorScreen(
-                                        originalText = state.original,
-                                        finalText = state.final,
-                                        abvUnit = AbvUnit.SG,//state.unit,
-    //                                    abvEquation = state.equation,
-                                        abvValue = state.abv,
-                                        attenuationValue = state.attenuation,
-                                        errorMessage = null,//state.warning,
-                                        onUnitSelect = vm::updateUnit,
-                                        onEquationSelect = vm::updateCalculatorEquation,
-                                        onOriginalTextChange = vm::updateOriginalValue,
-                                        onFinalTextChange = vm::updateFinalValue
-                                    )
+                                CalculatorScreen(
+                                    originalText = state.original,
+                                    finalText = state.final,
+                                    abvUnit = AbvUnit.SG,//state.unit,
+//                                    abvEquation = state.equation,
+                                    abvValue = state.abv,
+                                    attenuationValue = state.attenuation,
+                                    errorMessage = null,//state.warning,
+                                    onUnitSelect = vm::updateUnit,
+                                    onEquationSelect = vm::updateCalculatorEquation,
+                                    onOriginalTextChange = vm::updateOriginalValue,
+                                    onFinalTextChange = vm::updateFinalValue
+                                )
 
                             }
                             CalculatorDestinationGraph.Equation.ordinal -> {
                                 EquationListScreen(
-                                    state.equations,
+                                    selectedEquation = state.equation,
+                                    equationList = state.equations,
                                     modifier = Modifier.padding(sizes.medium),
+                                    onSelectEquation = vm::updateCalculatorEquation,
                                     onEditEquation = {
                                         navController.navigate(LowerLevelDestinationGraph.EQUATION.toArgs(it))
                                     }

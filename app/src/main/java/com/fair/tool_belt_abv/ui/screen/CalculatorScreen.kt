@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -70,88 +69,6 @@ fun CalculatorScreen(
             )
         }
 
-//        Row(
-//            verticalAlignment = Alignment.CenterVertically,
-//            horizontalArrangement = Arrangement.spacedBy(12.dp)
-//        ) {
-//
-//            var expandedUnit by remember { mutableStateOf(false) }
-//
-//            ExposedDropdownMenuBox(
-//                modifier = Modifier.weight(1f),
-//                expanded = expandedUnit,
-//                onExpandedChange = { expandedUnit = it },
-//            ) {
-//                TextField(
-//                    // The `menuAnchor` modifier must be passed to the text field for correctness.
-//                    modifier = Modifier.menuAnchor(),
-//                    readOnly = true,
-//                    value = stringResource(id = abvUnit.textId),
-//                    onValueChange = {},
-//                    shape = RoundedCornerShape(20),
-//                    label = { Text(stringResource(id = R.string.LABEL_ABV_unit)) },
-//                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedUnit) },
-//                    colors = ExposedDropdownMenuDefaults.textFieldColors(
-//                        focusedIndicatorColor = Color.Transparent,
-//                        unfocusedIndicatorColor = Color.Transparent
-//                    ),
-//                )
-//                ExposedDropdownMenu(
-//                    expanded = expandedUnit,
-//                    onDismissRequest = { expandedUnit = false },
-//                ) {
-//                    AbvUnit.entries.forEach { selectionOption ->
-//                        DropdownMenuItem(
-//                            text = { Text(stringResource(id = selectionOption.textId)) },
-//                            onClick = {
-//                                onUnitSelect(selectionOption)
-//                                expandedUnit = false
-//                            },
-//                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
-//                        )
-//                    }
-//                }
-//            }
-//
-//            var expandedEquation by remember { mutableStateOf(false) }
-//
-//            ExposedDropdownMenuBox(
-//                modifier = Modifier.weight(1f),
-//                expanded = expandedEquation,
-//                onExpandedChange = { expandedEquation = it },
-//            ) {
-//                TextField(
-//                    // The `menuAnchor` modifier must be passed to the text field for correctness.
-//                    modifier = Modifier.menuAnchor(),
-//                    readOnly = true,
-//                    value = stringResource(abvEquation.textId),
-//                    onValueChange = {},
-//                    shape = RoundedCornerShape(20),
-//                    label = { Text(stringResource(id = R.string.LABEL_ABV_equation)) },
-//                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedEquation) },
-//                    colors = ExposedDropdownMenuDefaults.textFieldColors(
-//                        focusedIndicatorColor = Color.Transparent,
-//                        unfocusedIndicatorColor = Color.Transparent
-//                    ),
-//                )
-//                ExposedDropdownMenu(
-//                    expanded = expandedEquation,
-//                    onDismissRequest = { expandedEquation = false },
-//                ) {
-//                    AbvEquation.entries.forEach { selectionOption ->
-//                        DropdownMenuItem(
-//                            text = { Text(stringResource(selectionOption.textId)) },
-//                            onClick = {
-//                                onEquationSelect(selectionOption)
-//                                expandedEquation = false
-//                            },
-//                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
-//                        )
-//                    }
-//                }
-//            }
-//
-//        }
     }
 }
 

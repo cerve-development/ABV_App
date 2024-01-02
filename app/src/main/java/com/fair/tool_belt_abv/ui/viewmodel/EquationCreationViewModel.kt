@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -20,10 +19,6 @@ class EquationCreationViewModel(
     private val setCalculatorEquationUseCase: SetCalculatorEquationUseCase,
     equationUseCase: NewEquationUseCase,
 ) : ViewModel() {
-
-    init {
-        println(name)
-    }
 
     private val _userInputName = MutableStateFlow(EMPTY_STRING)
     private val _userInputEquation = MutableStateFlow(EMPTY_STRING)

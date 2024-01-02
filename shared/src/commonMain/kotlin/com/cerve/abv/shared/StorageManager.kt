@@ -48,16 +48,16 @@ class StorageManager(
             }
         }.map { preferences ->
 
-            val unit = AbvUnit.valueOf(
-                preferences[PreferencesKeys.ABV_UNIT_KEY] ?: AbvUnit.SG.name
-            )
+            val unit = try {
+                AbvUnit.valueOf(
+                    preferences[PreferencesKeys.ABV_UNIT_KEY] ?: AbvUnit.SG.name
+                )
+            } catch (e: Exception) { AbvUnit.SG }
 
-            val equation = AbvEquation.valueOf(
-                preferences[PreferencesKeys.ABV_EQUATION_KEY] ?: AbvEquation.S.name
-            )
+            val equation = preferences[PreferencesKeys.ABV_EQUATION_KEY] ?: AbvEquation.S.name
 
             CalculatorPreferences(unit, equation)
-        }.catch { emit(CalculatorPreferences(AbvUnit.SG, AbvEquation.S)) }
+        }
 
     val settingPreferences: Flow<SettingPreferences> = dataStore.data
         .catch { exception ->

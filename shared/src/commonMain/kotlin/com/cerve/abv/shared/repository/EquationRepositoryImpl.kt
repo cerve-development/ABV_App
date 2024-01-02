@@ -16,20 +16,25 @@ class EquationRepositoryImpl(
     override fun equationList(): Flow<List<AbvTestEquation>> {
         return abvEquationDBQueries
             .selectAbvEquationEntity(::mapToEntity)
-            .asFlow().mapToList(Dispatchers.Default).map {
-                it + AbvTestEquation.Simple + AbvTestEquation.Advance
+            .asFlow().mapToList(Dispatchers.Default)
+            .map { customList ->
+                listOf(AbvTestEquation.Simple, AbvTestEquation.Advance) + customList
             }
 
     }
 
     override suspend fun updateEquationList(
-        data: AbvTestEquation
+        data: AbvTestEquation.Entity
     ) {
         abvEquationDBQueries.upsertAbvEquationEntity(
-            name = data.name,
-            equation = data.equation,
-            updatedAt = data.updatedAt
+            name = data.dbName,
+            equation = data.dbEquation,
+            updatedAt = data.dbUpdatedAt
         )
+    }
+
+    override suspend fun deleteEquation() {
+        TODO("Not yet implemented")
     }
 
 

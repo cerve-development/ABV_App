@@ -1,32 +1,116 @@
 package com.fair.tool_belt_abv.ui.screen
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
+import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
+import java.util.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EquationListScreen(
-    equations: List<AbvTestEquation>,
+    selectedEquation: AbvTestEquation,
+    equationList: List<AbvTestEquation>,
     modifier: Modifier = Modifier,
     onEditEquation: (name: String) -> Unit = { },
-    onSelectEquation: () -> Unit = { }
+    onSelectEquation: (String) -> Unit = { }
 ) {
 
     Column {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(sizes.small)
         ) {
-            items(equations) { equation ->
-                Column(Modifier.clickable { onEditEquation(equation.name) }) {
-                    Text(text = equation.name)
-                    Text(text = equation.equation)
+            items(equationList) { equation ->
+                OutlinedCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick =  { onEditEquation(equation.name) }
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(sizes.small)
+                            .fillMaxWidth(),
+                        verticalArrangement = Arrangement.spacedBy(sizes.small)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = equation.name.replaceFirstChar {
+                                    if (it.isLowerCase()) it.titlecase(Locale.ROOT)
+                                    else it.toString()
+                                },
+                                style = MaterialTheme.typography.labelLarge
+                            )
+                            RadioButton(
+                                selected = selectedEquation == equation,
+                                onClick = { onSelectEquation(equation.name) }
+                            )
+                        }
+                        Surface(
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = CardDefaults.outlinedShape
+                        ) {
+                            Text(
+                                modifier = Modifier.padding(sizes.small),
+                                text = equation.equation,
+                                style = MaterialTheme.typography.bodyMedium,
+                            )
+                        }
+
+                        Row(
+                            modifier = Modifier.align(Alignment.End),
+                            horizontalArrangement = Arrangement.spacedBy(sizes.small),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            equation.timeStamp()?.let { stamp ->
+                                Surface(
+                                    modifier = Modifier,
+                                    shape = CircleShape,
+                                    color = colors.primaryContainer
+                                ) {
+                                    Text(
+                                        modifier = Modifier.padding(sizes.small),
+                                        text = stamp,
+                                        style = MaterialTheme.typography.labelSmall
+                                    )
+                                }
+                            }
+
+
+                            Surface(
+                                modifier = Modifier,
+                                shape = CircleShape,
+                                color = colors.primaryContainer
+                            ) {
+                                Text(
+                                    modifier = Modifier.padding(sizes.small),
+                                    text = equation.type.name,
+                                    style = MaterialTheme.typography.labelSmall
+                                )
+                            }
+                        }
+                    }
                 }
             }
 
