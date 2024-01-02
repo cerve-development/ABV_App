@@ -22,10 +22,8 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -145,15 +143,7 @@ fun ResultContent(
     valueStyle: TextStyle = MaterialTheme.typography.headlineLarge
 ) {
 
-
-    var isOverFlowing by remember { mutableStateOf(false) }
-
-    var initialMultiplier by remember { mutableFloatStateOf(1f) }
-    val multiplier by remember(isOverFlowing) { derivedStateOf {
-        if (isOverFlowing) {
-            initialMultiplier * 0.99f
-        } else initialMultiplier = 1f
-    } }
+    var multiplier by remember(value.length) { mutableFloatStateOf(1f) }
 
     Column(
         modifier = modifier.padding(sizes.small),
@@ -173,11 +163,14 @@ fun ResultContent(
                 textAlign = TextAlign.Center,
                 style = valueStyle.copy(
                     fontWeight = FontWeight.Black,
-                    fontSize = valueStyle.fontSize * initialMultiplier
+                    fontSize = valueStyle.fontSize * multiplier
                 ),
+                softWrap = true,
                 maxLines = 1,
                 onTextLayout = {
-                    isOverFlowing = it.hasVisualOverflow
+                    if (it.hasVisualOverflow) {
+                        multiplier *= 0.99f
+                    }
                 }
             )
 
