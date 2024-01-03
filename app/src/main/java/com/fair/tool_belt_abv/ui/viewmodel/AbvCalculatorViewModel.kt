@@ -25,16 +25,17 @@ class AbvCalculatorViewModel(
 
     private val _userInput = MutableStateFlow(UserInput())
     val uiState = combine(_userInput, getData.invoke()) { input, data ->
+
         val result = getResult.invoke(
-            og = input.originalText,
-            fg = input.finalText,
+            og = input.og,
+            fg = input.fg,
             unit = data.unit,
             equation = data.equation
-        )
+        ).also { println(it) }
 
         val state = AbvCalculatorState(
-            og = input.originalText,
-            fg = input.finalText,
+            og = input.og,
+            fg = input.fg,
             abv = result.abv,
             attenuation = result.attenuation,
             selectedAbvUnit = data.unit,
@@ -52,8 +53,8 @@ class AbvCalculatorViewModel(
     fun updateEquation(equation: AbvTestEquation) = viewModelScope.launch {
         selectEquation.invoke(equation.name)
     }
-    fun updateOriginalValue(value: String) = _userInput.update { it.copy(originalText = value) }
-    fun updateFinalValue(value: String) = _userInput.update { it.copy(finalText = value) }
+    fun updateOriginalValue(value: String) = _userInput.update { it.copy(og = value) }
+    fun updateFinalValue(value: String) = _userInput.update { it.copy(fg = value) }
 
     data class AbvCalculatorState(
         val og: String,

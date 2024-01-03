@@ -11,16 +11,12 @@ sealed interface Equation {
         private val roundingPlaces: Int = 2
     ) : Equation {
 
-        fun alternative(roundTo: Int = roundingPlaces): Double {
-            return (76.08 * (og - fg) / (1.775 - og) * (fg / 0.794)).round(roundTo)
-        }
-
-        fun default(roundTo: Int = roundingPlaces): Double {
-            return ((og - fg) * 131.25).round(roundTo)
-        }
-
-        fun attenuation(roundTo: Int = roundingPlaces): Double {
-            return (((og - fg) / (og - 1) * 100)).round(roundTo)
+        fun attenuation(roundTo: Int = 0): Double {
+            val result = (((og - fg) / (og - 1) * 100)).round(roundTo)
+            return when {
+                result.isFinite() && result != -(0.0) -> result
+                else -> 0.0
+            }
         }
 
         fun custom(equation: String, roundTo: Int = roundingPlaces): Double {
@@ -38,7 +34,7 @@ sealed interface Equation {
     // brix, plato and sg converters
     data class Converter(
         private val value: Double,
-        private val roundingPlaces: Int = 4
+        private val roundingPlaces: Int = 10
     ) : Equation {
 
         val sToB = (((182.4601 * value - 775.6821) * value + 1262.7794) * value - 669.5622)
@@ -52,8 +48,11 @@ sealed interface Equation {
 
         val sToP = ((-1 * 616.868) + (1111.14 * value) - (630.272 * value.pow(2)) + (135.997 * value.pow(3)))
             .round(roundingPlaces)
+
+        val none = value.round(roundingPlaces)
     }
 
+    //todo
     fun Double.round(places: Int): Double {
         var multi = 1.0
         repeat(places) { multi *= 10 }
