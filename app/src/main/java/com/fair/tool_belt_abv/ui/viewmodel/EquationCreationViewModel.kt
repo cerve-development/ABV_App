@@ -2,6 +2,7 @@ package com.fair.tool_belt_abv.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cerve.abv.shared.domain.DeleteEquationUseCase
 import com.cerve.abv.shared.domain.GetEquationUseCase
 import com.cerve.abv.shared.domain.NewEquationUseCase
 import com.cerve.abv.shared.domain.SetCalculatorEquationUseCase
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
 
 class EquationCreationViewModel(
     name: String?,
+    private val deleteEquationUseCase: DeleteEquationUseCase,
     private val getEquationUseCase: GetEquationUseCase,
     private val setCalculatorEquationUseCase: SetCalculatorEquationUseCase,
     equationUseCase: NewEquationUseCase,
@@ -65,6 +67,10 @@ class EquationCreationViewModel(
     }
 
     fun deleteEquation(name: String) = viewModelScope.launch {
+        _uiState.loading {
+            deleteEquationUseCase.invoke(name)
+            Screen.Event(state = it, type = Screen.EventType.Navigation())
+        }
 
     }
 

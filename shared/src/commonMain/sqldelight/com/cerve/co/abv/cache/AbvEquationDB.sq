@@ -16,3 +16,7 @@ selectAbvEquationByNameEntity:
 SELECT *
 FROM AbvEquationEntity
 WHERE name = :name;
+
+deleteAbvEquationEntityByName:
+DELETE FROM AbvEquationEntity
+WHERE name = :name;

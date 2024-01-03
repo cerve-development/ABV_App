@@ -10,5 +10,5 @@ interface EquationRepository {
     fun equationList() : Flow<List<AbvEquation>>
 
     suspend fun updateEquationList(data: AbvEquation.Entity) : Unit
-    suspend fun deleteEquation()
+    suspend fun deleteEquationByName(name: String)
 }

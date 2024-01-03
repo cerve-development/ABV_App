@@ -56,6 +56,7 @@ fun EquationCreationScreen(
     errorMessage: String = stringResource(id = R.string.LABEL_ABV_RESULT_ERROR),
     onNameUpdate: (String) -> Unit = { },
     onEquationUpdate: (String) -> Unit = { },
+    onEquationDelete: (() -> Unit)? = null,
     onEquationSave: (EquationCreationViewModel.UiState) -> Unit = { },
     onBackClick: () -> Unit = { }
 ) {
@@ -118,11 +119,13 @@ fun EquationCreationScreen(
                     )
                 },
                 actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            imageVector = Icons.TwoTone.Delete,
-                            contentDescription = null
-                        )
+                    onEquationDelete?.let {
+                        IconButton(onClick = { onEquationDelete() }) {
+                            Icon(
+                                imageVector = Icons.TwoTone.Delete,
+                                contentDescription = null
+                            )
+                        }
                     }
                 }
             )

@@ -9,6 +9,7 @@ import com.cerve.abv.shared.domain.GetEquationUseCase
 import com.cerve.abv.shared.domain.GetAbvDataUseCase
 import com.cerve.abv.shared.domain.GetAbvResultUseCase
 import com.cerve.abv.shared.domain.NewEquationUseCase
+import com.cerve.abv.shared.domain.DeleteEquationUseCase
 import com.cerve.abv.shared.domain.SetCalculatorEquationUseCase
 import com.cerve.abv.shared.domain.SetSelectedAbvEquationUseCase
 import com.cerve.abv.shared.domain.SetSelectedAbvUnitUseCase
@@ -57,6 +58,7 @@ val domainModule = module {
     singleOf(::SetSelectedAbvUnitUseCase)
     singleOf(::GetEquationUseCase)
     singleOf(::GetAbvResultUseCase)
+    singleOf(::DeleteEquationUseCase)
     singleOf(::ConverterUseCase)
     singleOf(::NewEquationUseCase)
     singleOf(::GetAbvDataUseCase)

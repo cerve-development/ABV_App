@@ -37,8 +37,8 @@ class EquationRepositoryImpl(
         )
     }
 
-    override suspend fun deleteEquation() {
-        TODO("Not yet implemented")
+    override suspend fun deleteEquationByName(name: String) {
+        abvEquationDBQueries.deleteAbvEquationEntityByName(name)
     }
 
 

@@ -115,6 +115,9 @@ fun NavigationGraph(
                         state = state,
                         onNameUpdate = vm::updateName,
                         onEquationUpdate = vm::updateEquation,
+                        onEquationDelete = if (name != null) {
+                            { vm.deleteEquation(name) }
+                        } else null,
                         onEquationSave = vm::saveEquation
                     ) { navController.popBackStack() }
                 }
