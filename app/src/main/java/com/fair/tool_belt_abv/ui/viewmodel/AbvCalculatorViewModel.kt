@@ -31,7 +31,7 @@ class AbvCalculatorViewModel(
             fg = input.fg,
             unit = data.unit,
             equation = data.equation
-        ).also { println(it) }
+        )
 
         val state = AbvCalculatorState(
             og = input.og,
