@@ -11,8 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.icons.rounded.ArrowBack
-import androidx.compose.material.icons.rounded.ArrowUpward
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ChevronLeft
+import androidx.compose.material.icons.twotone.Delete
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -60,7 +61,7 @@ fun EquationCreationScreen(
 ) {
     var editable by remember { mutableStateOf(false) }
     val angle: Float by animateFloatAsState(
-        targetValue = if(editable) 360f else 0f,
+        targetValue = if(editable) 90f else 0f,
         animationSpec = spring(
             stiffness = Spring.StiffnessLow,
             dampingRatio = Spring.DampingRatioMediumBouncy
@@ -88,9 +89,7 @@ fun EquationCreationScreen(
                     }) {
                         Icon(
                             modifier = Modifier.rotate(angle),
-                            imageVector = if (editable) {
-                                rounded.ArrowUpward
-                            } else { rounded.ArrowBack },
+                            imageVector = rounded.ChevronLeft,
                             contentDescription = null
                         )
                     }
@@ -117,6 +116,14 @@ fun EquationCreationScreen(
                         placeholder = { Text(stringResource(id = R.string.LABEL_ABV_EQUATION_NAME)) },
                         singleLine = true
                     )
+                },
+                actions = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = Icons.TwoTone.Delete,
+                            contentDescription = null
+                        )
+                    }
                 }
             )
         },

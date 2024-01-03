@@ -64,6 +64,10 @@ class EquationCreationViewModel(
         }
     }
 
+    fun deleteEquation(name: String) = viewModelScope.launch {
+
+    }
+
     data class UiState(
         val name: String = EMPTY_STRING,
         val equation: String = EMPTY_STRING,
