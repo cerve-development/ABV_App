@@ -42,6 +42,7 @@ fun EquationListScreen(
             items(abvEquationList) { equation ->
                 OutlinedCard(
                     modifier = Modifier.fillMaxWidth(),
+                    enabled = equation.type != AbvEquation.EquationType.Default,
                     onClick =  { onEquationUpdate(equation.name) }
                 ) {
                     Column(
