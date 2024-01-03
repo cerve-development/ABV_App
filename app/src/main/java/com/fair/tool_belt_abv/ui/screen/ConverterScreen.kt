@@ -37,7 +37,7 @@ fun ConverterScreen(
         DefaultTextField(
             value = platoText,
             onValueChange = { change ->
-                onValueChange(AbvUnit.P, change)
+                onValueChange(AbvUnit.Plato, change)
             },
             imeAction = ImeAction.Done,
             label = stringResource(id = R.string.UNIT_TEXT_plato)
@@ -45,7 +45,7 @@ fun ConverterScreen(
         DefaultTextField(
             value = brixText,
             onValueChange = { change ->
-                onValueChange(AbvUnit.B, change)
+                onValueChange(AbvUnit.Brix, change)
             },
             imeAction = ImeAction.Done,
             label = stringResource(id = R.string.UNIT_TEXT_brix)

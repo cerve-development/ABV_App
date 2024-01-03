@@ -7,9 +7,9 @@ object Converter {
             return if (value.isNotEmpty()) {
                 val valueTrue = value.toDouble()
                 return when (focused) {
-                    "B" -> {
+                    "Brix" -> {
                         /**
-                         * PAIR(SG, P)
+                         * PAIR(SG, Plato)
                          */
                         Pair(
                             zeroed(bToS(valueTrue).toString()),
@@ -17,9 +17,9 @@ object Converter {
                         )
                     }
 
-                    "P" -> {
+                    "Plato" -> {
                         /**
-                         * PAIR(B, SG)
+                         * PAIR(Brix, SG)
                          */
                         Pair(
                             zeroed(sToB(pToS(valueTrue)).toString()),
@@ -29,7 +29,7 @@ object Converter {
 
                     "SG" -> {
                         /**
-                         * PAIR(P, B)
+                         * PAIR(Plato, Brix)
                          */
                         Pair(
                             zeroed(sToP(valueTrue).toString()),

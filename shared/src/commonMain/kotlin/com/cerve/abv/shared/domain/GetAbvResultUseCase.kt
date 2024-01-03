@@ -20,8 +20,8 @@ class GetAbvResultUseCase : KoinComponent {
 
         val (convertedOg, convertedFg) = when(unit) {
             AbvUnit.SG -> Pair(ogConverter.none, fgConverter.none)
-            AbvUnit.P -> Pair(ogConverter.pToS, fgConverter.pToS)
-            AbvUnit.B -> Pair(ogConverter.bToS, fgConverter.bToS)
+            AbvUnit.Plato -> Pair(ogConverter.pToS, fgConverter.pToS)
+            AbvUnit.Brix -> Pair(ogConverter.bToS, fgConverter.bToS)
         }
 
         Equation.Calculator(convertedOg, convertedFg).apply {

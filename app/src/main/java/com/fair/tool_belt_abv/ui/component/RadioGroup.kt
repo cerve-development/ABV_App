@@ -93,6 +93,6 @@ fun RadioGroupPreview() {
     RadioGroupUnit(
         modifier = Modifier.fillMaxWidth(),
         label = "Unit",
-        selected = AbvUnit.B
+        selected = AbvUnit.Brix
     )
 }

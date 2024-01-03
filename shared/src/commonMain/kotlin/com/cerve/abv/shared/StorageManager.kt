@@ -48,12 +48,7 @@ class StorageManager(
             }
         }.map { preferences ->
 
-            val unit = try {
-                AbvUnit.valueOf(
-                    preferences[PreferencesKeys.ABV_UNIT_KEY] ?: AbvUnit.SG.name
-                )
-            } catch (e: Exception) { AbvUnit.SG }
-
+            val unit = AbvUnit.tryValueOf(preferences[PreferencesKeys.ABV_UNIT_KEY])
             val equation = preferences[PreferencesKeys.ABV_EQUATION_KEY] ?: AbvTestEquation.Simple.name
 
             CalculatorPreferences(unit, equation)
@@ -68,14 +63,8 @@ class StorageManager(
             }
         }.map { preferences ->
 
-            val unit = AbvUnit.valueOf(
-                preferences[PreferencesKeys.ABV_UNIT_KEY] ?: AbvUnit.SG.name
-            )
-
-
-            val theme = AppTheme.valueOf(
-                preferences[PreferencesKeys.APP_THEME_KEY] ?: AppTheme.LEGACY.name
-            )
+            val unit = AbvUnit.tryValueOf(preferences[PreferencesKeys.ABV_UNIT_KEY])
+            val theme = AppTheme.tryValueOf(preferences[PreferencesKeys.APP_THEME_KEY])
 
             val inDarkMode = preferences[PreferencesKeys.APP_IS_IN_DARK_MODE]
 
@@ -99,7 +88,6 @@ class StorageManager(
                 ?.let { sinceLastRating -> sinceLastRating > 1.minutes } ?: false
 
             val instanceCount = preferences[APP_INSTANCE_COUNT]
-                .also { println(it) }
                 ?.let { count -> count > 5 } ?: false
 
             timeToRate && instanceCount

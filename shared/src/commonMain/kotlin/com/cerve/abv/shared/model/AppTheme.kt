@@ -6,4 +6,15 @@ enum class AppTheme {
     STOUT,
     HOPS;
 
+    companion object {
+        fun tryValueOf(value: String?): AppTheme {
+            return try {
+                if (value != null) {
+                    AppTheme.valueOf(value)
+                } else LEGACY
+            } catch (_: Exception) {
+                LEGACY
+            }
+        }
+    }
 }

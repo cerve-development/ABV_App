@@ -20,7 +20,7 @@ class ConverterUseCase: KoinComponent {
 
                 ConverterResult(gravity = value, plato = plato, brix = brix)
             }
-            AbvUnit.P -> {
+            AbvUnit.Plato -> {
 
                 val convertedGravity = Equation.Converter(converter).pToS
                 val gravity = convertedGravity.toString()
@@ -28,7 +28,7 @@ class ConverterUseCase: KoinComponent {
 
                 ConverterResult(gravity = gravity, plato = value, brix = brix)
             }
-            AbvUnit.B -> {
+            AbvUnit.Brix -> {
 
                 val convertedGravity = Equation.Converter(converter).bToS
                 val gravity = convertedGravity.toString()

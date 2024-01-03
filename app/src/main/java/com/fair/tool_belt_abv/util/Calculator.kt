@@ -37,7 +37,7 @@ object Calculator {
                 }
 
                 else -> {
-                    val warning = groupWarning(op as String, fp as String, "P") // todo tweak warning
+                    val warning = groupWarning(op as String, fp as String, "Plato") // todo tweak warning
                     if (warning.first) {
                         val cSp = pToS(op.toDouble())
                         val cFp = pToS(fp.toDouble())
@@ -65,7 +65,7 @@ object Calculator {
                 }
 
                 else -> {
-                    val warning = groupWarning(ob as String, fb as String, "B")
+                    val warning = groupWarning(ob as String, fb as String, "Brix")
                     if (warning.first) {
                         val cOb = bToS(ob.toDouble())
                         val cFb = bToS(fb.toDouble())
@@ -98,8 +98,8 @@ object Calculator {
 
     private fun rangeSelection(unit: String): Pair<Double, Double> {
         return when (unit) {
-            "B" -> Pair(0.0, 40.0)
-            "P" -> Pair(0.0000, 39.9490)
+            "Brix" -> Pair(0.0, 40.0)
+            "Plato" -> Pair(0.0000, 39.9490)
             "SG" -> Pair(1.0000, 1.1790)
             else -> Pair(0.0, 0.0)
         }
