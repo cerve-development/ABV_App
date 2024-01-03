@@ -34,9 +34,25 @@ public class AbvEquationDBQueries(
     )
   }
 
-  public fun seleAbvEquationByNameEntity(name: String): Query<String> =
-      SeleAbvEquationByNameEntityQuery(name) { cursor ->
-    cursor.getString(0)!!
+  public fun <T : Any> selectAbvEquationByNameEntity(name: String, mapper: (
+    name: String,
+    equation: String,
+    updatedAt: Long,
+  ) -> T): Query<T> = SelectAbvEquationByNameEntityQuery(name) { cursor ->
+    mapper(
+      cursor.getString(0)!!,
+      cursor.getString(1)!!,
+      cursor.getLong(2)!!
+    )
+  }
+
+  public fun selectAbvEquationByNameEntity(name: String): Query<AbvEquationEntity> =
+      selectAbvEquationByNameEntity(name) { name_, equation, updatedAt ->
+    AbvEquationEntity(
+      name_,
+      equation,
+      updatedAt
+    )
   }
 
   public fun upsertAbvEquationEntity(
@@ -58,7 +74,7 @@ public class AbvEquationDBQueries(
     }
   }
 
-  private inner class SeleAbvEquationByNameEntityQuery<out T : Any>(
+  private inner class SelectAbvEquationByNameEntityQuery<out T : Any>(
     public val name: String,
     mapper: (SqlCursor) -> T,
   ) : Query<T>(mapper) {
@@ -71,14 +87,14 @@ public class AbvEquationDBQueries(
     }
 
     override fun <R> execute(mapper: (SqlCursor) -> QueryResult<R>): QueryResult<R> =
-        driver.executeQuery(-1_845_723_739, """
-    |SELECT AbvEquationEntity.equation
+        driver.executeQuery(-201_036_204, """
+    |SELECT *
     |FROM AbvEquationEntity
     |WHERE name = ?
     """.trimMargin(), mapper, 1) {
       bindString(0, name)
     }
 
-    override fun toString(): String = "AbvEquationDB.sq:seleAbvEquationByNameEntity"
+    override fun toString(): String = "AbvEquationDB.sq:selectAbvEquationByNameEntity"
   }
 }

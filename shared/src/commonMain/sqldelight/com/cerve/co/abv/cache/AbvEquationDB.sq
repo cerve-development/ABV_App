@@ -12,7 +12,7 @@ VALUES (?,?,?);
 selectAbvEquationEntity:
 SELECT * FROM AbvEquationEntity;
 
-seleAbvEquationByNameEntity:
-SELECT AbvEquationEntity.equation
+selectAbvEquationByNameEntity:
+SELECT *
 FROM AbvEquationEntity
 WHERE name = :name;

@@ -36,6 +36,7 @@ fun NavigationGraph(
         navController = navController
     ) {
         composable(TopLevelDestinationGraph.CALCULATOR.route) {
+
             val vm : AbvCalculatorViewModel = getViewModel()
             val uiState by vm.uiState.collectAsStateWithLifecycle()
 
@@ -94,6 +95,7 @@ fun NavigationGraph(
         ) {
             val name = it.arguments?.getString(LowerLevelDestinationGraph.EQUATION.args)
             val vm : EquationCreationViewModel = koinViewModel(parameters = { parametersOf(name) })
+
             val state by vm.uiState.collectAsStateWithLifecycle()
 
             EquationCreationScreen(

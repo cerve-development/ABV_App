@@ -12,6 +12,11 @@ import org.koin.core.component.KoinComponent
 class EquationRepositoryImpl(
     private val abvEquationDBQueries: AbvEquationDBQueries
 ) : KoinComponent, EquationRepository {
+    override suspend fun findEquationByName(name: String): AbvTestEquation? {
+        return null
+//        return abvEquationDBQueries.seleAbvEquationByNameEntity(name, ::mapToEntity)
+//            .executeAsOneOrNull()
+    }
 
     override fun equationList(): Flow<List<AbvTestEquation>> {
         return abvEquationDBQueries
