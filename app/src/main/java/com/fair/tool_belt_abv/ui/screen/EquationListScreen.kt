@@ -19,7 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import java.util.*
@@ -27,11 +27,11 @@ import java.util.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EquationListScreen(
-    selectedAbvEquation: AbvTestEquation,
-    abvEquationList: List<AbvTestEquation>,
+    selectedAbvEquation: AbvEquation,
+    abvEquationList: List<AbvEquation>,
     modifier: Modifier = Modifier,
     onEquationUpdate: (name: String) -> Unit = { },
-    onEquationSelect: (AbvTestEquation) -> Unit = { }
+    onEquationSelect: (AbvEquation) -> Unit = { }
 ) {
 
     Column {

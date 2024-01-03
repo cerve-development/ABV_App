@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
@@ -27,7 +27,7 @@ fun CalculatorScreen(
     abvValue: String,
     attenuationValue: String,
     abvUnit: AbvUnit,
-    abvEquation: AbvTestEquation,
+    abvEquation: AbvEquation,
     modifier: Modifier = Modifier,
     onOriginalTextChange: (String) -> Unit = { },
     onFinalTextChange: (String) -> Unit = { },
@@ -87,6 +87,6 @@ fun CalculatorScreenPreview() {
         abvValue = "0",
         attenuationValue = "0",
         abvUnit = AbvUnit.SG,
-        abvEquation = AbvTestEquation.Simple
+        abvEquation = AbvEquation.Simple
     )
 }

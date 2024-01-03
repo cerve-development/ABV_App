@@ -2,6 +2,7 @@ package com.fair.tool_belt_abv.ui.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import com.fair.tool_belt_abv.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,26 +14,34 @@ import kotlinx.coroutines.flow.update
 import java.util.UUID.randomUUID
 import kotlin.time.Duration
 
-sealed class Screen<T>(open val value: T?) {
+sealed class Screen<T>(val value: T) {
     data class Loading<T>(
-        override val value: T? = null,
-        val message: String? = null
-    ) : Screen<T>(value)
+        private val state: T
+    ) : Screen<T>(state)
 
     data class Error<T>(
-        override val value: T,
+        private val state: T,
         val message: String? = null
-    ): Screen<T>(value)
+    ): Screen<T>(state)
 
     data class Loaded<T>(
-        override val value: T
-    ) : Screen<T>(value)
+        private val state: T
+    ) : Screen<T>(state)
 
     data class Event<T>(
-        override val value: T? = null,
+        private val state: T,
         val type: EventType = EventType.None,
         val eventId: Int = (randomUUID()).hashCode()
-    ) : Screen<T>(value)
+    ) : Screen<T>(state)
+
+    fun <R> mapValue(data: R) : Screen<R> {
+        return when(this) {
+            is Loading -> this.copy(state = data as T) as Screen.Loading<R>
+            is Loaded -> this.copy(state = data as T) as Screen.Loaded<R>
+            is Event -> this.copy(state = data as T) as Screen.Event<R>
+            is Error -> this.copy(state = data as T) as Screen.Error<R>
+        }
+    }
 
     sealed interface EventType {
         data object None: EventType
@@ -69,18 +78,17 @@ sealed class Screen<T>(open val value: T?) {
     fun ScreenWrapper(
         content: @Composable (T) -> Unit
     ) {
-        when(val value = value) {
-            null -> { }
-            else -> { content(value) }
-        }
+        if (value == null) {
+            //TODO investigate why non null still showing
+        } else { content(value as T) }
     }
 
     @Composable
     fun LaunchedWrapper(
         content: suspend (EventType) -> Unit
     ) {
-        if (this@Screen is Event) {
-            LaunchedEffect(this) {
+        LaunchedEffect(this) {
+            if (this@Screen is Event) {
                 content(this@Screen.type)
             }
         }
@@ -88,25 +96,34 @@ sealed class Screen<T>(open val value: T?) {
 
     companion object {
 
+
         fun <T> screenMutableState(
-            initial: Screen<T>
+            initial: (Screen<T>)
         ) = MutableStateFlow(initial)
+
         fun <T> Flow<Screen<T>>.asScreenStateIn(
+            initialValue: T,
             scope: CoroutineScope,
             started: SharingStarted = SharingStarted
                 .WhileSubscribed(replayExpiration = Duration.ZERO),
-            initialValue: Screen<T> = Loading(),
         ) : StateFlow<Screen<T>> = stateIn(
             scope = scope,
             started = started,
-            initialValue = initialValue
+            initialValue = Loading(initialValue)
         )
 
-        suspend fun <T> MutableStateFlow<Screen<T>>.load(
-            result: suspend (T?) -> Screen<T>
+
+        suspend fun <T> MutableStateFlow<Screen<T>>.loading(
+            result: suspend (T) -> Screen<T>
         ) {
             update { Loading(it.value) }
             update { result(it.value) }
+        }
+
+        inline fun <T> MutableStateFlow<Screen<T>>.loaded(
+            function: (Screen<T>) -> T
+        ) {
+            update { Loaded(function(it)) }
         }
 
     }

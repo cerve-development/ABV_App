@@ -24,7 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.cerve.co.material3extension.designsystem.rounded
@@ -38,7 +38,7 @@ import kotlinx.coroutines.launch
 fun AbvCalculatorScreen(
     state: AbvCalculatorViewModel.AbvCalculatorState,
     onUnitSelect: (AbvUnit) -> Unit = { },
-    onEquationSelect: (AbvTestEquation) -> Unit = { },
+    onEquationSelect: (AbvEquation) -> Unit = { },
     onOGValueUpdate: (String) -> Unit = { },
     onFGValueUpdate: (String) -> Unit = { },
     onEquationCreationNavigate: (String?) -> Unit = { }
@@ -46,7 +46,7 @@ fun AbvCalculatorScreen(
     val scope = rememberCoroutineScope()
 
     val pagerState = rememberPagerState(
-        CalculatorDestinationGraph.Result.ordinal
+        CalculatorDestinationGraph.Equation.ordinal
     ) { CalculatorDestinationGraph.entries.size }
 
     val position by remember { derivedStateOf { pagerState.currentPage } }

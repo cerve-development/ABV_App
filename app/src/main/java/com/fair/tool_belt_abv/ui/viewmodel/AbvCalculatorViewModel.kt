@@ -6,7 +6,7 @@ import com.cerve.abv.shared.domain.GetAbvDataUseCase
 import com.cerve.abv.shared.domain.GetAbvResultUseCase
 import com.cerve.abv.shared.domain.SetSelectedAbvEquationUseCase
 import com.cerve.abv.shared.domain.SetSelectedAbvUnitUseCase
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.fair.tool_belt_abv.model.UserInput
 import com.fair.tool_belt_abv.ui.screen.Screen
@@ -44,13 +44,13 @@ class AbvCalculatorViewModel(
             abvEquationList = data.equationList
         )
 
-        Screen.Loaded(state)
-    }.asScreenStateIn(viewModelScope)
+        Screen.Loaded<AbvCalculatorState?>(state)
+    }.asScreenStateIn(null, viewModelScope)
 
     fun updateUnit(unit: AbvUnit) = viewModelScope.launch {
         selectUnit.invoke(unit.name)
     }
-    fun updateEquation(equation: AbvTestEquation) = viewModelScope.launch {
+    fun updateEquation(equation: AbvEquation) = viewModelScope.launch {
         selectEquation.invoke(equation.name)
     }
     fun updateOriginalValue(value: String) = _userInput.update { it.copy(og = value) }
@@ -63,7 +63,8 @@ class AbvCalculatorViewModel(
         val attenuation: String,
         val selectedAbvUnit: AbvUnit,
         val abvUnitList: List<AbvUnit>,
-        val selectedEquation: AbvTestEquation,
-        val abvEquationList: List<AbvTestEquation>
+        val selectedEquation: AbvEquation,
+        val abvEquationList: List<AbvEquation>
     )
+
 }

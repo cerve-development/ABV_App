@@ -1,6 +1,6 @@
 package com.cerve.abv.shared.util
 
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.github.murzagalin.evaluator.Evaluator
 import kotlin.math.pow
 
@@ -23,8 +23,8 @@ sealed interface Equation {
             return Evaluator().evaluateDouble(
                 expression = equation,
                 values = mapOf(
-                    "${AbvTestEquation.StaticValues.OG}" to og,
-                    "${AbvTestEquation.StaticValues.FG}" to fg
+                    "${AbvEquation.StaticValues.OG}" to og,
+                    "${AbvEquation.StaticValues.FG}" to fg
                 )
             ).round(roundTo)
         }

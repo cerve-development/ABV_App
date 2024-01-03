@@ -39,7 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.co.material3extension.designsystem.ExtendedTheme
 import com.cerve.co.material3extension.designsystem.rounded
 import com.fair.tool_belt_abv.R
@@ -58,18 +58,26 @@ fun EquationCreationScreen(
     onEquationSave: (EquationCreationViewModel.UiState) -> Unit = { },
     onBackClick: () -> Unit = { }
 ) {
+    var editable by remember { mutableStateOf(false) }
+    val angle: Float by animateFloatAsState(
+        targetValue = if(editable) 360f else 0f,
+        animationSpec = spring(
+            stiffness = Spring.StiffnessLow,
+            dampingRatio = Spring.DampingRatioMediumBouncy
+        ), label = ""
+    )
+
+    val focusRequester = FocusRequester()
+
+    LaunchedEffect(editable) {
+        if(editable) {
+            focusRequester.requestFocus()
+        }
+    }
 
     Scaffold(
         modifier = modifier,
         topBar = {
-            var editable by remember { mutableStateOf(false) }
-            val angle: Float by animateFloatAsState(
-                targetValue = if(editable) 360f else 0f,
-                animationSpec = spring(
-                    stiffness = Spring.StiffnessLow,
-                    dampingRatio = Spring.DampingRatioMediumBouncy
-                ), label = ""
-            )
 
             TopAppBar(
                 navigationIcon = {
@@ -88,14 +96,6 @@ fun EquationCreationScreen(
                     }
                 },
                 title = {
-                    val focusRequester = FocusRequester()
-
-                    LaunchedEffect(editable) {
-                        if(editable) {
-                            focusRequester.requestFocus()
-                        }
-                    }
-
                     TextField(
                         modifier = Modifier
                             .focusRequester(focusRequester)
@@ -107,7 +107,6 @@ fun EquationCreationScreen(
                         value = state.name,
                         onValueChange = { value -> onNameUpdate(value) },
                         colors = TextFieldDefaults.colors(
-                            disabledTextColor = Color.Transparent,
                             focusedContainerColor = Color.Transparent,
                             unfocusedContainerColor = Color.Transparent,
                             disabledContainerColor = Color.Transparent,
@@ -129,8 +128,8 @@ fun EquationCreationScreen(
                 onClear = { onEquationUpdate(EMPTY_STRING) },
                 onRemoveLast = {
                     val equation = when(state.equation.takeLast(2)) {
-                        AbvTestEquation.StaticValues.OG.name -> { state.equation.dropLast(2) }
-                        AbvTestEquation.StaticValues.FG.name -> { state.equation.dropLast(2) }
+                        AbvEquation.StaticValues.OG.name -> { state.equation.dropLast(2) }
+                        AbvEquation.StaticValues.FG.name -> { state.equation.dropLast(2) }
                         else -> state.equation.dropLast(1)
                     }
                     onEquationUpdate(equation)

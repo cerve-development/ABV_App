@@ -2,7 +2,7 @@ package com.cerve.abv.shared.repository
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.co.abv.cache.AbvEquationDBQueries
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -12,29 +12,28 @@ import org.koin.core.component.KoinComponent
 class EquationRepositoryImpl(
     private val abvEquationDBQueries: AbvEquationDBQueries
 ) : KoinComponent, EquationRepository {
-    override suspend fun findEquationByName(name: String): AbvTestEquation? {
-        return null
-//        return abvEquationDBQueries.seleAbvEquationByNameEntity(name, ::mapToEntity)
-//            .executeAsOneOrNull()
+    override suspend fun findEquationByName(name: String): AbvEquation? {
+        return abvEquationDBQueries.selectAbvEquationByNameEntity(name,::mapToEntity)
+            .executeAsOneOrNull()
     }
 
-    override fun equationList(): Flow<List<AbvTestEquation>> {
+    override fun equationList(): Flow<List<AbvEquation>> {
         return abvEquationDBQueries
             .selectAbvEquationEntity(::mapToEntity)
             .asFlow().mapToList(Dispatchers.Default)
             .map { customList ->
-                listOf(AbvTestEquation.Simple, AbvTestEquation.Advance) + customList
+                listOf(AbvEquation.Simple, AbvEquation.Advance) + customList
             }
 
     }
 
     override suspend fun updateEquationList(
-        data: AbvTestEquation.Entity
+        data: AbvEquation.Entity
     ) {
         abvEquationDBQueries.upsertAbvEquationEntity(
-            name = data.dbName,
-            equation = data.dbEquation,
-            updatedAt = data.dbUpdatedAt
+            name = data.name,
+            equation = data.equation,
+            updatedAt = data.updatedAtOrNow()
         )
     }
 
@@ -48,8 +47,8 @@ class EquationRepositoryImpl(
             name: String,
             equation: String,
             updatedAt: Long
-        ) : AbvTestEquation.Entity {
-            return AbvTestEquation.Entity(
+        ) : AbvEquation.Entity {
+            return AbvEquation.Entity(
                 dbName = name,
                 dbEquation = equation,
                 dbUpdatedAt = updatedAt

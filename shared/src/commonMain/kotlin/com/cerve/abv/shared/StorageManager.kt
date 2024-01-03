@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import com.cerve.abv.shared.PreferencesKeys.APP_INSTANCE_COUNT
 import com.cerve.abv.shared.PreferencesKeys.APP_LAST_RATING_TIME
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.abv.shared.model.AppTheme
 import com.cerve.abv.shared.model.preferences.CalculatorPreferences
@@ -49,7 +49,7 @@ class StorageManager(
         }.map { preferences ->
 
             val unit = AbvUnit.tryValueOf(preferences[PreferencesKeys.ABV_UNIT_KEY])
-            val equation = preferences[PreferencesKeys.ABV_EQUATION_KEY] ?: AbvTestEquation.Simple.name
+            val equation = preferences[PreferencesKeys.ABV_EQUATION_KEY] ?: AbvEquation.Simple.name
 
             CalculatorPreferences(unit, equation)
         }

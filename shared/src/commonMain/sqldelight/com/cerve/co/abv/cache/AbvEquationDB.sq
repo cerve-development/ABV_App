@@ -1,5 +1,5 @@
 CREATE TABLE AbvEquationEntity(
-   name TEXT NOT NULL,
+   name TEXT NOT NULL PRIMARY KEY,
    equation TEXT NOT NULL,
    updatedAt INTEGER NOT NULL
 );

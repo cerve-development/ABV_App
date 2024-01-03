@@ -1,14 +1,14 @@
 package com.cerve.abv.shared.repository
 
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import kotlinx.coroutines.flow.Flow
 
 interface EquationRepository {
 
-    suspend fun findEquationByName(name: String) : AbvTestEquation?
+    suspend fun findEquationByName(name: String) : AbvEquation?
 
-    fun equationList() : Flow<List<AbvTestEquation>>
+    fun equationList() : Flow<List<AbvEquation>>
 
-    suspend fun updateEquationList(data: AbvTestEquation.Entity) : Unit
+    suspend fun updateEquationList(data: AbvEquation.Entity) : Unit
     suspend fun deleteEquation()
 }

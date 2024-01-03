@@ -11,7 +11,7 @@ import org.koin.dsl.module
 
 val androidModule = module {
 //    viewModelOf(::EquationCreationViewModel)
-    viewModel { parameters -> EquationCreationViewModel(name = parameters.getOrNull(), get(), get()) }
+    viewModel { parameters -> EquationCreationViewModel(name = parameters.getOrNull(), get(), get(), get()) }
     viewModelOf(::MainViewModel)
     viewModelOf(::SettingViewModel)
     viewModelOf(::AbvCalculatorViewModel)

@@ -15,6 +15,7 @@ import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion
 import com.fair.tool_belt_abv.ui.screen.AbvCalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
 import com.fair.tool_belt_abv.ui.screen.EquationCreationScreen
+import com.fair.tool_belt_abv.ui.screen.Screen
 import com.fair.tool_belt_abv.ui.viewmodel.AbvCalculatorViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.ConverterViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.EquationCreationViewModel
@@ -40,16 +41,19 @@ fun NavigationGraph(
             val vm : AbvCalculatorViewModel = getViewModel()
             val uiState by vm.uiState.collectAsStateWithLifecycle()
 
-            uiState.ScreenWrapper { value ->
-                AbvCalculatorScreen(
-                    state = value,
-                    onUnitSelect = vm::updateUnit,
-                    onEquationSelect = vm::updateEquation,
-                    onOGValueUpdate = vm::updateOriginalValue,
-                    onFGValueUpdate = vm::updateFinalValue
-                ) {
-                    val route = LowerLevelDestinationGraph.EQUATION.toArgs()
-                    navController.navigate(route)
+            uiState.StateWrapper {
+                ScreenWrapper { state ->
+                    //TODO investigate why non null still showing
+                    AbvCalculatorScreen(
+                        state = state!!,
+                        onUnitSelect = vm::updateUnit,
+                        onEquationSelect = vm::updateEquation,
+                        onOGValueUpdate = vm::updateOriginalValue,
+                        onFGValueUpdate = vm::updateFinalValue
+                    ) { args ->
+                        val route = LowerLevelDestinationGraph.EQUATION.toArgs(args)
+                        navController.navigate(route)
+                    }
                 }
             }
 
@@ -95,15 +99,28 @@ fun NavigationGraph(
         ) {
             val name = it.arguments?.getString(LowerLevelDestinationGraph.EQUATION.args)
             val vm : EquationCreationViewModel = koinViewModel(parameters = { parametersOf(name) })
+            val uiState by vm.uiState.collectAsStateWithLifecycle()
 
-            val state by vm.uiState.collectAsStateWithLifecycle()
+            uiState.StateWrapper {
 
-            EquationCreationScreen(
-                state = state,
-                onNameUpdate = vm::updateName,
-                onEquationUpdate = vm::updateEquation,
-                onEquationSave = vm::saveEquation
-            ) { navController.popBackStack() }
+                LaunchedWrapper { event ->
+                    when(event) {
+                        is Screen.EventType.Navigation -> navController.popBackStack()
+                        else -> Unit
+                    }
+                }
+
+                ScreenWrapper { state ->
+                    EquationCreationScreen(
+                        state = state,
+                        onNameUpdate = vm::updateName,
+                        onEquationUpdate = vm::updateEquation,
+                        onEquationSave = vm::saveEquation
+                    ) { navController.popBackStack() }
+                }
+
+            }
+
         }
 
     }

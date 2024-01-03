@@ -1,6 +1,6 @@
 package com.cerve.abv.shared.domain
 
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.abv.shared.util.Equation
 import com.cerve.abv.shared.util.Equation.Converter
@@ -11,7 +11,7 @@ class GetAbvResultUseCase : KoinComponent {
     operator fun invoke(
         og: String,
         fg: String,
-        equation: AbvTestEquation,
+        equation: AbvEquation,
         unit: AbvUnit
     ) : CalculatorResult {
 

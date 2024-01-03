@@ -27,7 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import com.cerve.abv.shared.model.AbvTestEquation
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.ui.KeyPadValue
@@ -51,12 +51,12 @@ fun CustomKeyboard(
             horizontalArrangement = Arrangement.spacedBy(sizes.medium),
         ) {
 
-            Button(onClick = { onKeyClick(AbvTestEquation.StaticValues.OG.name) }) {
-                Text(text = AbvTestEquation.StaticValues.OG.name)
+            Button(onClick = { onKeyClick(AbvEquation.StaticValues.OG.name) }) {
+                Text(text = AbvEquation.StaticValues.OG.name)
             }
 
-            Button(onClick = { onKeyClick(AbvTestEquation.StaticValues.FG.name) }) {
-                Text(text = AbvTestEquation.StaticValues.FG.name)
+            Button(onClick = { onKeyClick(AbvEquation.StaticValues.FG.name) }) {
+                Text(text = AbvEquation.StaticValues.FG.name)
             }
 
             TextButton(onClick = { onClear() }) {
