@@ -63,13 +63,10 @@ class StorageManager(
             }
         }.map { preferences ->
 
-            val unit = AbvUnit.tryValueOf(preferences[PreferencesKeys.ABV_UNIT_KEY])
             val theme = AppTheme.tryValueOf(preferences[PreferencesKeys.APP_THEME_KEY])
-
             val inDarkMode = preferences[PreferencesKeys.APP_IS_IN_DARK_MODE]
 
             SettingPreferences(
-                abvUnit = unit,
                 appTheme = theme,
                 inDarkMode = inDarkMode
             )

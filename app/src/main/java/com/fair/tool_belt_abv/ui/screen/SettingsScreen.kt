@@ -35,11 +35,12 @@ import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.BuildConfig
 import com.fair.tool_belt_abv.R
+import com.fair.tool_belt_abv.ui.component.ThemedAppThemeDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingScreen(
-//    theme: AppTheme,
+    theme: AppTheme,
     isDarkMode: Boolean,
     modifier: Modifier = Modifier,
     onDarkModeChange: (Boolean) -> Unit = { },
@@ -143,12 +144,12 @@ fun SettingScreen(
         }
     }
 
-//    ThemedAppThemeDialog(
-//        theme = theme,
-//        isOpen = openAppThemeDialog,
-//        onOkClick = { onAppThemeChange(it) },
-//        onDismiss = { openAppThemeDialog = false }
-//    )
+    ThemedAppThemeDialog(
+        theme = theme,
+        isOpen = openAppThemeDialog,
+        onOkClick = { onAppThemeChange(it) },
+        onDismiss = { openAppThemeDialog = false }
+    )
 }
 
 @Preview

@@ -4,39 +4,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cerve.abv.shared.StorageManager
 import com.fair.tool_belt_abv.model.AppState
-import com.fair.tool_belt_abv.model.AppTheme
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
+import com.fair.tool_belt_abv.ui.screen.Screen
+import com.fair.tool_belt_abv.ui.screen.Screen.Companion.asScreenStateIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val storageManager: StorageManager
 ) : ViewModel() {
 
-    val appState = combine(
-        storageManager.settingPreferences,
-        storageManager.shouldShowRating
-    ) { settings, showRating ->
-
-        val (light, dark) = AppTheme.valueOf(settings.appTheme.name).selectedTheme()
-
-        AppState(
-//            abvUnit = AbvUnit.valueOf(settings.abvUnit.name),
-//            abvEquation = AbvEquation.valueOf(settings.abvEquation.name),
-            inDarkMode = false,
-            colorSchemePalette = AppTheme.valueOf(settings.appTheme.name),
-            colorSchemeLight = light,
-            colorSchemeDark = dark,
-            isLoading = false,
-            showReview = showRating
+    val uiState = storageManager.settingPreferences.map {
+        val state = AppState(
+            inDarkMode = it.inDarkMode,
+            colorSchemePalette = it.appTheme
         )
-    }
-    .stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = AppState()
-    )
+        Screen.Loaded(state)
+    }.asScreenStateIn(AppState(), viewModelScope)
 
     fun updateInstanceCount() = viewModelScope.launch {
         storageManager.saveInstanceCount { previous -> previous?.plus(1) ?: 1 }

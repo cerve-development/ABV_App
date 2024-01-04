@@ -15,13 +15,11 @@ import androidx.core.view.WindowCompat
 
 @Composable
 fun AppTheme(
-    lightColorScheme: ColorScheme,
-    darkColorScheme: ColorScheme,
+    colors: ColorScheme,
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable (Modifier) -> Unit = { }
 ) {
     val context = LocalContext.current
-    val colors = if (!useDarkTheme) { lightColorScheme } else { darkColorScheme }
     val view = LocalView.current
 
     DisposableEffect(colors) {

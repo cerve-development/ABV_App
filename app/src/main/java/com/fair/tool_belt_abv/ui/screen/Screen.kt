@@ -66,10 +66,11 @@ sealed class Screen<T>(val value: T) {
 
     @Composable
     fun StateWrapper(
+        onLoading: @Composable () -> Unit = { },
         content: @Composable Screen<T>.() -> Unit
     ) {
         when(val state = this) {
-            is Loading -> { }
+            is Loading -> { onLoading() }
             else -> { content(state) }
         }
     }

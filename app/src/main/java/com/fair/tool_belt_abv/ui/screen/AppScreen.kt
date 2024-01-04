@@ -14,14 +14,12 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.fair.tool_belt_abv.model.AppState
 import com.fair.tool_belt_abv.ui.component.SimpleAbvNavigationBar
 import com.fair.tool_belt_abv.ui.navigation.NavigationGraph
 import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
 
 @Composable
 fun AppScreen(
-    appPreferences: AppState,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
@@ -35,7 +33,7 @@ fun AppScreen(
 
     Scaffold(
         modifier = modifier,
-        contentWindowInsets = WindowInsets(0),//ScaffoldDefaults.contentWindowInsets,
+        contentWindowInsets = WindowInsets(0),
         bottomBar = {
             AnimatedVisibility(visible = isTopLevelDestination) {
                 SimpleAbvNavigationBar(
@@ -63,8 +61,7 @@ fun AppScreen(
         NavigationGraph(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
-            startDestination = TopLevelDestinationGraph.SETTINGS.route,
-            preferences = appPreferences
+            startDestination = TopLevelDestinationGraph.SETTINGS.route
         )
     }
 }
@@ -72,5 +69,5 @@ fun AppScreen(
 @Preview
 @Composable
 fun AppScreenPreview() {
-    AppScreen(appPreferences = AppState())
+    AppScreen()
 }

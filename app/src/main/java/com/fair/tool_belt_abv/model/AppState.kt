@@ -1,16 +1,37 @@
 package com.fair.tool_belt_abv.model
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
-import com.fair.tool_belt_abv.ui.theme.DarkLegacyColors
-import com.fair.tool_belt_abv.ui.theme.LightLegacyColors
+import androidx.compose.runtime.Composable
+import com.cerve.abv.shared.model.AppTheme
+import com.fair.tool_belt_abv.ui.theme.HopsDarkColors
+import com.fair.tool_belt_abv.ui.theme.HopsLightColors
+import com.fair.tool_belt_abv.ui.theme.LegacyDarkColors
+import com.fair.tool_belt_abv.ui.theme.LegacyLightColors
+import com.fair.tool_belt_abv.ui.theme.StoutDarkColors
+import com.fair.tool_belt_abv.ui.theme.StoutLightColors
 
 data class AppState(
-    val inDarkMode: Boolean = false,
-    val isLoading: Boolean = true,
+    private val inDarkMode: Boolean? = false,
     val showReview: Boolean = false,
-    val colorSchemePalette: AppTheme = AppTheme.LEGACY,
-    val colorSchemeLight: ColorScheme = LightLegacyColors,
-    val colorSchemeDark: ColorScheme = DarkLegacyColors
+    val colorSchemePalette: AppTheme = AppTheme.LEGACY
 ) {
-    fun requestReview() = !isLoading && showReview
+
+    @Composable
+    fun getInDarkMode() : Boolean = inDarkMode ?: isSystemInDarkTheme()
+    @Composable
+    fun getColors() : ColorScheme = if (getInDarkMode()) darkColorScheme else lightColorScheme
+
+    private val darkColorScheme: ColorScheme = when(colorSchemePalette) {
+        AppTheme.LEGACY -> LegacyDarkColors
+        AppTheme.STOUT -> StoutDarkColors
+        AppTheme.HOPS -> HopsDarkColors
+    }
+
+    private val lightColorScheme: ColorScheme = when(colorSchemePalette) {
+        AppTheme.LEGACY -> LegacyLightColors
+        AppTheme.STOUT -> StoutLightColors
+        AppTheme.HOPS -> HopsLightColors
+    }
+
 }

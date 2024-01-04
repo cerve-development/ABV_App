@@ -8,7 +8,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.fair.tool_belt_abv.model.AppState
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.asArgs
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.stringArguments
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.toArgs
@@ -30,7 +29,6 @@ import org.koin.core.parameter.parametersOf
 
 @Composable
 fun NavigationGraph(
-    preferences: AppState,
     navController: NavHostController,
     startDestination: String,
     modifier: Modifier = Modifier
@@ -77,20 +75,26 @@ fun NavigationGraph(
 
         composable(TopLevelDestinationGraph.SETTINGS.route) {
             val vm: SettingViewModel = koinViewModel()
+            val uiState by vm.uiState.collectAsStateWithLifecycle()
+
             val context = LocalContext.current
 
-            SettingScreen(
-//                theme = preferences.colorSchemePalette,
-                isDarkMode = preferences.inDarkMode,
-                onAppThemeChange = vm::updateAppTheme,
-                onDarkModeChange = vm::updateDarkModeValue,
-                onFeatureRequestClick = {
-                    context.sendEmail(subject = EMAIL_SUBJECT_FEATURE)
-                },
-                onBugReportClick = {
-                    context.sendEmail(subject = EMAIL_SUBJECT_BUG)
+            uiState.StateWrapper {
+                ScreenWrapper { state ->
+                    SettingScreen(
+                        theme = state.colorSchemePalette,
+                        isDarkMode = state.getInDarkMode(),
+                        onAppThemeChange = vm::updateAppTheme,
+                        onDarkModeChange = vm::updateDarkModeValue,
+                        onFeatureRequestClick = {
+                            context.sendEmail(subject = EMAIL_SUBJECT_FEATURE)
+                        },
+                        onBugReportClick = {
+                            context.sendEmail(subject = EMAIL_SUBJECT_BUG)
+                        }
+                    )
                 }
-            )
+            }
         }
 
         composable(
