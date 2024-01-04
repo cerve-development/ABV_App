@@ -59,35 +59,26 @@ dependencies {
     implementation(libs.lifecycle.runtime.compose)
 
     //firebase
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics.ktx)
     implementation(libs.firebase.analytics.ktx)
 
     //navigation
     implementation(libs.navigation.compose)
-//    implementation(libs.hilt.navigation.compose)
 
     //di
     implementation(libs.koin.android)
-    implementation("io.insert-koin:koin-androidx-compose:3.5.0")
-//    implementation(libs.koin.android.viewmodel)
-
-    // (dagger-hilt)
-//    implementation(libs.hilt.android)
-//    kapt(libs.hilt.compiler)
-
-    //settings
-//    implementation(libs.datastore.preferences)
+    implementation(libs.koin.androidx.compose)
 
     //in-app-review
     implementation(libs.review.ktx)
 
     //material design
-    implementation(platform("androidx.compose:compose-bom:2023.10.00"))
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material:material-icons-extended")
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.material3)
+    implementation(libs.compose.tooling)
+    implementation(libs.compose.tooling.preview)
+    implementation(libs.compose.icons.ext)
 
     //design system
     implementation(libs.cerve.ui.library)
