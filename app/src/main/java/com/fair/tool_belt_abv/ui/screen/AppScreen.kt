@@ -16,7 +16,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.fair.tool_belt_abv.model.AppState
 import com.fair.tool_belt_abv.ui.component.SimpleAbvNavigationBar
-import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph
 import com.fair.tool_belt_abv.ui.navigation.NavigationGraph
 import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
 
@@ -64,7 +63,7 @@ fun AppScreen(
         NavigationGraph(
             modifier = Modifier.padding(innerPadding),
             navController = navController,
-            startDestination = TopLevelDestinationGraph.CALCULATOR.route,
+            startDestination = TopLevelDestinationGraph.SETTINGS.route,
             preferences = appPreferences
         )
     }

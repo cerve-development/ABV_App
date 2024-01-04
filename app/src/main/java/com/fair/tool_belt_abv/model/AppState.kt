@@ -5,7 +5,7 @@ import com.fair.tool_belt_abv.ui.theme.DarkLegacyColors
 import com.fair.tool_belt_abv.ui.theme.LightLegacyColors
 
 data class AppState(
-    val inDarkMode: Boolean? = null,
+    val inDarkMode: Boolean = false,
     val isLoading: Boolean = true,
     val showReview: Boolean = false,
     val colorSchemePalette: AppTheme = AppTheme.LEGACY,

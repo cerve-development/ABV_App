@@ -16,10 +16,14 @@ import com.fair.tool_belt_abv.ui.screen.AbvCalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
 import com.fair.tool_belt_abv.ui.screen.EquationCreationScreen
 import com.fair.tool_belt_abv.ui.screen.Screen
+import com.fair.tool_belt_abv.ui.screen.SettingScreen
 import com.fair.tool_belt_abv.ui.viewmodel.AbvCalculatorViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.ConverterViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.EquationCreationViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.SettingViewModel
+import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_BUG
+import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_FEATURE
+import com.fair.tool_belt_abv.util.sendEmail
 import org.koin.androidx.compose.getViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -75,22 +79,18 @@ fun NavigationGraph(
             val vm: SettingViewModel = koinViewModel()
             val context = LocalContext.current
 
-//            SettingScreen(
-////                unit = preferences.abvUnit,
-////                equation = preferences.abvEquation,
+            SettingScreen(
 //                theme = preferences.colorSchemePalette,
-//                isDarkMode = preferences.inDarkMode ?: isSystemInDarkTheme(),
-//                onUnitChange = vm::updateUnit,
-//                onEquationChange = vm::updateEquation,
-//                onAppThemeChange = vm::updateAppTheme,
-//                onDarkModeChange = vm::updateDarkModeValue,
-//                onFeatureRequestClick = {
-//                    context.sendEmail(subject = EMAIL_SUBJECT_FEATURE)
-//                },
-//                onBugReportClick = {
-//                    context.sendEmail(subject = EMAIL_SUBJECT_BUG)
-//                }
-//            )
+                isDarkMode = preferences.inDarkMode,
+                onAppThemeChange = vm::updateAppTheme,
+                onDarkModeChange = vm::updateDarkModeValue,
+                onFeatureRequestClick = {
+                    context.sendEmail(subject = EMAIL_SUBJECT_FEATURE)
+                },
+                onBugReportClick = {
+                    context.sendEmail(subject = EMAIL_SUBJECT_BUG)
+                }
+            )
         }
 
         composable(

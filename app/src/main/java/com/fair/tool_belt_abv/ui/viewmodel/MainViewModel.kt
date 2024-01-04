@@ -24,7 +24,7 @@ class MainViewModel(
         AppState(
 //            abvUnit = AbvUnit.valueOf(settings.abvUnit.name),
 //            abvEquation = AbvEquation.valueOf(settings.abvEquation.name),
-            inDarkMode = settings.inDarkMode,
+            inDarkMode = false,
             colorSchemePalette = AppTheme.valueOf(settings.appTheme.name),
             colorSchemeLight = light,
             colorSchemeDark = dark,

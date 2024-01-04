@@ -46,7 +46,7 @@ fun AbvCalculatorScreen(
     val scope = rememberCoroutineScope()
 
     val pagerState = rememberPagerState(
-        CalculatorDestinationGraph.Equation.ordinal
+        CalculatorDestinationGraph.Result.ordinal
     ) { CalculatorDestinationGraph.entries.size }
 
     val position by remember { derivedStateOf { pagerState.currentPage } }
