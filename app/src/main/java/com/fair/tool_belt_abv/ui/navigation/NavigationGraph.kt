@@ -7,8 +7,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import com.fair.tool_belt_abv.R
+import com.fair.tool_belt_abv.ui.component.cerveNavigationComposable
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.asArgs
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.stringArguments
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.toArgs
@@ -41,7 +41,7 @@ fun NavigationGraph(
         startDestination = startDestination,
         navController = navController
     ) {
-        composable(TopLevelDestinationGraph.CALCULATOR.route) {
+        cerveNavigationComposable(TopLevelDestinationGraph.CALCULATOR.route) {
 
             val vm : AbvCalculatorViewModel = getViewModel()
             val uiState by vm.uiState.collectAsStateWithLifecycle()
@@ -64,7 +64,7 @@ fun NavigationGraph(
 
         }
 
-        composable(TopLevelDestinationGraph.CONVERTER.route) {
+        cerveNavigationComposable(TopLevelDestinationGraph.CONVERTER.route) {
             val vm : ConverterViewModel = koinViewModel()
             val state by vm.result.collectAsStateWithLifecycle()
 
@@ -76,7 +76,7 @@ fun NavigationGraph(
             )
         }
 
-        composable(TopLevelDestinationGraph.SETTINGS.route) {
+        cerveNavigationComposable(TopLevelDestinationGraph.SETTINGS.route) {
             val vm: SettingViewModel = koinViewModel()
             val uiState by vm.uiState.collectAsStateWithLifecycle()
 
@@ -115,7 +115,7 @@ fun NavigationGraph(
             }
         }
 
-        composable(
+        cerveNavigationComposable(
             route = LowerLevelDestinationGraph.EQUATION.asArgs(),
             arguments = LowerLevelDestinationGraph.EQUATION.stringArguments()
         ) {
