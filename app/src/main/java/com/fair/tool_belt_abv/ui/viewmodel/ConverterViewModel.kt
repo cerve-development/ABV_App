@@ -18,7 +18,7 @@ class ConverterViewModel(
     fun updateValue(unit: AbvUnit, value: String) {
         _result.update {
             converter.invoke(
-                unit = com.cerve.abv.shared.model.AbvUnit.valueOf(unit.name),
+                unit = AbvUnit.valueOf(unit.name),
                 value = value
             )
         }
