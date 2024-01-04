@@ -1,8 +1,6 @@
 package com.fair.tool_belt_abv.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -15,7 +13,6 @@ import androidx.compose.material.icons.twotone.NewReleases
 import androidx.compose.material.icons.twotone.Palette
 import androidx.compose.material.icons.twotone.Share
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
@@ -32,6 +29,7 @@ import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.BuildConfig
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.ui.component.CerveListItem
+import com.fair.tool_belt_abv.ui.component.CerveScaffold
 import com.fair.tool_belt_abv.ui.component.CerveTopAppBar
 import com.fair.tool_belt_abv.ui.component.ThemedAppThemeDialog
 import com.fair.tool_belt_abv.ui.component.ThemedDivider
@@ -50,17 +48,11 @@ fun SettingScreen(
 
     var openAppThemeDialog by remember { mutableStateOf(false) }
 
-    Scaffold(
+    CerveScaffold(
         modifier = modifier,
-        topBar = {
-            CerveTopAppBar(title = stringResource(id = R.string.NAV_DESTINATION_settings))
-        },
-        contentWindowInsets = WindowInsets(0)
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier.padding(innerPadding),
-            verticalArrangement = Arrangement.spacedBy(sizes.small),
-        ) {
+        topBar = { CerveTopAppBar(title = stringResource(id = R.string.NAV_DESTINATION_settings)) },
+    ) {
+        LazyColumn(verticalArrangement = Arrangement.spacedBy(sizes.small)) {
             item {
                 CerveListItem(
                     leadingIcon = Icons.TwoTone.DarkMode,
@@ -98,9 +90,10 @@ fun SettingScreen(
                             tint = colors.primary
                         )
                     }
-                )
-                ThemedDivider()
+                ) { openAppThemeDialog = true }
             }
+
+            item { ThemedDivider() }
 
             item {
                 CerveListItem(
@@ -124,8 +117,9 @@ fun SettingScreen(
                     headlineText = stringResource(id = R.string.LABEL_SHARE_APP),
                     supportingText = stringResource(id = R.string.SUBLABEL_SHARE_APP)
                 ) { onShareAppClick() }
-                ThemedDivider()
             }
+
+            item { ThemedDivider() }
 
             item {
                 CerveListItem(
@@ -134,7 +128,6 @@ fun SettingScreen(
                     supportingText = BuildConfig.VERSION_NAME
                 )
             }
-
 
         }
     }

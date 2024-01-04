@@ -91,13 +91,13 @@ fun NavigationGraph(
                         onDarkModeChange = vm::updateDarkModeValue,
                         onFeatureRequestClick = {
                             context.sendEmail(
-                                EMAIL_SUBJECT_FEATURE,
+                                subject = EMAIL_SUBJECT_FEATURE,
                                 title = context.getString(R.string.LABEL_SUPPORT_feature)
                             )
                                                 },
                         onBugReportClick = {
                             context.sendEmail(
-                                EMAIL_SUBJECT_BUG,
+                                subject = EMAIL_SUBJECT_BUG,
                                 title = context.getString(R.string.LABEL_SUPPORT_bug)
                             )
                                            },
