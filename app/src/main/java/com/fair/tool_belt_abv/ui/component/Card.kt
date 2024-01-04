@@ -106,36 +106,6 @@ fun DashboardCard(
 }
 
 @Composable
-fun AbvContent(
-    abv: String,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.Bottom,
-        horizontalArrangement = Arrangement.spacedBy(sizes.small)
-    ) {
-        TextAnimation(
-            modifier = Modifier,
-            value = abv
-        ) { value ->
-            Text(
-                text = stringResource(id = R.string.DEFAULT_RESULT_abv, value),
-                textAlign = TextAlign.End,
-                style = typography.displayMedium.copy(fontWeight = FontWeight.Black)
-            )
-        }
-
-
-            Text(
-                modifier = Modifier,
-                text = stringResource(id = R.string.DEFAULT_ABV_LABEL),
-                style = typography.labelSmall
-            )
-    }
-}
-
-@Composable
 fun ResultContent(
     label: String,
     value: String,
@@ -192,11 +162,6 @@ fun ResultContent(
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun AbvContentPreview() {
-    AbvContent(abv = "1.54")
-}
 
 @Preview
 @Composable

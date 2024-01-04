@@ -2,6 +2,7 @@ package com.fair.tool_belt_abv.util
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.EXTRA_TEXT
 import android.net.Uri
 import android.os.Build
 import com.fair.tool_belt_abv.BuildConfig
@@ -15,20 +16,23 @@ fun String.isLeadingDecimal(): String {
 }
 
 const val RECEIVER_EMAIL = "infocerveapps@gmail.com"
+const val STORE_LINK_ANDROID = "https://play.google.com/store/apps/details?id=com.fair.tool_belt_abv"
+const val DEFAULT_INTENT_TYPE = "text/plain"
 const val EMAIL_SUBJECT_FEATURE = "Feature request"
 const val EMAIL_SUBJECT_BUG = "Bug report"
 const val EMAIL_SUBJECT_SUPPORT = "Support"
 
 fun Context.sendEmail(
+    subject: String,
     receiver: String = RECEIVER_EMAIL,
-    subject: String
+    title: String
 ) {
     Intent(Intent.ACTION_SENDTO).apply {
         data = Uri.parse("mailto:")
         putExtra(Intent.EXTRA_EMAIL, arrayOf(receiver))
         putExtra(Intent.EXTRA_SUBJECT, subject)
         putExtra(
-            Intent.EXTRA_TEXT,
+            EXTRA_TEXT,
             """ 
                ### DO NOT CHANGE BELOW THIS LINE ###
                
@@ -39,13 +43,23 @@ fun Context.sendEmail(
                App version: ${BuildConfig.VERSION_NAME}
             """.trimIndent()
         )
-    }.linkChooser(this)
+    }.linkChooser(this, title)
 }
 
-fun Intent?.linkChooser(context: Context) {
+fun Context.shared(
+    value: String,
+    title: String,
+) {
+    Intent(Intent.ACTION_SEND).apply {
+        putExtra(EXTRA_TEXT, value)
+        type = DEFAULT_INTENT_TYPE
+    }.linkChooser(this, title)
+}
+
+fun Intent?.linkChooser(context: Context, title: String) {
     if (this != null) {
         try {
-            context.startActivity(Intent.createChooser(this, "Select"))
+            context.startActivity(Intent.createChooser(this, title))
         } catch (_: Exception) { }
     }
 }

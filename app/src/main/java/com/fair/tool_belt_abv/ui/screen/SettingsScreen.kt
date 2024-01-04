@@ -1,27 +1,23 @@
 package com.fair.tool_belt_abv.ui.screen
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Circle
-import androidx.compose.material.icons.filled.DarkMode
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.NewReleases
-import androidx.compose.material.icons.filled.Palette
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.icons.twotone.BugReport
+import androidx.compose.material.icons.twotone.DarkMode
+import androidx.compose.material.icons.twotone.Info
+import androidx.compose.material.icons.twotone.NewReleases
+import androidx.compose.material.icons.twotone.Palette
+import androidx.compose.material.icons.twotone.Share
 import androidx.compose.material3.Icon
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,9 +31,11 @@ import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.BuildConfig
 import com.fair.tool_belt_abv.R
+import com.fair.tool_belt_abv.ui.component.CerveListItem
+import com.fair.tool_belt_abv.ui.component.CerveTopAppBar
 import com.fair.tool_belt_abv.ui.component.ThemedAppThemeDialog
+import com.fair.tool_belt_abv.ui.component.ThemedDivider
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingScreen(
     theme: AppTheme,
@@ -46,7 +44,8 @@ fun SettingScreen(
     onDarkModeChange: (Boolean) -> Unit = { },
     onAppThemeChange: (AppTheme) -> Unit = { },
     onFeatureRequestClick: () -> Unit = { },
-    onBugReportClick: () -> Unit = { }
+    onBugReportClick: () -> Unit = { },
+    onShareAppClick: () -> Unit = { }
 ) {
 
     var openAppThemeDialog by remember { mutableStateOf(false) }
@@ -54,29 +53,19 @@ fun SettingScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(
-                            id = R.string.NAV_DESTINATION_settings
-                        )
-                    )
-                }
-            )
+            CerveTopAppBar(title = stringResource(id = R.string.NAV_DESTINATION_settings))
         },
         contentWindowInsets = WindowInsets(0)
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier.padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(sizes.small),
-//            contentPadding = PaddingValues(sizes.medium)
         ) {
             item {
-                ListItem(
-                    modifier = Modifier.clickable { onDarkModeChange(!isDarkMode) },
-                    leadingContent = { Icon(imageVector = Icons.Default.DarkMode, contentDescription = null) },
-                    headlineContent = { Text(text = stringResource(id = R.string.LABEL_THEME_darkmode)) },
-                    supportingContent = { Text(text = stringResource(id = R.string.SUBLABEL_THEME_darkmode)) },
+                CerveListItem(
+                    leadingIcon = Icons.TwoTone.DarkMode,
+                    headlineText = stringResource(id = R.string.LABEL_THEME_darkmode),
+                    supportingText = stringResource(id = R.string.SUBLABEL_THEME_theme),
                     trailingContent = {
                         Switch(
                             checked = isDarkMode,
@@ -95,15 +84,13 @@ fun SettingScreen(
                         )
                     }
                 )
-
             }
 
             item {
-                ListItem(
-                    modifier = Modifier.clickable { openAppThemeDialog = true },
-                    leadingContent = { Icon(imageVector = Icons.Default.Palette, contentDescription = null) },
-                    headlineContent = { Text(text = stringResource(id = R.string.LABEL_THEME_theme)) },
-                    supportingContent = { Text(text = stringResource(id = R.string.SUBLABEL_THEME_theme)) },
+                CerveListItem(
+                    leadingIcon = Icons.TwoTone.Palette,
+                    headlineText = stringResource(id = R.string.LABEL_THEME_theme),
+                    supportingText =stringResource(id = R.string.SUBLABEL_THEME_theme),
                     trailingContent = {
                         Icon(
                             imageVector = Icons.Filled.Circle,
@@ -112,31 +99,39 @@ fun SettingScreen(
                         )
                     }
                 )
+                ThemedDivider()
             }
 
             item {
-                ListItem(
-                    modifier = Modifier.clickable { onFeatureRequestClick() },
-                    leadingContent = { Icon(imageVector = Icons.Default.NewReleases, contentDescription = null) },
-                    headlineContent = { Text(text = stringResource(id = R.string.LABEL_SUPPORT_feature)) },
-                    supportingContent = { Text(text = stringResource(id = R.string.SUBLABEL_SUPPORT_feature)) }
-                )
+                CerveListItem(
+                    leadingIcon = Icons.TwoTone.NewReleases,
+                    headlineText = stringResource(id = R.string.LABEL_SUPPORT_feature),
+                    supportingText = stringResource(id = R.string.SUBLABEL_SUPPORT_feature)
+                ) { onFeatureRequestClick() }
             }
 
             item {
-                ListItem(
-                    modifier = Modifier.clickable { onBugReportClick() },
-                    leadingContent = { Icon(imageVector = Icons.Default.BugReport, contentDescription = null) },
-                    headlineContent = { Text(text = stringResource(id = R.string.LABEL_SUPPORT_bug)) },
-                    supportingContent = { Text(text = stringResource(id = R.string.SUBLABEL_SUPPORT_bug)) }
-                )
+                CerveListItem(
+                    leadingIcon = Icons.TwoTone.BugReport,
+                    headlineText = stringResource(id = R.string.LABEL_SUPPORT_bug),
+                    supportingText = stringResource(id = R.string.SUBLABEL_SUPPORT_bug)
+                ) { onBugReportClick() }
             }
 
             item {
-                ListItem(
-                    leadingContent = { Icon(imageVector = Icons.Default.Info, contentDescription = null) },
-                    headlineContent = { Text(text = stringResource(id = R.string.LABEL_SYSTEM_version)) },
-                    supportingContent = { Text(text = BuildConfig.VERSION_NAME) }
+                CerveListItem(
+                    leadingIcon = Icons.TwoTone.Share,
+                    headlineText = stringResource(id = R.string.LABEL_SHARE_APP),
+                    supportingText = stringResource(id = R.string.SUBLABEL_SHARE_APP)
+                ) { onShareAppClick() }
+                ThemedDivider()
+            }
+
+            item {
+                CerveListItem(
+                    leadingIcon = Icons.TwoTone.Info,
+                    headlineText = stringResource(id = R.string.LABEL_SYSTEM_version),
+                    supportingText = BuildConfig.VERSION_NAME
                 )
             }
 
@@ -155,10 +150,8 @@ fun SettingScreen(
 @Preview
 @Composable
 fun SettingScreenPreview() {
-//    SettingScreen(
-//        isDarkMode = true,
-//        unit = AbvUnit.SG,
-////        equation = AbvEquation.S,
-//        theme = AppTheme.HOPS
-//    )
+    SettingScreen(
+        isDarkMode = true,
+        theme = AppTheme.HOPS
+    )
 }

@@ -8,6 +8,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.asArgs
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.stringArguments
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.toArgs
@@ -22,7 +23,9 @@ import com.fair.tool_belt_abv.ui.viewmodel.EquationCreationViewModel
 import com.fair.tool_belt_abv.ui.viewmodel.SettingViewModel
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_BUG
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_FEATURE
+import com.fair.tool_belt_abv.util.STORE_LINK_ANDROID
 import com.fair.tool_belt_abv.util.sendEmail
+import com.fair.tool_belt_abv.util.shared
 import org.koin.androidx.compose.getViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -87,10 +90,25 @@ fun NavigationGraph(
                         onAppThemeChange = vm::updateAppTheme,
                         onDarkModeChange = vm::updateDarkModeValue,
                         onFeatureRequestClick = {
-                            context.sendEmail(subject = EMAIL_SUBJECT_FEATURE)
-                        },
+                            context.sendEmail(
+                                EMAIL_SUBJECT_FEATURE,
+                                title = context.getString(R.string.LABEL_SUPPORT_feature)
+                            )
+                                                },
                         onBugReportClick = {
-                            context.sendEmail(subject = EMAIL_SUBJECT_BUG)
+                            context.sendEmail(
+                                EMAIL_SUBJECT_BUG,
+                                title = context.getString(R.string.LABEL_SUPPORT_bug)
+                            )
+                                           },
+                        onShareAppClick = {
+                            context.shared(
+                                title = context.getString(R.string.SUBLABEL_SHARE_APP),
+                                value = context.getString(
+                                    R.string.SUBLABEL_SHARE_APP_MORE_INFO,
+                                    STORE_LINK_ANDROID
+                                )
+                            )
                         }
                     )
                 }

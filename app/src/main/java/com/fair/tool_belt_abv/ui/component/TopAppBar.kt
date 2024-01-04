@@ -1,47 +1,39 @@
 package com.fair.tool_belt_abv.ui.component
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.HelpOutline
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SimpleAbvTopAppBar(
+fun CerveTopAppBar(
+    title: String,
     modifier: Modifier = Modifier,
-    title: String = "",
-    onNavigationButtonClick: () -> Unit = { }
+    showDivider: Boolean = false,
+    navigationIcon: @Composable () -> Unit = { },
+    actions: @Composable RowScope.() -> Unit = { }
 ) {
-    Column(modifier = modifier) {
+    Box(modifier = modifier, contentAlignment = Alignment.BottomCenter) {
         TopAppBar(
-            colors = topAppBarColors(
-                containerColor = colors.primaryContainer
-            ),
-            navigationIcon = {
-                IconButton(onClick = { onNavigationButtonClick() }) {
-                    Icon(
-                        imageVector = Icons.Outlined.HelpOutline,
-                        contentDescription = null
-                    )
-                }
-            },
+            colors = topAppBarColors(containerColor = Color.Transparent),
+            navigationIcon = navigationIcon,
+            actions = actions,
             title = { Text(text = title) }
         )
-        ThemedDivider()
+        if (showDivider) { ThemedDivider() }
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun SimpleAbvTopAppBarPreview() {
-    SimpleAbvTopAppBar()
+    CerveTopAppBar("Hello world")
 }

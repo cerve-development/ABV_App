@@ -1,16 +1,11 @@
 <resources>
 
-    <string name="DEFAULT.APP.name" translatable="false">Simple ABV</string>
+    <string name="DEFAULT.APP.name" translatable="false">Simple Abv</string>
     <string name="DEFAULT.BUTTON.TEXT.cancel">Cancel</string>
     <string name="DEFAULT.BUTTON.TEXT.ok">OK</string>
-    <string name="DEFAULT.RESULT.abv" translatable="false">%1$s%%</string>
     <string name="DEFAULT_ABV_LABEL">abv</string>
-    <string name="DEFAULT.RESULT.attenuation">Attenuation: %1$s%%</string>
     <string name="DEFAULT_RESULT_Attenuation_Abbreviation">attenuation</string>
-    <string name="DEFAULT.value" translatable="false">0.0</string>
 
-    <string name="EQUATION.SUBTEXT.advance" translatable="false">…</string>
-    <string name="EQUATION.SUBTEXT.simple" translatable="false">(og - fg) * 131.25</string>
     <string name="EQUATION.TEXT.advance">Advance</string>
     <string name="EQUATION.TEXT.simple">Simple</string>
 
@@ -23,6 +18,12 @@
     <string name="LABEL.SYSTEM.version">App version</string>
     <string name="LABEL.THEME.darkmode">Dark mode</string>
     <string name="LABEL.THEME.theme">App theme</string>
+    <string name="LABEL_SHARE_APP">Share App</string>
+    <string name="SUBLABEL_SHARE_APP">Share Simple Abv with others.</string>
+    <string name="SUBLABEL_SHARE_APP_MORE_INFO">
+        Check out Simple Abv,
+        the free app that makes abv calculation simple. %s
+    </string>
 
     <string name="NAV.DESTINATION.calculator">Calculator</string>
     <string name="NAV.DESTINATION.converter">Converter</string>
