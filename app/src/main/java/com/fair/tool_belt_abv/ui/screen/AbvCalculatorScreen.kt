@@ -45,8 +45,8 @@ fun AbvCalculatorScreen(
             TopAppBar(
                 title = {
                     CerveTabTopAppBar(
-                        items = CalculatorDestinationGraph.entries,
-                        state = pagerState
+                        state = pagerState,
+                        items = CalculatorDestinationGraph.entries
                     ) { tab ->
                         Text(
                             text = stringResource(tab.nameId),
@@ -69,8 +69,8 @@ fun AbvCalculatorScreen(
                 .padding(padding)
                 .fillMaxSize(),
             state = pagerState,
-        ) {
-            when(pagerState.currentPage) {
+        ) { page ->
+            when(page) {
                 CalculatorDestinationGraph.Result.ordinal -> {
                     CalculatorScreen(
                         originalText = state.og,
@@ -83,7 +83,6 @@ fun AbvCalculatorScreen(
                         onOriginalTextChange = onOGValueUpdate,
                         onFinalTextChange = onFGValueUpdate
                     )
-
                 }
                 CalculatorDestinationGraph.Equation.ordinal -> {
                     EquationListScreen(

@@ -56,9 +56,7 @@ fun <T> CerveTabTopAppBar(
         modifier = Modifier.fillMaxWidth(),
         selectedTabIndex = state.currentPage,
         indicator = { tabPositions ->
-            if (state.currentPage < tabPositions.size) {
-                TabIndicator(tabPositions[state.currentPage])
-            }
+            TabIndicator(tabPositions[state.currentPage])
         },
         divider = { },
         edgePadding = sizes.medium
