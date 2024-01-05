@@ -3,7 +3,6 @@ package com.fair.tool_belt_abv.ui.screen
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -13,23 +12,19 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScrollableTabRow
-import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.cerve.co.material3extension.designsystem.rounded
-import com.fair.tool_belt_abv.ui.component.TabIndicator
+import com.fair.tool_belt_abv.ui.component.CerveTabTopAppBar
 import com.fair.tool_belt_abv.ui.navigation.CalculatorDestinationGraph
 import com.fair.tool_belt_abv.ui.viewmodel.AbvCalculatorViewModel
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -41,7 +36,6 @@ fun AbvCalculatorScreen(
     onFGValueUpdate: (String) -> Unit = { },
     onEquationCreationNavigate: (String?) -> Unit = { }
 ) {
-    val scope = rememberCoroutineScope()
 
     val pagerState = rememberPagerState(
         CalculatorDestinationGraph.Result.ordinal
@@ -53,35 +47,14 @@ fun AbvCalculatorScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    ScrollableTabRow(
-                        modifier = Modifier.fillMaxWidth(),
-                        selectedTabIndex = position,
-                        indicator = { tabPositions ->
-                            if (position < tabPositions.size) {
-                                TabIndicator(tabPositions[position])
-                            }
-                        },
-                        divider = { },
-                        edgePadding = sizes.medium
-                    ) {
-                        CalculatorDestinationGraph.entries.forEachIndexed { index, destination ->
-                            Tab(
-                                selected = position == index,
-                                onClick = {
-                                    scope.launch {
-                                        pagerState.animateScrollToPage(index)
-                                    }
-                                }
-                            ) {
-                                Text(
-                                    modifier = Modifier.padding(sizes.medium),
-                                    text = stringResource(destination.nameId),
-                                    style = MaterialTheme.typography.labelSmall
-                                )
-                            }
-
-                        }
-
+                    CerveTabTopAppBar(
+                        items = CalculatorDestinationGraph.entries,
+                        state = pagerState
+                    ) { tab ->
+                        Text(
+                            text = stringResource(tab.nameId),
+                            style = MaterialTheme.typography.labelSmall
+                        )
                     }
                 },
                 actions = {
