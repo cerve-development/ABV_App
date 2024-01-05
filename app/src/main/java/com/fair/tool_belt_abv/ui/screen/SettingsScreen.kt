@@ -26,7 +26,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.cerve.abv.shared.model.AppTheme
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
-import com.fair.tool_belt_abv.BuildConfig
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.ui.component.CerveListItem
 import com.fair.tool_belt_abv.ui.component.CerveScaffold
@@ -38,6 +37,7 @@ import com.fair.tool_belt_abv.ui.component.ThemedDivider
 fun SettingScreen(
     theme: AppTheme,
     isDarkMode: Boolean,
+    appVersion: String,
     modifier: Modifier = Modifier,
     onDarkModeChange: (Boolean) -> Unit = { },
     onAppThemeChange: (AppTheme) -> Unit = { },
@@ -125,7 +125,7 @@ fun SettingScreen(
                 CerveListItem(
                     leadingIcon = Icons.TwoTone.Info,
                     headlineText = stringResource(id = R.string.LABEL_SYSTEM_version),
-                    supportingText = BuildConfig.VERSION_NAME
+                    supportingText = appVersion
                 )
             }
 
@@ -145,6 +145,7 @@ fun SettingScreen(
 fun SettingScreenPreview() {
     SettingScreen(
         isDarkMode = true,
-        theme = AppTheme.HOPS
+        theme = AppTheme.HOPS,
+        appVersion = "1.2.3"
     )
 }

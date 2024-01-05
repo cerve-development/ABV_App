@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "244271337288",
-    "project_id": "tool-belt-abv-firebase",
-    "storage_bucket": "tool-belt-abv-firebase.appspot.com"
+    "project_number": "826591672367",
+    "project_id": "simple-abv-b1b12",
+    "storage_bucket": "simple-abv-b1b12.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:244271337288:android:63b885314b9dece14d2d7d",
+        "mobilesdk_app_id": "1:826591672367:android:4214a342d6c66283e92eda",
         "android_client_info": {
           "package_name": "com.fair.tool_belt_abv"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "244271337288-hhbt430mt7cjjj30m7s39tgme8k4d2v0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCQ3dfxLQw0HtSEbX2g7zntYLlo32wAy6U"
+          "current_key": "AIzaSyAi37f8h5xaQ5785DidrnW-cscx7RnBSkM"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "244271337288-hhbt430mt7cjjj30m7s39tgme8k4d2v0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -24,9 +24,9 @@ import com.fair.tool_belt_abv.ui.viewmodel.SettingViewModel
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_BUG
 import com.fair.tool_belt_abv.util.EMAIL_SUBJECT_FEATURE
 import com.fair.tool_belt_abv.util.STORE_LINK_ANDROID
+import com.fair.tool_belt_abv.util.getVersion
 import com.fair.tool_belt_abv.util.sendEmail
 import com.fair.tool_belt_abv.util.shared
-import org.koin.androidx.compose.getViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -43,7 +43,7 @@ fun NavigationGraph(
     ) {
         cerveNavigationComposable(TopLevelDestinationGraph.CALCULATOR.route) {
 
-            val vm : AbvCalculatorViewModel = getViewModel()
+            val vm : AbvCalculatorViewModel = koinViewModel()
             val uiState by vm.uiState.collectAsStateWithLifecycle()
 
             uiState.StateWrapper {
@@ -87,6 +87,7 @@ fun NavigationGraph(
                     SettingScreen(
                         theme = state.colorSchemePalette,
                         isDarkMode = state.getInDarkMode(),
+                        appVersion = context.getVersion(),
                         onAppThemeChange = vm::updateAppTheme,
                         onDarkModeChange = vm::updateDarkModeValue,
                         onFeatureRequestClick = {
@@ -94,7 +95,7 @@ fun NavigationGraph(
                                 subject = EMAIL_SUBJECT_FEATURE,
                                 title = context.getString(R.string.LABEL_SUPPORT_feature)
                             )
-                                                },
+                        },
                         onBugReportClick = {
                             context.sendEmail(
                                 subject = EMAIL_SUBJECT_BUG,

@@ -3,9 +3,10 @@ package com.fair.tool_belt_abv.util
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.EXTRA_TEXT
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import com.fair.tool_belt_abv.BuildConfig
+import com.fair.tool_belt_abv.R
 
 /**
  * Our application crashes when a user enters in ".<Number>" to avoid this crash,
@@ -21,6 +22,13 @@ const val DEFAULT_INTENT_TYPE = "text/plain"
 const val EMAIL_SUBJECT_FEATURE = "Feature request"
 const val EMAIL_SUBJECT_BUG = "Bug report"
 const val EMAIL_SUBJECT_SUPPORT = "Support"
+
+fun Context.getVersion() : String = try {
+    val info = packageManager.getPackageInfo(packageName, 0)
+    info.versionName
+} catch (e: PackageManager.NameNotFoundException) {
+   getString(R.string.LABEL_DEFAULT_APP_VERSION)
+}
 
 fun Context.sendEmail(
     subject: String,
@@ -40,7 +48,7 @@ fun Context.sendEmail(
                Model: ${Build.MODEL}
                SDK version: ${Build.VERSION.SDK_INT}
                Android version: ${Build.VERSION.RELEASE}
-               App version: ${BuildConfig.VERSION_NAME}
+               App version: ${getVersion()}
             """.trimIndent()
         )
     }.linkChooser(this, title)

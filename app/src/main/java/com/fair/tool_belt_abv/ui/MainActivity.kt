@@ -40,4 +40,10 @@ class MainActivity : ComponentActivity() {
 
         }
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        throw RuntimeException("Test Crash")
+    }
 }
+

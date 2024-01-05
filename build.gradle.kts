@@ -1,7 +1,6 @@
 buildscript {
 
     dependencies {
-        classpath(libs.firebase.crashlytics.gradle)
         classpath(libs.ktlint)
     }
 
@@ -15,4 +14,5 @@ plugins {
     alias(libs.plugins.kotliner) apply false
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.sqldelight) apply false
+    alias(libs.plugins.crashlytics) apply false
 }

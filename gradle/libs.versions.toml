@@ -3,6 +3,7 @@ activity_compose_version = "1.8.2"
 appcompat_version = "1.6.1"
 cerve_ui_version = "0.3.1"
 compose_bom_version = "2023.10.01"
+compose_compiler_version = "1.5.7"
 core_splashscreen_version = "1.0.1"
 core_version = "1.12.0"
 datastore_preferences_version = "1.1.0-alpha07"
@@ -44,13 +45,12 @@ espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref =
 
 firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase_bom_version" }
-firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "firebase_crashlytics_gradle_version" }
 firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 
 junit = { module = "junit:junit", version.ref = "junit_version" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin_version" }
-koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin_version" }
+koin-android-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin_version" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin_version" }
 
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx_datetime_version" }
@@ -78,3 +78,4 @@ kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin_version" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin_version" }
 kotliner = { id = "org.jmailen.kotlinter", version.ref = "kotliner_version" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight_version" }
+crashlytics = { id = "com.google.firebase.crashlytics" , version.ref = "firebase_crashlytics_gradle_version" }

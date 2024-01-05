@@ -3,17 +3,18 @@ plugins {
     id ("kotlin-kapt")
     id ("kotlin-android")
     id ("org.jmailen.kotlinter")
-//    id ("com.google.dagger.hilt.android")
-    id ("com.google.gms.google-services")
-    id ("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
+//    alias(libs.plugins.crashlytics)
+    id("com.google.firebase.crashlytics")
 }
 
 android {
+    namespace = "com.fair.tool_belt_abv"
+
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.fair.tool_belt_abv"
         minSdk = 21
-        compileSdk = 34
         targetSdk = 34
         versionCode = 14
         versionName = "1.9.$versionCode"
@@ -21,7 +22,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.7"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.version.get()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -45,8 +46,6 @@ android {
         compose = true
     }
 
-    namespace = "com.fair.tool_belt_abv"
-
 }
 
 dependencies {
@@ -68,7 +67,7 @@ dependencies {
 
     //di
     implementation(libs.koin.android)
-    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.android.compose)
 
     //in-app-review
     implementation(libs.review.ktx)
