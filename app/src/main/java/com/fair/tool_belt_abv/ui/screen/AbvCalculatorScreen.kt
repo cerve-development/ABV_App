@@ -18,8 +18,6 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -49,7 +47,7 @@ fun AbvCalculatorScreen(
         CalculatorDestinationGraph.Result.ordinal
     ) { CalculatorDestinationGraph.entries.size }
 
-    val position by remember { derivedStateOf { pagerState.currentPage } }
+    val position = remember { pagerState.currentPage }
 
     Scaffold(
         topBar = {
