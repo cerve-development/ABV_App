@@ -15,7 +15,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.cerve.abv.shared.model.AbvEquation
@@ -40,8 +39,6 @@ fun AbvCalculatorScreen(
     val pagerState = rememberPagerState(
         CalculatorDestinationGraph.Result.ordinal
     ) { CalculatorDestinationGraph.entries.size }
-
-    val position = remember { pagerState.currentPage }
 
     Scaffold(
         topBar = {
@@ -73,7 +70,7 @@ fun AbvCalculatorScreen(
                 .fillMaxSize(),
             state = pagerState,
         ) {
-            when(position) {
+            when(pagerState.currentPage) {
                 CalculatorDestinationGraph.Result.ordinal -> {
                     CalculatorScreen(
                         originalText = state.og,
