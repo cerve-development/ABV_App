@@ -66,7 +66,6 @@ fun AbvCalculatorScreen(
                         originalText = state.og,
                         finalText = state.fg,
                         abvUnit = state.selectedAbvUnit,
-                        abvEquation = state.selectedEquation,
                         abvValue = state.abv,
                         attenuationValue = state.attenuation,
                         onUnitSelect = onUnitSelect,

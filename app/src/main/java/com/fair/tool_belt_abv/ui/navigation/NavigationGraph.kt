@@ -7,6 +7,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.cerve.abv.shared.model.AppTheme
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.ui.component.cerveNavigationComposable
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.asArgs
@@ -32,6 +33,8 @@ import org.koin.core.parameter.parametersOf
 
 @Composable
 fun NavigationGraph(
+    inDarkMode: Boolean,
+    appTheme: AppTheme,
     navController: NavHostController,
     startDestination: String,
     modifier: Modifier = Modifier
@@ -78,42 +81,36 @@ fun NavigationGraph(
 
         cerveNavigationComposable(TopLevelDestinationGraph.SETTINGS.route) {
             val vm: SettingViewModel = koinViewModel()
-            val uiState by vm.uiState.collectAsStateWithLifecycle()
-
             val context = LocalContext.current
 
-            uiState.StateWrapper {
-                ScreenWrapper { state ->
-                    SettingScreen(
-                        theme = state.colorSchemePalette,
-                        isDarkMode = state.getInDarkMode(),
-                        appVersion = context.getVersion(),
-                        onAppThemeChange = vm::updateAppTheme,
-                        onDarkModeChange = vm::updateDarkModeValue,
-                        onFeatureRequestClick = {
-                            context.sendEmail(
-                                subject = EMAIL_SUBJECT_FEATURE,
-                                title = context.getString(R.string.LABEL_SUPPORT_feature)
-                            )
-                        },
-                        onBugReportClick = {
-                            context.sendEmail(
-                                subject = EMAIL_SUBJECT_BUG,
-                                title = context.getString(R.string.LABEL_SUPPORT_bug)
-                            )
-                                           },
-                        onShareAppClick = {
-                            context.shared(
-                                title = context.getString(R.string.SUBLABEL_SHARE_APP),
-                                value = context.getString(
-                                    R.string.SUBLABEL_SHARE_APP_MORE_INFO,
-                                    STORE_LINK_ANDROID
-                                )
-                            )
-                        }
+            SettingScreen(
+                inDarkMode = inDarkMode,
+                appTheme = appTheme,
+                appVersion = context.getVersion(),
+                onAppThemeChange = vm::updateAppTheme,
+                onDarkModeChange = vm::updateDarkModeValue,
+                onFeatureRequestClick = {
+                    context.sendEmail(
+                        subject = EMAIL_SUBJECT_FEATURE,
+                        title = context.getString(R.string.LABEL_SUPPORT_feature)
+                    )
+                },
+                onBugReportClick = {
+                    context.sendEmail(
+                        subject = EMAIL_SUBJECT_BUG,
+                        title = context.getString(R.string.LABEL_SUPPORT_bug)
+                    )
+                                   },
+                onShareAppClick = {
+                    context.shared(
+                        title = context.getString(R.string.SUBLABEL_SHARE_APP),
+                        value = context.getString(
+                            R.string.SUBLABEL_SHARE_APP_MORE_INFO,
+                            STORE_LINK_ANDROID
+                        )
                     )
                 }
-            }
+            )
         }
 
         cerveNavigationComposable(

@@ -3,6 +3,7 @@ package com.fair.tool_belt_abv.ui.component
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +21,7 @@ import com.cerve.co.material3extension.designsystem.ExtendedTheme.typography
 fun SurfaceButton(
     text: String,
     modifier: Modifier = Modifier,
+    shape: RoundedCornerShape = CircleShape,
     enabled: Boolean = true,
     onClick: () -> Unit
 ) {
@@ -28,7 +30,7 @@ fun SurfaceButton(
 
     Surface(
         modifier = modifier,
-        shape = CircleShape,
+        shape = shape,
         color = colors.primaryContainer,
         enabled = enabled,
         onClick = onClick

@@ -5,12 +5,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
 
 @Composable
@@ -22,10 +20,7 @@ fun SimpleAbvNavigationBar(
     Column(modifier = modifier) {
         ThemedDivider()
 
-        NavigationBar(
-            containerColor = colors.primaryContainer,
-            contentColor = contentColorFor(colors.primaryContainer)
-        ) {
+        NavigationBar {
             TopLevelDestinationGraph.entries.forEach { destination ->
 
                 val selected = currentDestination == destination.route

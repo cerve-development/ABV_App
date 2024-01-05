@@ -7,7 +7,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -22,7 +22,7 @@ fun AppTheme(
     val context = LocalContext.current
     val view = LocalView.current
 
-    DisposableEffect(colors) {
+    SideEffect {
         (context as ComponentActivity).apply {
             enableEdgeToEdge().also {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -36,7 +36,6 @@ fun AppTheme(
                 windowInsetsController.isAppearanceLightNavigationBars = !useDarkTheme
             }
         }
-        onDispose { }
     }
 
     MaterialTheme(colorScheme = colors) {

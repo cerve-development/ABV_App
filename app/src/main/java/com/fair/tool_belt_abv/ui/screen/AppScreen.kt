@@ -14,12 +14,15 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.cerve.abv.shared.model.AppTheme
 import com.fair.tool_belt_abv.ui.component.SimpleAbvNavigationBar
 import com.fair.tool_belt_abv.ui.navigation.NavigationGraph
 import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
 
 @Composable
 fun AppScreen(
+    inDarkMode: Boolean,
+    appTheme: AppTheme,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
@@ -60,8 +63,10 @@ fun AppScreen(
     ) { innerPadding ->
         NavigationGraph(
             modifier = Modifier.padding(innerPadding),
+            inDarkMode = inDarkMode,
+            appTheme = appTheme,
             navController = navController,
-            startDestination = TopLevelDestinationGraph.CALCULATOR.route
+            startDestination = TopLevelDestinationGraph.SETTINGS.route
         )
     }
 }
@@ -69,5 +74,5 @@ fun AppScreen(
 @Preview
 @Composable
 fun AppScreenPreview() {
-    AppScreen()
+    AppScreen(true, AppTheme.LEGACY)
 }

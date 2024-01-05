@@ -4,7 +4,8 @@ enum class AppTheme {
 
     LEGACY,
     STOUT,
-    HOPS;
+    HOPS,
+    LAGER;
 
     companion object {
         fun tryValueOf(value: String?): AppTheme {
@@ -16,5 +17,6 @@ enum class AppTheme {
                 LEGACY
             }
         }
+        
     }
 }

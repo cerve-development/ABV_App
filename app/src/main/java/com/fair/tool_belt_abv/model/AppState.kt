@@ -6,6 +6,8 @@ import androidx.compose.runtime.Composable
 import com.cerve.abv.shared.model.AppTheme
 import com.fair.tool_belt_abv.ui.theme.HopsDarkColors
 import com.fair.tool_belt_abv.ui.theme.HopsLightColors
+import com.fair.tool_belt_abv.ui.theme.LagerDarkColors
+import com.fair.tool_belt_abv.ui.theme.LagerLightColors
 import com.fair.tool_belt_abv.ui.theme.LegacyDarkColors
 import com.fair.tool_belt_abv.ui.theme.LegacyLightColors
 import com.fair.tool_belt_abv.ui.theme.StoutDarkColors
@@ -26,12 +28,14 @@ data class AppState(
         AppTheme.LEGACY -> LegacyDarkColors
         AppTheme.STOUT -> StoutDarkColors
         AppTheme.HOPS -> HopsDarkColors
+        AppTheme.LAGER -> LagerLightColors
     }
 
     private val lightColorScheme: ColorScheme = when(colorSchemePalette) {
         AppTheme.LEGACY -> LegacyLightColors
         AppTheme.STOUT -> StoutLightColors
         AppTheme.HOPS -> HopsLightColors
+        AppTheme.LAGER -> LagerDarkColors
     }
 
 }

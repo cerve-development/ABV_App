@@ -1,24 +1,30 @@
 package com.fair.tool_belt_abv.ui.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cerve.abv.shared.model.AppTheme
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
+import com.fair.tool_belt_abv.ui.viewmodel.SettingViewModel.SettingsState.Companion.primaryColors
 
 @Composable
 fun ThemedAppThemeDialog(
@@ -27,9 +33,6 @@ fun ThemedAppThemeDialog(
     onOkClick: (AppTheme) -> Unit,
     onDismiss: () -> Unit
 ) {
-    var selected by remember(theme) {
-        mutableStateOf(theme)
-    }
 
     if (isOpen) {
         AlertDialog(
@@ -46,46 +49,42 @@ fun ThemedAppThemeDialog(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    AppTheme.entries.forEach { appTheme ->
+                    primaryColors().forEach { selected ->
                         Column(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(CircleShape)
+                                .clickable {
+                                    onOkClick(selected.theme)
+                                    onDismiss()
+                                }
+                                .padding(sizes.small),
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.spacedBy(sizes.small)
                         ) {
-//                            Surface(
-//                                onClick = { selected = appTheme },
-//                                modifier = Modifier.size(sizes.xLarge),
-//                                shape = CircleShape,
-//                                border = if (selected == appTheme) {
-//                                    themedBorder(
-//                                        thickness = sizes.xSmall,
-//                                        color = appTheme.color.copy(alpha = alphas.m_50)
-//                                    )
-//                                } else {
-//                                    null
-//                                }
-//                            ) {
-//                                Icon(
-//                                    imageVector = Icons.Default.Circle,
-//                                    contentDescription = null,
-//                                    tint = appTheme.color
-//                                )
-//                            }
+                            if (selected.theme == theme){
+                                CerveIcon(
+                                    modifier = Modifier.size(sizes.large),
+                                    imageVector = Icons.Filled.CheckCircle,
+                                    tint = selected.color
+                                )
+                            } else {
+                                CerveIcon(
+                                    modifier = Modifier.size(sizes.large),
+                                    imageVector = Icons.Default.Circle,
+                                    tint = selected.color
+                                )
+                            }
 
-                            Text(text = appTheme.name)
+                            Text(
+                                text = selected.theme.name,
+                                style = MaterialTheme.typography.labelSmall
+                            )
                         }
                     }
                 }
             },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        onOkClick(selected)
-                        onDismiss()
-                    }
-                ) {
-                    Text(text = stringResource(id = R.string.DEFAULT_BUTTON_TEXT_ok))
-                }
-            },
+            confirmButton = { },
             dismissButton = {
                 TextButton(onClick = { onDismiss() }) {
                     Text(text = stringResource(id = R.string.DEFAULT_BUTTON_TEXT_cancel))

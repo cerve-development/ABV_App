@@ -34,16 +34,17 @@ class MainActivity : ComponentActivity() {
                     AppTheme(
                         colors = state.getColors(),
                         useDarkTheme = state.getInDarkMode()
-                    ) { AppScreen() }
+                    ) {
+                        AppScreen(
+                            inDarkMode = state.getInDarkMode(),
+                            appTheme = state.colorSchemePalette
+                        )
+                    }
                 }
             }
 
         }
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        throw RuntimeException("Test Crash")
-    }
 }
 

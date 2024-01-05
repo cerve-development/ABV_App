@@ -39,7 +39,6 @@ fun RadioGroupUnit(
             horizontalArrangement = Arrangement.spacedBy(sizes.small)
         ) {
             group.forEach { unit ->
-
                 RadioCard(
                     text = unit.name,
                     selected = selected == unit,
@@ -49,43 +48,6 @@ fun RadioGroupUnit(
         }
     }
 }
-
-//@Composable
-//fun RadioGroupEquation(
-//    label: String,
-//    selected: AbvEquation,
-//    modifier: Modifier = Modifier,
-//    group: List<AbvEquation> = AbvEquation.entries,
-//    onSelected: (AbvEquation) -> Unit = { }
-//) {
-//    Column(
-//        modifier = modifier,
-//        verticalArrangement = Arrangement.spacedBy(sizes.small)
-//    ) {
-//        Text(
-//            text = label,
-//            style = ExtendedTheme.typography.bodySmall
-//        )
-//
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .selectableGroup(),
-//            verticalAlignment = Alignment.CenterVertically,
-//            horizontalArrangement = Arrangement.spacedBy(sizes.small)
-//        ) {
-//            group.forEach { unit ->
-//
-//                RadioCard(
-//                    text = stringResource(id = unit.textId),
-//                    subText = unit.subtextId?.let { stringResource(id = it) },
-//                    selected = selected == unit,
-//                    modifier = Modifier.weight(1f)
-//                ) { onSelected(unit) }
-//            }
-//        }
-//    }
-//}
 
 @Preview
 @Composable

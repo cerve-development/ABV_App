@@ -35,10 +35,10 @@ import com.fair.tool_belt_abv.ui.component.ThemedDivider
 
 @Composable
 fun SettingScreen(
-    theme: AppTheme,
-    isDarkMode: Boolean,
     appVersion: String,
     modifier: Modifier = Modifier,
+    appTheme: AppTheme = AppTheme.LEGACY,
+    inDarkMode: Boolean = false,
     onDarkModeChange: (Boolean) -> Unit = { },
     onAppThemeChange: (AppTheme) -> Unit = { },
     onFeatureRequestClick: () -> Unit = { },
@@ -60,8 +60,8 @@ fun SettingScreen(
                     supportingText = stringResource(id = R.string.SUBLABEL_THEME_theme),
                     trailingContent = {
                         Switch(
-                            checked = isDarkMode,
-                            thumbContent = if (isDarkMode) {
+                            checked = inDarkMode,
+                            thumbContent = if (inDarkMode) {
                                 {
                                     Icon(
                                         imageVector = Icons.Filled.Check,
@@ -133,7 +133,7 @@ fun SettingScreen(
     }
 
     ThemedAppThemeDialog(
-        theme = theme,
+        theme = appTheme,
         isOpen = openAppThemeDialog,
         onOkClick = { onAppThemeChange(it) },
         onDismiss = { openAppThemeDialog = false }
@@ -144,8 +144,6 @@ fun SettingScreen(
 @Composable
 fun SettingScreenPreview() {
     SettingScreen(
-        isDarkMode = true,
-        theme = AppTheme.HOPS,
         appVersion = "1.2.3"
     )
 }
