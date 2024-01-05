@@ -42,41 +42,47 @@ fun CerveTopAppBar(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun <T> CerveTabTopAppBar(
     items: List<T>,
     initial: Int = 0,
     state: PagerState = rememberPagerState(initial) { items.size },
+    actions: @Composable RowScope.() -> Unit = { },
     content: @Composable (T) -> Unit = { }
 ) {
     val scope = rememberCoroutineScope()
 
-    ScrollableTabRow(
-        modifier = Modifier.fillMaxWidth(),
-        selectedTabIndex = state.currentPage,
-        indicator = { tabPositions ->
-            TabIndicator(tabPositions[state.currentPage])
-        },
-        divider = { },
-        edgePadding = sizes.medium
-    ) {
-        items.forEachIndexed { index, item ->
-            Tab(
-                modifier = Modifier,
-                selected = state.currentPage == index,
-                onClick = {
-                    scope.launch {
-                        state.animateScrollToPage(index)
+    TopAppBar(
+        title = {
+            ScrollableTabRow(
+                modifier = Modifier.fillMaxWidth(),
+                selectedTabIndex = state.currentPage,
+                indicator = { tabPositions ->
+                    TabIndicator(tabPositions[state.currentPage])
+                },
+                divider = { },
+                edgePadding = sizes.medium
+            ) {
+                items.forEachIndexed { index, item ->
+                    Tab(
+                        modifier = Modifier,
+                        selected = state.currentPage == index,
+                        onClick = {
+                            scope.launch {
+                                state.animateScrollToPage(index)
+                            }
+                        }
+                    ) {
+                        Box(modifier = Modifier.padding(sizes.medium)) {
+                            content(item)
+                        }
                     }
                 }
-            ) {
-                Box(modifier = Modifier.padding(sizes.medium)) {
-                    content(item)
-                }
             }
-        }
-    }
+        },
+        actions = actions
+    )
 }
 
 @Preview(showBackground = true)
