@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.rounded.EditNote
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -23,7 +22,7 @@ import com.fair.tool_belt_abv.ui.component.CerveTabTopAppBar
 import com.fair.tool_belt_abv.ui.navigation.CalculatorDestinationGraph
 import com.fair.tool_belt_abv.ui.viewmodel.AbvCalculatorViewModel
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AbvCalculatorScreen(
     state: AbvCalculatorViewModel.AbvCalculatorState,

@@ -2,6 +2,7 @@ package com.fair.tool_belt_abv.ui.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -16,7 +17,7 @@ fun CerveScaffold(
 ) {
 
     Scaffold(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         topBar = topBar,
         contentWindowInsets = windowInsets
     ) { innerPadding ->
