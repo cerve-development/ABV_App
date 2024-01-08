@@ -56,7 +56,7 @@ fun EquationCreationScreen(
     errorMessage: String = stringResource(id = R.string.LABEL_ABV_RESULT_ERROR),
     onNameUpdate: (String) -> Unit = { },
     onEquationUpdate: (String) -> Unit = { },
-    onEquationDelete: (() -> Unit)? = null,
+    onEquationDelete: (String) -> Unit = { },
     onEquationSave: (EquationCreationViewModel.UiState) -> Unit = { },
     onBackClick: () -> Unit = { }
 ) {
@@ -80,7 +80,6 @@ fun EquationCreationScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = {
@@ -119,8 +118,8 @@ fun EquationCreationScreen(
                     )
                 },
                 actions = {
-                    onEquationDelete?.let {
-                        IconButton(onClick = { onEquationDelete() }) {
+                    if (state.isDeletable) {
+                        IconButton(onClick = { onEquationDelete(state.name) }) {
                             Icon(
                                 imageVector = Icons.TwoTone.Delete,
                                 contentDescription = null

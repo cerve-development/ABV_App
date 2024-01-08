@@ -2,6 +2,7 @@ package com.fair.tool_belt_abv.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -13,6 +14,7 @@ import com.fair.tool_belt_abv.ui.component.cerveNavigationComposable
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.asArgs
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.stringArguments
 import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.Companion.toArgs
+import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph.EQUATION
 import com.fair.tool_belt_abv.ui.screen.AbvCalculatorScreen
 import com.fair.tool_belt_abv.ui.screen.ConverterScreen
 import com.fair.tool_belt_abv.ui.screen.EquationCreationScreen
@@ -114,10 +116,10 @@ fun NavigationGraph(
         }
 
         cerveNavigationComposable(
-            route = LowerLevelDestinationGraph.EQUATION.asArgs(),
-            arguments = LowerLevelDestinationGraph.EQUATION.stringArguments()
+            route = EQUATION.asArgs(),
+            arguments = EQUATION.stringArguments()
         ) {
-            val name = it.arguments?.getString(LowerLevelDestinationGraph.EQUATION.args)
+            val name = remember { it.arguments?.getString(EQUATION.args) }
             val vm : EquationCreationViewModel = koinViewModel(parameters = { parametersOf(name) })
             val uiState by vm.uiState.collectAsStateWithLifecycle()
 
@@ -135,9 +137,7 @@ fun NavigationGraph(
                         state = state,
                         onNameUpdate = vm::updateName,
                         onEquationUpdate = vm::updateEquation,
-                        onEquationDelete = if (name != null) {
-                            { vm.deleteEquation(name) }
-                        } else null,
+                        onEquationDelete = vm::deleteEquation,
                         onEquationSave = vm::saveEquation
                     ) { navController.popBackStack() }
                 }

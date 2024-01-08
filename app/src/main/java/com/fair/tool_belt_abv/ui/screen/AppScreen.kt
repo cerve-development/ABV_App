@@ -5,9 +5,10 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -16,6 +17,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.cerve.abv.shared.model.AppTheme
 import com.fair.tool_belt_abv.ui.component.SimpleAbvNavigationBar
+import com.fair.tool_belt_abv.ui.navigation.LowerLevelDestinationGraph
 import com.fair.tool_belt_abv.ui.navigation.NavigationGraph
 import com.fair.tool_belt_abv.ui.navigation.TopLevelDestinationGraph
 
@@ -27,18 +29,23 @@ fun AppScreen(
     navController: NavHostController = rememberNavController()
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = remember(backStackEntry) { backStackEntry?.destination?.route }
-    val isTopLevelDestination by remember(currentDestination) {
-        derivedStateOf {
-             TopLevelDestinationGraph.entries.find { it.route == currentDestination } != null
+    var isTopLevelDestination = rememberSaveable { mutableStateOf(true) }
+
+    val currentDestination = (backStackEntry?.destination?.route)
+
+    LaunchedEffect(backStackEntry) {
+        isTopLevelDestination.value = when (currentDestination) {
+            LowerLevelDestinationGraph.EQUATION.route -> false
+            else -> true
         }
     }
-
     Scaffold(
         modifier = modifier,
         contentWindowInsets = WindowInsets(0),
         bottomBar = {
-            AnimatedVisibility(visible = isTopLevelDestination) {
+
+            AnimatedVisibility(visible = isTopLevelDestination.value) {
+
                 SimpleAbvNavigationBar(
                     currentDestination = currentDestination,
                     onNavigateToDestination = { destination ->
@@ -66,7 +73,7 @@ fun AppScreen(
             inDarkMode = inDarkMode,
             appTheme = appTheme,
             navController = navController,
-            startDestination = TopLevelDestinationGraph.SETTINGS.route
+            startDestination = TopLevelDestinationGraph.CALCULATOR.route
         )
     }
 }

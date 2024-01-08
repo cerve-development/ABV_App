@@ -69,6 +69,7 @@ class EquationCreationViewModel(
     fun deleteEquation(name: String) = viewModelScope.launch {
         _uiState.loading {
             deleteEquationUseCase.invoke(name)
+
             Screen.Event(state = it, type = Screen.EventType.Navigation())
         }
 
@@ -77,7 +78,8 @@ class EquationCreationViewModel(
     data class UiState(
         val name: String = EMPTY_STRING,
         val equation: String = EMPTY_STRING,
-        val solution: String? = null
+        val solution: String? = null,
+        val isDeletable: Boolean = false
     )
 
     companion object {
