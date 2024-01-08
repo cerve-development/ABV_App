@@ -28,14 +28,14 @@ data class AppState(
         AppTheme.LEGACY -> LegacyDarkColors
         AppTheme.STOUT -> StoutDarkColors
         AppTheme.HOPS -> HopsDarkColors
-        AppTheme.LAGER -> LagerLightColors
+        AppTheme.LAGER -> LagerDarkColors
     }
 
     private val lightColorScheme: ColorScheme = when(colorSchemePalette) {
         AppTheme.LEGACY -> LegacyLightColors
         AppTheme.STOUT -> StoutLightColors
         AppTheme.HOPS -> HopsLightColors
-        AppTheme.LAGER -> LagerDarkColors
+        AppTheme.LAGER -> LagerLightColors
     }
 
 }
