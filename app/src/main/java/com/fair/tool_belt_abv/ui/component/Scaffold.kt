@@ -13,12 +13,14 @@ fun CerveScaffold(
     modifier: Modifier = Modifier,
     windowInsets: WindowInsets = WindowInsets(0),
     topBar: @Composable () -> Unit = { },
+    bottomBar: @Composable () -> Unit = { },
     content: @Composable () -> Unit = { },
 ) {
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = topBar,
+        bottomBar = bottomBar,
         contentWindowInsets = windowInsets
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {

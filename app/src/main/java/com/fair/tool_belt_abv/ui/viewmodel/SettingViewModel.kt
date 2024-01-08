@@ -5,15 +5,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cerve.abv.shared.StorageManager
 import com.cerve.abv.shared.model.AppTheme
+import com.fair.tool_belt_abv.ui.screen.Screen
+import com.fair.tool_belt_abv.ui.screen.Screen.Companion.asScreenStateIn
 import com.fair.tool_belt_abv.ui.theme.HopsLightColors
 import com.fair.tool_belt_abv.ui.theme.LagerLightColors
 import com.fair.tool_belt_abv.ui.theme.LegacyLightColors
 import com.fair.tool_belt_abv.ui.theme.StoutLightColors
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class SettingViewModel(
     private val storageManager: StorageManager
 ) : ViewModel() {
+
+    val uiState = storageManager.settingPreferences.map {
+        Screen.Loaded(SettingsState(it.inDarkMode, it.appTheme))
+    }.asScreenStateIn(SettingsState(), viewModelScope)
 
     fun updateAppTheme(appTheme: AppTheme) {
         viewModelScope.launch {

@@ -7,7 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.fair.tool_belt_abv.ui.screen.AppScreen
+import com.fair.tool_belt_abv.ui.navigation.RootNavGraph
 import com.fair.tool_belt_abv.ui.theme.AppTheme
 import com.fair.tool_belt_abv.ui.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,12 +32,7 @@ class MainActivity : ComponentActivity() {
                     AppTheme(
                         colors = state.getColors(),
                         useDarkTheme = state.getInDarkMode()
-                    ) {
-                        AppScreen(
-                            inDarkMode = state.getInDarkMode(),
-                            appTheme = state.colorSchemePalette
-                        )
-                    }
+                    ) { RootNavGraph() }
                 }
             }
 
