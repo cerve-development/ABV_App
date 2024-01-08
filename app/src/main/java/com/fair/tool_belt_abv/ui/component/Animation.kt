@@ -49,6 +49,8 @@ fun TextAnimation(
     ) { content(it) }
 }
 
+const val ANIMATION_DURATION_MILLIS = 500
+const val ANIMATION_DELAY_MILLIS = 100
 fun NavGraphBuilder.cerveNavigationComposable(
     route: String,
     arguments: List<NamedNavArgument> = emptyList(),
@@ -62,26 +64,26 @@ fun NavGraphBuilder.cerveNavigationComposable(
         content = content,
         enterTransition = {
             slideIntoContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
-                animationSpec = tween(700)
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                animationSpec = tween(ANIMATION_DURATION_MILLIS)
             )
         },
         exitTransition = {
             slideOutOfContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
-                animationSpec = tween(700)
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                animationSpec = tween(ANIMATION_DURATION_MILLIS)
             )
         },
         popEnterTransition = {
             slideIntoContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
-                animationSpec = tween(700)
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
+                animationSpec = tween(ANIMATION_DURATION_MILLIS)
             )
         },
         popExitTransition = {
             slideOutOfContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
-                animationSpec = tween(700)
+                towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
+                animationSpec = tween(ANIMATION_DURATION_MILLIS)
             )
         }
     )
