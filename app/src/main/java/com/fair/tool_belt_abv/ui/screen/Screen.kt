@@ -1,7 +1,10 @@
 package com.fair.tool_belt_abv.ui.screen
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
 import com.fair.tool_belt_abv.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -66,12 +69,20 @@ sealed class Screen<T>(val value: T) {
 
     @Composable
     fun StateWrapper(
+        modifier: Modifier = Modifier,
         onLoading: @Composable () -> Unit = { },
-        content: @Composable Screen<T>.() -> Unit
+        content: @Composable Screen<T>.() -> Unit = { }
     ) {
-        when(val state = this) {
-            is Loading -> { onLoading() }
-            else -> { content(state) }
+        Box(modifier = modifier.fillMaxSize()) {
+            when (val state = this@Screen) {
+                is Loading -> {
+                    onLoading()
+                }
+
+                else -> {
+                    content(state)
+                }
+            }
         }
     }
 
