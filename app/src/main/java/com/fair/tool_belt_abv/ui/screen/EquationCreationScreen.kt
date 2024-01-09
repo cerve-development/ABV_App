@@ -18,9 +18,8 @@ import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -32,7 +31,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.focus.FocusRequester
@@ -40,17 +38,18 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalTextInputService
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.cerve.abv.shared.model.AbvEquation
+import com.cerve.abv.shared.model.AbvEquation.StaticValues
 import com.cerve.co.material3extension.designsystem.ExtendedTheme
 import com.cerve.co.material3extension.designsystem.rounded
 import com.fair.tool_belt_abv.R
+import com.fair.tool_belt_abv.ui.component.CerveScaffold
 import com.fair.tool_belt_abv.ui.component.CustomKeyboard
 import com.fair.tool_belt_abv.ui.viewmodel.EquationCreationViewModel
-import com.fair.tool_belt_abv.ui.viewmodel.EquationCreationViewModel.Companion.EMPTY_STRING
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,15 +72,16 @@ fun EquationCreationScreen(
         ), label = ""
     )
 
-    val focusRequester = FocusRequester()
+    val nameFocusRequester = remember { FocusRequester() }
+    val equationFocusRequester = remember { FocusRequester() }
 
     LaunchedEffect(editable) {
         if(editable) {
-            focusRequester.requestFocus()
-        }
+            nameFocusRequester.requestFocus()
+        } else equationFocusRequester.requestFocus()
     }
 
-    Scaffold(
+    CerveScaffold(
         modifier = modifier,
         topBar = {
             TopAppBar(
@@ -101,7 +101,7 @@ fun EquationCreationScreen(
                 title = {
                     TextField(
                         modifier = Modifier
-                            .focusRequester(focusRequester)
+                            .focusRequester(nameFocusRequester)
                             .clickable(
                                 interactionSource = MutableInteractionSource(),
                                 indication = null
@@ -145,26 +145,33 @@ fun EquationCreationScreen(
                         val equation = StringBuilder(state.equation.text)
                             .deleteAt(cursor).toString()
 
-                        onEquationUpdate(state.equation.copy(text = equation))
-                    } catch (_: Exception) { }
+                        val stateCopy = state.equation
+                            .copy(text = equation, selection = TextRange(cursor))
+
+                        onEquationUpdate(stateCopy)
+                    } catch (_: Exception) {  }
+
                 },
                 onEqualKeyClick = { onEquationSave(state) }
             ) { keyValue ->
-                try {
-                    val cursor = state.equation.selection.start
-                    val equation = StringBuilder(state.equation.text)
+                var cursor = state.equation.selection.start
+                val equation = StringBuilder(state.equation.text)
                         .insert(cursor, keyValue).toString()
 
-                    onEquationUpdate(state.equation.copy(text = equation))
-                } catch (_: Exception) { }
+                when(keyValue) {
+                    StaticValues.OG.name, StaticValues.FG.name -> cursor += 2
+                    else -> cursor++
+                }
+                val stateCopy = state.equation
+                    .copy(text = equation, selection = TextRange(cursor + 1))
+
+                onEquationUpdate(stateCopy)
             }
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .padding(ExtendedTheme.sizes.medium)
-        ) {
+        },
+        windowInsets = ScaffoldDefaults.contentWindowInsets
+    ) {
+        Column(modifier = Modifier.padding(ExtendedTheme.sizes.medium)) {
+
             val result = remember(state.solution) { state.solution ?: errorMessage }
 
             Text(
@@ -176,12 +183,12 @@ fun EquationCreationScreen(
 
                 TextField(
                     modifier = Modifier
+                        .focusRequester(equationFocusRequester)
                         .fillMaxSize()
-                        .wrapContentHeight()
-                        .align(Alignment.End),
+                        .wrapContentHeight(),
                     value = state.equation,
                     onValueChange = { value -> onEquationUpdate(value) },
-                    textStyle = typography.headlineLarge.copy(textAlign = TextAlign.Justify),
+                    textStyle = typography.headlineLarge.copy(textAlign = TextAlign.Right),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.Transparent,
                         unfocusedContainerColor = Color.Transparent,

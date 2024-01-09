@@ -2,7 +2,6 @@ package com.fair.tool_belt_abv.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -38,7 +37,7 @@ fun RootNavGraph(
             route = EQUATION.asArgs(),
             arguments = EQUATION.stringArguments()
         ) {
-            val name = remember { it.arguments?.getString(EQUATION.args) }
+            val name = it.arguments?.getString(EQUATION.args)
             val vm : EquationCreationViewModel = koinViewModel(parameters = { parametersOf(name) })
             val uiState by vm.uiState.collectAsStateWithLifecycle()
 

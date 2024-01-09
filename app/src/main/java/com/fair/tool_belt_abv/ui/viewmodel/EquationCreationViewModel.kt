@@ -8,8 +8,6 @@ import com.cerve.abv.shared.domain.GetEquationUseCase
 import com.cerve.abv.shared.domain.NewEquationUseCase
 import com.cerve.abv.shared.domain.SetCalculatorEquationUseCase
 import com.cerve.abv.shared.model.AbvEquation
-import com.cerve.abv.shared.model.AbvEquation.Custom.equation
-import com.cerve.abv.shared.model.AbvEquation.Custom.stateCopy
 import com.fair.tool_belt_abv.ui.screen.Screen
 import com.fair.tool_belt_abv.ui.screen.Screen.Companion.asScreenStateIn
 import com.fair.tool_belt_abv.ui.screen.Screen.Companion.loaded
@@ -37,7 +35,6 @@ class EquationCreationViewModel(
             val state = UiState(
                 name = data.value.name,
                 equation = data.value.equation,
-//                equation = data.value.t,
                 solution = solution
             )
             data.mapValue(state)
@@ -53,17 +50,14 @@ class EquationCreationViewModel(
     }
     fun updateEquation(
         equation: TextFieldValue
-    ) = _uiState.loaded {
-        it.value.copy(equation = equation)
-//        it.value
-//        it.value.stateCopy(equation = equation)
+    ) = _uiState.loaded { state ->
+        state.value.copy(equation = equation)
     }
 
     fun updateName(
         name: String
-    ) = _uiState.loaded {
-        it.value
-//        it.value.stateCopy(name = name)
+    ) = _uiState.loaded { state ->
+        state.value.copy(name = name)
     }
 
     fun saveEquation(state: UiState) = viewModelScope.launch {
