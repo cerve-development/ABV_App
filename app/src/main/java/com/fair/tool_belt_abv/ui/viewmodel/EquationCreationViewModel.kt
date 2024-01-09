@@ -1,5 +1,6 @@
 package com.fair.tool_belt_abv.ui.viewmodel
 
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cerve.abv.shared.domain.DeleteEquationUseCase
@@ -7,6 +8,7 @@ import com.cerve.abv.shared.domain.GetEquationUseCase
 import com.cerve.abv.shared.domain.NewEquationUseCase
 import com.cerve.abv.shared.domain.SetCalculatorEquationUseCase
 import com.cerve.abv.shared.model.AbvEquation
+import com.cerve.abv.shared.model.AbvEquation.Custom.equation
 import com.cerve.abv.shared.model.AbvEquation.Custom.stateCopy
 import com.fair.tool_belt_abv.ui.screen.Screen
 import com.fair.tool_belt_abv.ui.screen.Screen.Companion.asScreenStateIn
@@ -27,13 +29,15 @@ class EquationCreationViewModel(
     equationUseCase: NewEquationUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<Screen<AbvEquation>>(Screen.Loading(AbvEquation.Custom))
+    private val _uiState = MutableStateFlow<Screen<UiState>>(Screen.Loading(UiState()))
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState = _uiState.flatMapMerge { data ->
-        equationUseCase.invoke(data.value.equation).map { solution ->
+        equationUseCase.invoke(data.value.equation.text).map { solution ->
+
             val state = UiState(
                 name = data.value.name,
                 equation = data.value.equation,
+//                equation = data.value.t,
                 solution = solution
             )
             data.mapValue(state)
@@ -42,24 +46,32 @@ class EquationCreationViewModel(
 
     init {
         viewModelScope.launch {
-            val equation = getEquationUseCase.invoke(name)
-            _uiState.update { Screen.Loaded(equation) }
+            val data = getEquationUseCase.invoke(name)
+            val state = UiState(equation = TextFieldValue(text = data.equation), name = data.name)
+            _uiState.update { Screen.Loaded(state) }
         }
     }
     fun updateEquation(
-        equation: String
-    ) = _uiState.loaded { it.value.stateCopy(equation = equation) }
+        equation: TextFieldValue
+    ) = _uiState.loaded {
+        it.value.copy(equation = equation)
+//        it.value
+//        it.value.stateCopy(equation = equation)
+    }
 
     fun updateName(
         name: String
-    ) = _uiState.loaded { it.value.stateCopy(name = name) }
+    ) = _uiState.loaded {
+        it.value
+//        it.value.stateCopy(name = name)
+    }
 
     fun saveEquation(state: UiState) = viewModelScope.launch {
         _uiState.loading {
             setCalculatorEquationUseCase.invoke(
                 AbvEquation.Entity(
                     dbName = state.name,
-                    dbEquation = state.equation
+                    dbEquation = state.equation.text
                 )
             )
             Screen.Event(state = it, type = Screen.EventType.Navigation())
@@ -77,7 +89,7 @@ class EquationCreationViewModel(
 
     data class UiState(
         val name: String = EMPTY_STRING,
-        val equation: String = EMPTY_STRING,
+        val equation: TextFieldValue = TextFieldValue(),
         val solution: String? = null,
         val isDeletable: Boolean = false
     )

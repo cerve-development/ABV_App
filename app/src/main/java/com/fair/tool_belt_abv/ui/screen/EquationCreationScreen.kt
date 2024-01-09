@@ -19,12 +19,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,7 +38,9 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalTextInputService
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,7 +59,7 @@ fun EquationCreationScreen(
     modifier: Modifier = Modifier,
     errorMessage: String = stringResource(id = R.string.LABEL_ABV_RESULT_ERROR),
     onNameUpdate: (String) -> Unit = { },
-    onEquationUpdate: (String) -> Unit = { },
+    onEquationUpdate: (TextFieldValue) -> Unit = { },
     onEquationDelete: (String) -> Unit = { },
     onEquationSave: (EquationCreationViewModel.UiState) -> Unit = { },
     onBackClick: () -> Unit = { }
@@ -134,17 +138,26 @@ fun EquationCreationScreen(
                 modifier = Modifier
                     .fillMaxHeight(0.65f)
                     .windowInsetsPadding(BottomAppBarDefaults.windowInsets),
-                onClear = { onEquationUpdate(EMPTY_STRING) },
+                onClear = { onEquationUpdate(TextFieldValue()) },
                 onRemoveLast = {
-                    val equation = when(state.equation.takeLast(2)) {
-                        AbvEquation.StaticValues.OG.name -> { state.equation.dropLast(2) }
-                        AbvEquation.StaticValues.FG.name -> { state.equation.dropLast(2) }
-                        else -> state.equation.dropLast(1)
-                    }
-                    onEquationUpdate(equation)
+                    try {
+                        val cursor = state.equation.selection.start - 1
+                        val equation = StringBuilder(state.equation.text)
+                            .deleteAt(cursor).toString()
+
+                        onEquationUpdate(state.equation.copy(text = equation))
+                    } catch (_: Exception) { }
                 },
                 onEqualKeyClick = { onEquationSave(state) }
-            ) { keyValue -> onEquationUpdate(state.equation + keyValue) }
+            ) { keyValue ->
+                try {
+                    val cursor = state.equation.selection.start
+                    val equation = StringBuilder(state.equation.text)
+                        .insert(cursor, keyValue).toString()
+
+                    onEquationUpdate(state.equation.copy(text = equation))
+                } catch (_: Exception) { }
+            }
         }
     ) { innerPadding ->
         Column(
@@ -156,17 +169,29 @@ fun EquationCreationScreen(
 
             Text(
                 text = stringResource(id = R.string.LABEL_ABV_RESULT, result),
-                style = MaterialTheme.typography.labelSmall
+                style = typography.labelSmall
             )
-            Text(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .wrapContentHeight()
-                    .align(Alignment.CenterHorizontally),
-                text = state.equation,
-                textAlign = TextAlign.End,
-                style = MaterialTheme.typography.headlineLarge
-            )
+
+            CompositionLocalProvider(LocalTextInputService provides null) {
+
+                TextField(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .wrapContentHeight()
+                        .align(Alignment.End),
+                    value = state.equation,
+                    onValueChange = { value -> onEquationUpdate(value) },
+                    textStyle = typography.headlineLarge.copy(textAlign = TextAlign.Justify),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent
+                    )
+                )
+            }
         }
     }
 

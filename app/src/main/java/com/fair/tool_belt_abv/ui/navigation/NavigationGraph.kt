@@ -22,7 +22,7 @@ import org.koin.core.parameter.parametersOf
 @Composable
 fun RootNavGraph(
     modifier: Modifier = Modifier,
-    startDestination: String = RootDestinationGraph.TOP_LEVEL_ROUTE.name,
+    startDestination: String = EQUATION.asArgs(),//RootDestinationGraph.TOP_LEVEL_ROUTE.name,
     navController: NavHostController = rememberNavController()
 ) {
     NavHost(
