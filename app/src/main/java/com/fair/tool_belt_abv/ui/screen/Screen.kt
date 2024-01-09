@@ -108,11 +108,6 @@ sealed class Screen<T>(val value: T) {
 
     companion object {
 
-
-        fun <T> screenMutableState(
-            initial: (Screen<T>)
-        ) = MutableStateFlow(initial)
-
         fun <T> Flow<Screen<T>>.asScreenStateIn(
             initialValue: T,
             scope: CoroutineScope,
