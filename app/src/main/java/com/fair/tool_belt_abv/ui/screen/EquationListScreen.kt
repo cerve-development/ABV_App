@@ -33,7 +33,6 @@ fun EquationListScreen(
     onEquationUpdate: (name: String) -> Unit = { },
     onEquationSelect: (AbvEquation) -> Unit = { }
 ) {
-
     Column {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
@@ -43,7 +42,7 @@ fun EquationListScreen(
                 OutlinedCard(
                     modifier = Modifier.fillMaxWidth(),
                     enabled = equation.type != AbvEquation.EquationType.Default,
-                    onClick =  { onEquationUpdate(equation.name) }
+                    onClick = { onEquationUpdate(equation.name) }
                 ) {
                     Column(
                         modifier = Modifier
@@ -58,8 +57,11 @@ fun EquationListScreen(
                         ) {
                             Text(
                                 text = equation.name.replaceFirstChar {
-                                    if (it.isLowerCase()) it.titlecase(Locale.ROOT)
-                                    else it.toString()
+                                    if (it.isLowerCase()) {
+                                        it.titlecase(Locale.ROOT)
+                                    } else {
+                                        it.toString()
+                                    }
                                 },
                                 style = MaterialTheme.typography.labelLarge
                             )
@@ -75,7 +77,7 @@ fun EquationListScreen(
                             Text(
                                 modifier = Modifier.padding(sizes.small),
                                 text = equation.equation,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyMedium
                             )
                         }
 
@@ -98,7 +100,6 @@ fun EquationListScreen(
                                 }
                             }
 
-
                             Surface(
                                 modifier = Modifier,
                                 shape = CircleShape,
@@ -114,8 +115,6 @@ fun EquationListScreen(
                     }
                 }
             }
-
         }
     }
-
 }

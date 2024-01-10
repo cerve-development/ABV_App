@@ -37,7 +37,6 @@ fun MainNavGraph(
     rootNavController: NavHostController,
     navController: NavHostController = rememberNavController()
 ) {
-
     val backStackEntry by navController.currentBackStackEntryAsState()
 
     CerveScaffold(
@@ -69,13 +68,12 @@ fun MainNavGraph(
             navController = navController
         ) {
             cerveNavigationComposable(TopLevelDestinationGraph.CALCULATOR.route) {
-
                 val vm: AbvCalculatorViewModel = koinViewModel()
                 val uiState by vm.uiState.collectAsStateWithLifecycle()
 
                 uiState.StateWrapper {
                     ScreenWrapper { state ->
-                        //TODO investigate why non null still showing
+                        // TODO investigate why non null still showing
                         AbvCalculatorScreen(
                             state = state!!,
                             onUnitSelect = vm::updateUnit,
@@ -88,7 +86,6 @@ fun MainNavGraph(
                         }
                     }
                 }
-
             }
 
             cerveNavigationComposable(TopLevelDestinationGraph.CONVERTER.route) {
@@ -144,7 +141,6 @@ fun MainNavGraph(
             }
         }
     }
-
 }
 
 @Preview

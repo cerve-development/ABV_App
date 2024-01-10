@@ -65,20 +65,23 @@ fun EquationCreationScreen(
 ) {
     var editable by remember { mutableStateOf(false) }
     val angle: Float by animateFloatAsState(
-        targetValue = if(editable) 90f else 0f,
+        targetValue = if (editable) 90f else 0f,
         animationSpec = spring(
             stiffness = Spring.StiffnessLow,
             dampingRatio = Spring.DampingRatioMediumBouncy
-        ), label = ""
+        ),
+        label = ""
     )
 
     val nameFocusRequester = remember { FocusRequester() }
     val equationFocusRequester = remember { FocusRequester() }
 
     LaunchedEffect(editable) {
-        if(editable) {
+        if (editable) {
             nameFocusRequester.requestFocus()
-        } else equationFocusRequester.requestFocus()
+        } else {
+            equationFocusRequester.requestFocus()
+        }
     }
 
     CerveScaffold(
@@ -87,7 +90,7 @@ fun EquationCreationScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = {
-                        if(editable) {
+                        if (editable) {
                             editable = false
                         } else { onBackClick() }
                     }) {
@@ -115,7 +118,7 @@ fun EquationCreationScreen(
                             disabledContainerColor = Color.Transparent,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
-                            disabledIndicatorColor = Color.Transparent,
+                            disabledIndicatorColor = Color.Transparent
                         ),
                         placeholder = { Text(stringResource(id = R.string.LABEL_ABV_EQUATION_NAME)) },
                         singleLine = true
@@ -149,16 +152,15 @@ fun EquationCreationScreen(
                             .copy(text = equation, selection = TextRange(cursor))
 
                         onEquationUpdate(stateCopy)
-                    } catch (_: Exception) {  }
-
+                    } catch (_: Exception) { }
                 },
                 onEqualKeyClick = { onEquationSave(state) }
             ) { keyValue ->
                 var cursor = state.equation.selection.start
                 val equation = StringBuilder(state.equation.text)
-                        .insert(cursor, keyValue).toString()
+                    .insert(cursor, keyValue).toString()
 
-                when(keyValue) {
+                when (keyValue) {
                     StaticValues.OG.name, StaticValues.FG.name -> cursor += 2
                     else -> cursor++
                 }
@@ -171,7 +173,6 @@ fun EquationCreationScreen(
         windowInsets = ScaffoldDefaults.contentWindowInsets
     ) {
         Column(modifier = Modifier.padding(ExtendedTheme.sizes.medium)) {
-
             val result = remember(state.solution) { state.solution ?: errorMessage }
 
             Text(
@@ -180,7 +181,6 @@ fun EquationCreationScreen(
             )
 
             CompositionLocalProvider(LocalTextInputService provides null) {
-
                 TextField(
                     modifier = Modifier
                         .focusRequester(equationFocusRequester)
@@ -201,7 +201,6 @@ fun EquationCreationScreen(
             }
         }
     }
-
 }
 
 @Preview

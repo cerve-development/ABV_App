@@ -20,22 +20,22 @@ data class AppState(
 ) {
 
     @Composable
-    fun getInDarkMode() : Boolean = inDarkMode ?: isSystemInDarkTheme()
-    @Composable
-    fun getColors() : ColorScheme = if (getInDarkMode()) darkColorScheme else lightColorScheme
+    fun getInDarkMode(): Boolean = inDarkMode ?: isSystemInDarkTheme()
 
-    private val darkColorScheme: ColorScheme = when(colorSchemePalette) {
+    @Composable
+    fun getColors(): ColorScheme = if (getInDarkMode()) darkColorScheme else lightColorScheme
+
+    private val darkColorScheme: ColorScheme = when (colorSchemePalette) {
         AppTheme.LEGACY -> LegacyDarkColors
         AppTheme.STOUT -> StoutDarkColors
         AppTheme.HOPS -> HopsDarkColors
         AppTheme.LAGER -> LagerDarkColors
     }
 
-    private val lightColorScheme: ColorScheme = when(colorSchemePalette) {
+    private val lightColorScheme: ColorScheme = when (colorSchemePalette) {
         AppTheme.LEGACY -> LegacyLightColors
         AppTheme.STOUT -> StoutLightColors
         AppTheme.HOPS -> HopsLightColors
         AppTheme.LAGER -> LagerLightColors
     }
-
 }

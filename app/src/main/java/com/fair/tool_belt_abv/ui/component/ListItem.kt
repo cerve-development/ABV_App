@@ -16,13 +16,11 @@ fun CerveListItem(
     trailingContent: @Composable (() -> Unit)? = null,
     onClick: (() -> Unit)? = null
 ) {
-
     androidx.compose.material3.ListItem(
         modifier = modifier.composed {
             onClick?.let {
                 Modifier.clickable { onClick() }
             } ?: Modifier
-
         },
         leadingContent = { CerveIcon(imageVector = leadingIcon) },
         headlineContent = {
@@ -33,5 +31,4 @@ fun CerveListItem(
         },
         trailingContent = trailingContent
     )
-
 }

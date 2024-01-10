@@ -95,7 +95,7 @@ val LagerLightColors = lightColorScheme(
     inversePrimary = lager_theme_light_inversePrimary,
     surfaceTint = lager_theme_light_surfaceTint,
     outlineVariant = lager_theme_light_outlineVariant,
-    scrim = lager_theme_light_scrim,
+    scrim = lager_theme_light_scrim
 )
 
 val LagerDarkColors = darkColorScheme(
@@ -127,5 +127,5 @@ val LagerDarkColors = darkColorScheme(
     inversePrimary = lager_theme_dark_inversePrimary,
     surfaceTint = lager_theme_dark_surfaceTint,
     outlineVariant = lager_theme_dark_outlineVariant,
-    scrim = lager_theme_dark_scrim,
+    scrim = lager_theme_dark_scrim
 )

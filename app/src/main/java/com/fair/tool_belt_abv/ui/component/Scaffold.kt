@@ -14,9 +14,8 @@ fun CerveScaffold(
     windowInsets: WindowInsets = WindowInsets(0),
     topBar: @Composable () -> Unit = { },
     bottomBar: @Composable () -> Unit = { },
-    content: @Composable () -> Unit = { },
+    content: @Composable () -> Unit = { }
 ) {
-
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = topBar,
@@ -27,5 +26,4 @@ fun CerveScaffold(
             content()
         }
     }
-
 }

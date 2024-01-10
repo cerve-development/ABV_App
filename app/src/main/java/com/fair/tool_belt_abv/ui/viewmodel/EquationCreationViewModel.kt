@@ -24,10 +24,11 @@ class EquationCreationViewModel(
     private val deleteEquationUseCase: DeleteEquationUseCase,
     private val getEquationUseCase: GetEquationUseCase,
     private val setCalculatorEquationUseCase: SetCalculatorEquationUseCase,
-    equationUseCase: NewEquationUseCase,
+    equationUseCase: NewEquationUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<Screen<UiState>>(Screen.Loading(UiState()))
+
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState = _uiState.flatMapMerge { data ->
         equationUseCase.invoke(data.value.equation.text).map { solution ->
@@ -78,7 +79,6 @@ class EquationCreationViewModel(
 
             Screen.Event(state = it, type = Screen.EventType.Navigation())
         }
-
     }
 
     data class UiState(
@@ -91,5 +91,4 @@ class EquationCreationViewModel(
     companion object {
         const val EMPTY_STRING = ""
     }
-
 }

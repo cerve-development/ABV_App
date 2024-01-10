@@ -23,11 +23,11 @@ const val EMAIL_SUBJECT_FEATURE = "Feature request"
 const val EMAIL_SUBJECT_BUG = "Bug report"
 const val EMAIL_SUBJECT_SUPPORT = "Support"
 
-fun Context.getVersion() : String = try {
+fun Context.getVersion(): String = try {
     val info = packageManager.getPackageInfo(packageName, 0)
     info.versionName
 } catch (e: PackageManager.NameNotFoundException) {
-   getString(R.string.LABEL_DEFAULT_APP_VERSION)
+    getString(R.string.LABEL_DEFAULT_APP_VERSION)
 }
 
 fun Context.sendEmail(
@@ -56,7 +56,7 @@ fun Context.sendEmail(
 
 fun Context.shared(
     value: String,
-    title: String,
+    title: String
 ) {
     Intent(Intent.ACTION_SEND).apply {
         putExtra(EXTRA_TEXT, value)

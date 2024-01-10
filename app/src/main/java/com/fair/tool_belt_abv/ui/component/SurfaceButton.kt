@@ -25,7 +25,6 @@ fun SurfaceButton(
     enabled: Boolean = true,
     onClick: () -> Unit
 ) {
-
     var multiplier by remember { mutableFloatStateOf(1f) }
 
     Surface(
@@ -35,7 +34,6 @@ fun SurfaceButton(
         enabled = enabled,
         onClick = onClick
     ) {
-
         Text(
             modifier = Modifier
                 .padding(sizes.medium)
@@ -52,7 +50,5 @@ fun SurfaceButton(
                 }
             }
         )
-
     }
-
 }

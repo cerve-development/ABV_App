@@ -32,7 +32,6 @@ fun AbvCalculatorScreen(
     onFGValueUpdate: (String) -> Unit = { },
     onEquationCreationNavigate: (String?) -> Unit = { }
 ) {
-
     val pagerState = rememberPagerState(
         CalculatorDestinationGraph.Result.ordinal
     ) { CalculatorDestinationGraph.entries.size }
@@ -57,9 +56,9 @@ fun AbvCalculatorScreen(
     ) {
         HorizontalPager(
             modifier = Modifier.fillMaxSize(),
-            state = pagerState,
+            state = pagerState
         ) { page ->
-            when(page) {
+            when (page) {
                 CalculatorDestinationGraph.Result.ordinal -> {
                     CalculatorScreen(
                         originalText = state.og,
@@ -83,6 +82,5 @@ fun AbvCalculatorScreen(
                 }
             }
         }
-
     }
 }

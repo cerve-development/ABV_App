@@ -25,7 +25,7 @@ sealed class Screen<T>(val value: T) {
     data class Error<T>(
         private val state: T,
         val message: String? = null
-    ): Screen<T>(state)
+    ) : Screen<T>(state)
 
     data class Loaded<T>(
         private val state: T
@@ -37,8 +37,8 @@ sealed class Screen<T>(val value: T) {
         val eventId: Int = (randomUUID()).hashCode()
     ) : Screen<T>(state)
 
-    fun <R> mapValue(data: R) : Screen<R> {
-        return when(this) {
+    fun <R> mapValue(data: R): Screen<R> {
+        return when (this) {
             is Loading -> this.copy(state = data as T) as Screen.Loading<R>
             is Loaded -> this.copy(state = data as T) as Screen.Loaded<R>
             is Event -> this.copy(state = data as T) as Screen.Event<R>
@@ -47,13 +47,13 @@ sealed class Screen<T>(val value: T) {
     }
 
     sealed interface EventType {
-        data object None: EventType
+        data object None : EventType
 
         /**If route is null pop backstack*/
         data class Navigation(
             val route: String? = null,
             val args: String? = null
-        ): EventType {
+        ) : EventType {
             fun withArgs(navArgs: String? = args) = navArgs?.let { "$route?$navArgs" } ?: route
         }
 
@@ -64,7 +64,6 @@ sealed class Screen<T>(val value: T) {
 //            val footer: StringResource? = null,
 //            val icon: ImageVector? = null
 //        ) : EventType
-
     }
 
     @Composable
@@ -91,7 +90,7 @@ sealed class Screen<T>(val value: T) {
         content: @Composable (T) -> Unit
     ) {
         if (value == null) {
-            //TODO investigate why non null still showing
+            // TODO investigate why non null still showing
         } else { content(value as T) }
     }
 
@@ -112,13 +111,12 @@ sealed class Screen<T>(val value: T) {
             initialValue: T,
             scope: CoroutineScope,
             started: SharingStarted = SharingStarted
-                .WhileSubscribed(replayExpiration = Duration.ZERO),
-        ) : StateFlow<Screen<T>> = stateIn(
+                .WhileSubscribed(replayExpiration = Duration.ZERO)
+        ): StateFlow<Screen<T>> = stateIn(
             scope = scope,
             started = started,
             initialValue = Loading(initialValue)
         )
-
 
         suspend fun <T> MutableStateFlow<Screen<T>>.loading(
             result: suspend (T) -> Screen<T>
@@ -132,6 +130,5 @@ sealed class Screen<T>(val value: T) {
         ) {
             update { Loaded(function(it)) }
         }
-
     }
 }

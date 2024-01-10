@@ -14,7 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val vm : MainViewModel by viewModel()
+    private val vm: MainViewModel by viewModel()
     private var isLoading: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
             val uiState by vm.uiState.collectAsStateWithLifecycle()
 
             uiState.StateWrapper {
-
                 LaunchedEffect(Unit) { isLoading = false }
 
                 ScreenWrapper { state ->
@@ -35,9 +34,6 @@ class MainActivity : ComponentActivity() {
                     ) { RootNavGraph() }
                 }
             }
-
         }
     }
-
 }
-

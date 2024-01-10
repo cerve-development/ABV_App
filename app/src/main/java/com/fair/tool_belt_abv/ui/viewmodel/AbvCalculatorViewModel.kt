@@ -66,5 +66,4 @@ class AbvCalculatorViewModel(
         val selectedEquation: AbvEquation,
         val abvEquationList: List<AbvEquation>
     )
-
 }

@@ -12,7 +12,11 @@ import org.koin.dsl.module
 val androidModule = module {
     viewModel { parameters ->
         EquationCreationViewModel(
-            name = parameters.getOrNull(), get(), get(), get(), get()
+            name = parameters.getOrNull(),
+            get(),
+            get(),
+            get(),
+            get()
         )
     }
     viewModelOf(::MainViewModel)

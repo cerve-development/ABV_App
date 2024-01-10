@@ -45,12 +45,11 @@ fun SettingScreen(
     onBugReportClick: () -> Unit = { },
     onShareAppClick: () -> Unit = { }
 ) {
-
     var openAppThemeDialog by remember { mutableStateOf(false) }
 
     CerveScaffold(
         modifier = modifier,
-        topBar = { CerveTopAppBar(title = stringResource(id = R.string.NAV_DESTINATION_settings)) },
+        topBar = { CerveTopAppBar(title = stringResource(id = R.string.NAV_DESTINATION_settings)) }
     ) {
         LazyColumn(verticalArrangement = Arrangement.spacedBy(sizes.small)) {
             item {
@@ -82,7 +81,7 @@ fun SettingScreen(
                 CerveListItem(
                     leadingIcon = Icons.TwoTone.Palette,
                     headlineText = stringResource(id = R.string.LABEL_THEME_theme),
-                    supportingText =stringResource(id = R.string.SUBLABEL_THEME_theme),
+                    supportingText = stringResource(id = R.string.SUBLABEL_THEME_theme),
                     trailingContent = {
                         Icon(
                             imageVector = Icons.Filled.Circle,
@@ -128,7 +127,6 @@ fun SettingScreen(
                     supportingText = appVersion
                 )
             }
-
         }
     }
 

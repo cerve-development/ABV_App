@@ -40,7 +40,6 @@ fun CustomKeyboard(
     onEqualKeyClick: (() -> Unit)? = null,
     onKeyClick: (String) -> Unit = { }
 ) {
-
     Column(
         modifier = modifier
     ) {
@@ -48,9 +47,8 @@ fun CustomKeyboard(
             modifier = Modifier
                 .align(Alignment.End)
                 .padding(sizes.medium),
-            horizontalArrangement = Arrangement.spacedBy(sizes.medium),
+            horizontalArrangement = Arrangement.spacedBy(sizes.medium)
         ) {
-
             Button(onClick = { onKeyClick(AbvEquation.StaticValues.OG.name) }) {
                 Text(text = AbvEquation.StaticValues.OG.name)
             }
@@ -85,7 +83,6 @@ fun CustomKeyPad(
     onKeyClick: (String) -> Unit = { }
 ) {
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
-
         val size by remember {
             derivedStateOf {
                 (minOf(maxHeight, maxWidth) / (maxItemsInEachRow) - keyBoardPadding)
@@ -106,14 +103,13 @@ fun CustomKeyPad(
                     modifier = Modifier.size(size),
                     text = key.label
                 ) {
-                    when(key) {
+                    when (key) {
                         KeyPadValue.Equal -> onEqualKeyClick?.invoke() ?: onKeyClick(key.text)
                         else -> onKeyClick(key.text)
                     }
                 }
             }
         }
-
     }
 }
 

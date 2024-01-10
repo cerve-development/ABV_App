@@ -33,7 +33,6 @@ fun ThemedAppThemeDialog(
     onOkClick: (AppTheme) -> Unit,
     onDismiss: () -> Unit
 ) {
-
     if (isOpen) {
         AlertDialog(
             onDismissRequest = { onDismiss() },
@@ -62,7 +61,7 @@ fun ThemedAppThemeDialog(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.spacedBy(sizes.small)
                         ) {
-                            if (selected.theme == theme){
+                            if (selected.theme == theme) {
                                 CerveIcon(
                                     modifier = Modifier.size(sizes.large),
                                     imageVector = Icons.Filled.CheckCircle,

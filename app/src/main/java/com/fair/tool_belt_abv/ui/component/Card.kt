@@ -71,7 +71,6 @@ fun RadioCard(
                 onClick = { onClick() }
             )
         }
-
     }
 }
 
@@ -81,10 +80,11 @@ fun DashboardCard(
     abvValue: String,
     modifier: Modifier = Modifier
 ) {
-
-    OutlinedCard(modifier = modifier
-        .fillMaxWidth()
-        .height(IntrinsicSize.Max)) {
+    OutlinedCard(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(IntrinsicSize.Max)
+    ) {
         Row {
             ResultContent(
                 modifier = Modifier.weight(1f),
@@ -93,7 +93,7 @@ fun DashboardCard(
             )
             Divider(
                 modifier = Modifier
-                    .fillMaxHeight()  //fill the max height
+                    .fillMaxHeight() // fill the max height
                     .width(DividerDefaults.Thickness)
             )
             ResultContent(
@@ -112,7 +112,6 @@ fun ResultContent(
     modifier: Modifier = Modifier,
     valueStyle: TextStyle = MaterialTheme.typography.headlineLarge
 ) {
-
     var multiplier by remember(value.length) { mutableFloatStateOf(1f) }
 
     Column(
@@ -145,30 +144,24 @@ fun ResultContent(
             )
 
             ThemedChip(
-                modifier = Modifier.align(Alignment.End),
+                modifier = Modifier.align(Alignment.End)
             ) { chipModifier ->
                 Icon(
                     modifier = chipModifier.size(sizes.medium),
                     imageVector = rounded.Percent,
                     contentDescription = null
                 )
-
             }
-
-
         }
-
     }
-
 }
-
 
 @Preview
 @Composable
 fun DashboardCardPreview() {
     DashboardCard(
         attenuationValue = "0.0",
-        abvValue = "0.0",
+        abvValue = "0.0"
     )
 }
 

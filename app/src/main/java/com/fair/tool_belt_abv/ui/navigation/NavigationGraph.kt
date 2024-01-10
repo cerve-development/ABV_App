@@ -21,7 +21,7 @@ import org.koin.core.parameter.parametersOf
 @Composable
 fun RootNavGraph(
     modifier: Modifier = Modifier,
-    startDestination: String = EQUATION.asArgs(),//RootDestinationGraph.TOP_LEVEL_ROUTE.name,
+    startDestination: String = RootDestinationGraph.TOP_LEVEL_ROUTE.name,
     navController: NavHostController = rememberNavController()
 ) {
     NavHost(
@@ -38,13 +38,12 @@ fun RootNavGraph(
             arguments = EQUATION.stringArguments()
         ) {
             val name = it.arguments?.getString(EQUATION.args)
-            val vm : EquationCreationViewModel = koinViewModel(parameters = { parametersOf(name) })
+            val vm: EquationCreationViewModel = koinViewModel(parameters = { parametersOf(name) })
             val uiState by vm.uiState.collectAsStateWithLifecycle()
 
             uiState.StateWrapper {
-
                 LaunchedWrapper { event ->
-                    when(event) {
+                    when (event) {
                         is Screen.EventType.Navigation -> navController.popBackStack()
                         else -> Unit
                     }
@@ -59,10 +58,7 @@ fun RootNavGraph(
                         onEquationSave = vm::saveEquation
                     ) { navController.popBackStack() }
                 }
-
             }
-
         }
-
     }
 }

@@ -7,6 +7,6 @@ enum class CalculatorDestinationGraph(
     @StringRes val nameId: Int
 ) {
     Result(R.string.NAV_DESTINATION_result),
-    Equation(R.string.NAV_DESTINATION_equation),
+    Equation(R.string.NAV_DESTINATION_equation)
 //    Note(R.string.NAV_DESTINATION_notes)
 }

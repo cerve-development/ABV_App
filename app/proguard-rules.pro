@@ -19,3 +19,20 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep `INSTANCE.serializer()` of serializable objects.
+#-if @kotlinx.serialization.Serializable class **
+#-keep, allowshrinking, allowoptimization, allowobfuscation, allowaccessmodification class <1>
+
+-dontwarn kotlinx.serialization.Serializable
+-dontwarn kotlinx.serialization.KSerializer
+-dontwarn kotlinx.serialization.internal.AbstractPolymorphicSerializer
+
+-keep,includedescriptorclasses class com.cerve.abv.shared.**$$serializer { *; }
+#-keepclassmembers class com.cerve.abv.shared** {
+#    *** Companion;
+#}
+
+#-keepclasseswithmembers class com.cerve.abv.shared.* {
+#     kotlinx.serialization.KSerializer serializer(...);
+#}

@@ -36,5 +36,4 @@ enum class TopLevelDestinationGraph(
         labelId = R.string.NAV_DESTINATION_settings,
         route = "route_settings"
     );
-
 }

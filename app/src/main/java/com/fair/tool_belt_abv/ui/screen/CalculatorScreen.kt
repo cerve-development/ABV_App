@@ -27,7 +27,7 @@ fun CalculatorScreen(
     modifier: Modifier = Modifier,
     onOriginalTextChange: (String) -> Unit = { },
     onFinalTextChange: (String) -> Unit = { },
-    onUnitSelect: (AbvUnit) -> Unit = { },
+    onUnitSelect: (AbvUnit) -> Unit = { }
 ) {
     Column(
         modifier = modifier.padding(sizes.medium),
@@ -36,7 +36,7 @@ fun CalculatorScreen(
     ) {
         DashboardCard(
             abvValue = abvValue,
-            attenuationValue = attenuationValue,
+            attenuationValue = attenuationValue
         )
 
         Column(
@@ -66,7 +66,6 @@ fun CalculatorScreen(
             label = stringResource(id = R.string.LABEL_ABV_unit),
             selected = abvUnit
         ) { unit -> onUnitSelect(unit) }
-
     }
 }
 
