@@ -36,7 +36,8 @@ class EquationCreationViewModel(
             val state = UiState(
                 name = data.value.name,
                 equation = data.value.equation,
-                solution = solution
+                solution = solution,
+                isEditable = name != null
             )
             data.mapValue(state)
         }
@@ -85,7 +86,7 @@ class EquationCreationViewModel(
         val name: String = EMPTY_STRING,
         val equation: TextFieldValue = TextFieldValue(),
         val solution: String? = null,
-        val isDeletable: Boolean = false
+        val isEditable: Boolean = false
     )
 
     companion object {

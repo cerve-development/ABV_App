@@ -125,7 +125,7 @@ fun EquationCreationScreen(
                     )
                 },
                 actions = {
-                    if (state.isDeletable) {
+                    if (state.isEditable) {
                         IconButton(onClick = { onEquationDelete(state.name) }) {
                             Icon(
                                 imageVector = Icons.TwoTone.Delete,

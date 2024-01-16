@@ -103,7 +103,6 @@ sealed class Screen<T>(val value: T) {
             initialValue: T,
             scope: CoroutineScope,
             started: SharingStarted = SharingStarted.Lazily
-//                .WhileSubscribed(replayExpiration = Duration.ZERO)
         ): StateFlow<Screen<T>> = this.distinctUntilChanged().onEach { println(it) }.stateIn(
             scope = scope,
             started = started,
