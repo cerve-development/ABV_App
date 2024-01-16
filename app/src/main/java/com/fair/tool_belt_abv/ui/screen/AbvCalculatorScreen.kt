@@ -49,7 +49,7 @@ fun AbvCalculatorScreen(
             ) { tab ->
                 Text(
                     text = stringResource(tab.nameId),
-                    style = MaterialTheme.typography.labelSmall
+                    style = MaterialTheme.typography.labelLarge
                 )
             }
         }
@@ -64,6 +64,7 @@ fun AbvCalculatorScreen(
                         originalText = state.og,
                         finalText = state.fg,
                         abvUnit = state.selectedAbvUnit,
+                        abvEquation = state.selectedEquation,
                         abvValue = state.abv,
                         attenuationValue = state.attenuation,
                         onUnitSelect = onUnitSelect,

@@ -10,6 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
@@ -23,6 +24,7 @@ fun CalculatorScreen(
     finalText: String,
     abvValue: String,
     attenuationValue: String,
+    abvEquation: AbvEquation,
     abvUnit: AbvUnit,
     modifier: Modifier = Modifier,
     onOriginalTextChange: (String) -> Unit = { },
@@ -36,7 +38,8 @@ fun CalculatorScreen(
     ) {
         DashboardCard(
             abvValue = abvValue,
-            attenuationValue = attenuationValue
+            attenuationValue = attenuationValue,
+            abvEquation = abvEquation
         )
 
         Column(
@@ -79,6 +82,7 @@ fun CalculatorScreenPreview() {
         finalText = "",
         abvValue = "0",
         attenuationValue = "0",
-        abvUnit = AbvUnit.SG
+        abvUnit = AbvUnit.SG,
+        abvEquation = AbvEquation.Advance
     )
 }

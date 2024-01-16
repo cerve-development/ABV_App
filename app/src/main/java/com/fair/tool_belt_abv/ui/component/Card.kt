@@ -10,30 +10,23 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.rounded.Percent
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.typography
@@ -78,6 +71,7 @@ fun RadioCard(
 fun DashboardCard(
     attenuationValue: String,
     abvValue: String,
+    abvEquation: AbvEquation,
     modifier: Modifier = Modifier
 ) {
     OutlinedCard(
@@ -93,14 +87,22 @@ fun DashboardCard(
             )
             Divider(
                 modifier = Modifier
-                    .fillMaxHeight() // fill the max height
+                    .fillMaxHeight()
                     .width(DividerDefaults.Thickness)
             )
             ResultContent(
                 modifier = Modifier.weight(1.5f),
                 label = stringResource(id = R.string.DEFAULT_ABV_LABEL),
                 value = abvValue
-            )
+            ) {
+                ThemedChip { chipModifier ->
+                    Text(
+                        modifier = chipModifier,
+                        text = abvEquation.name,
+                        style = MaterialTheme.typography.labelSmall
+                    )
+                }
+            }
         }
     }
 }
@@ -110,46 +112,37 @@ fun ResultContent(
     label: String,
     value: String,
     modifier: Modifier = Modifier,
-    valueStyle: TextStyle = MaterialTheme.typography.headlineLarge
+    valueStyle: TextStyle = MaterialTheme.typography.headlineLarge,
+    subContent: @Composable (() -> Unit) = { }
 ) {
-    var multiplier by remember(value.length) { mutableFloatStateOf(1f) }
 
     Column(
         modifier = modifier.padding(sizes.small),
-        verticalArrangement = Arrangement.spacedBy(sizes.small)
+        verticalArrangement = Arrangement.spacedBy(sizes.medium)
     ) {
         Text(
             text = label,
             style = MaterialTheme.typography.labelSmall
         )
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Text(
-                modifier = Modifier
-                    .weight(1f)
-                    .align(Alignment.CenterHorizontally)
-                    .wrapContentHeight(),
-                text = value,
-                textAlign = TextAlign.Center,
-                style = valueStyle.copy(
-                    fontWeight = FontWeight.Black,
-                    fontSize = valueStyle.fontSize * multiplier
-                ),
-                softWrap = true,
-                maxLines = 1,
-                onTextLayout = {
-                    if (it.hasVisualOverflow) {
-                        multiplier *= 0.99f
-                    }
-                }
-            )
 
-            ThemedChip(
-                modifier = Modifier.align(Alignment.End)
-            ) { chipModifier ->
-                Icon(
+        CerveScalingText(
+            modifier = Modifier
+                .weight(1f)
+                .align(Alignment.CenterHorizontally),
+            text = value,
+            style = valueStyle
+        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            subContent()
+            ThemedChip { chipModifier ->
+                CerveIcon(
                     modifier = chipModifier.size(sizes.medium),
-                    imageVector = rounded.Percent,
-                    contentDescription = null
+                    imageVector = rounded.Percent
                 )
             }
         }
@@ -161,7 +154,8 @@ fun ResultContent(
 fun DashboardCardPreview() {
     DashboardCard(
         attenuationValue = "0.0",
-        abvValue = "0.0"
+        abvValue = "0.0",
+        abvEquation = AbvEquation.Advance
     )
 }
 
