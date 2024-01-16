@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.Dp
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
-import com.fair.tool_belt_abv.ui.KeyPadValue
+import com.fair.tool_belt_abv.ui.model.KeyPadValue
 
 @Composable
 fun CustomKeyboard(

@@ -11,11 +11,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.WhileSubscribed
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import java.util.UUID.randomUUID
-import kotlin.time.Duration
 
 sealed class Screen<T>(val value: T) {
     data class Loading<T>(
@@ -37,12 +37,13 @@ sealed class Screen<T>(val value: T) {
         val eventId: Int = (randomUUID()).hashCode()
     ) : Screen<T>(state)
 
+    //TODO INVESTIGATE
     fun <R> mapValue(data: R): Screen<R> {
         return when (this) {
-            is Loading -> this.copy(state = data as T) as Screen.Loading<R>
-            is Loaded -> this.copy(state = data as T) as Screen.Loaded<R>
-            is Event -> this.copy(state = data as T) as Screen.Event<R>
-            is Error -> this.copy(state = data as T) as Screen.Error<R>
+            is Loading -> this.copy(state = data as T) as Loading<R>
+            is Loaded -> this.copy(state = data as T) as Loaded<R>
+            is Event -> this.copy(state = data as T) as Event<R>
+            is Error -> this.copy(state = data as T) as Error<R>
         }
     }
 
@@ -53,17 +54,8 @@ sealed class Screen<T>(val value: T) {
         data class Navigation(
             val route: String? = null,
             val args: String? = null
-        ) : EventType {
-            fun withArgs(navArgs: String? = args) = navArgs?.let { "$route?$navArgs" } ?: route
-        }
+        ) : EventType
 
-//        data class BottomSheet(
-//            val title: StringResource,
-//            val subtitle: StringResource? = null,
-//            val header: StringResource? = null,
-//            val footer: StringResource? = null,
-//            val icon: ImageVector? = null
-//        ) : EventType
     }
 
     @Composable
@@ -110,9 +102,9 @@ sealed class Screen<T>(val value: T) {
         fun <T> Flow<Screen<T>>.asScreenStateIn(
             initialValue: T,
             scope: CoroutineScope,
-            started: SharingStarted = SharingStarted
-                .WhileSubscribed(replayExpiration = Duration.ZERO)
-        ): StateFlow<Screen<T>> = stateIn(
+            started: SharingStarted = SharingStarted.Lazily
+//                .WhileSubscribed(replayExpiration = Duration.ZERO)
+        ): StateFlow<Screen<T>> = this.distinctUntilChanged().onEach { println(it) }.stateIn(
             scope = scope,
             started = started,
             initialValue = Loading(initialValue)
