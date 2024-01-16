@@ -24,6 +24,8 @@
 #-if @kotlinx.serialization.Serializable class **
 #-keep, allowshrinking, allowoptimization, allowobfuscation, allowaccessmodification class <1>
 
+#noinspection ShrinkerUnresolvedReference
+
 -dontwarn kotlinx.serialization.Serializable
 -dontwarn kotlinx.serialization.KSerializer
 -dontwarn kotlinx.serialization.internal.AbstractPolymorphicSerializer
