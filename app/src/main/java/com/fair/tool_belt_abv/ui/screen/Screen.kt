@@ -10,8 +10,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import java.util.UUID.randomUUID
@@ -102,7 +100,7 @@ sealed class Screen<T>(val value: T) {
             initialValue: T,
             scope: CoroutineScope,
             started: SharingStarted = SharingStarted.Lazily
-        ): StateFlow<Screen<T>> = this.distinctUntilChanged().onEach { println(it) }.stateIn(
+        ): StateFlow<Screen<T>> = stateIn(
             scope = scope,
             started = started,
             initialValue = Loading(initialValue)
