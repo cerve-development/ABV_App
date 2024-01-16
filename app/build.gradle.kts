@@ -1,11 +1,10 @@
 plugins {
-    id ("com.android.application")
-    id ("kotlin-kapt")
-    id ("kotlin-android")
-    id ("org.jmailen.kotlinter")
-    id("com.google.gms.google-services")
-//    alias(libs.plugins.crashlytics)
-    id("com.google.firebase.crashlytics")
+    id("kotlin-android")
+    alias(libs.plugins.android.application)
+
+    alias(libs.plugins.kotliner)
+    alias(libs.plugins.crashlytics)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -16,7 +15,7 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 34
-        versionCode = 15
+        versionCode = 16
         versionName = "1.9.$versionCode"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,6 +50,7 @@ android {
 dependencies {
 
     implementation(project(":shared"))
+
     //activity
     implementation(libs.appcompat)
     implementation(libs.core.ktx)

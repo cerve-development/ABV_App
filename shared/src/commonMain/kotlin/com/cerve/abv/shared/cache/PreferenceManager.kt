@@ -5,34 +5,20 @@ import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import com.cerve.abv.shared.cache.PreferenceKeys.APP_LAST_RATING_TIME
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.abv.shared.model.AppTheme
 import com.cerve.abv.shared.model.preferences.CalculatorPreferences
 import com.cerve.abv.shared.model.preferences.SettingPreferences
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
 import org.koin.core.component.KoinComponent
 
 class PreferenceManager(
     private val dataStore: DataStore<Preferences>
 ) : KoinComponent {
 
-    init {
-        CoroutineScope(Dispatchers.Default).launch {
-            dataStore.edit { preferences ->
-                if (preferences[APP_LAST_RATING_TIME] == null) {
-                    preferences[APP_LAST_RATING_TIME] = Clock.System.now().toEpochMilliseconds()
-                }
-            }
-        }
-    }
 
     val calculatorPreferences: Flow<CalculatorPreferences> = dataStore.data
         .catch { exception ->
