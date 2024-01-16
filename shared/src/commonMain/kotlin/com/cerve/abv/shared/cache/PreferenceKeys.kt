@@ -1,11 +1,11 @@
-package com.cerve.abv.shared
+package com.cerve.abv.shared.cache
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 
-object PreferencesKeys {
+object PreferenceKeys {
     val ABV_UNIT_KEY = stringPreferencesKey("calculatorUnit")
     val ABV_EQUATION_KEY = stringPreferencesKey("calculatorEquation")
     val APP_THEME_KEY = stringPreferencesKey("appThemeSimpleABV")

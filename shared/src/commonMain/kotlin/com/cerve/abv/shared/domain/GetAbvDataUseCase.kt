@@ -1,6 +1,6 @@
 package com.cerve.abv.shared.domain
 
-import com.cerve.abv.shared.StorageManager
+import com.cerve.abv.shared.cache.PreferenceManager
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.abv.shared.repository.EquationRepository
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.combine
 import org.koin.core.component.KoinComponent
 
 class GetAbvDataUseCase(
-    private val preferences: StorageManager,
+    private val preferences: PreferenceManager,
     private val equationRepository: EquationRepository
 ) : KoinComponent {
 

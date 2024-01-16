@@ -3,7 +3,7 @@ package com.fair.tool_belt_abv.ui.viewmodel
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cerve.abv.shared.StorageManager
+import com.cerve.abv.shared.cache.PreferenceManager
 import com.cerve.abv.shared.model.AppTheme
 import com.fair.tool_belt_abv.ui.screen.Screen
 import com.fair.tool_belt_abv.ui.screen.Screen.Companion.asScreenStateIn
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class SettingViewModel(
-    private val storageManager: StorageManager
+    private val storageManager: PreferenceManager
 ) : ViewModel() {
 
     val uiState = storageManager.settingPreferences.map {

@@ -1,12 +1,12 @@
-package com.cerve.abv.shared
+package com.cerve.abv.shared.cache
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import com.cerve.abv.shared.PreferencesKeys.APP_INSTANCE_COUNT
-import com.cerve.abv.shared.PreferencesKeys.APP_LAST_RATING_TIME
+import com.cerve.abv.shared.cache.PreferenceKeys.APP_INSTANCE_COUNT
+import com.cerve.abv.shared.cache.PreferenceKeys.APP_LAST_RATING_TIME
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
 import com.cerve.abv.shared.model.AppTheme
@@ -25,7 +25,7 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
-class StorageManager(
+class PreferenceManager(
     private val dataStore: DataStore<Preferences>
 ) : KoinComponent {
 
@@ -48,8 +48,8 @@ class StorageManager(
             }
         }.map { preferences ->
 
-            val unit = AbvUnit.tryValueOf(preferences[PreferencesKeys.ABV_UNIT_KEY])
-            val equation = preferences[PreferencesKeys.ABV_EQUATION_KEY] ?: AbvEquation.Simple.name
+            val unit = AbvUnit.tryValueOf(preferences[PreferenceKeys.ABV_UNIT_KEY])
+            val equation = preferences[PreferenceKeys.ABV_EQUATION_KEY] ?: AbvEquation.Simple.name
 
             CalculatorPreferences(unit, equation)
         }
@@ -63,8 +63,8 @@ class StorageManager(
             }
         }.map { preferences ->
 
-            val theme = AppTheme.tryValueOf(preferences[PreferencesKeys.APP_THEME_KEY])
-            val inDarkMode = preferences[PreferencesKeys.APP_IS_IN_DARK_MODE]
+            val theme = AppTheme.tryValueOf(preferences[PreferenceKeys.APP_THEME_KEY])
+            val inDarkMode = preferences[PreferenceKeys.APP_IS_IN_DARK_MODE]
 
             SettingPreferences(
                 appTheme = theme,
@@ -92,25 +92,25 @@ class StorageManager(
 
     suspend fun saveEquation(value: String) {
         dataStore.edit { settings ->
-            settings[PreferencesKeys.ABV_EQUATION_KEY] = value
+            settings[PreferenceKeys.ABV_EQUATION_KEY] = value
         }
     }
 
     suspend fun saveUnit(value: String) {
         dataStore.edit { settings ->
-            settings[PreferencesKeys.ABV_UNIT_KEY] = value
+            settings[PreferenceKeys.ABV_UNIT_KEY] = value
         }
     }
 
     suspend fun saveAppTheme(value: AppTheme) {
         dataStore.edit { settings ->
-            settings[PreferencesKeys.APP_THEME_KEY] = value.name
+            settings[PreferenceKeys.APP_THEME_KEY] = value.name
         }
     }
 
     suspend fun saveDarkModeState(value: Boolean) {
         dataStore.edit { settings ->
-            settings[PreferencesKeys.APP_IS_IN_DARK_MODE] = value
+            settings[PreferenceKeys.APP_IS_IN_DARK_MODE] = value
         }
     }
 

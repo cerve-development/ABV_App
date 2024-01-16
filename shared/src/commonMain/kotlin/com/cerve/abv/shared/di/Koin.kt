@@ -1,6 +1,6 @@
 package com.cerve.abv.shared.di
 
-import com.cerve.abv.shared.StorageManager
+import com.cerve.abv.shared.cache.PreferenceManager
 import com.cerve.abv.shared.cache.DriverFactory
 import com.cerve.abv.shared.cache.createDatabase
 import com.cerve.abv.shared.cache.dataStorePreferences
@@ -44,7 +44,7 @@ val cacheModule = module {
         )
     }
     single { createDatabase(factory = ::DriverFactory) }
-    singleOf(::StorageManager)
+    singleOf(::PreferenceManager)
     singleOf(SharedDatabase::abvEquationDBQueries)
 }
 

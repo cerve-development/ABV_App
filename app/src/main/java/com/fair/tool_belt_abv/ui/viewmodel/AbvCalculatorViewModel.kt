@@ -8,7 +8,7 @@ import com.cerve.abv.shared.domain.SetSelectedAbvEquationUseCase
 import com.cerve.abv.shared.domain.SetSelectedAbvUnitUseCase
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
-import com.fair.tool_belt_abv.model.UserInput
+import com.cerve.abv.shared.model.UserInput
 import com.fair.tool_belt_abv.ui.screen.Screen
 import com.fair.tool_belt_abv.ui.screen.Screen.Companion.asScreenStateIn
 import kotlinx.coroutines.flow.MutableStateFlow

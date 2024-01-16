@@ -1,4 +1,4 @@
-package com.fair.tool_belt_abv.model
+package com.cerve.abv.shared.model
 
 data class UserInput(
     val og: String = "",
