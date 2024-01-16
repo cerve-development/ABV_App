@@ -12,16 +12,12 @@ import com.fair.tool_belt_abv.R
  * Our application crashes when a user enters in ".<Number>" to avoid this crash,
  * we ensure that their entry has a "0" prefix if it has a leading decimal.
  */
-fun String.isLeadingDecimal(): String {
-    return if (this.startsWith('.')) "0$this" else this
-}
 
 const val RECEIVER_EMAIL = "infocerveapps@gmail.com"
 const val STORE_LINK_ANDROID = "https://play.google.com/store/apps/details?id=com.fair.tool_belt_abv"
 const val DEFAULT_INTENT_TYPE = "text/plain"
 const val EMAIL_SUBJECT_FEATURE = "Feature request"
 const val EMAIL_SUBJECT_BUG = "Bug report"
-const val EMAIL_SUBJECT_SUPPORT = "Support"
 
 fun Context.getVersion(): String = try {
     val info = packageManager.getPackageInfo(packageName, 0)

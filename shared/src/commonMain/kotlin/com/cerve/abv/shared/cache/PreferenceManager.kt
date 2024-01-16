@@ -5,7 +5,6 @@ import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import com.cerve.abv.shared.cache.PreferenceKeys.APP_INSTANCE_COUNT
 import com.cerve.abv.shared.cache.PreferenceKeys.APP_LAST_RATING_TIME
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.abv.shared.model.AbvUnit
@@ -20,10 +19,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import org.koin.core.component.KoinComponent
-import kotlin.math.absoluteValue
-import kotlin.time.Duration.Companion.minutes
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 
 class PreferenceManager(
     private val dataStore: DataStore<Preferences>
@@ -72,24 +67,6 @@ class PreferenceManager(
             )
         }.catch { emit(SettingPreferences()) }
 
-    val shouldShowRating: Flow<Boolean> = dataStore.data
-        .catch { exception ->
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else { throw exception }
-        }.map { preferences ->
-
-            val timeToRate = preferences[APP_LAST_RATING_TIME]
-                ?.minus(Clock.System.now().toEpochMilliseconds())?.absoluteValue
-                ?.toDuration(DurationUnit.MILLISECONDS)
-                ?.let { sinceLastRating -> sinceLastRating > 1.minutes } ?: false
-
-            val instanceCount = preferences[APP_INSTANCE_COUNT]
-                ?.let { count -> count > 5 } ?: false
-
-            timeToRate && instanceCount
-        }
-
     suspend fun saveEquation(value: String) {
         dataStore.edit { settings ->
             settings[PreferenceKeys.ABV_EQUATION_KEY] = value
@@ -114,15 +91,4 @@ class PreferenceManager(
         }
     }
 
-    suspend fun saveNewRatingTime(value: Long) {
-        dataStore.edit { settings ->
-            settings[APP_LAST_RATING_TIME] = value
-        }
-    }
-
-    suspend fun saveInstanceCount(value: (Int?) -> Int) {
-        dataStore.edit { settings ->
-            settings[APP_INSTANCE_COUNT] = value(settings[APP_INSTANCE_COUNT])
-        }
-    }
 }

@@ -1,12 +1,7 @@
 <resources>
 
     <string name="DEFAULT.BUTTON.TEXT.cancel">Cancelar</string>
-    <string name="DEFAULT.BUTTON.TEXT.ok">OK</string>
 
-    <string name="EQUATION.TEXT.advance">Avance</string>
-    <string name="EQUATION.TEXT.simple">Sencillo</string>
-
-    <string name="LABEL.ABV.equation">Ecuación</string>
     <string name="LABEL.ABV.final">Gravedad final</string>
     <string name="LABEL.ABV.original">Gravedad original</string>
     <string name="LABEL.ABV.unit">Unidad</string>
@@ -16,15 +11,11 @@
     <string name="LABEL.THEME.darkmode">modo oscuro</string>
     <string name="LABEL.THEME.theme">tema de la aplicación</string>
 
-
     <string name="NAV.DESTINATION.calculator">Calculadora</string>
     <string name="NAV.DESTINATION.converter">Convertidor</string>
 
-    <string name="SUBLABEL.ABV.equation">Elija la ecuación a utilizar para su cálculo</string>
-    <string name="SUBLABEL.ABV.unit">Elija la unidad a utilizar para su cálculo</string>
     <string name="SUBLABEL.SUPPORT.bug">Informar de un error en Simple ABV</string>
     <string name="SUBLABEL.SUPPORT.feature">Solicitar una nueva función para Simple ABV</string>
-    <string name="SUBLABEL.THEME.darkmode">¿Tus ojos están protegidos en el modo oscuro?</string>
     <string name="SUBLABEL.THEME.theme">Elija un tema diferente.</string>
 
     <string name="UNIT.TEXT.brix">Brix</string>
@@ -33,6 +24,7 @@
     <string name="DEFAULT_RESULT_Attenuation_Abbreviation">atenuación</string>
     <string name="LABEL_SHARE_APP">"Compartir aplicación "</string>
     <string name="SUBLABEL_SHARE_APP">Compartir Simple Abv con otros.</string>
+    <string name="SUBLABEL_SHARE_APP_MORE_INFO">"Puede consultar Simple Abv, la aplicación gratuita que simplifica el cálculo de abv. %s "</string>
     <string name="NAV.DESTINATION.settings">Ajustes</string>
     <string name="NAV.DESTINATION.result">Resultado</string>
     <string name="NAV.DESTINATION.equation">"Ecuaciones "</string>

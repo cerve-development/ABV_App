@@ -31,17 +31,6 @@ sealed class AbvEquation(
         private val dbUpdatedAt: Long = Clock.System.now().toEpochMilliseconds()
     ) : AbvEquation(dbName, dbEquation, dbUpdatedAt, type = EquationType.Custom)
 
-    data object Custom : AbvEquation(
-        name = "",
-        equation = "",
-        updatedAt = null,
-        type = EquationType.Custom
-    )
-
-    fun AbvEquation.stateCopy(
-        name: String = this.name,
-        equation: String = this.equation
-    ) = Entity(dbName = name, dbEquation = equation)
 
     enum class EquationType {
         Default,
@@ -51,8 +40,6 @@ sealed class AbvEquation(
         OG, FG
     }
     fun updatedAtOrNow() = updatedAt ?: Clock.System.now().toEpochMilliseconds()
-
-    fun default() = AbvEquation.Entity("", "")
 
     fun timeStamp(timeMillis: Long? = updatedAt) : String? {
         return timeMillis?.let { millis ->

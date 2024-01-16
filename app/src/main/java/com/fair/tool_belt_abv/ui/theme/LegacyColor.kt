@@ -30,7 +30,6 @@ val legacy_theme_light_outline = Color(0xFF74777F)
 val legacy_theme_light_inverseOnSurface = Color(0xFFF1F0F4)
 val legacy_theme_light_inverseSurface = Color(0xFF2F3033)
 val legacy_theme_light_inversePrimary = Color(0xFFA9C7FF)
-val legacy_theme_light_shadow = Color(0xFF000000)
 val legacy_theme_light_surfaceTint = Color(0xFF005DB7)
 val legacy_theme_light_outlineVariant = Color(0xFFC4C6CF)
 val legacy_theme_light_scrim = Color(0xFF000000)
@@ -61,12 +60,9 @@ val legacy_theme_dark_outline = Color(0xFF8E9099)
 val legacy_theme_dark_inverseOnSurface = Color(0xFF1A1B1E)
 val legacy_theme_dark_inverseSurface = Color(0xFFE3E2E6)
 val legacy_theme_dark_inversePrimary = Color(0xFF005DB7)
-val legacy_theme_dark_shadow = Color(0xFF000000)
 val legacy_theme_dark_surfaceTint = Color(0xFFA9C7FF)
 val legacy_theme_dark_outlineVariant = Color(0xFF44474E)
 val legacy_theme_dark_scrim = Color(0xFF000000)
-
-val seed = Color(0xFF005DB7)
 
 val LegacyLightColors = lightColorScheme(
     primary = legacy_theme_light_primary,

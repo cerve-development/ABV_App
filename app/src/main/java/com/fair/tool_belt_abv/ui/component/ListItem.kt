@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
@@ -17,11 +16,7 @@ fun CerveListItem(
     onClick: (() -> Unit)? = null
 ) {
     androidx.compose.material3.ListItem(
-        modifier = modifier.composed {
-            onClick?.let {
-                Modifier.clickable { onClick() }
-            } ?: Modifier
-        },
+        modifier = modifier.shouldClick(onClick),
         leadingContent = { CerveIcon(imageVector = leadingIcon) },
         headlineContent = {
             Text(text = headlineText)
@@ -31,4 +26,12 @@ fun CerveListItem(
         },
         trailingContent = trailingContent
     )
+}
+
+fun Modifier.shouldClick(function: (() -> Unit)? = null) : Modifier {
+
+    return function?.let {
+        this then Modifier.clickable { function() }
+    } ?: this
+
 }

@@ -2,14 +2,9 @@
 
     <string name="DEFAULT.APP.name" translatable="false">Simple Abv</string>
     <string name="DEFAULT.BUTTON.TEXT.cancel">Cancel</string>
-    <string name="DEFAULT.BUTTON.TEXT.ok">OK</string>
     <string name="DEFAULT_ABV_LABEL" translatable="false">abv</string>
     <string name="DEFAULT_RESULT_Attenuation_Abbreviation">attenuation</string>
 
-    <string name="EQUATION.TEXT.advance">Advance</string>
-    <string name="EQUATION.TEXT.simple">Simple</string>
-
-    <string name="LABEL.ABV.equation">Equation</string>
     <string name="LABEL.ABV.final">Final Gravity</string>
     <string name="LABEL.ABV.original">Original Gravity</string>
     <string name="LABEL.ABV.unit">Unit</string>
@@ -20,10 +15,7 @@
     <string name="LABEL.THEME.theme">App theme</string>
     <string name="LABEL_SHARE_APP">Share App</string>
     <string name="SUBLABEL_SHARE_APP">Share Simple Abv with others.</string>
-    <string name="SUBLABEL_SHARE_APP_MORE_INFO">
-        Check out Simple Abv,
-        the free app that makes abv calculation simple. %s
-    </string>
+    <string name="SUBLABEL_SHARE_APP_MORE_INFO">You can check out Simple Abv, the free app simplifying abv calculation. %s</string>
 
     <string name="NAV.DESTINATION.calculator">Calculator</string>
     <string name="NAV.DESTINATION.converter">Converter</string>
@@ -31,13 +23,9 @@
 
     <string name="NAV.DESTINATION.result">Result</string>
     <string name="NAV.DESTINATION.equation">Equations</string>
-    <string name="NAV.DESTINATION.notes">Notes</string>
 
-    <string name="SUBLABEL.ABV.equation">Choose the equation to use for your calculation</string>
-    <string name="SUBLABEL.ABV.unit">Choose the unit to use for your calculation</string>
     <string name="SUBLABEL.SUPPORT.bug">Report a bug in Simple ABV</string>
     <string name="SUBLABEL.SUPPORT.feature">Request a new feature for Simple ABV</string>
-    <string name="SUBLABEL.THEME.darkmode">Are your eyes protected in Dark mode?</string>
     <string name="SUBLABEL.THEME.theme">Choose a different Theme.</string>
 
     <string name="LABEL_ABV_RESULT">Result[%s]</string>

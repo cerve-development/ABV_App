@@ -1,15 +1,15 @@
 package com.cerve.abv.shared.di
 
-import com.cerve.abv.shared.cache.PreferenceManager
 import com.cerve.abv.shared.cache.DriverFactory
+import com.cerve.abv.shared.cache.PreferenceManager
 import com.cerve.abv.shared.cache.createDatabase
 import com.cerve.abv.shared.cache.dataStorePreferences
 import com.cerve.abv.shared.domain.ConverterUseCase
-import com.cerve.abv.shared.domain.GetEquationUseCase
+import com.cerve.abv.shared.domain.DeleteEquationUseCase
 import com.cerve.abv.shared.domain.GetAbvDataUseCase
 import com.cerve.abv.shared.domain.GetAbvResultUseCase
+import com.cerve.abv.shared.domain.GetEquationUseCase
 import com.cerve.abv.shared.domain.NewEquationUseCase
-import com.cerve.abv.shared.domain.DeleteEquationUseCase
 import com.cerve.abv.shared.domain.SetCalculatorEquationUseCase
 import com.cerve.abv.shared.domain.SetSelectedAbvEquationUseCase
 import com.cerve.abv.shared.domain.SetSelectedAbvUnitUseCase
@@ -31,7 +31,7 @@ fun initKoin(
     modules(appModule())
     appDeclaration()
 }
-fun initKoin() = initKoin { }
+internal fun initKoin() = initKoin { }
 
 fun appModule() = listOf(cacheModule, repositoryModule, domainModule)
 
