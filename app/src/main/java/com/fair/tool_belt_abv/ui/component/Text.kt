@@ -10,7 +10,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 
 @Composable
@@ -27,7 +26,6 @@ fun CerveScalingText(
         text = text,
         textAlign = TextAlign.Center,
         style = style.copy(
-            fontWeight = FontWeight.Black,
             fontSize = style.fontSize * multiplier
         ),
         softWrap = true,

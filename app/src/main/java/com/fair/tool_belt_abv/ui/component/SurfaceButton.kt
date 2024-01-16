@@ -5,14 +5,9 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.graphics.Color
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.typography
@@ -22,33 +17,24 @@ fun SurfaceButton(
     text: String,
     modifier: Modifier = Modifier,
     shape: RoundedCornerShape = CircleShape,
+    containerColor: Color = colors.surface,
     enabled: Boolean = true,
     onClick: () -> Unit
 ) {
-    var multiplier by remember { mutableFloatStateOf(1f) }
 
     Surface(
         modifier = modifier,
         shape = shape,
-        color = colors.primaryContainer,
+        color = containerColor,
         enabled = enabled,
         onClick = onClick
     ) {
-        Text(
+        CerveScalingText(
             modifier = Modifier
                 .padding(sizes.medium)
                 .wrapContentHeight(),
             text = text,
-            textAlign = TextAlign.Center,
-            style = typography.labelLarge.copy(
-                fontSize = typography.labelLarge.fontSize * multiplier
-            ),
-            maxLines = 1,
-            onTextLayout = {
-                if (it.hasVisualOverflow) {
-                    multiplier *= 0.99f
-                }
-            }
+            style = typography.bodyLarge
         )
     }
 }

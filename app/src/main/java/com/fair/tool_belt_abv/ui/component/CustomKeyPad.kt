@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.cerve.abv.shared.model.AbvEquation
+import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
 import com.fair.tool_belt_abv.R
 import com.fair.tool_belt_abv.ui.model.KeyPadValue
@@ -101,7 +102,11 @@ fun CustomKeyPad(
             KeyPadValue.entries.forEach { key ->
                 SurfaceButton(
                     modifier = Modifier.size(size),
-                    text = key.label
+                    text = key.label,
+                    containerColor = when(key) {
+                        KeyPadValue.Equal -> colors.primary
+                        else -> colors.surfaceVariant
+                    }
                 ) {
                     when (key) {
                         KeyPadValue.Equal -> onEqualKeyClick?.invoke() ?: onKeyClick(key.text)
