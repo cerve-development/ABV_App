@@ -68,6 +68,7 @@ fun EquationListScreen(
                                 style = MaterialTheme.typography.labelLarge
                             )
                             RadioButton(
+                                enabled = equation.isValid,
                                 selected = selectedAbvEquation == equation,
                                 onClick = { onEquationSelect(equation) }
                             )
