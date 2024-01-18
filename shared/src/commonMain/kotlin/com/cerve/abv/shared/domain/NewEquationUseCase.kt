@@ -19,4 +19,21 @@ class NewEquationUseCase : KoinComponent {
 
     }.catch { emit(null) }
 
+    companion object {
+        fun isValid(equation: String?): Boolean {
+            return try {
+                val og = 1.09
+                val fg = 1.07
+
+                Equation
+                    .Calculator(og, fg)
+                    .custom(equation!!)
+
+                true
+            } catch (_: Exception) {
+                false
+            }
+        }
+    }
+
 }

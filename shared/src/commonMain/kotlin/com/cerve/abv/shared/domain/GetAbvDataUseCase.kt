@@ -17,16 +17,17 @@ class GetAbvDataUseCase(
         equationRepository.equationList(),
         preferences.calculatorPreferences
     ) { equations, pref ->
-        val selectedEquation = equations.find { equation ->
-            equation.name == pref.abvEquation
-        } ?: AbvEquation.Simple
+        val found =  equations.find { equation -> equation.name == pref.abvEquation }
+        val selectedEquation = if(NewEquationUseCase.isValid(found?.equation) && found != null) {
+            found
+        } else AbvEquation.Simple
 
         val selectedUnit = pref.abvUnit
 
         AbvData(
             unit = selectedUnit,
             unitList = AbvUnit.entries,
-            equation = selectedEquation,
+            equation = selectedEquation,//selectedEquation,
             equationList = equations
         )
     }

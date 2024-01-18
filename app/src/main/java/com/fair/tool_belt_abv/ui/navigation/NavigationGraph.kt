@@ -29,9 +29,12 @@ fun RootNavGraph(
         startDestination = startDestination,
         navController = navController
     ) {
+
         cerveNavigationComposable(
             route = RootDestinationGraph.TOP_LEVEL_ROUTE.name
-        ) { MainNavGraph(rootNavController = navController) }
+        ) {
+            MainNavGraph(rootNavController = navController)
+        }
 
         cerveNavigationComposable(
             route = EQUATION.asArgs(),
