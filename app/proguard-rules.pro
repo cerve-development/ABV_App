@@ -25,6 +25,7 @@
 #-keep, allowshrinking, allowoptimization, allowobfuscation, allowaccessmodification class <1>
 
 #noinspection ShrinkerUnresolvedReference
+-repackageclasses
 
 -dontwarn kotlinx.serialization.Serializable
 -dontwarn kotlinx.serialization.KSerializer
