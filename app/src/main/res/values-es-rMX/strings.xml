@@ -2,6 +2,7 @@
 
     <string name="DEFAULT.BUTTON.TEXT.cancel">Cancelar</string>
 
+    <string name="LABEL_INVALID_EQUATION">Ecuación no válida</string>
     <string name="LABEL.ABV.final">Gravedad final</string>
     <string name="LABEL.ABV.original">Gravedad original</string>
     <string name="LABEL.ABV.unit">Unidad</string>

@@ -1,5 +1,6 @@
 package com.cerve.abv.shared.model
 
+import com.cerve.abv.shared.domain.NewEquationUseCase
 import kotlinx.datetime.Clock
 import java.text.SimpleDateFormat
 import java.util.*
@@ -8,6 +9,7 @@ sealed class AbvEquation(
     val name: String,
     val equation: String,
     val updatedAt: Long?,
+    val isValid: Boolean = NewEquationUseCase.isValid(equation),
     val type: EquationType
 ) {
 

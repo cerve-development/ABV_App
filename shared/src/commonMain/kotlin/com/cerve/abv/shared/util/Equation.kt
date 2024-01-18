@@ -28,16 +28,6 @@ sealed interface Equation {
                 )
             ).round(roundTo)
 
-//            return try {
-//                Evaluator().evaluateDouble(
-//                    expression = equation,
-//                    values = mapOf(
-//                        "${AbvEquation.StaticValues.OG}" to og,
-//                        "${AbvEquation.StaticValues.FG}" to fg
-//                    )
-//                ).round(roundTo)
-//            } catch (_ : Exception) { 0.0 }
-
         }
 
     }

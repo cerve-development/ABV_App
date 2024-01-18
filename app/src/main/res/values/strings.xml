@@ -5,6 +5,7 @@
     <string name="DEFAULT_ABV_LABEL" translatable="false">abv</string>
     <string name="DEFAULT_RESULT_Attenuation_Abbreviation">attenuation</string>
 
+    <string name="LABEL_INVALID_EQUATION">Invalid Equation</string>
     <string name="LABEL.ABV.final">Final Gravity</string>
     <string name="LABEL.ABV.original">Original Gravity</string>
     <string name="LABEL.ABV.unit">Unit</string>

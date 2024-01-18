@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -19,9 +18,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.cerve.abv.shared.model.AbvEquation
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.colors
 import com.cerve.co.material3extension.designsystem.ExtendedTheme.sizes
+import com.fair.tool_belt_abv.R
+import com.fair.tool_belt_abv.ui.component.ThemedChip
 import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,27 +88,28 @@ fun EquationListScreen(
                             horizontalArrangement = Arrangement.spacedBy(sizes.small),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            equation.timeStamp()?.let { stamp ->
-                                Surface(
-                                    modifier = Modifier,
-                                    shape = CircleShape,
-                                    color = colors.primaryContainer
-                                ) {
+                            if (!equation.isValid) {
+                                ThemedChip(color = colors.error) { chipModifier ->
                                     Text(
-                                        modifier = Modifier.padding(sizes.small),
+                                        modifier = chipModifier,
+                                        text = stringResource(id = R.string.LABEL_INVALID_EQUATION),
+                                        style = MaterialTheme.typography.labelSmall
+                                    )
+                                }
+                            }
+                            equation.timeStamp()?.let { stamp ->
+                                ThemedChip { chipModifier ->
+                                    Text(
+                                        modifier = chipModifier,
                                         text = stamp,
                                         style = MaterialTheme.typography.labelSmall
                                     )
                                 }
                             }
 
-                            Surface(
-                                modifier = Modifier,
-                                shape = CircleShape,
-                                color = colors.primaryContainer
-                            ) {
+                            ThemedChip { chipModifier ->
                                 Text(
-                                    modifier = Modifier.padding(sizes.small),
+                                    modifier = chipModifier,
                                     text = equation.type.name,
                                     style = MaterialTheme.typography.labelSmall
                                 )
