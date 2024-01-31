@@ -75,7 +75,7 @@ fun MainNavGraph(
                     ScreenWrapper { state ->
                         // TODO investigate why non null still showing
                         AbvCalculatorScreen(
-                            state = state!!,
+                            state = state,
                             onUnitSelect = vm::updateUnit,
                             onEquationSelect = vm::updateEquation,
                             onOGValueUpdate = vm::updateOriginalValue,

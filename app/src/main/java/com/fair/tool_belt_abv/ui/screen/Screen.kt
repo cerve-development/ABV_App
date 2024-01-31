@@ -34,13 +34,12 @@ sealed class Screen<T>(val value: T) {
         val eventId: Int = (randomUUID()).hashCode()
     ) : Screen<T>(state)
 
-    //TODO INVESTIGATE
-    fun <R> mapValue(data: R): Screen<R> {
+    fun mapValue(data: T): Screen<T> {
         return when (this) {
-            is Loading -> this.copy(state = data as T) as Loading<R>
-            is Loaded -> this.copy(state = data as T) as Loaded<R>
-            is Event -> this.copy(state = data as T) as Event<R>
-            is Error -> this.copy(state = data as T) as Error<R>
+            is Loading -> this.copy(state = data)
+            is Loaded -> this.copy(state = data)
+            is Event -> this.copy(state = data)
+            is Error -> this.copy(state = data)
         }
     }
 
@@ -76,11 +75,13 @@ sealed class Screen<T>(val value: T) {
 
     @Composable
     fun ScreenWrapper(
-        content: @Composable (T) -> Unit
+        content: @Composable (T & Any) -> Unit
     ) {
-        if (value == null) {
-            // TODO investigate why non null still showing
-        } else { content(value as T) }
+
+        value?.let {
+            content(value)
+        } ?: Unit //TODO SHOW LOADING ANIMATION OR INSTANCE
+
     }
 
     @Composable
